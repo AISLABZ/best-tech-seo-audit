@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en" data-palette="#184f95,#2a78d6,#86b6ef">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Best Tech Repair — SEO &amp; Performance Audit</title>
+<style>
+  .viz-root{
+    color-scheme: light;
+    --surface-1:#fcfcfb; --plane:#f9f9f7;
+    --text-primary:#0b0b0b; --text-secondary:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --axis:#c3c2b7; --border:rgba(11,11,11,0.10);
+    --sev-critical:#184f95; --sev-high:#2a78d6; --sev-medium:#86b6ef;
+    --st-good:#0ca30c; --st-warning:#fab219; --st-serious:#ec835a; --st-critical:#d03b3b;
+    --seq-100:#cde2fb; --seq-450:#2a78d6; --seq-600:#184f95;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:where(:not([data-theme="light"])) .viz-root{
+      color-scheme: dark;
+      --surface-1:#1a1a19; --plane:#0d0d0d;
+      --text-primary:#ffffff; --text-secondary:#c3c2b7; --muted:#898781;
+      --grid:#2c2c2a; --axis:#383835; --border:rgba(255,255,255,0.10);
+      --sev-critical:#b7d3f6; --sev-high:#5598e7; --sev-medium:#256abf;
+      --seq-100:#184f95; --seq-450:#3987e5; --seq-600:#9ec5f4;
+    }
+  }
+  :root[data-theme="dark"] .viz-root{
+    color-scheme: dark;
+    --surface-1:#1a1a19; --plane:#0d0d0d;
+    --text-primary:#ffffff; --text-secondary:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --axis:#383835; --border:rgba(255,255,255,0.10);
+    --sev-critical:#b7d3f6; --sev-high:#5598e7; --sev-medium:#256abf;
+    --seq-100:#184f95; --seq-450:#3987e5; --seq-600:#9ec5f4;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--plane,#f9f9f7)}
+  .viz-root{
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background:var(--plane); color:var(--text-primary);
+    min-height:100vh; padding:32px 24px 64px;
+  }
+  .wrap{max-width:1120px;margin:0 auto}
+  header.top{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;margin-bottom:28px}
+  h1{font-size:22px;font-weight:650;margin:0 0 6px;letter-spacing:-0.01em}
+  .sub{font-size:13px;color:var(--text-secondary);margin:0;line-height:1.5}
+  .toggle{background:var(--surface-1);border:1px solid var(--border);border-radius:8px;
+    color:var(--text-secondary);font:inherit;font-size:12px;padding:7px 12px;cursor:pointer}
+  .toggle:hover{color:var(--text-primary)}
+  .card{background:var(--surface-1);border:1px solid var(--border);border-radius:12px;padding:20px 22px;margin-bottom:18px}
+  .card h2{font-size:14px;font-weight:600;margin:0 0 4px;letter-spacing:.01em}
+  .card .cap{font-size:12px;color:var(--muted);margin:0 0 18px;line-height:1.5}
+  .grid{display:grid;gap:18px}
+  .hero-row{grid-template-columns:minmax(240px,1fr) 2fr}
+  @media(max-width:820px){.hero-row{grid-template-columns:1fr}}
+  .hero .figure{font-size:64px;font-weight:650;line-height:1;letter-spacing:-0.03em;margin:6px 0 10px}
+  .hero .label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em}
+  .hero .note{font-size:12.5px;color:var(--text-secondary);line-height:1.55;margin:0}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  @media(max-width:820px){.kpis{grid-template-columns:repeat(2,1fr)}}
+  .kpi{background:var(--surface-1);border:1px solid var(--border);border-radius:12px;padding:16px 18px}
+  .kpi .k-label{font-size:11.5px;color:var(--muted);line-height:1.4;margin-bottom:8px}
+  .kpi .k-val{font-size:28px;font-weight:650;letter-spacing:-0.02em;line-height:1}
+  .kpi .k-sub{font-size:11.5px;color:var(--text-secondary);margin-top:7px;display:flex;align-items:center;gap:5px}
+  .dot{width:8px;height:8px;border-radius:50%;flex:none;display:inline-block}
+  /* severity bars */
+  .sevrow{display:grid;grid-template-columns:78px 1fr 34px;align-items:center;gap:12px;margin-bottom:12px}
+  .sevname{font-size:12.5px;color:var(--text-secondary);display:flex;align-items:center;gap:7px}
+  .sevtrack{height:20px;position:relative}
+  .sevbar{height:20px;border-radius:0 4px 4px 0;transition:filter .12s}
+  .sevrow:hover .sevbar{filter:brightness(1.08)}
+  .sevval{font-size:13px;font-weight:600;text-align:right;font-variant-numeric:tabular-nums}
+  /* meters */
+  .meters{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  @media(max-width:820px){.meters{grid-template-columns:1fr}}
+  .meter .m-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:9px}
+  .meter .m-name{font-size:12.5px;color:var(--text-secondary)}
+  .meter .m-val{font-size:20px;font-weight:650;letter-spacing:-0.01em}
+  .m-track{height:10px;border-radius:5px;background:var(--seq-100);position:relative;overflow:hidden}
+  .m-fill{height:10px;border-radius:5px}
+  .m-scale{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:7px;font-variant-numeric:tabular-nums}
+  .m-foot{font-size:11.5px;color:var(--text-secondary);margin-top:9px;display:flex;align-items:center;gap:6px;line-height:1.4}
+  /* weight chart */
+  .wrow{display:grid;grid-template-columns:150px 1fr 76px;align-items:center;gap:12px;margin-bottom:10px}
+  .wname{font-size:12.5px;color:var(--text-secondary)}
+  .wbar{height:18px;border-radius:0 4px 4px 0}
+  .wval{font-size:12.5px;text-align:right;color:var(--text-secondary);font-variant-numeric:tabular-nums}
+  /* table */
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  th{text-align:left;font-weight:600;color:var(--muted);font-size:11px;text-transform:uppercase;
+    letter-spacing:.05em;padding:0 10px 9px 0;border-bottom:1px solid var(--grid);white-space:nowrap}
+  td{padding:9px 10px 9px 0;border-bottom:1px solid var(--grid);color:var(--text-secondary);vertical-align:top}
+  tbody tr:hover td{background:color-mix(in srgb, var(--text-primary) 3.5%, transparent)}
+  td.p{color:var(--text-primary);font-weight:500;white-space:nowrap}
+  .num{font-variant-numeric:tabular-nums;text-align:right}
+  .bad{color:var(--st-critical);font-weight:600}
+  .okv{color:var(--st-good);font-weight:600}
+  /* findings */
+  .find{border-bottom:1px solid var(--grid);padding:15px 0;display:grid;grid-template-columns:96px 1fr;gap:16px}
+  .find:last-child{border-bottom:0;padding-bottom:0}
+  .badge{font-size:10.5px;font-weight:650;letter-spacing:.05em;text-transform:uppercase;
+    display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 9px;border-radius:6px;
+    border:1px solid var(--border);white-space:nowrap}
+  .f-title{font-size:13.5px;font-weight:600;color:var(--text-primary);margin:0 0 5px;line-height:1.4}
+  .f-body{font-size:12.5px;color:var(--text-secondary);margin:0;line-height:1.6}
+  .f-body code{background:color-mix(in srgb, var(--text-primary) 6%, transparent);
+    padding:1px 5px;border-radius:4px;font-size:11.5px;font-family:ui-monospace,Menlo,monospace}
+  .f-fix{font-size:12.5px;color:var(--text-secondary);margin:7px 0 0;line-height:1.6}
+  .f-fix b{color:var(--text-primary);font-weight:600}
+  ol.steps{margin:0;padding-left:20px}
+  ol.steps li{font-size:13px;color:var(--text-secondary);line-height:1.65;margin-bottom:11px}
+  ol.steps li b{color:var(--text-primary);font-weight:600}
+  .foot{font-size:11.5px;color:var(--muted);line-height:1.65;margin:0}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:11.5px;color:var(--text-secondary);margin-bottom:16px}
+  .legend span{display:flex;align-items:center;gap:6px}
+</style>
+</head>
+<body>
+<div class="viz-root">
+<div class="wrap">
+
+  <header class="top">
+    <div>
+      <h1>Best Tech Repair — SEO &amp; performance audit</h1>
+      <p class="sub">best-tech.co.uk · Webflow (CMS plan) · 16 pages crawled · audited 13 August 2026<br>
+      Site last published 26 July 2026</p>
+    </div>
+    <button class="toggle" id="tg">Dark / light</button>
+  </header>
+
+  <!-- HERO + KPIs -->
+  <div class="grid hero-row">
+    <div class="card hero">
+      <div class="label">Issues found</div>
+      <div class="figure">30</div>
+      <p class="note">Nine are critical — each one on its own is enough to keep the site
+      out of search results or stop you measuring anything. The good news: most are
+      settings and copy, not rebuilds.</p>
+    </div>
+    <div class="card">
+      <h2>Findings by severity</h2>
+      <p class="cap">Severity is an ordered scale, shown as one hue getting darker. Counts are direct-labelled.</p>
+      <div class="sevrow">
+        <div class="sevname"><span class="dot" style="background:var(--st-critical)"></span>Critical</div>
+        <div class="sevtrack"><div class="sevbar" style="width:81.8%;background:var(--sev-critical)"></div></div>
+        <div class="sevval">9</div>
+      </div>
+      <div class="sevrow">
+        <div class="sevname"><span class="dot" style="background:var(--st-serious)"></span>High</div>
+        <div class="sevtrack"><div class="sevbar" style="width:100%;background:var(--sev-high)"></div></div>
+        <div class="sevval">11</div>
+      </div>
+      <div class="sevrow">
+        <div class="sevname"><span class="dot" style="background:var(--st-warning)"></span>Medium</div>
+        <div class="sevtrack"><div class="sevbar" style="width:91%;background:var(--sev-medium)"></div></div>
+        <div class="sevval">10</div>
+      </div>
+      <p class="foot" style="margin-top:14px">Critical = blocks indexing, tracking or conversion. High = actively costs
+      rankings or trust. Medium = worth fixing in the next pass.</p>
+    </div>
+  </div>
+
+  <div class="kpis" style="margin-bottom:18px">
+    <div class="kpi">
+      <div class="k-label">Pages with an H1 heading</div>
+      <div class="k-val">0 <span style="font-size:15px;color:var(--muted);font-weight:500">/ 16</span></div>
+      <div class="k-sub"><span class="dot" style="background:var(--st-critical)"></span>Critical</div>
+    </div>
+    <div class="kpi">
+      <div class="k-label">Pages with structured data</div>
+      <div class="k-val">0 <span style="font-size:15px;color:var(--muted);font-weight:500">/ 16</span></div>
+      <div class="k-sub"><span class="dot" style="background:var(--st-critical)"></span>Critical</div>
+    </div>
+    <div class="kpi">
+      <div class="k-label">Analytics / tracking tags live</div>
+      <div class="k-val">0</div>
+      <div class="k-sub"><span class="dot" style="background:var(--st-critical)"></span>No GA4, GTM or pixel</div>
+    </div>
+    <div class="kpi">
+      <div class="k-label">Images with alt text</div>
+      <div class="k-val">51 <span style="font-size:15px;color:var(--muted);font-weight:500">/ 157</span></div>
+      <div class="k-sub"><span class="dot" style="background:var(--st-serious)"></span>32% coverage</div>
+    </div>
+  </div>
+
+  <!-- CORE WEB VITALS -->
+  <div class="card">
+    <h2>Core Web Vitals — mobile</h2>
+    <p class="cap">Lighthouse lab run, 13 Aug 2026. Mobile performance score <b>47 / 100</b>.
+    Fill shows the measured value against Google's "good" threshold; the track runs to the
+    "poor" boundary. Desktop passes all three — the problem is mobile only.</p>
+    <div class="meters">
+      <div class="meter">
+        <div class="m-top"><span class="m-name">Largest Contentful Paint</span><span class="m-val">9.0s</span></div>
+        <div class="m-track"><div class="m-fill" style="width:100%;background:var(--st-critical)"></div></div>
+        <div class="m-scale"><span>0s</span><span>good ≤ 2.5s</span><span>4.0s+</span></div>
+        <div class="m-foot"><span class="dot" style="background:var(--st-critical)"></span>
+          Poor — 3.6× the target. Desktop: 1.4s.</div>
+      </div>
+      <div class="meter">
+        <div class="m-top"><span class="m-name">Cumulative Layout Shift</span><span class="m-val">0.319</span></div>
+        <div class="m-track"><div class="m-fill" style="width:100%;background:var(--st-critical)"></div></div>
+        <div class="m-scale"><span>0</span><span>good ≤ 0.1</span><span>0.25+</span></div>
+        <div class="m-foot"><span class="dot" style="background:var(--st-critical)"></span>
+          Poor — content jumps as it loads. Desktop: 0.002.</div>
+      </div>
+      <div class="meter">
+        <div class="m-top"><span class="m-name">Total Blocking Time</span><span class="m-val">310ms</span></div>
+        <div class="m-track"><div class="m-fill" style="width:52%;background:var(--st-serious)"></div></div>
+        <div class="m-scale"><span>0</span><span>good ≤ 200ms</span><span>600ms</span></div>
+        <div class="m-foot"><span class="dot" style="background:var(--st-serious)"></span>
+          Needs improvement. Main-thread work 3.2s.</div>
+      </div>
+    </div>
+    <p class="foot" style="margin-top:20px">Field data (real visitors, Chrome UX Report): <b>none available</b> — the
+    site doesn't yet get enough traffic to register. Lighthouse's own "SEO 100/100" score is
+    misleading here: it checks a shallow list and does not test for H1s, canonicals, schema or a sitemap.</p>
+  </div>
+
+  <!-- PAGE WEIGHT -->
+  <div class="card">
+    <h2>What's making the homepage slow</h2>
+    <p class="cap">Largest assets on the homepage, measured directly. One file accounts for
+    almost everything.</p>
+    <div class="wrow">
+      <div class="wname">Hero video (MP4)</div>
+      <div><div class="wbar" style="width:100%;background:var(--seq-600)"></div></div>
+      <div class="wval">5,782 KB</div>
+    </div>
+    <div class="wrow">
+      <div class="wname">Laptop photo (JPEG)</div>
+      <div><div class="wbar" style="width:22.2%;background:var(--seq-450)"></div></div>
+      <div class="wval">1,283 KB</div>
+    </div>
+    <div class="wrow">
+      <div class="wname">Largest WebP image</div>
+      <div><div class="wbar" style="width:6.5%;background:var(--seq-450)"></div></div>
+      <div class="wval">373 KB</div>
+    </div>
+    <div class="wrow">
+      <div class="wname">HTML document</div>
+      <div><div class="wbar" style="width:1.4%;background:var(--seq-450)"></div></div>
+      <div class="wval">79 KB</div>
+    </div>
+    <p class="foot" style="margin-top:16px">The hero video is a <b>3840 × 2160, 30fps</b> master file — full 4K, served to
+    phones. A WebM copy of the same clip (5,853 KB) sits alongside it. Lighthouse separately estimates
+    1,104 KB of image savings and 12,045 KB recoverable through longer cache lifetimes.</p>
+  </div>
+
+  <!-- CRITICAL FINDINGS -->
+  <div class="card">
+    <h2>Critical findings</h2>
+    <p class="cap">Nine issues. Each blocks indexing, measurement, or a sale.</p>
+
+    <div class="find">
+      <div><span class="badge" style="color:var(--st-critical)"><span class="dot" style="background:var(--st-critical)"></span>Critical</span></div>
+      <div>
+        <p class="f-title">1 · There is no sitemap</p>
+        <p class="f-body"><code>best-tech.co.uk/sitemap.xml</code> returns a <b>404</b>. Google has no
+        index of your pages to crawl.</p>
+        <p class="f-fix"><b>Cause found:</b> in Webflow → Site settings → SEO → Sitemap, "Auto-generate sitemap"
+        is <b>Off</b> (set to "Use custom sitemap.xml") and the custom sitemap box is empty.
+        <b>Fix:</b> switch auto-generate On, publish, then submit the sitemap in Search Console.</p>
+      </div>
+    </div>
+
+    <div class="find">
+      <div><span class="badge" style="color:var(--st-critical)"><span class="dot" style="background:var(--st-critical)"></span>Critical</span></div>
+      <div>
+        <p class="f-title">2 · Not one page has an H1</p>
+        <p class="f-body">All 16 pages return zero <code>&lt;h1&gt;</code> elements. The homepage hero
+        "Fast &amp; Reliable Mobile &amp; Gadget Repair" is marked up as an H2. Four pages
+        (<code>/work</code>, <code>/price</code>, <code>/blog</code>, <code>/career</code>) have no headings at all.</p>
+        <p class="f-fix"><b>Fix:</b> in the Designer, change each page's hero heading tag from H2 to H1.
+        One H1 per page, containing the primary keyword.</p>
+      </div>
+    </div>
+
+    <div class="find">
+      <div><span class="badge" style="color:var(--st-critical)"><span class="dot" style="background:var(--st-critical)"></span>Critical</span></div>
+      <div>
+        <p class="f-title">3 · No canonical tags anywhere</p>
+        <p class="f-body">Zero of 16 pages carry a <code>rel="canonical"</code> link. Webflow's
+        Global canonical tag URL field is empty.</p>
+        <p class="f-fix"><b>Fix:</b> Site settings → SEO → Global canonical tag URL → enter
+        <code>https://best-tech.co.uk</code> and save.</p>
+      </div>
+    </div>
+
+    <div class="find">
+      <div><span class="badge" style="color:var(--st-critical)"><span class="dot" style="background:var(--st-critical)"></span>Critical</span></div>
+      <div>
+        <p class="f-title">4 · No structured data — invisible as a local business</p>
+        <p class="f-body">Zero JSON-LD blocks across the site. For a walk-in repair shop at
+        Piccadilly this is the single biggest missed opportunity: no LocalBusiness schema means no
+        opening hours, address, phone, price range or review stars in Google's results, and much
+        weaker eligibility for the local map pack.</p>
+        <p class="f-fix"><b>Fix:</b> add LocalBusiness (and Service + FAQPage on the service
+        pages) JSON-LD via Site settings → Custom code → Head. Currently the Head contains only a
+        small style block and the Elfsight WhatsApp widget.</p>
+      </div>
+    </div>
+
+    <div class="find">
+      <div><span class="badge" style="color:var(--st-critical)"><span class="dot" style="background:var(--st-critical)"></span>Critical</span></div>
+      <div>
+        <p class="f-title">5 · Two pages still carry the template's own SEO copy</p>
+        <p class="f-body"><code>/price</code> and <code>/career</code> both have the title
+        <b>"Oxygen Studio – Webflow Ecommerce website template"</b> and the description
+        <b>"Oxygen Studio is a modern and high-performance agency template designed for creative
+        studios, digital agencies, and freelancers…"</b>. That is what Google will show for your
+        pricing page.</p>
+        <p class="f-fix"><b>Fix:</b> page settings → SEO for both pages. E.g. "Phone &amp; Laptop
+        Repair Prices in London | Best Tech Repair".</p>
+      </div>
+    </div>
+
+    <div class="find">
+      <div><span class="badge" style="color:var(--st-critical)"><span class="dot" style="background:var(--st-critical)"></span>Critical</span></div>
+      <div>
+        <p class="f-title">6 · The pricing page sends customers to someone else's website</p>
+        <p class="f-body">The plan buttons on <code>/price</code> link out to the template author's
+        demo sites: <code>oxygen-studio.webflow.io/product/starter-plan</code>,
+        <code>/product/custom-plan</code>, <code>creatix-studio.webflow.io/product/starter-plan</code>
+        and <code>/product/growth-plan</code>. Anyone clicking to buy leaves best-tech.co.uk.</p>
+        <p class="f-fix"><b>Fix:</b> repoint all four to <code>/contact</code> or your booking flow. Highest-value
+        single fix on the site.</p>
+      </div>
+    </div>
+
+    <div class="find">
+      <div><span class="badge" style="color:var(--st-critical)"><span class="dot" style="background:var(--st-critical)"></span>Critical</span></div>
+      <div>
+        <p class="f-title">7 · Nothing is being measured</p>
+        <p class="f-body">No Google Analytics 4, no Tag Manager, no Meta Pixel, no Clarity or Hotjar —
+        the page source contains none of them. There is also no Google Search Console verification.
+        For a performance-marketing engagement, there is currently no baseline and no conversion tracking.</p>
+        <p class="f-fix"><b>Fix first, before any other change</b>, so improvements are attributable:
+        GA4 + Search Console, then a form/call conversion event.</p>
+      </div>
+    </div>
+
+    <div class="find">
+      <div><span class="badge" style="color:var(--st-critical)"><span class="dot" style="background:var(--st-critical)"></span>Critical</span></div>
+      <div>
+        <p class="f-title">8 · Mobile LCP is 9.0 seconds</p>
+        <p class="f-body">Driven by a 4K (3840×2160) hero video weighing 5.78 MB, plus a 1.28 MB
+        uncompressed JPEG and ~1,150 ms of render-blocking requests.</p>
+        <p class="f-fix"><b>Fix:</b> re-encode the hero to 1280×720 (~800 KB), add a poster image, and
+        don't autoplay it on mobile. Re-upload the laptop JPEG as WebP.</p>
+      </div>
+    </div>
+
+    <div class="find">
+      <div><span class="badge" style="color:var(--st-critical)"><span class="dot" style="background:var(--st-critical)"></span>Critical</span></div>
+      <div>
+        <p class="f-title">9 · Layout shift of 0.319 on mobile</p>
+        <p class="f-body">Three times Google's "poor" boundary. Content jumps under the reader's
+        thumb while the page loads — Lighthouse flags both layout-shift culprits and forced reflow.</p>
+        <p class="f-fix"><b>Fix:</b> set explicit width/height on images, and reserve space for the
+        hero video and the Elfsight chat widget.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- HIGH -->
+  <div class="card">
+    <h2>High-priority findings</h2>
+    <p class="cap">Eleven issues actively costing rankings or customer trust.</p>
+
+    <div class="find">
+      <div><span class="badge" style="color:var(--st-serious)"><span class="dot" style="background:var(--st-serious)"></span>High</span></div>
+      <div>
+        <p class="f-title">10 · Five pages share one title, four share one description</p>
+        <p class="f-body"><code>/</code>, <code>/about</code>, <code>/work</code>, <code>/blog</code>
+        and <code>/contact</code> are all titled just <b>"Best Tech Repair"</b> (16 characters — Google
+        allows ~60). On four of them the meta description is <i>also</i> the literal string
+        "Best Tech Repair".</p>
+        <p class="f-fix"><b>Fix:</b> unique 50–60 character titles and 140–160 character descriptions per page.
+        The nine service pages already do this well — copy that pattern.</p>
+      </div>
+    </div>
+
+    <div class="find">
+      <div><span class="badge" style="color:var(--st-serious)"><span class="dot" style="background:var(--st-serious)"></span>High</span></div>
+      <div>
+        <p class="f-title">11 · Every page carries a web-agency tagline</p>
+        <p class="f-body">The footer on all 16 pages reads <b>"We are a creative agency that blends
+        strategy, design, and technology to craft digital experiences that inspire and drive
+        growth"</b> — leftover template copy describing a design studio, not a repair shop.</p>
+        <p class="f-fix"><b>Fix:</b> one edit to the footer symbol in the Designer updates the whole site.</p>
+      </div>
+    </div>
+
+    <div class="find">
+      <div><span class="badge" style="color:var(--st-serious)"><span class="dot" style="background:var(--st-serious)"></span>High</span></div>
+      <div>
+        <p class="f-title">12 · The 404 page is still entirely the template</p>
+        <p class="f-body">Title: "Oxygen Studio – Webflow Ecommerce website template". Its menu shows
+        <b>"New York, NY / Remote"</b>, <b>"+1 (234) 567-8910"</b> and
+        <b>"hello@creatixStudio.com"</b>. A UK customer who mistypes a URL sees an American web agency.</p>
+        <p class="f-fix"><b>Fix:</b> rebuild the 404 with your nav, your Piccadilly address and
+        <code>020 3417 7090</code>, plus links to the main service pages.</p>
+      </div>
+    </div>
+
+    <div class="find">
+      <div><span class="badge" style="color:var(--st-serious)"><span class="dot" style="background:var(--st-serious)"></span>High</span></div>
+      <div>
+        <p class="f-title">13 · 106 of 157 images have no alt text</p>
+        <p class="f-body">Only 32% coverage. The four <code>/works/</code> service pages are at
+        <b>0/10</b> — not a single image described. This costs image search, accessibility, and
+        keyword context on exactly the pages meant to rank.</p>
+        <p class="f-fix"><b>Fix:</b> alt text in the Asset panel applies everywhere the asset is used —
+        do it once per asset, not per placement.</p>
+      </div>
+    </div>
+
+    <div class="find">
+      <div><span class="badge" style="color:var(--st-serious)"><span class="dot" style="background:var(--st-serious)"></span>High</span></div>
+      <div>
+        <p class="f-title">14 · robots.txt is empty</p>
+        <p class="f-body">Served with a 200 status and zero bytes. Crawlers are allowed, but there's
+        no <code>Sitemap:</code> directive pointing them anywhere.</p>
+        <p class="f-fix"><b>Fix:</b> once the sitemap exists, add
+        <code>Sitemap: https://best-tech.co.uk/sitemap.xml</code> in Site settings → SEO → robots.txt.</p>
+      </div>
+    </div>
+
+    <div class="find">
+      <div><span class="badge" style="color:var(--st-serious)"><span class="dot" style="background:var(--st-serious)"></span>High</span></div>
+      <div>
+        <p class="f-title">15 · Social links are broken</p>
+        <p class="f-body">Sitewide footer links go to <code>facebook.com</code> (the homepage, not a
+        profile) and <code>www.<b>instragram</b>.com</code> — a typo for a domain that isn't Instagram.
+        Four further footer link blocks point at <code>#</code>.</p>
+      </div>
+    </div>
+
+    <div class="find">
+      <div><span class="badge" style="color:var(--st-serious)"><span class="dot" style="background:var(--st-serious)"></span>High</span></div>
+      <div>
+        <p class="f-title">16 · No Search Console verification</p>
+        <p class="f-body">The Google site verification field in Webflow is empty, so there's no
+        visibility of impressions, queries, or indexing errors — and no way to submit the sitemap.</p>
+      </div>
+    </div>
+
+    <div class="find">
+      <div><span class="badge" style="color:var(--st-serious)"><span class="dot" style="background:var(--st-serious)"></span>High</span></div>
+      <div>
+        <p class="f-title">17 · The blog is live with zero posts</p>
+        <p class="f-body"><code>/blog</code> is published, linked in both menus, and returns no
+        collection items. It's a dead end for visitors and a thin page for Google (497 words, mostly nav).</p>
+        <p class="f-fix"><b>Fix:</b> either unpublish it until there's content, or publish 3–4 posts targeting
+        real queries ("iPhone screen repair cost London", "is it worth repairing a 5-year-old laptop").</p>
+      </div>
+    </div>
+
+    <div class="find">
+      <div><span class="badge" style="color:var(--st-serious)"><span class="dot" style="background:var(--st-serious)"></span>High</span></div>
+      <div>
+        <p class="f-title">18 · Store currency is set to US dollars</p>
+        <p class="f-body">Webflow Ecommerce is configured with <code>"currencyCode":"USD"</code> and a
+        <code>$</code> symbol on a UK site quoting UK phone numbers and a London address.</p>
+      </div>
+    </div>
+
+    <div class="find">
+      <div><span class="badge" style="color:var(--st-serious)"><span class="dot" style="background:var(--st-serious)"></span>High</span></div>
+      <div>
+        <p class="f-title">19 · Header and footer menus disagree</p>
+        <p class="f-body">Header: Home · About us · Work · Pricing · Blogs · carrier · Contact.
+        Footer: Home · Services · About · Book Repair · Contact. The same <code>/work</code> page is
+        called "Work" in one and "Services" in the other, and the footer omits pricing entirely.</p>
+      </div>
+    </div>
+
+    <div class="find">
+      <div><span class="badge" style="color:var(--st-serious)"><span class="dot" style="background:var(--st-serious)"></span>High</span></div>
+      <div>
+        <p class="f-title">20 · Spelling errors in visible copy</p>
+        <p class="f-body">Homepage heading: "We Fix everything quick &amp; <b>corrctly</b> First Time".
+        Main navigation: "<b>carrier</b>" where it should read "Careers".</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MEDIUM -->
+  <div class="card">
+    <h2>Medium-priority findings</h2>
+    <p class="cap">Ten issues for the next pass.</p>
+    <table>
+      <thead><tr><th>#</th><th>Issue</th><th>Detail</th></tr></thead>
+      <tbody>
+        <tr><td class="p">21</td><td class="p">Accessibility score 85</td><td>Elements use prohibited ARIA attributes; accessibility tree is not well-formed.</td></tr>
+        <tr><td class="p">22</td><td class="p">Colour contrast failures</td><td>Background/foreground pairs below the WCAG ratio.</td></tr>
+        <tr><td class="p">23</td><td class="p">Unlabelled elements</td><td>iframe without a title; links with no discernible name; no <code>&lt;main&gt;</code> landmark.</td></tr>
+        <tr><td class="p">24</td><td class="p">Render-blocking requests</td><td>~1,150 ms of savings available.</td></tr>
+        <tr><td class="p">25</td><td class="p">Image delivery</td><td>~1,104 KiB of savings; 11 of 32 homepage images have no <code>srcset</code>.</td></tr>
+        <tr><td class="p">26</td><td class="p">Cache lifetimes</td><td>~12,045 KiB recoverable on repeat visits.</td></tr>
+        <tr><td class="p">27</td><td class="p">Unused code</td><td>95 KiB unused JavaScript, 16 KiB unused CSS, 4 KiB unminified CSS.</td></tr>
+        <tr><td class="p">28</td><td class="p">Main-thread work</td><td>3.2 s, largely jQuery + Webflow interactions + the Elfsight widget.</td></tr>
+        <tr><td class="p">29</td><td class="p">Thin content</td><td>Every page sits between 491 and 1,025 words including nav and footer.</td></tr>
+        <tr><td class="p">30</td><td class="p">No location pages</td><td>A single Piccadilly address with no area pages for the London neighbourhoods you serve.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- PAGE TABLE -->
+  <div class="card">
+    <h2>Page-by-page data</h2>
+    <p class="cap">All 16 published pages. Every page returned HTTP 200. Title and description
+    lengths in characters; recommended ranges are 50–60 and 140–160.</p>
+    <div class="legend">
+      <span><span class="dot" style="background:var(--st-critical)"></span>Value is a problem</span>
+      <span><span class="dot" style="background:var(--st-good)"></span>Value is fine</span>
+    </div>
+    <div style="overflow-x:auto">
+    <table>
+      <thead>
+        <tr>
+          <th>Page</th><th>Title</th><th class="num">Title len</th><th class="num">Desc len</th>
+          <th class="num">H1</th><th class="num">H2</th><th class="num">Canonical</th>
+          <th class="num">Schema</th><th class="num">Imgs no alt</th><th class="num">Words</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="p">/</td><td>Best Tech Repair</td><td class="num bad">16</td><td class="num okv">141</td><td class="num bad">0</td><td class="num">3</td><td class="num bad">—</td><td class="num bad">0</td><td class="num bad">9 / 32</td><td class="num">1,025</td></tr>
+        <tr><td class="p">/about</td><td>Best Tech Repair</td><td class="num bad">16</td><td class="num bad">16</td><td class="num bad">0</td><td class="num">1</td><td class="num bad">—</td><td class="num bad">0</td><td class="num bad">7 / 16</td><td class="num">770</td></tr>
+        <tr><td class="p">/work</td><td>Best Tech Repair</td><td class="num bad">16</td><td class="num bad">16</td><td class="num bad">0</td><td class="num bad">0</td><td class="num bad">—</td><td class="num bad">0</td><td class="num bad">4 / 13</td><td class="num">706</td></tr>
+        <tr><td class="p">/price</td><td class="bad">Oxygen Studio – Webflow… template</td><td class="num">50</td><td class="num">200</td><td class="num bad">0</td><td class="num bad">0</td><td class="num bad">—</td><td class="num bad">0</td><td class="num bad">1 / 1</td><td class="num">965</td></tr>
+        <tr><td class="p">/blog</td><td>Best Tech Repair</td><td class="num bad">16</td><td class="num bad">16</td><td class="num bad">0</td><td class="num bad">0</td><td class="num bad">—</td><td class="num bad">0</td><td class="num bad">2 / 2</td><td class="num">497</td></tr>
+        <tr><td class="p">/career</td><td class="bad">Oxygen Studio – Webflow… template</td><td class="num">50</td><td class="num">200</td><td class="num bad">0</td><td class="num bad">0</td><td class="num bad">—</td><td class="num bad">0</td><td class="num bad">1 / 1</td><td class="num">491</td></tr>
+        <tr><td class="p">/contact</td><td>Best Tech Repair</td><td class="num bad">16</td><td class="num bad">16</td><td class="num bad">0</td><td class="num bad">0</td><td class="num bad">—</td><td class="num bad">0</td><td class="num bad">2 / 2</td><td class="num">531</td></tr>
+        <tr><td class="p">/works/mobile-phone-repair</td><td>Mobile Phone Repair – Best Tech Repair</td><td class="num okv">38</td><td class="num">44</td><td class="num bad">0</td><td class="num">1</td><td class="num bad">—</td><td class="num bad">0</td><td class="num bad">10 / 10</td><td class="num">860</td></tr>
+        <tr><td class="p">/works/laptop-repair</td><td>Laptop Repair – Best Tech Repair</td><td class="num okv">32</td><td class="num">97</td><td class="num bad">0</td><td class="num">1</td><td class="num bad">—</td><td class="num bad">0</td><td class="num bad">10 / 10</td><td class="num">867</td></tr>
+        <tr><td class="p">/works/tablet-repair</td><td>Tablet Repair – Best Tech Repair</td><td class="num okv">32</td><td class="num">91</td><td class="num bad">0</td><td class="num">1</td><td class="num bad">—</td><td class="num bad">0</td><td class="num bad">10 / 10</td><td class="num">842</td></tr>
+        <tr><td class="p">/works/smartwatch-repair</td><td>Smartwatch Repair – Best Tech Repair</td><td class="num okv">36</td><td class="num">77</td><td class="num bad">0</td><td class="num">1</td><td class="num bad">—</td><td class="num bad">0</td><td class="num bad">10 / 10</td><td class="num">870</td></tr>
+        <tr><td class="p">/services/software-fixing</td><td>Software Fixing – Best Tech Repair</td><td class="num okv">34</td><td class="num okv">113</td><td class="num bad">0</td><td class="num bad">0</td><td class="num bad">—</td><td class="num bad">0</td><td class="num bad">8 / 10</td><td class="num">741</td></tr>
+        <tr><td class="p">/services/data-recovery</td><td>Data Recovery – Best Tech Repair</td><td class="num okv">32</td><td class="num okv">161</td><td class="num bad">0</td><td class="num bad">0</td><td class="num bad">—</td><td class="num bad">0</td><td class="num bad">8 / 10</td><td class="num">794</td></tr>
+        <tr><td class="p">/services/screen-replacement</td><td>Screen Replacement Service – Best Tech Repair</td><td class="num okv">45</td><td class="num okv">121</td><td class="num bad">0</td><td class="num bad">0</td><td class="num bad">—</td><td class="num bad">0</td><td class="num bad">8 / 10</td><td class="num">750</td></tr>
+        <tr><td class="p">/services/battery-replacement</td><td>Battery Replacement – Best Tech Repair</td><td class="num okv">38</td><td class="num">95</td><td class="num bad">0</td><td class="num bad">0</td><td class="num bad">—</td><td class="num bad">0</td><td class="num bad">8 / 10</td><td class="num">806</td></tr>
+        <tr><td class="p">/services/camera-speaker-repair</td><td>Camera &amp; Speaker Repair – Best Tech Repair</td><td class="num okv">42</td><td class="num okv">100</td><td class="num bad">0</td><td class="num bad">0</td><td class="num bad">—</td><td class="num bad">0</td><td class="num bad">8 / 10</td><td class="num">824</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <!-- ACTION PLAN -->
+  <div class="card">
+    <h2>Where to start</h2>
+    <p class="cap">Ordered by impact per hour of work. The first four are settings changes, not builds.</p>
+    <ol class="steps">
+      <li><b>Turn on the sitemap and set the canonical URL.</b> Site settings → SEO. Two toggles,
+      then publish. Roughly five minutes and it unblocks indexing.</li>
+      <li><b>Install GA4 and verify Search Console.</b> Do this before anything else changes, so every
+      later improvement is measurable. Verification ID goes in the same SEO panel.</li>
+      <li><b>Repoint the four pricing buttons</b> away from the template demo sites to your own booking
+      page. This is live revenue leaking today.</li>
+      <li><b>Clear the template residue:</b> the /price and /career SEO fields, the footer tagline, the
+      404 page, the Instagram typo, and the USD currency setting.</li>
+      <li><b>Change hero headings from H2 to H1</b> on all 16 pages, and write unique titles and
+      descriptions for the seven pages that share them.</li>
+      <li><b>Re-encode the hero video</b> to 720p with a poster image, and convert the 1.28 MB JPEG to
+      WebP. Expect mobile LCP to drop from 9.0s toward the 2.5s target.</li>
+      <li><b>Add LocalBusiness schema</b> with the Piccadilly address, 020 3417 7090, and the 10am–10pm
+      daily hours already on the site.</li>
+      <li><b>Work through alt text</b> in the Asset panel — start with the four /works/ pages, which
+      have none at all.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Method &amp; limitations</h2>
+    <p class="foot">
+      All 16 pages were fetched and parsed directly from the live site on 13 August 2026; every count in
+      this report comes from that parse rather than an estimate. Performance figures are a single
+      Lighthouse mobile lab run via PageSpeed Insights on the homepage — lab runs vary by a few points
+      between runs, and no real-user field data exists yet for this domain. Webflow settings were read
+      from Site settings → SEO and → Custom code. Asset sizes were measured by downloading the files.
+      Not covered: backlink profile, keyword rankings, competitor comparison, Google Business Profile,
+      and the CMS collection structure inside the Designer.
+    </p>
+  </div>
+
+</div>
+</div>
+<script>
+  document.getElementById('tg').addEventListener('click', function(){
+    var r = document.documentElement;
+    var cur = r.getAttribute('data-theme');
+    if(!cur){ cur = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
+    r.setAttribute('data-theme', cur === 'dark' ? 'light' : 'dark');
+  });
+</script>
+</body>
+</html>
