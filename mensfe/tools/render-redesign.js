@@ -7,18 +7,16 @@ const useFonts = require('./fonts');
 const root = path.resolve(process.argv[2]);
 const out = path.join(root, 'build');
 fs.mkdirSync(out, { recursive: true });
-const shots = [
-  ['home', 1440, 'Homepage — desktop'],
-  ['home', 390, 'Homepage — mobile'],
-  ['boards', 1440, 'Forum board index'],
-  ['topic', 1440, 'Topic view'],
-  ['article', 1440, 'Information page'],
+const shotsFor = (dir) => [
+  ['home', 1440], ['home', 390],
+  [dir === 'd' ? 'board' : 'boards', 1440],
+  ['topic', 1440], ['article', 1440],
 ];
 (async () => {
   const browser = await chromium.launch();
-  for (const dir of ['a', 'b', 'c']) {
+  for (const dir of ['a', 'b', 'c', 'd']) {
     if (!fs.existsSync(path.join(root, dir, 'home.html'))) { console.log('skip', dir); continue; }
-    for (const [name, w] of shots) {
+    for (const [name, w] of shotsFor(dir)) {
       const tag = `${dir}-${name}-${w === 390 ? 'mobile' : 'desktop'}`;
       const page = await browser.newPage({ viewport: { width: w, height: 900 }, deviceScaleFactor: w === 390 ? 2 : 1 });
       await useFonts(page);

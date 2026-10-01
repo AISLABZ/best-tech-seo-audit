@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mensfe Redesign — Choose a Direction</title>
-<meta name="description" content="Three design directions for the Mensfe men's fertility forum redesign.">
+<meta name="description" content="Four design directions for the Mensfe men's fertility forum redesign.">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
 <style>
 :root{--ink:#1A1F24;--ink2:#46505A;--muted:#5E6873;--line:#DCE1E5;--soft:#F3F5F6}
@@ -21,7 +21,7 @@ p{margin:0}
 a{color:#1D5866}
 .eyebrow{font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-size:12px;color:var(--muted)}
 .lead{font-size:18px;color:var(--ink2);max-width:760px;margin-top:14px}
-.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:30px}
+.trio{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;margin-top:30px}
 .trio figure{margin:0;border:1px solid var(--line);border-radius:12px;overflow:hidden}
 .trio img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;object-position:top}
 .trio figcaption{padding:12px 14px;font-size:14px;color:var(--ink2)}
@@ -59,12 +59,13 @@ td:first-child{font-weight:600;width:22%}
 
 <section class="sheet">
 <p class="eyebrow">Mensfe forum redesign · Concepts for review · October 2026</p>
-<h1 style="margin-top:10px">Three directions for the Mensfe forum</h1>
-<p class="lead">Each direction redesigns the same forum around the same content: a forum-first homepage, the board index, a topic page and a medical information page, all mobile-ready and built to fix the issues in the SEO audit. They differ in personality. Please pick one direction (or the parts you like from each) and we will develop it into the full site and SMF theme.</p>
+<h1 style="margin-top:10px">Four directions for the Mensfe forum</h1>
+<p class="lead">Each direction redesigns the same forum around the same content: a forum-first homepage, the board index, a topic page and a medical information page, all mobile-ready and built to fix the issues in the SEO audit. Directions A–C present the forum through a modern website front; Direction D keeps the look and feel of a true message board. Please pick one direction (or the parts you like from each) and we will develop it into the full site and SMF theme.</p>
 <div class="trio">
 <figure><img src="previews/a-home-hero.jpg" alt="Direction A homepage: dark teal hero with gold buttons and a latest discussions card"><figcaption><b>A · Harbour</b>Bold and branded. Confident, recognisable, a little dramatic.</figcaption></figure>
 <figure><img src="previews/b-home-hero.jpg" alt="Direction B homepage: clean white forum app layout with blue accents"><figcaption><b>B · Clear</b>Clean and clinical. Feels like a modern health service crossed with a forum app.</figcaption></figure>
 <figure><img src="previews/c-home-hero.jpg" alt="Direction C homepage: warm sand editorial layout with serif headings"><figcaption><b>C · Stories</b>Warm and human. Leads with members' voices, like a thoughtful magazine.</figcaption></figure>
+<figure><img src="previews/d-home-hero.jpg" alt="Direction D forum index: dark midnight theme with an illustrated shoreline banner and colour-coded board categories"><figcaption><b>D · Forum</b>A true message board. Dark, distinctive and built around the board index.</figcaption></figure>
 </div>
 <p class="note">All three share the same fixes: one clear heading per page, real text instead of text in images, latest discussions on the homepage, the founders' credentials on show, reviewer and date on medical pages, accessible contrast, and layouts that work on phones. Member counts appear as [n] placeholders, and sample posts are illustrative.</p>
 </section>
@@ -115,17 +116,32 @@ td:first-child{font-weight:600;width:22%}
 </section>
 
 <section class="sheet">
+<p class="eyebrow">Direction D</p>
+<h2>Forum: a true message board, reimagined</h2>
+<div class="dir">
+<div class="shot"><img src="previews/d-home-hero.jpg" alt="Direction D forum index, desktop"></div>
+<div class="mob"><img src="previews/d-home-mobile.jpg" alt="Direction D forum index, mobile"></div>
+</div>
+<div class="facts">
+<div><h3>Personality</h3><ul><li>The board index is the homepage, so regulars land straight in the forum</li><li>Classic forum anatomy (category bars, last-post columns, profile panels beside posts, quick reply, info center) with a modern dark finish</li><li>An illustrated night-shoreline banner revives "You'll never walk alone at Mensfe"</li></ul></div>
+<div><h3>Colour and type</h3><div class="sw"><span style="background:#0E1A1F"></span><span style="background:#15252C"></span><span style="background:#F2B544"></span><span style="background:#7FD1D9"></span><span style="background:#F29C8C"></span></div><ul style="margin-top:8px"><li>Bricolage Grotesque headings, Source Sans 3 body text; each category has its own colour</li></ul></div>
+<div><h3>Watch-outs</h3><ul><li>Dark themes divide opinion; a light variant can be offered as a member setting in SMF</li><li>Closest to SMF's own templates, so it is the quickest to build</li></ul></div>
+</div>
+<p class="links noprint"><a href="d/home.html">Forum index</a><a href="d/board.html">Board</a><a href="d/topic.html">Topic</a><a href="d/article.html">Information page</a></p>
+</section>
+
+<section class="sheet">
 <p class="eyebrow">Side by side</p>
 <h2>How the directions compare</h2>
 <table>
-<thead><tr><th></th><th>A · Harbour</th><th>B · Clear</th><th>C · Stories</th></tr></thead>
+<thead><tr><th></th><th>A · Harbour</th><th>B · Clear</th><th>C · Stories</th><th>D · Forum</th></tr></thead>
 <tbody>
-<tr><td>First impression</td><td>Confident, branded</td><td>Professional, efficient</td><td>Warm, empathetic</td></tr>
-<tr><td>Forum emphasis</td><td>Latest-discussions card in the hero; board grid</td><td>Live topic feed is the homepage</td><td>Featured member stories, then boards</td></tr>
-<tr><td>Medical credibility</td><td>Good</td><td>Strongest</td><td>Good, more personal</td></tr>
-<tr><td>Emotional warmth</td><td>Medium</td><td>Lower</td><td>Highest</td></tr>
-<tr><td>Effort to theme SMF</td><td>Medium</td><td>Lowest</td><td>Medium–high</td></tr>
-<tr><td>Accessibility</td><td>Very high (hyperlegible body font)</td><td>High</td><td>High</td></tr>
+<tr><td>First impression</td><td>Confident, branded</td><td>Professional, efficient</td><td>Warm, empathetic</td><td>Distinctive, community-first</td></tr>
+<tr><td>Forum emphasis</td><td>Latest-discussions card in the hero; board grid</td><td>Live topic feed is the homepage</td><td>Featured member stories, then boards</td><td>The whole site is the forum; board index is home</td></tr>
+<tr><td>Medical credibility</td><td>Good</td><td>Strongest</td><td>Good, more personal</td><td>Good (information section inside the forum)</td></tr>
+<tr><td>Emotional warmth</td><td>Medium</td><td>Lower</td><td>Highest</td><td>Medium–high (members' voices up front)</td></tr>
+<tr><td>Effort to theme SMF</td><td>Medium</td><td>Low</td><td>Medium–high</td><td>Lowest</td></tr>
+<tr><td>Accessibility</td><td>Very high (hyperlegible body font)</td><td>High</td><td>High</td><td>High (contrast checked for dark mode)</td></tr>
 </tbody>
 </table>
 <p class="note"><strong>What happens next:</strong> once a direction is chosen, we design the remaining pages (sign-up, profile, search, private messages and the 12 information guides), build the responsive SMF theme, and implement the SEO and AI visibility fixes from the audits during the same build.</p>
