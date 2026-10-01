@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Just diagnosed with non-obstructive azoospermia. Where do we start? | Mensfe forum</title>
+<meta name="description" content="A member newly diagnosed with non-obstructive azoospermia asks what to do next. Members share what to ask at the appointment, the tests to request and how they coped.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600&amp;family=Nunito+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<style>
+/* ---------- Direction C "Stories": shared tokens and components ---------- */
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --sand:#F3EEE6;--surface:#FFFDF9;--ink:#1E2A24;--ink-2:#4D5A52;--muted:#5F6B63;--line:#E2D9CB;
+  --field:#857C6E;
+  --green:#23463A;--green-h:#183327;--tint:#E2ECE5;
+  --coral:#E07A5F;--coral-text:#A8432A;--coral-soft:#F7E0D7;--coral-ink:#7A2E1B;
+  --plum:#9A6A86;--sage:#7E9C6E;--ochre:#C99A3B;
+  --on-green:#F3EEE6;--on-green-2:#CFDCD3;
+  --serif:"Fraunces",Georgia,"Times New Roman",serif;
+  --sans:"Nunito Sans","Segoe UI",system-ui,sans-serif;
+  --r-s:14px;--r-m:20px;--r-l:24px;
+}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--sand);color:var(--ink);font-family:var(--sans);font-size:18px;line-height:1.65;font-weight:400;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:600;line-height:1.15;margin:0;color:inherit;letter-spacing:-0.012em;font-optical-sizing:auto}
+p{margin:0}
+ul,ol{margin:0}
+a{color:var(--green);text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{color:var(--green-h);text-decoration-thickness:2px}
+:focus-visible{outline:3px solid var(--green);outline-offset:3px;border-radius:8px}
+button{font:inherit}
+.ico{display:inline-block;flex:none;vertical-align:middle}
+.wrap{max-width:1200px;margin:0 auto;padding:0 32px}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.skip{position:absolute;left:-9999px;top:12px;z-index:10;background:var(--green);color:#fff;padding:12px 18px;border-radius:999px;font-weight:700}
+.skip:focus{left:16px;color:#fff}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 26px;border-radius:999px;border:1.5px solid transparent;font:700 17px/1.2 var(--sans);text-decoration:none;cursor:pointer;white-space:nowrap;transition:background-color .15s,border-color .15s,color .15s}
+.btn:hover{text-decoration:none}
+.btn-primary{background:var(--green);color:#fff}
+.btn-primary:hover{background:var(--green-h);color:#fff}
+.btn-outline{background:transparent;border-color:var(--green);color:var(--green)}
+.btn-outline:hover{background:var(--tint);color:var(--green-h)}
+.btn-light{background:var(--sand);color:var(--green)}
+.btn-light:hover{background:var(--surface);color:var(--green-h)}
+.btn-ghost-light{background:transparent;border-color:var(--on-green);color:var(--on-green)}
+.btn-ghost-light:hover{background:rgba(243,238,230,.12);color:#fff}
+.btn-sm{min-height:44px;padding:0 18px;font-size:16px}
+.on-green :focus-visible{outline-color:var(--on-green)}
+
+/* Header */
+.site-header{background:var(--surface);border-bottom:1px solid var(--line)}
+.hdr{display:flex;align-items:center;gap:24px;min-height:80px}
+.logo{display:inline-flex;align-items:center;gap:10px;min-height:44px;text-decoration:none;color:var(--ink);font-family:var(--serif);font-weight:700;font-size:29px;letter-spacing:-0.03em;line-height:1}
+.logo:hover{color:var(--ink)}
+.logo svg{width:34px;height:34px;color:var(--green)}
+.nav ul{display:flex;gap:2px;list-style:none;padding:0}
+.nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 15px;border-radius:999px;color:var(--ink);font-weight:700;font-size:16px;text-decoration:none}
+.nav a:hover{background:var(--tint);color:var(--green-h)}
+.nav a[aria-current]{background:var(--tint);color:var(--green)}
+.hdr-search{position:relative;margin-left:auto}
+.hdr-search .ico{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}
+.hdr-search input{height:44px;width:250px;border:1px solid var(--field);background:var(--sand);border-radius:999px;padding:0 18px 0 44px;font:400 16px var(--sans);color:var(--ink)}
+.hdr-search input:focus-visible{outline:3px solid var(--green);outline-offset:2px}
+input::placeholder,textarea::placeholder{color:var(--muted);opacity:1}
+.hdr-actions{display:flex;align-items:center;gap:6px}
+.signin{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;border-radius:999px;font-weight:700;font-size:16px;text-decoration:none;color:var(--ink)}
+.signin:hover{background:var(--tint);color:var(--green-h)}
+.icon-link{display:none;width:44px;height:44px;border-radius:50%;align-items:center;justify-content:center;color:var(--ink)}
+.icon-link:hover{background:var(--tint);color:var(--green-h)}
+@media (max-width:1100px){
+  .hdr{flex-wrap:wrap;gap:0 12px;min-height:0;padding-top:12px}
+  .hdr-search{display:none}
+  .icon-link{display:inline-flex}
+  .hdr-actions{margin-left:auto}
+  .nav{order:3;flex-basis:100%;border-top:1px solid var(--line);margin-top:12px}
+  .nav ul{justify-content:flex-start;gap:4px;padding:4px 0}
+}
+@media (max-width:600px){
+  .logo{font-size:25px;gap:8px}
+  .logo svg{width:30px;height:30px}
+  .hdr-actions{gap:2px}
+  .signin{padding:0 10px;font-size:15px}
+  .hdr-actions .btn-sm{padding:0 16px;font-size:15px}
+  .nav ul{justify-content:space-between;gap:0}
+  .nav a{padding:0 10px;font-size:15px}
+}
+
+/* Shared bits */
+.dot{display:inline-block;flex:none;width:10px;height:10px;border-radius:50%}
+.c-community{background:var(--green)}
+.c-medical{background:var(--coral)}
+.c-feelings{background:var(--plum)}
+.c-research{background:var(--sage)}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2)}
+.eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--coral)}
+.avatar{display:inline-grid;place-items:center;flex:none;width:44px;height:44px;border-radius:50%;background:var(--tint);color:var(--green);font:700 15px/1 var(--sans);letter-spacing:.02em}
+.av-coral{background:var(--coral-soft);color:var(--coral-ink)}
+.av-sand{background:var(--line);color:var(--ink)}
+.av-green{background:var(--green);color:#fff}
+.av-plum{background:#EADFE6;color:#5A3550}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:3px 11px;border-radius:999px;font:700 13px/1.4 var(--sans);background:var(--tint);color:var(--green);white-space:nowrap}
+.badge-mod{background:var(--green);color:#fff}
+.badge-partner{background:var(--coral-soft);color:var(--coral-ink)}
+.badge-op{background:var(--coral);color:var(--ink)}
+.board-tag{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;padding:5px 13px;border-radius:999px;background:var(--sand);color:var(--ink-2);font-size:14px;font-weight:700;line-height:1.3}
+.crumbs ol{display:flex;flex-wrap:wrap;align-items:center;list-style:none;padding:0;font-size:15px;color:var(--muted)}
+.crumbs li{display:inline-flex;align-items:center}
+.crumbs li+li::before{content:"\203A";margin:0 10px;color:var(--muted)}
+.crumbs a{display:inline-flex;align-items:center;min-height:44px;font-weight:700;color:var(--green);text-decoration:none}
+.crumbs a:hover{text-decoration:underline}
+.crumbs [aria-current]{color:var(--ink-2)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-l)}
+.side-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-m);padding:26px 26px 24px;margin-bottom:20px}
+.side-card h2{font-size:22px;margin-bottom:12px}
+.side-card p{font-size:16px;color:var(--ink-2)}
+.side-card ul,.side-card ol{padding-left:0;list-style:none}
+.side-links li+li{border-top:1px solid var(--line)}
+.side-links a{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:48px;padding:8px 0;font-size:16px;font-weight:700;text-decoration:none}
+.side-links a:hover{text-decoration:underline}
+.more-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;font-weight:700;text-decoration:none;white-space:nowrap}
+.more-link:hover{text-decoration:underline}
+.chips{display:flex;flex-wrap:wrap;gap:12px;list-style:none;padding:0}
+.chips a{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 22px;border-radius:999px;background:var(--surface);border:1px solid var(--line);color:var(--ink);font-weight:700;font-size:17px;text-decoration:none;transition:background-color .15s,border-color .15s}
+.chips a:hover{background:var(--tint);border-color:var(--green);color:var(--green-h)}
+.chips a .dot{background:var(--coral)}
+
+/* Footer */
+.site-footer{background:var(--green);color:var(--on-green);margin-top:104px;padding:72px 0 40px}
+.site-footer :focus-visible{outline-color:var(--on-green)}
+.site-footer a{color:var(--on-green);text-decoration:none}
+.site-footer a:hover{color:#fff;text-decoration:underline}
+.ft-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px}
+.ft-brand .logo{color:var(--on-green)}
+.ft-brand .logo svg{color:var(--on-green)}
+.ft-brand p{margin-top:16px;color:var(--on-green-2);font-size:17px;max-width:34ch}
+.ft-brand .ft-tag{font-family:var(--serif);font-size:24px;line-height:1.3;color:var(--on-green);font-weight:600;margin-top:20px}
+.ft-col h2{font-family:var(--sans);font-size:14px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--on-green-2);margin-bottom:10px}
+.ft-col ul{list-style:none;padding:0}
+.ft-col a{display:inline-flex;align-items:center;min-height:44px;font-size:17px}
+.ft-disclaimer{margin-top:56px;padding:22px 26px;border:1px solid rgba(243,238,230,.28);border-radius:var(--r-m);font-size:16px;color:var(--on-green-2)}
+.ft-disclaimer strong{color:var(--on-green)}
+.ft-bottom{display:flex;flex-wrap:wrap;gap:8px 28px;align-items:center;margin-top:28px;font-size:15px;color:var(--on-green-2)}
+.ft-bottom ul{display:flex;flex-wrap:wrap;gap:0 20px;list-style:none;padding:0;margin-left:auto}
+.ft-bottom a{display:inline-flex;align-items:center;min-height:44px}
+@media (max-width:900px){.ft-grid{grid-template-columns:1fr 1fr}.ft-brand{grid-column:1/-1}}
+@media (max-width:600px){
+  .wrap{padding:0 16px}
+  .site-footer{margin-top:72px;padding-top:56px}
+  .ft-grid{grid-template-columns:1fr;gap:28px}
+  .ft-bottom ul{margin-left:0}
+}
+@media print{*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+
+/* ---------- Topic ---------- */
+.topic-head{padding:40px 0 36px;max-width:900px}
+.topic-head .board-tag{margin-top:18px;background:var(--surface);border:1px solid var(--line)}
+.topic-head h1{margin-top:18px;font-size:clamp(34px,4.4vw,54px);line-height:1.1;letter-spacing:-0.022em}
+.tmeta{display:flex;flex-wrap:wrap;align-items:center;gap:6px 18px;margin-top:20px;font-size:16px;color:var(--muted)}
+.tmeta span{display:inline-flex;align-items:center;gap:8px}
+.tmeta strong{color:var(--ink)}
+.tactions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:44px;align-items:start}
+.post{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:36px 44px 26px;margin:0 0 22px}
+.post-head{display:flex;flex-wrap:wrap;align-items:center;gap:12px 14px}
+.who{display:flex;flex-direction:column;gap:2px;min-width:0}
+.who .line1{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
+.who .name{font-weight:700;font-size:17px;color:var(--ink)}
+.who .meta{font-size:14px;color:var(--muted)}
+.post-head time{margin-left:auto;font-size:14px;color:var(--muted);white-space:nowrap}
+.post-body{margin-top:22px;max-width:64ch;font-size:18px;line-height:1.85;color:var(--ink)}
+.post-body p + p{margin-top:1em}
+.post-foot{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:26px;padding-top:18px;border-top:1px dashed var(--line)}
+.react{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--sand);color:var(--ink);font-weight:600;font-size:15px;cursor:pointer}
+.react:hover{border-color:var(--green);background:var(--tint)}
+.react .ico{color:var(--green)}
+.post-foot .tools{display:flex;gap:4px;margin-left:auto}
+.txtbtn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border:0;border-radius:999px;background:transparent;color:var(--green);font-weight:700;font-size:15px;cursor:pointer}
+.txtbtn:hover{background:var(--tint);color:var(--green-h)}
+
+/* Original post, emphasised like the opening letter */
+.post.op{border:2px solid var(--green);padding:44px 52px 30px;position:relative;overflow:hidden}
+.post.op::after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;background:var(--coral-soft);right:-70px;top:-80px;pointer-events:none}
+.post.op > *{position:relative;z-index:1}
+.post.op .avatar{width:54px;height:54px;font-size:17px}
+.post.op .post-body{font-size:20px;line-height:1.8}
+.post.op .post-body p:first-child::first-line{font-weight:600}
+.team-av svg{width:26px;height:26px;color:#fff}
+.post.mod{background:var(--tint);border-color:#C6D8CC}
+.post.mod .react{background:var(--surface)}
+
+.replies-h{display:flex;align-items:center;gap:18px;margin:46px 0 22px;font-size:26px}
+.replies-h::after{content:"";flex:1;height:1px;background:var(--line)}
+.replies-h small{font-family:var(--sans);font-size:15px;font-weight:700;color:var(--muted)}
+
+/* Composer */
+.composer{margin-top:40px;padding:40px 44px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-l)}
+.composer h2{font-size:32px}
+.composer .intro{margin-top:8px;color:var(--ink-2);max-width:56ch}
+.composer form{margin-top:26px}
+.composer label.main{display:block;font-weight:700;font-size:17px;margin-bottom:10px}
+.editor{border:1.5px solid var(--field);border-radius:18px;background:#fff;overflow:hidden}
+.editor:focus-within{outline:3px solid var(--green);outline-offset:2px}
+.toolbar{display:flex;flex-wrap:wrap;gap:2px;padding:6px 8px;border-bottom:1px solid var(--line);background:#FBF8F2}
+.tb{display:inline-grid;place-items:center;width:44px;height:44px;border:0;border-radius:12px;background:transparent;color:var(--ink);cursor:pointer}
+.tb:hover{background:var(--tint);color:var(--green-h)}
+.editor textarea{display:block;width:100%;min-height:200px;border:0;resize:vertical;padding:18px 20px;font:400 18px/1.7 var(--sans);color:var(--ink);background:#fff}
+.editor textarea:focus{outline:none}
+.compose-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;margin-top:18px}
+.check{display:inline-flex;align-items:center;gap:12px;min-height:44px;font-size:16px;font-weight:600;cursor:pointer}
+.check input{width:22px;height:22px;accent-color:var(--green);margin:0}
+.compose-note{margin-top:16px;font-size:15px;color:var(--muted)}
+
+/* Sidebar */
+.tinfo dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:10px 16px;font-size:16px}
+.tinfo dt{color:var(--muted)}
+.tinfo dd{margin:0;font-weight:700;text-align:right}
+.note-card{background:var(--coral-soft);border-color:#EFC9BB}
+.note-card h2{display:flex;align-items:center;gap:10px;color:var(--coral-ink)}
+.note-card p{color:var(--ink)}
+.similar li{padding:12px 0}
+.similar li + li{border-top:1px solid var(--line)}
+.similar a{display:block;font-weight:700;font-size:16px;line-height:1.4;text-decoration:none;color:var(--ink);padding:2px 0}
+.similar a:hover{text-decoration:underline;color:var(--green-h)}
+.similar span{font-size:14px;color:var(--muted)}
+
+@media (max-width:1100px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .sidebar .side-card{margin-bottom:0}
+}
+@media (max-width:700px){
+  .sidebar{grid-template-columns:1fr}
+}
+@media (max-width:600px){
+  .topic-head{padding:24px 0 28px}
+  .tactions .btn{flex:1 1 auto}
+  .post,.post.op{padding:24px 20px 18px;border-radius:var(--r-m)}
+  .post-head time{margin-left:0;width:100%;order:3}
+  .post-body,.post.op .post-body{font-size:18px}
+  .post-foot .tools{margin-left:0;width:100%}
+  .composer{padding:28px 20px;border-radius:var(--r-m)}
+  .composer h2{font-size:28px}
+  .compose-foot .btn{width:100%}
+  .replies-h{font-size:22px}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap hdr">
+    <a class="logo" href="home.html" aria-label="mensfe, home"><svg viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle cx="17" cy="23" r="10.5" fill="none" stroke="currentColor" stroke-width="3.2"/><path d="M25 15L33.5 6.5M25.5 6.5h8v8" fill="none" stroke="#E07A5F" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>mensfe</span></a>
+    <nav class="nav" aria-label="Main">
+      <ul>
+        <li><a href="boards.html" aria-current="true">Forum</a></li>
+        <li><a href="#">Information</a></li>
+        <li><a href="#">Research</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+    </nav>
+    <form class="hdr-search" role="search" action="#">
+      <label class="sr-only" for="hdr-q">Search the forum and guides</label>
+      <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.2-4.2"/></svg>
+      <input id="hdr-q" type="search" name="q" placeholder="Search topics and guides">
+    </form>
+    <div class="hdr-actions">
+      <a class="icon-link" href="boards.html#forum-search" aria-label="Search the forum"><svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.2-4.2"/></svg></a>
+      <a class="signin" href="#">Sign in</a>
+      <a class="btn btn-primary btn-sm" href="#">Join free</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="topic-head">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="boards.html">Forum</a></li>
+          <li><a href="#">Causes of male infertility</a></li>
+          <li><span aria-current="page">Just diagnosed with non-obstructive azoospermia</span></li>
+        </ol>
+      </nav>
+      <span class="board-tag"><span class="dot c-medical"></span>Causes of male infertility</span>
+      <h1>Just diagnosed with non-obstructive azoospermia. Where do we start?</h1>
+      <p class="tmeta">
+        <span>Started by <strong>dan_r</strong></span>
+        <span><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 2h ago</span>
+        <span><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5.5h16v10.5H10l-6 4.5z"/></svg> [n] replies</span>
+        <span><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></svg> [n] views</span>
+      </p>
+      <div class="tactions">
+        <a class="btn btn-primary btn-sm" href="#reply"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10 8l-6 5 6 5"/><path d="M4 13h10a6 6 0 0 1 6 6"/></svg> Reply</a>
+        <button class="btn btn-outline btn-sm" type="button" aria-pressed="false"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 16v-5a6 6 0 1 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg> Follow</button>
+        <button class="btn btn-outline btn-sm" type="button"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="18" cy="5.5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="18.5" r="2.5"/><path d="M8.2 10.8l7.6-4.1M8.2 13.2l7.6 4.1"/></svg> Share</button>
+      </div>
+    </div>
+
+    <div class="layout">
+      <div class="thread">
+
+        <article class="post op" aria-labelledby="p1-name">
+          <header class="post-head">
+            <span class="avatar av-sand" aria-hidden="true">DR</span>
+            <div class="who">
+              <div class="line1"><span class="name" id="p1-name">dan_r</span><span class="badge">Member</span><span class="badge badge-op">Original post</span></div>
+              <span class="meta">Joined [date] &middot; [n] posts</span>
+            </div>
+            <time datetime="2026-10-01T08:00">2h ago</time>
+          </header>
+          <div class="post-body">
+            <p>My wife and I got the results last week. Two semen analyses, both showed no sperm at all, and the consultant thinks it is probably non-obstructive. My FSH came back high.</p>
+            <p>I honestly don&rsquo;t know what to feel. I keep reading about micro-TESE and success rates and it is all a blur. If anyone has been through this, what should we be asking at the next appointment?</p>
+          </div>
+          <footer class="post-foot">
+            <button class="react" type="button" aria-pressed="false"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg> Helpful [n]</button>
+            <button class="react" type="button" aria-pressed="false"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg> Support [n]</button>
+            <div class="tools">
+              <button class="txtbtn" type="button"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 11h4v6H5zM5 11c0-3 1.5-5 4-6M15 11h4v6h-4zM15 11c0-3 1.5-5 4-6"/></svg> Quote</button>
+              <a class="txtbtn" href="#reply"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10 8l-6 5 6 5"/><path d="M4 13h10a6 6 0 0 1 6 6"/></svg> Reply</a>
+            </div>
+          </footer>
+        </article>
+
+        <h2 class="replies-h">Replies <small>[n] so far</small></h2>
+
+        <article class="post" aria-labelledby="p2-name">
+          <header class="post-head">
+            <span class="avatar av-coral" aria-hidden="true">MT</span>
+            <div class="who">
+              <div class="line1"><span class="name" id="p2-name">mark_t</span><span class="badge">Member</span></div>
+              <span class="meta">Joined [date] &middot; [n] posts</span>
+            </div>
+            <time datetime="2026-10-01T08:40">1h ago</time>
+          </header>
+          <div class="post-body">
+            <p>I was exactly where you are three years ago. Write your questions down before the appointment, because you will forget them in the room. Ask whether they have checked your karyotype and for Y-chromosome microdeletions, because that changed what our options were.</p>
+            <p>And look after yourself. The first month was the hardest part for me.</p>
+          </div>
+          <footer class="post-foot">
+            <button class="react" type="button" aria-pressed="false"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg> Helpful [n]</button>
+            <button class="react" type="button" aria-pressed="false"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg> Support [n]</button>
+            <div class="tools">
+              <button class="txtbtn" type="button"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 11h4v6H5zM5 11c0-3 1.5-5 4-6M15 11h4v6h-4zM15 11c0-3 1.5-5 4-6"/></svg> Quote</button>
+              <a class="txtbtn" href="#reply"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10 8l-6 5 6 5"/><path d="M4 13h10a6 6 0 0 1 6 6"/></svg> Reply</a>
+            </div>
+          </footer>
+        </article>
+
+        <article class="post mod" aria-labelledby="p3-name">
+          <header class="post-head">
+            <span class="avatar av-green team-av" aria-hidden="true"><svg viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle cx="17" cy="23" r="10.5" fill="none" stroke="currentColor" stroke-width="3.2"/><path d="M25 15L33.5 6.5M25.5 6.5h8v8" fill="none" stroke="#E07A5F" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <div class="who">
+              <div class="line1"><span class="name" id="p3-name">Mensfe Team</span><span class="badge badge-mod"><svg class="ico" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6z"/></svg> Moderator</span></div>
+              <span class="meta">Joined [date] &middot; [n] posts</span>
+            </div>
+            <time datetime="2026-10-01T09:05">45m ago</time>
+          </header>
+          <div class="post-body">
+            <p>Welcome, and thank you for posting. A lot of men read this board without ever writing, so this will help others too. Our <a href="article.html">Azoospermia guide</a> explains the tests and treatment terms you will hear, and the <a href="#">Counselling Support page</a> lists services if you would like to talk to someone.</p>
+          </div>
+          <footer class="post-foot">
+            <button class="react" type="button" aria-pressed="false"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg> Helpful [n]</button>
+            <button class="react" type="button" aria-pressed="false"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg> Support [n]</button>
+            <div class="tools">
+              <button class="txtbtn" type="button"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 11h4v6H5zM5 11c0-3 1.5-5 4-6M15 11h4v6h-4zM15 11c0-3 1.5-5 4-6"/></svg> Quote</button>
+              <a class="txtbtn" href="#reply"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10 8l-6 5 6 5"/><path d="M4 13h10a6 6 0 0 1 6 6"/></svg> Reply</a>
+            </div>
+          </footer>
+        </article>
+
+        <article class="post" aria-labelledby="p4-name">
+          <header class="post-head">
+            <span class="avatar av-plum" aria-hidden="true">JP</span>
+            <div class="who">
+              <div class="line1"><span class="name" id="p4-name">jo_partner</span><span class="badge badge-partner">Partner</span></div>
+              <span class="meta">Joined [date] &middot; [n] posts</span>
+            </div>
+            <time datetime="2026-10-01T09:30">20m ago</time>
+          </header>
+          <div class="post-body">
+            <p>Wife of a member here. It is not your fault, and she is probably as worried about you as about the result. Talking to each other helped us more than anything the clinic said.</p>
+          </div>
+          <footer class="post-foot">
+            <button class="react" type="button" aria-pressed="false"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg> Helpful [n]</button>
+            <button class="react" type="button" aria-pressed="false"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg> Support [n]</button>
+            <div class="tools">
+              <button class="txtbtn" type="button"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 11h4v6H5zM5 11c0-3 1.5-5 4-6M15 11h4v6h-4zM15 11c0-3 1.5-5 4-6"/></svg> Quote</button>
+              <a class="txtbtn" href="#reply"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10 8l-6 5 6 5"/><path d="M4 13h10a6 6 0 0 1 6 6"/></svg> Reply</a>
+            </div>
+          </footer>
+        </article>
+
+        <section class="composer" id="reply" aria-labelledby="reply-title">
+          <h2 id="reply-title">Add your voice</h2>
+          <p class="intro">A few kind words can mean a lot to someone who has just had this news. Share what helped you, or simply let dan_r know he is not alone.</p>
+          <form action="#" method="post">
+            <label class="main" for="reply-text">Your reply</label>
+            <div class="editor">
+              <div class="toolbar" role="toolbar" aria-label="Formatting">
+                <button class="tb" type="button" aria-label="Bold"><svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 5h6a3.5 3.5 0 0 1 0 7H7zM7 12h7a3.5 3.5 0 0 1 0 7H7z"/></svg></button>
+                <button class="tb" type="button" aria-label="Italic"><svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10 5h8M6 19h8M14 5l-4 14"/></svg></button>
+                <button class="tb" type="button" aria-label="Insert link"><svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg></button>
+                <button class="tb" type="button" aria-label="Quote"><svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 11h4v6H5zM5 11c0-3 1.5-5 4-6M15 11h4v6h-4zM15 11c0-3 1.5-5 4-6"/></svg></button>
+              </div>
+              <textarea id="reply-text" name="reply" placeholder="Write as you would to a friend. You can post under any username."></textarea>
+            </div>
+            <div class="compose-foot">
+              <label class="check"><input type="checkbox" name="notify" checked> Notify me of replies</label>
+              <button class="btn btn-primary" type="submit">Post reply <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+            </div>
+            <p class="compose-note">You will need to <a href="#">sign in</a> or <a href="#">join free</a> to post. Reading is always free.</p>
+          </form>
+        </section>
+      </div>
+
+      <aside class="sidebar" aria-label="About this topic">
+        <section class="side-card tinfo" aria-labelledby="ti-title">
+          <h2 id="ti-title">Topic info</h2>
+          <dl>
+            <dt>Board</dt><dd><a href="#">Causes of male infertility</a></dd>
+            <dt>Started</dt><dd>2h ago</dd>
+            <dt>Replies</dt><dd>[n]</dd>
+            <dt>Following</dt><dd>[n]</dd>
+          </dl>
+        </section>
+
+        <section class="side-card" aria-labelledby="rel-title">
+          <h2 id="rel-title">Related information</h2>
+          <ul class="side-links">
+            <li><a href="article.html">Azoospermia explained <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+            <li><a href="#">Surgical sperm retrieval <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+            <li><a href="#">Counselling support <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+          </ul>
+        </section>
+
+        <section class="side-card note-card" aria-labelledby="note-title">
+          <h2 id="note-title"><svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.6v.1"/></svg> A gentle note</h2>
+          <p>This is peer support, not medical advice. Members share their own experience; please talk decisions through with your doctor.</p>
+        </section>
+
+        <section class="side-card similar" aria-labelledby="sim-title">
+          <h2 id="sim-title">Similar topics</h2>
+          <ul>
+            <li><a href="#">Micro-TESE next month: what should I ask the urologist?</a><span>Dealing with doctors &middot; [n] replies</span></li>
+            <li><a href="#">Waiting for genetic test results</a><span>Causes of male infertility &middot; [n] replies</span></li>
+            <li><a href="#">Obstructive after vasectomy: reversal or retrieval?</a><span>Causes of male infertility &middot; [n] replies</span></li>
+          </ul>
+        </section>
+      </aside>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <a class="logo" href="home.html" aria-label="mensfe, home"><svg viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle cx="17" cy="23" r="10.5" fill="none" stroke="currentColor" stroke-width="3.2"/><path d="M25 15L33.5 6.5M25.5 6.5h8v8" fill="none" stroke="#E07A5F" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>mensfe</span></a>
+        <p class="ft-tag">You don&rsquo;t have to work this out on your own.</p>
+        <p>Information, help and support for male infertility and fertility issues, by you for you. Our information resources are free for everyone.</p>
+        <p><a href="mailto:info@mensfe.net"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5L12 13l8.5-6.5"/></svg>&nbsp; info@mensfe.net</a></p>
+      </div>
+      <nav class="ft-col" aria-label="Forum links">
+        <h2>Forum</h2>
+        <ul>
+          <li><a href="boards.html">All boards</a></li>
+          <li><a href="#">Latest discussions</a></li>
+          <li><a href="#">General discussion</a></li>
+          <li><a href="#">Dear Doctor (expert panel)</a></li>
+          <li><a href="#">Forum rules</a></li>
+        </ul>
+      </nav>
+      <nav class="ft-col" aria-label="Information links">
+        <h2>Information</h2>
+        <ul>
+          <li><a href="article.html">Azoospermia</a></li>
+          <li><a href="#">Semen analysis</a></li>
+          <li><a href="#">Treatment</a></li>
+          <li><a href="#">Counselling support</a></li>
+          <li><a href="#">Medical guide</a></li>
+          <li><a href="#">Emotive guide</a></li>
+        </ul>
+      </nav>
+      <nav class="ft-col" aria-label="About Mensfe">
+        <h2>About</h2>
+        <ul>
+          <li><a href="#">About us</a></li>
+          <li><a href="#">Mission</a></li>
+          <li><a href="#">Patrons</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">iCSI membership</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="ft-disclaimer">
+      <p><strong>Peer support, not medical advice.</strong> Mensfe is peer support. It does not replace personal professional, legal or medical advice.</p>
+    </div>
+    <div class="ft-bottom">
+      <p>&copy; 2007&ndash;2026 Mensfe</p>
+      <p>Member of iCSI (International Consumer Support for Infertility)</p>
+      <ul>
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Accessibility</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

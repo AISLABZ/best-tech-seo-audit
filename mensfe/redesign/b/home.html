@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mensfe: male infertility support forum, free since 2007</title>
+<meta name="description" content="A free, anonymous peer-support forum for men facing male infertility and their partners. Read the latest discussions, browse boards and find clear fertility information.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&amp;family=Source+Sans+3:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<style>
+:root{--ground:#F5F7FA;--surface:#FFFFFF;--ink:#142038;--ink-2:#45526A;--muted:#5D6880;--line:#DCE2EC;--blue:#2457C5;--blue-h:#1B439B;--tint:#E6EEFC;--tint-line:#CAD8F3;--mint:#DDF3E8;--mint-ink:#145A3A;--mint-line:#B9E2CD;--soft:#FAFBFD;--r:8px;--head:"Plus Jakarta Sans",system-ui,sans-serif;--body:"Source Sans 3",system-ui,sans-serif;
+--c-community:#2457C5;--c-medical:#0F7C80;--c-feelings:#B83A64;--c-research:#3A7A2A}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;overflow-wrap:break-word}
+h1,h2,h3,h4{font-family:var(--head);color:var(--ink);line-height:1.22;margin:0;letter-spacing:-0.012em}
+p{margin:0}
+a{color:var(--blue);text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{color:var(--blue-h)}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px;border-radius:4px}
+button{font:inherit}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip{position:absolute;left:16px;top:-80px;background:var(--blue);color:#fff;padding:12px 16px;border-radius:var(--r);font-weight:700;z-index:10}
+.skip:focus{top:12px;color:#fff}
+.wrap{max-width:1240px;margin:0 auto;padding:0 24px}
+.i{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* Top bar */
+.topbar{background:var(--surface);border-bottom:1px solid var(--line)}
+.topbar-row{display:grid;grid-template-columns:auto auto minmax(0,1fr) auto;grid-template-areas:"logo nav search actions";align-items:center;gap:0 20px;min-height:64px}
+.logo{grid-area:logo;display:inline-flex;align-items:center;gap:10px;min-height:44px;text-decoration:none;color:var(--ink);font-family:var(--head);font-weight:800;font-size:23px;letter-spacing:-0.03em}
+.logo:hover{color:var(--ink)}
+.logo-mark{width:32px;height:32px;flex:none}
+.mainnav{grid-area:nav}
+.mainnav ul{list-style:none;margin:0;padding:0;display:flex}
+.mainnav a{display:flex;align-items:center;height:64px;padding:0 12px;color:var(--ink-2);font-weight:600;text-decoration:none;border-bottom:3px solid transparent;border-top:3px solid transparent}
+.mainnav a:hover{color:var(--ink)}
+.mainnav a[aria-current="page"]{color:var(--blue);border-bottom-color:var(--blue)}
+.search{grid-area:search;position:relative;width:100%;max-width:520px;justify-self:center}
+.search input{width:100%;height:44px;border:1px solid var(--line);border-radius:var(--r);background:var(--ground);padding:0 14px 0 42px;font:inherit;font-size:16px;color:var(--ink)}
+.search input::placeholder{color:var(--muted);opacity:1}
+.search input:focus{outline:3px solid var(--blue);outline-offset:1px;background:#fff;border-color:var(--blue)}
+.search .i{position:absolute;left:13px;top:12px;color:var(--muted);pointer-events:none}
+.top-actions{grid-area:actions;display:flex;gap:8px;align-items:center}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:var(--r);font-family:var(--body);font-weight:700;font-size:16px;line-height:1.2;text-decoration:none;border:1px solid transparent;cursor:pointer;white-space:nowrap}
+.btn .i{width:18px;height:18px}
+.btn-primary{background:var(--blue);color:#fff}
+.btn-primary:hover{background:var(--blue-h);color:#fff}
+.btn-secondary{background:#fff;color:var(--blue);border-color:#B4C5E8}
+.btn-secondary:hover{background:var(--tint);color:var(--blue-h)}
+.btn-quiet{background:transparent;color:var(--ink);padding:0 14px}
+.btn-quiet:hover{background:var(--ground);color:var(--ink)}
+.btn-lg{min-height:48px;padding:0 22px;font-size:17px}
+
+/* Shared bits */
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+.crumbs{padding-top:16px}
+.crumbs ol{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:0 6px;margin:0;padding:0;font-size:15px;color:var(--muted)}
+.crumbs li+li::before{content:"\203A";margin-right:6px;color:var(--muted)}
+.crumbs a{display:inline-block;padding:10px 0;color:var(--ink-2);font-weight:600}
+.tag{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:var(--ink-2);background:var(--ground);border:1px solid var(--line);border-radius:999px;padding:1px 10px;line-height:1.55;white-space:nowrap}
+a.tag{text-decoration:none;min-height:32px}
+.dot{width:9px;height:9px;border-radius:50%;flex:none;background:var(--c,var(--blue));display:inline-block}
+.c-community{--c:var(--c-community)}.c-medical{--c:var(--c-medical)}.c-feelings{--c:var(--c-feelings)}.c-research{--c:var(--c-research)}
+.av{width:40px;height:40px;border-radius:50%;display:inline-grid;place-items:center;font-family:var(--head);font-weight:700;font-size:14px;flex:none;background:var(--tint);color:var(--blue-h);letter-spacing:0}
+.av-sm{width:32px;height:32px;font-size:12px}
+.av-lg{width:48px;height:48px;font-size:16px}
+.av.m{background:var(--mint);color:var(--mint-ink)}
+.av.p{background:#EFE7FA;color:#5B2F99}
+.av.o{background:#FCEADB;color:#874310}
+.av.r{background:#FBE5EC;color:#8F2448}
+.av.n{background:#142038;color:#fff}
+.badge{display:inline-flex;align-items:center;font-size:13px;font-weight:700;line-height:1.5;padding:0 8px;border-radius:6px;background:var(--ground);color:var(--ink-2);border:1px solid var(--line);white-space:nowrap}
+.badge.mod{background:var(--tint);color:var(--blue-h);border-color:var(--tint-line)}
+.badge.partner{background:var(--mint);color:var(--mint-ink);border-color:var(--mint-line)}
+.badge.op{background:#fff;color:var(--blue);border-color:#B4C5E8}
+.muted{color:var(--muted)}
+.kicker{font-size:13px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--blue)}
+.box{padding:20px}
+.box h2{font-size:16px;font-weight:800}
+.textlink{display:inline-flex;align-items:center;gap:6px;min-height:44px;font-weight:700;text-decoration:none}
+.textlink:hover{text-decoration:underline}
+.textlink .i{width:18px;height:18px}
+
+/* Footer */
+.foot{margin-top:64px;background:var(--surface);border-top:1px solid var(--line)}
+.foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:32px;padding-top:40px;padding-bottom:32px}
+.foot-brand p{color:var(--ink-2);margin-top:12px;max-width:40ch}
+.foot-brand .icsi{display:flex;gap:12px;align-items:flex-start;margin-top:20px;padding:14px;border:1px solid var(--line);border-radius:var(--r);background:var(--soft);font-size:15px;color:var(--ink-2);max-width:420px}
+.foot-brand .icsi .i{color:var(--blue);margin-top:2px}
+.foot h2{font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--ink);margin-bottom:6px}
+.foot ul{list-style:none;margin:0;padding:0}
+.foot nav a{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--ink-2);text-decoration:none}
+.foot nav a:hover{color:var(--blue);text-decoration:underline}
+.foot-base{background:var(--ground);border-top:1px solid var(--line);padding:20px 0;font-size:15px;color:var(--ink-2)}
+.foot-base .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px}
+.foot-base strong{color:var(--ink)}
+
+@media (max-width:1100px){
+ .topbar-row{grid-template-columns:auto minmax(0,1fr) auto;grid-template-areas:"logo search actions" "nav nav nav"}
+ .mainnav{border-top:1px solid var(--line);margin:0 -24px;padding:0 12px}
+ .mainnav a{height:48px}
+}
+@media (max-width:960px){
+ .foot-grid{grid-template-columns:1fr 1fr 1fr}
+ .foot-brand{grid-column:1/-1}
+}
+@media (max-width:640px){
+ body{font-size:17px}
+ .wrap{padding:0 16px}
+ .topbar-row{grid-template-columns:auto minmax(0,1fr);grid-template-areas:"logo actions" "search search" "nav nav";gap:0 8px;min-height:0}
+ .logo{min-height:56px;font-size:22px}
+ .top-actions{justify-self:end;gap:4px}
+ .top-actions .btn{padding:0 12px;font-size:15px}
+ .top-actions .btn-quiet{padding:0 10px}
+ .search{max-width:none;margin-bottom:10px}
+ .mainnav{margin:0 -16px;padding:0}
+ .mainnav ul{display:grid;grid-template-columns:repeat(4,1fr)}
+ .mainnav a{justify-content:center;padding:0 4px;font-size:16px}
+ .foot-grid{grid-template-columns:1fr 1fr;gap:16px 24px}
+ .foot-base .wrap{flex-direction:column}
+}
+@media print{*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+
+/* Home */
+.welcome{margin-top:24px;background:var(--tint);border:1px solid var(--tint-line);border-radius:var(--r);padding:32px;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:32px;align-items:center}
+.welcome h1{font-size:clamp(30px,3.3vw,42px);font-weight:800;letter-spacing:-0.025em;max-width:17ch}
+.lede{color:var(--ink-2);font-size:19px;margin-top:12px;max-width:54ch}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.trust{list-style:none;padding:0;margin:22px 0 0;display:flex;flex-wrap:wrap;gap:8px 22px;font-size:15px;color:var(--ink-2);font-weight:600}
+.trust li{display:flex;align-items:center;gap:7px}
+.trust .i{width:18px;height:18px;color:var(--blue);stroke-width:2.2}
+.asks{background:#fff;border:1px solid var(--tint-line);border-radius:var(--r);padding:8px 0}
+.asks h2{font-size:15px;font-weight:800;padding:10px 18px 6px}
+.asks ul{list-style:none;margin:0;padding:0}
+.asks a{display:flex;align-items:center;gap:12px;padding:10px 18px;min-height:56px;text-decoration:none;color:var(--ink);border-top:1px solid var(--line)}
+.asks li:first-child a{border-top:0}
+.asks a:hover{background:var(--soft)}
+.asks a:hover .q{color:var(--blue)}
+.asks .q{display:block;font-weight:700;line-height:1.3}
+.asks .b{display:flex;align-items:center;gap:6px;font-size:14px;color:var(--muted);margin-top:2px}
+.asks .i{margin-left:auto;color:var(--blue)}
+
+.forum{display:grid;grid-template-columns:276px minmax(0,1fr);grid-template-areas:"side feed";gap:24px;margin-top:24px;align-items:start}
+.feed{grid-area:feed}
+.side{grid-area:side}
+.side-head{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:12px 16px 8px}
+.side-head h2{font-size:16px;font-weight:800}
+.side-head a{font-size:15px;font-weight:600;min-height:44px;display:inline-flex;align-items:center}
+.side-group{padding:2px 8px 8px;border-top:1px solid var(--line)}
+.side-group h3{display:flex;align-items:center;gap:8px;font-size:12px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);padding:12px 8px 4px;font-weight:700;font-family:var(--body)}
+.side-group ul{list-style:none;margin:0;padding:0}
+.side-group a{display:flex;align-items:center;gap:10px;min-height:44px;padding:4px 8px;border-radius:6px;color:var(--ink);text-decoration:none;font-weight:600;font-size:16px;line-height:1.3}
+.side-group a:hover{background:var(--ground);color:var(--blue)}
+.side-group .n{margin-left:auto;color:var(--muted);font-size:14px;font-weight:400;padding-left:8px}
+.side-foot{border-top:1px solid var(--line);padding:16px}
+.side-foot p{font-size:15px;color:var(--ink-2);margin-bottom:12px}
+.side-foot .btn{width:100%}
+
+.feed-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 20px 0}
+.feed-head h2{font-size:20px;font-weight:800}
+.tabs{display:flex;gap:4px;padding:0 10px;border-bottom:1px solid var(--line);margin-top:4px}
+.tabs ul{list-style:none;display:flex;gap:4px;margin:0;padding:0}
+.tabs a{display:flex;align-items:center;min-height:48px;padding:0 12px;color:var(--ink-2);font-weight:700;text-decoration:none;border-bottom:3px solid transparent;margin-bottom:-1px}
+.tabs a:hover{color:var(--ink)}
+.tabs a[aria-current="page"]{color:var(--blue);border-bottom-color:var(--blue)}
+.cols,.trow{display:grid;grid-template-columns:40px minmax(0,1fr) 76px 76px 100px;gap:16px;align-items:center;padding:0 20px}
+.cols{font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;padding-top:10px;padding-bottom:10px;border-bottom:1px solid var(--line);background:var(--soft)}
+.cols span{text-align:right}
+.cols span:nth-child(2){text-align:left}
+.topics{list-style:none;margin:0;padding:0}
+.trow{position:relative;padding-top:14px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.trow:hover{background:var(--soft)}
+.trow h3{font-size:17px;font-weight:700;line-height:1.35;letter-spacing:-0.005em}
+.trow h3 a{color:var(--ink);text-decoration:none}
+.trow h3 a::after{content:"";position:absolute;inset:0}
+.trow h3 a:hover{color:var(--blue)}
+.trow h3 a:focus-visible{outline:none}
+.trow:focus-within{outline:3px solid var(--blue);outline-offset:-3px}
+.trow .meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin-top:6px;font-size:14px;color:var(--muted)}
+.stats{display:contents}
+.stat{display:flex;flex-direction:column;align-items:flex-end;line-height:1.25}
+.stat b{font-size:16px;color:var(--ink);font-weight:700}
+.stat span{font-size:13px;color:var(--muted)}
+.stat .i{display:none}
+.feed-foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;padding:8px 20px}
+
+.section{margin-top:56px}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:8px 24px;margin-bottom:18px}
+.section-head h2{font-size:26px;font-weight:800;letter-spacing:-0.02em}
+.section-head p{color:var(--ink-2);margin-top:4px}
+.steps{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.step{padding:22px}
+.step-num{width:36px;height:36px;border-radius:50%;background:var(--tint);color:var(--blue);font-family:var(--head);font-weight:800;display:grid;place-items:center;font-size:16px}
+.step h3{font-size:18px;font-weight:800;margin-top:14px}
+.step p{color:var(--ink-2);margin-top:6px}
+.step .textlink{margin-top:6px}
+
+.info-grid{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.info-grid a{display:flex;align-items:center;gap:12px;min-height:64px;padding:12px 14px;background:#fff;border:1px solid var(--line);border-radius:var(--r);text-decoration:none;color:var(--ink)}
+.info-grid a:hover{border-color:#B4C5E8;background:var(--soft)}
+.info-grid a:hover strong{color:var(--blue)}
+.info-grid .ic{width:36px;height:36px;border-radius:8px;background:var(--tint);color:var(--blue);display:grid;place-items:center;flex:none}
+.info-grid strong{display:block;font-weight:700;line-height:1.3}
+.info-grid small{display:block;font-size:14px;color:var(--muted);line-height:1.35}
+.guides{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.guides a{display:flex;align-items:center;gap:14px;padding:16px 18px;min-height:64px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);text-decoration:none;color:var(--ink)}
+.guides a:hover strong{color:var(--blue)}
+.guides .i{color:var(--blue)}
+.guides strong{font-family:var(--head);font-weight:700}
+.guides span span{display:block;font-size:15px;color:var(--muted)}
+.guides .go{margin-left:auto}
+
+.research{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);overflow:hidden}
+.research-main{padding:32px}
+.research-main h2{font-size:26px;font-weight:800;margin-top:8px;letter-spacing:-0.02em}
+.research-main p{color:var(--ink-2);margin-top:10px;max-width:46ch}
+.research-main .btn{margin-top:20px}
+.research-list{background:var(--soft);border-left:1px solid var(--line);padding:16px 0}
+.research-list h3{font-size:13px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-family:var(--body);font-weight:700;padding:8px 24px}
+.research-list ul{list-style:none;margin:0;padding:0}
+.research-list a{display:block;padding:12px 24px;text-decoration:none;color:var(--ink);border-top:1px solid var(--line)}
+.research-list a:hover strong{color:var(--blue)}
+.research-list strong{display:block;font-weight:700;line-height:1.35}
+.research-list span{font-size:14px;color:var(--muted)}
+
+.people{display:grid;grid-template-columns:minmax(0,0.9fr) minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:stretch}
+.people-intro{padding:4px 8px 4px 0}
+.people-intro h2{font-size:26px;font-weight:800;letter-spacing:-0.02em;margin-top:8px}
+.people-intro p{color:var(--ink-2);margin-top:10px}
+.person{padding:24px;display:flex;gap:16px;align-items:flex-start}
+.person h3{font-size:19px;font-weight:800}
+.person .role{font-size:15px;font-weight:600;color:var(--blue);margin-top:2px}
+.person p{color:var(--ink-2);margin-top:8px}
+
+.bookcard{display:grid;grid-template-columns:220px minmax(0,1fr);gap:40px;padding:32px;align-items:center}
+.cover{aspect-ratio:2/3;background:#142038;color:#fff;border-radius:4px 8px 8px 4px;padding:22px 20px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 1px 2px rgba(20,32,56,.12),0 8px 20px rgba(20,32,56,.12)}
+.cover .ca{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#C9D6EE}
+.cover .ct{font-family:var(--head);font-weight:800;font-size:22px;line-height:1.15;letter-spacing:-0.015em}
+.cover .rule{display:block;width:36px;height:3px;background:#8FD9B6;margin:14px 0}
+.cover .cs{font-family:var(--head);font-weight:700;font-size:15px;color:#8FD9B6}
+.bookcard h2{font-size:26px;font-weight:800;letter-spacing:-0.02em;margin-top:8px}
+.bookcard .by{color:var(--ink-2);font-weight:600;margin-top:6px}
+.bookcard p.desc{color:var(--ink-2);margin-top:12px;max-width:62ch}
+.bookcard blockquote{margin:16px 0 0;font-family:var(--head);font-weight:700;font-size:18px;color:var(--ink)}
+.bookcard .cta-row{margin-top:20px}
+
+@media (max-width:1100px){
+ .info-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .people{grid-template-columns:1fr 1fr}
+ .people-intro{grid-column:1/-1}
+}
+@media (max-width:960px){
+ .welcome{grid-template-columns:1fr}
+ .forum{grid-template-columns:1fr;grid-template-areas:"feed" "side"}
+ .research{grid-template-columns:1fr}
+ .research-list{border-left:0;border-top:1px solid var(--line)}
+}
+@media (max-width:760px){
+ .cols{display:none}
+ .trow{grid-template-columns:36px minmax(0,1fr);gap:4px 12px;align-items:start;padding:14px 16px}
+ .trow .av{width:36px;height:36px;font-size:13px}
+ .stats{display:flex;flex-wrap:wrap;gap:4px 16px;grid-column:2}
+ .stat{flex-direction:row;align-items:center;gap:5px}
+ .stat .i{display:block;width:16px;height:16px;color:var(--muted)}
+ .stat b{font-size:14px;color:var(--ink-2)}
+ .stat span{font-size:14px}
+ .steps{grid-template-columns:1fr}
+ .info-grid{grid-template-columns:1fr 1fr;gap:8px}
+ .info-grid small{display:none}
+ .info-grid a{padding:10px 12px;gap:10px;min-height:56px}
+ .info-grid .ic{width:32px;height:32px}
+ .info-grid .ic .i{width:18px;height:18px}
+ .guides{grid-template-columns:1fr}
+ .people{grid-template-columns:1fr}
+ .bookcard{grid-template-columns:1fr;gap:24px;padding:24px}
+ .cover{width:180px}
+}
+@media (max-width:640px){
+ .welcome{padding:22px 18px;margin-top:16px;gap:22px}
+ .lede{font-size:18px}
+ .cta-row .btn{width:100%}
+ .trust{display:grid;grid-template-columns:1fr 1fr;gap:10px 12px;font-size:14px}
+ .trust li{align-items:flex-start}
+ .feed-head{padding:14px 16px 0}
+ .tabs{padding:0 6px}
+ .tabs a{padding:0 10px}
+ .feed-foot{padding:8px 16px}
+ .section{margin-top:44px}
+ .section-head h2,.research-main h2,.people-intro h2,.bookcard h2{font-size:23px}
+ .research-main{padding:22px 18px}
+ .research-list a,.research-list h3{padding-left:18px;padding-right:18px}
+ .person{padding:18px}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="wrap topbar-row">
+    <a class="logo" href="home.html" aria-label="mensfe home"><svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="8" fill="#2457C5"/><circle cx="13.5" cy="18.5" r="6" fill="none" stroke="#fff" stroke-width="2.4"/><path d="M18 14 24 8M19 8h5v5" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>mensfe</span></a>
+    <nav class="mainnav" aria-label="Main">
+      <ul><li><a href="boards.html" aria-current="page">Forum</a></li><li><a href="article.html">Information</a></li><li><a href="boards.html#research">Research</a></li><li><a href="#about">About</a></li></ul>
+    </nav>
+    <form class="search" role="search" action="#">
+      <label class="sr-only" for="site-search">Search topics, boards and information</label>
+      <svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="site-search" type="search" name="q" placeholder="Search topics, boards and information">
+    </form>
+    <div class="top-actions">
+      <a class="btn btn-quiet" href="#">Sign in</a>
+      <a class="btn btn-primary" href="#">Join free</a>
+    </div>
+  </div>
+</header>
+<main id="main" class="wrap">
+
+  <section class="welcome" aria-labelledby="welcome-title">
+    <div>
+      <h1 id="welcome-title">You don't have to work this out on your own.</h1>
+      <p class="lede">Mensfe is a free peer-support forum for men facing male infertility and fertility issues, and for the partners beside them. Information, help and support, by you for you.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary btn-lg" href="#">Join the forum, free <svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-secondary btn-lg" href="boards.html">Read without an account</a>
+      </div>
+      <ul class="trust" aria-label="Why members trust Mensfe">
+        <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 4.5 4.5L19 7"/></svg>6.5 million visits in 2025</li>
+        <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 4.5 4.5L19 7"/></svg>Post under any username</li>
+        <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 4.5 4.5L19 7"/></svg>Free since 2007</li>
+        <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 4.5 4.5L19 7"/></svg>Member of iCSI</li>
+      </ul>
+    </div>
+    <div class="asks">
+      <h2>What brings people here</h2>
+      <ul>
+        <li><a href="boards.html"><span><span class="q">Seeking help for male infertility?</span><span class="b"><span class="dot c-community"></span>General discussion</span></span><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+        <li><a href="boards.html"><span><span class="q">Help with sperm count, low testosterone or sperm motility?</span><span class="b"><span class="dot c-medical"></span>Causes of male infertility</span></span><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+        <li><a href="boards.html"><span><span class="q">Trying to understand treatment options?</span><span class="b"><span class="dot c-medical"></span>Dealing with doctors</span></span><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+        <li><a href="boards.html"><span><span class="q">Help with gender communication difficulties?</span><span class="b"><span class="dot c-feelings"></span>Women's reactions to male infertility</span></span><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="forum">
+    <section class="feed panel" aria-labelledby="feed-title">
+      <div class="feed-head">
+        <h2 id="feed-title">Discussions</h2>
+        <a class="btn btn-primary" href="#"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 5v14M5 12h14"/></svg><span>New topic</span></a>
+      </div>
+      <nav class="tabs" aria-label="Sort discussions">
+        <ul>
+          <li><a href="home.html" aria-current="page">Latest</a></li>
+          <li><a href="#">Unanswered</a></li>
+          <li><a href="#">Top</a></li>
+        </ul>
+      </nav>
+      <div class="cols" aria-hidden="true"><span></span><span>Topic</span><span>Replies</span><span>Views</span><span>Activity</span></div>
+      <ol class="topics">
+        <li class="trow">
+          <span class="av" aria-hidden="true">DR</span>
+          <div>
+            <h3><a href="topic.html">Just diagnosed with non-obstructive azoospermia. Where do we start?</a></h3>
+            <div class="meta"><span class="tag"><span class="dot c-medical"></span>Causes of male infertility</span><span>dan_r</span></div>
+          </div>
+          <div class="stats">
+            <span class="stat"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.1-4.6A8 8 0 1 1 21 12z"/></svg><b>[n]</b><span>replies</span></span>
+            <span class="stat"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><b>[n]</b><span>views</span></span>
+            <span class="stat"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><b>2h</b><span>ago</span></span>
+          </div>
+        </li>
+        <li class="trow">
+          <span class="av m" aria-hidden="true">MT</span>
+          <div>
+            <h3><a href="topic.html">Micro-TESE next month: what should I ask the urologist?</a></h3>
+            <div class="meta"><span class="tag"><span class="dot c-medical"></span>Dealing with doctors</span><span>mark_t</span></div>
+          </div>
+          <div class="stats">
+            <span class="stat"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.1-4.6A8 8 0 1 1 21 12z"/></svg><b>[n]</b><span>replies</span></span>
+            <span class="stat"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><b>[n]</b><span>views</span></span>
+            <span class="stat"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><b>5h</b><span>ago</span></span>
+          </div>
+        </li>
+        <li class="trow">
+          <span class="av o" aria-hidden="true">OA</span>
+          <div>
+            <h3><a href="topic.html">How do we tell our parents we are using a donor?</a></h3>
+            <div class="meta"><span class="tag"><span class="dot c-community"></span>General discussion</span><span>oakley</span></div>
+          </div>
+          <div class="stats">
+            <span class="stat"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.1-4.6A8 8 0 1 1 21 12z"/></svg><b>[n]</b><span>replies</span></span>
+            <span class="stat"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><b>[n]</b><span>views</span></span>
+            <span class="stat"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><b>Yesterday</b><span></span></span>
+          </div>
+        </li>
+        <li class="trow">
+          <span class="av p" aria-hidden="true">TH</span>
+          <div>
+            <h3><a href="topic.html">Second semen analysis came back better. Anyone else?</a></h3>
+            <div class="meta"><span class="tag"><span class="dot c-medical"></span>Causes of male infertility</span><span>tomh</span></div>
+          </div>
+          <div class="stats">
+            <span class="stat"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.1-4.6A8 8 0 1 1 21 12z"/></svg><b>[n]</b><span>replies</span></span>
+            <span class="stat"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><b>[n]</b><span>views</span></span>
+            <span class="stat"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><b>Yesterday</b><span></span></span>
+          </div>
+        </li>
+        <li class="trow">
+          <span class="av r" aria-hidden="true">QO</span>
+          <div>
+            <h3><a href="topic.html">Feeling like I have let her down</a></h3>
+            <div class="meta"><span class="tag"><span class="dot c-feelings"></span>Men's reactions to infertility</span><span>quiet_one</span></div>
+          </div>
+          <div class="stats">
+            <span class="stat"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.1-4.6A8 8 0 1 1 21 12z"/></svg><b>[n]</b><span>replies</span></span>
+            <span class="stat"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><b>[n]</b><span>views</span></span>
+            <span class="stat"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><b>2 days</b><span>ago</span></span>
+          </div>
+        </li>
+        <li class="trow">
+          <span class="av" aria-hidden="true">SK</span>
+          <div>
+            <h3><a href="topic.html">Another appointment cancelled. I just need to vent</a></h3>
+            <div class="meta"><span class="tag"><span class="dot c-community"></span>Let off some steam</span><span>sam_k</span></div>
+          </div>
+          <div class="stats">
+            <span class="stat"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.1-4.6A8 8 0 1 1 21 12z"/></svg><b>[n]</b><span>replies</span></span>
+            <span class="stat"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><b>[n]</b><span>views</span></span>
+            <span class="stat"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><b>2 days</b><span>ago</span></span>
+          </div>
+        </li>
+        <li class="trow">
+          <span class="av m" aria-hidden="true">LB</span>
+          <div>
+            <h3><a href="topic.html">How do I support him when he doesn't want to talk about it?</a></h3>
+            <div class="meta"><span class="tag"><span class="dot c-feelings"></span>Women's reactions to male infertility</span><span>lucy_b</span></div>
+          </div>
+          <div class="stats">
+            <span class="stat"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.1-4.6A8 8 0 1 1 21 12z"/></svg><b>[n]</b><span>replies</span></span>
+            <span class="stat"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><b>[n]</b><span>views</span></span>
+            <span class="stat"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><b>3 days</b><span>ago</span></span>
+          </div>
+        </li>
+      </ol>
+      <div class="feed-foot">
+        <a class="textlink" href="#">See all latest discussions <svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="textlink" href="boards.html">Browse all boards <svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </section>
+
+    <aside class="side panel" aria-labelledby="boards-title">
+      <div class="side-head">
+        <h2 id="boards-title">Boards</h2>
+        <a href="boards.html">View all</a>
+      </div>
+      <nav aria-labelledby="boards-title">
+        <div class="side-group">
+          <h3><span class="dot c-community"></span>Community</h3>
+          <ul>
+            <li><a href="boards.html"><span class="dot c-community"></span>General discussion<span class="n">[n]</span></a></li>
+            <li><a href="boards.html"><span class="dot c-community"></span>Let off some steam<span class="n">[n]</span></a></li>
+          </ul>
+        </div>
+        <div class="side-group">
+          <h3><span class="dot c-medical"></span>Medical</h3>
+          <ul>
+            <li><a href="boards.html"><span class="dot c-medical"></span>Causes of male infertility<span class="n">[n]</span></a></li>
+            <li><a href="boards.html"><span class="dot c-medical"></span>Dealing with doctors<span class="n">[n]</span></a></li>
+            <li><a href="boards.html"><span class="dot c-medical"></span>Dear Doctor (expert panel)<span class="n">[n]</span></a></li>
+          </ul>
+        </div>
+        <div class="side-group">
+          <h3><span class="dot c-feelings"></span>Feelings and relationships</h3>
+          <ul>
+            <li><a href="boards.html"><span class="dot c-feelings"></span>Men's reactions to infertility<span class="n">[n]</span></a></li>
+            <li><a href="boards.html"><span class="dot c-feelings"></span>Women's reactions to male infertility<span class="n">[n]</span></a></li>
+          </ul>
+        </div>
+        <div class="side-group">
+          <h3><span class="dot c-research"></span>Research</h3>
+          <ul>
+            <li><a href="boards.html#research"><span class="dot c-research"></span>Current research on male infertility<span class="n">[n]</span></a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="side-foot">
+        <p>Counts show topics per board. Reading is open to everyone; posting needs a free account.</p>
+        <a class="btn btn-secondary" href="#"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 5v14M5 12h14"/></svg>Start a new topic</a>
+      </div>
+    </aside>
+  </div>
+
+  <section class="section" aria-labelledby="new-title">
+    <div class="section-head">
+      <div>
+        <h2 id="new-title">New here?</h2>
+        <p>Three steps. No real name, no pressure.</p>
+      </div>
+    </div>
+    <ol class="steps">
+      <li class="step panel">
+        <span class="step-num" aria-hidden="true">1</span>
+        <h3>Pick an anonymous username</h3>
+        <p>Join free with any name you like. Nobody needs to know who you are.</p>
+        <a class="textlink" href="#">Join free <svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </li>
+      <li class="step panel">
+        <span class="step-num" aria-hidden="true">2</span>
+        <h3>Say hello in General discussion</h3>
+        <p>Share as much or as little as you like. Many members start by reading for a while.</p>
+        <a class="textlink" href="boards.html">Go to General discussion <svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </li>
+      <li class="step panel">
+        <span class="step-num" aria-hidden="true">3</span>
+        <h3>Ask anything</h3>
+        <p>Tests, treatment, how you feel, how to talk to her. Someone here has been there.</p>
+        <a class="textlink" href="#">Start a new topic <svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </li>
+    </ol>
+  </section>
+
+  <section class="section" aria-labelledby="info-title">
+    <div class="section-head">
+      <div>
+        <h2 id="info-title">Information topics</h2>
+        <p>Our information resources are free for everyone.</p>
+      </div>
+      <a class="textlink" href="article.html">All information <svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <ul class="info-grid">
+      <li><a href="#"><span class="ic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span><span><strong>Male Fertility</strong><small>How fertility works in men</small></span></a></li>
+      <li><a href="#"><span class="ic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg></span><span><strong>Infertility</strong><small>What a diagnosis means</small></span></a></li>
+      <li><a href="#"><span class="ic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3"/><path d="M7.5 15h9"/></svg></span><span><strong>Semen Analysis</strong><small>Reading your results</small></span></a></li>
+      <li><a href="article.html"><span class="ic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg></span><span><strong>Azoospermia</strong><small>When no sperm are found</small></span></a></li>
+      <li><a href="#"><span class="ic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 3v6a4 4 0 0 0 8 0V3"/><path d="M10 13v2a5 5 0 0 0 10 0v-2"/><circle cx="20" cy="11" r="2"/></svg></span><span><strong>Varicocele</strong><small>Diagnosis and surgery</small></span></a></li>
+      <li><a href="#"><span class="ic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/></svg></span><span><strong>Treatment</strong><small>Options explained</small></span></a></li>
+      <li><a href="#"><span class="ic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg></span><span><strong>Vasectomy Reversal</strong><small>Reversal surgery</small></span></a></li>
+      <li><a href="#"><span class="ic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></span><span><strong>Erection Problems</strong><small>Causes and help</small></span></a></li>
+      <li><a href="#"><span class="ic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c1-3.5 3.5-5.5 6.5-5.5s5.5 2 6.5 5.5"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14.8c1.7.8 2.9 2.6 3.5 5.2"/></svg></span><span><strong>Egg Donation</strong><small>Using donor eggs</small></span></a></li>
+      <li><a href="#"><span class="ic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c1-3.5 3.5-5.5 6.5-5.5s5.5 2 6.5 5.5"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14.8c1.7.8 2.9 2.6 3.5 5.2"/></svg></span><span><strong>Sperm Donation</strong><small>Using or giving donor sperm</small></span></a></li>
+      <li><a href="#"><span class="ic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 4.5 4.5L19 7"/></svg></span><span><strong>Nutrition</strong><small>Diet and lifestyle</small></span></a></li>
+      <li><a href="#"><span class="ic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.1-4.6A8 8 0 1 1 21 12z"/></svg></span><span><strong>Counselling Support</strong><small>Someone to talk to</small></span></a></li>
+    </ul>
+    <div class="guides">
+      <a href="#"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5a2 2 0 0 1 2-2h14v16H6a2 2 0 0 0-2 2V5z"/><path d="M4 19a2 2 0 0 1 2-2h14"/></svg><span><strong>Medical guide</strong><span>Medical jargon explained in plain words</span></span><span class="go"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a href="#"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><span><strong>Emotive guide</strong><span>The emotional side of male infertility</span></span><span class="go"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </div>
+  </section>
+
+  <section class="section research panel" aria-labelledby="research-title">
+    <div class="research-main">
+      <p class="kicker">Research board</p>
+      <h2 id="research-title">Current research on male infertility</h2>
+      <p>Members share and discuss new studies, trials and news, and help each other make sense of what they mean in practice.</p>
+      <a class="btn btn-primary" href="boards.html#research">Open the research board <svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <div class="research-list">
+      <h3>Recently discussed</h3>
+      <ul>
+        <li><a href="topic.html"><strong>New paper on sperm DNA fragmentation testing: what do we make of it?</strong><span>[n] replies &middot; 4h ago</span></a></li>
+        <li><a href="topic.html"><strong>Clinical trials recruiting men: where do you find them?</strong><span>[n] replies &middot; Yesterday</span></a></li>
+        <li><a href="topic.html"><strong>How to read a research abstract without a science degree</strong><span>[n] replies &middot; 3 days ago</span></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section people" aria-labelledby="people-title">
+    <div class="people-intro">
+      <p class="kicker">Who runs Mensfe</p>
+      <h2 id="people-title">Started by people who have lived it</h2>
+      <p>Mensfe has been run since 2007 by a counsellor and a scientist who know this ground first-hand.</p>
+      <a class="textlink" href="#">About Us and our mission <svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <article class="person panel">
+      <span class="av av-lg p" aria-hidden="true">PR</span>
+      <div>
+        <h3>Pip Reilly</h3>
+        <p class="role">Co-founder &middot; Fertility counsellor</p>
+        <p>A professional fertility counsellor with over 15 years' experience with fertility charities, and author of <cite>A Journey Through Male Infertility</cite>.</p>
+      </div>
+    </article>
+    <article class="person panel">
+      <span class="av av-lg m" aria-hidden="true">RB</span>
+      <div>
+        <h3>Rob Barlow</h3>
+        <p class="role">Co-founder &middot; Medical scientist</p>
+        <p>A medical scientist who was diagnosed with azoospermia more than 25 years ago.</p>
+      </div>
+    </article>
+  </section>
+
+  <section class="section bookcard panel" aria-labelledby="book-title">
+    <div class="cover" aria-hidden="true">
+      <span class="ca">Pip Reilly</span>
+      <span><span class="ct">A Journey Through Male Infertility</span><span class="rule"></span><span class="cs">Stronger Together</span></span>
+    </div>
+    <div>
+      <p class="kicker">The book</p>
+      <h2 id="book-title">A Journey Through Male Infertility: Stronger Together</h2>
+      <p class="by">By Pip Reilly, co-founder of Mensfe</p>
+      <p class="desc">A book for men that women should read. An honest, accessible account of the relational, emotional and physical challenges men face, often unspoken, with practical support strategies for both of you.</p>
+      <blockquote><p>"You are stronger together."</p></blockquote>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://www.amazon.co.uk/dp/B0G8LX5FBJ" rel="noopener">View on Amazon <svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot" id="about">
+  <div class="wrap foot-grid">
+    <div class="foot-brand">
+      <a class="logo" href="home.html" aria-label="mensfe home"><svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="8" fill="#2457C5"/><circle cx="13.5" cy="18.5" r="6" fill="none" stroke="#fff" stroke-width="2.4"/><path d="M18 14 24 8M19 8h5v5" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>mensfe</span></a>
+      <p>Information, help and support for male infertility and fertility issues, by you for you. You'll never walk alone at Mensfe.</p>
+      <p class="icsi"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6l-8-3z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg><span>Member of iCSI, International Consumer Support for Infertility. Mensfe presented a poster at the ICSI 2007 conference.</span></p>
+    </div>
+    <nav aria-label="Forum links">
+      <h2>Forum</h2>
+      <ul>
+        <li><a href="home.html">Latest discussions</a></li>
+        <li><a href="boards.html">All boards</a></li>
+        <li><a href="boards.html#research">Current research</a></li>
+        <li><a href="#">Forum rules</a></li>
+        <li><a href="#">New member guide</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Information links">
+      <h2>Information</h2>
+      <ul>
+        <li><a href="article.html">Azoospermia</a></li>
+        <li><a href="#">Semen Analysis</a></li>
+        <li><a href="#">Treatment</a></li>
+        <li><a href="#">Medical guide</a></li>
+        <li><a href="#">Emotive guide</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="About links">
+      <h2>About</h2>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Mission</a></li>
+        <li><a href="#">Patrons</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="mailto:info@mensfe.net"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg> info@mensfe.net</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="foot-base">
+    <div class="wrap">
+      <p><strong>Mensfe is peer support.</strong> It does not replace personal professional, legal or medical advice.</p>
+      <p>&copy; 2007&ndash;2026 Mensfe</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

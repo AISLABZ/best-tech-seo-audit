@@ -3,6 +3,7 @@
 const { chromium } = require('playwright');
 const path = require('path');
 const fs = require('fs');
+const useFonts = require('./fonts');
 const root = path.resolve(process.argv[2]);
 const out = path.join(root, 'build');
 fs.mkdirSync(out, { recursive: true });
@@ -20,6 +21,7 @@ const shots = [
     for (const [name, w] of shots) {
       const tag = `${dir}-${name}-${w === 390 ? 'mobile' : 'desktop'}`;
       const page = await browser.newPage({ viewport: { width: w, height: 900 }, deviceScaleFactor: w === 390 ? 2 : 1 });
+      await useFonts(page);
       await page.goto('file://' + path.join(root, dir, name + '.html'), { waitUntil: 'networkidle' });
       await page.evaluate(() => document.fonts.ready);
       await page.screenshot({ path: path.join(out, tag + '.png'), fullPage: true });

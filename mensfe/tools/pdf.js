@@ -1,10 +1,12 @@
 // Usage: node pdf.js <in.html> <out.pdf>   (A4, print CSS)
 const { chromium } = require('playwright');
 const path = require('path');
+const useFonts = require('./fonts');
 (async () => {
   const [inp, out] = process.argv.slice(2);
   const browser = await chromium.launch();
   const page = await browser.newPage();
+  await useFonts(page);
   await page.goto('file://' + path.resolve(inp), { waitUntil: 'networkidle' });
   await page.evaluate(() => document.fonts.ready);
   await page.pdf({ path: out, format: 'A4', printBackground: true, preferCSSPageSize: true,

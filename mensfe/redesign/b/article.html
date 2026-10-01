@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Azoospermia: types, diagnosis and treatment options | Mensfe</title>
+<meta name="description" content="Azoospermia means no measurable sperm in the ejaculate. A clear guide to obstructive and non-obstructive azoospermia, how it is diagnosed and the treatment options.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&amp;family=Source+Sans+3:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<style>
+:root{--ground:#F5F7FA;--surface:#FFFFFF;--ink:#142038;--ink-2:#45526A;--muted:#5D6880;--line:#DCE2EC;--blue:#2457C5;--blue-h:#1B439B;--tint:#E6EEFC;--tint-line:#CAD8F3;--mint:#DDF3E8;--mint-ink:#145A3A;--mint-line:#B9E2CD;--soft:#FAFBFD;--r:8px;--head:"Plus Jakarta Sans",system-ui,sans-serif;--body:"Source Sans 3",system-ui,sans-serif;
+--c-community:#2457C5;--c-medical:#0F7C80;--c-feelings:#B83A64;--c-research:#3A7A2A}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;overflow-wrap:break-word}
+h1,h2,h3,h4{font-family:var(--head);color:var(--ink);line-height:1.22;margin:0;letter-spacing:-0.012em}
+p{margin:0}
+a{color:var(--blue);text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{color:var(--blue-h)}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px;border-radius:4px}
+button{font:inherit}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip{position:absolute;left:16px;top:-80px;background:var(--blue);color:#fff;padding:12px 16px;border-radius:var(--r);font-weight:700;z-index:10}
+.skip:focus{top:12px;color:#fff}
+.wrap{max-width:1240px;margin:0 auto;padding:0 24px}
+.i{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* Top bar */
+.topbar{background:var(--surface);border-bottom:1px solid var(--line)}
+.topbar-row{display:grid;grid-template-columns:auto auto minmax(0,1fr) auto;grid-template-areas:"logo nav search actions";align-items:center;gap:0 20px;min-height:64px}
+.logo{grid-area:logo;display:inline-flex;align-items:center;gap:10px;min-height:44px;text-decoration:none;color:var(--ink);font-family:var(--head);font-weight:800;font-size:23px;letter-spacing:-0.03em}
+.logo:hover{color:var(--ink)}
+.logo-mark{width:32px;height:32px;flex:none}
+.mainnav{grid-area:nav}
+.mainnav ul{list-style:none;margin:0;padding:0;display:flex}
+.mainnav a{display:flex;align-items:center;height:64px;padding:0 12px;color:var(--ink-2);font-weight:600;text-decoration:none;border-bottom:3px solid transparent;border-top:3px solid transparent}
+.mainnav a:hover{color:var(--ink)}
+.mainnav a[aria-current="page"]{color:var(--blue);border-bottom-color:var(--blue)}
+.search{grid-area:search;position:relative;width:100%;max-width:520px;justify-self:center}
+.search input{width:100%;height:44px;border:1px solid var(--line);border-radius:var(--r);background:var(--ground);padding:0 14px 0 42px;font:inherit;font-size:16px;color:var(--ink)}
+.search input::placeholder{color:var(--muted);opacity:1}
+.search input:focus{outline:3px solid var(--blue);outline-offset:1px;background:#fff;border-color:var(--blue)}
+.search .i{position:absolute;left:13px;top:12px;color:var(--muted);pointer-events:none}
+.top-actions{grid-area:actions;display:flex;gap:8px;align-items:center}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:var(--r);font-family:var(--body);font-weight:700;font-size:16px;line-height:1.2;text-decoration:none;border:1px solid transparent;cursor:pointer;white-space:nowrap}
+.btn .i{width:18px;height:18px}
+.btn-primary{background:var(--blue);color:#fff}
+.btn-primary:hover{background:var(--blue-h);color:#fff}
+.btn-secondary{background:#fff;color:var(--blue);border-color:#B4C5E8}
+.btn-secondary:hover{background:var(--tint);color:var(--blue-h)}
+.btn-quiet{background:transparent;color:var(--ink);padding:0 14px}
+.btn-quiet:hover{background:var(--ground);color:var(--ink)}
+.btn-lg{min-height:48px;padding:0 22px;font-size:17px}
+
+/* Shared bits */
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+.crumbs{padding-top:16px}
+.crumbs ol{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:0 6px;margin:0;padding:0;font-size:15px;color:var(--muted)}
+.crumbs li+li::before{content:"\203A";margin-right:6px;color:var(--muted)}
+.crumbs a{display:inline-block;padding:10px 0;color:var(--ink-2);font-weight:600}
+.tag{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:var(--ink-2);background:var(--ground);border:1px solid var(--line);border-radius:999px;padding:1px 10px;line-height:1.55;white-space:nowrap}
+a.tag{text-decoration:none;min-height:32px}
+.dot{width:9px;height:9px;border-radius:50%;flex:none;background:var(--c,var(--blue));display:inline-block}
+.c-community{--c:var(--c-community)}.c-medical{--c:var(--c-medical)}.c-feelings{--c:var(--c-feelings)}.c-research{--c:var(--c-research)}
+.av{width:40px;height:40px;border-radius:50%;display:inline-grid;place-items:center;font-family:var(--head);font-weight:700;font-size:14px;flex:none;background:var(--tint);color:var(--blue-h);letter-spacing:0}
+.av-sm{width:32px;height:32px;font-size:12px}
+.av-lg{width:48px;height:48px;font-size:16px}
+.av.m{background:var(--mint);color:var(--mint-ink)}
+.av.p{background:#EFE7FA;color:#5B2F99}
+.av.o{background:#FCEADB;color:#874310}
+.av.r{background:#FBE5EC;color:#8F2448}
+.av.n{background:#142038;color:#fff}
+.badge{display:inline-flex;align-items:center;font-size:13px;font-weight:700;line-height:1.5;padding:0 8px;border-radius:6px;background:var(--ground);color:var(--ink-2);border:1px solid var(--line);white-space:nowrap}
+.badge.mod{background:var(--tint);color:var(--blue-h);border-color:var(--tint-line)}
+.badge.partner{background:var(--mint);color:var(--mint-ink);border-color:var(--mint-line)}
+.badge.op{background:#fff;color:var(--blue);border-color:#B4C5E8}
+.muted{color:var(--muted)}
+.kicker{font-size:13px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--blue)}
+.box{padding:20px}
+.box h2{font-size:16px;font-weight:800}
+.textlink{display:inline-flex;align-items:center;gap:6px;min-height:44px;font-weight:700;text-decoration:none}
+.textlink:hover{text-decoration:underline}
+.textlink .i{width:18px;height:18px}
+
+/* Footer */
+.foot{margin-top:64px;background:var(--surface);border-top:1px solid var(--line)}
+.foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:32px;padding-top:40px;padding-bottom:32px}
+.foot-brand p{color:var(--ink-2);margin-top:12px;max-width:40ch}
+.foot-brand .icsi{display:flex;gap:12px;align-items:flex-start;margin-top:20px;padding:14px;border:1px solid var(--line);border-radius:var(--r);background:var(--soft);font-size:15px;color:var(--ink-2);max-width:420px}
+.foot-brand .icsi .i{color:var(--blue);margin-top:2px}
+.foot h2{font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--ink);margin-bottom:6px}
+.foot ul{list-style:none;margin:0;padding:0}
+.foot nav a{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--ink-2);text-decoration:none}
+.foot nav a:hover{color:var(--blue);text-decoration:underline}
+.foot-base{background:var(--ground);border-top:1px solid var(--line);padding:20px 0;font-size:15px;color:var(--ink-2)}
+.foot-base .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px}
+.foot-base strong{color:var(--ink)}
+
+@media (max-width:1100px){
+ .topbar-row{grid-template-columns:auto minmax(0,1fr) auto;grid-template-areas:"logo search actions" "nav nav nav"}
+ .mainnav{border-top:1px solid var(--line);margin:0 -24px;padding:0 12px}
+ .mainnav a{height:48px}
+}
+@media (max-width:960px){
+ .foot-grid{grid-template-columns:1fr 1fr 1fr}
+ .foot-brand{grid-column:1/-1}
+}
+@media (max-width:640px){
+ body{font-size:17px}
+ .wrap{padding:0 16px}
+ .topbar-row{grid-template-columns:auto minmax(0,1fr);grid-template-areas:"logo actions" "search search" "nav nav";gap:0 8px;min-height:0}
+ .logo{min-height:56px;font-size:22px}
+ .top-actions{justify-self:end;gap:4px}
+ .top-actions .btn{padding:0 12px;font-size:15px}
+ .top-actions .btn-quiet{padding:0 10px}
+ .search{max-width:none;margin-bottom:10px}
+ .mainnav{margin:0 -16px;padding:0}
+ .mainnav ul{display:grid;grid-template-columns:repeat(4,1fr)}
+ .mainnav a{justify-content:center;padding:0 4px;font-size:16px}
+ .foot-grid{grid-template-columns:1fr 1fr;gap:16px 24px}
+ .foot-base .wrap{flex-direction:column}
+}
+@media print{*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+
+/* Article */
+.art-head{padding:8px 0 28px;border-bottom:1px solid var(--line)}
+.art-head h1{font-size:clamp(36px,4.2vw,52px);font-weight:800;letter-spacing:-0.03em;margin-top:10px}
+.standfirst{font-size:20px;line-height:1.5;color:var(--ink-2);max-width:62ch;margin-top:12px}
+.byline{display:flex;flex-wrap:wrap;align-items:center;gap:10px 24px;margin-top:20px;font-size:15px;color:var(--ink-2)}
+.byline > span{display:inline-flex;align-items:center;gap:8px}
+.byline .i{width:18px;height:18px;color:var(--muted)}
+.reviewed{background:var(--mint);color:var(--mint-ink);border:1px solid var(--mint-line);border-radius:999px;padding:3px 12px 3px 8px;font-weight:600}
+.byline .reviewed .i{color:var(--mint-ink)}
+.runby{display:flex;gap:12px;align-items:flex-start;margin-top:16px;max-width:78ch;font-size:15px;color:var(--ink-2)}
+.runby .avs{display:flex;flex:none}
+.runby .avs .av+.av{margin-left:-8px;box-shadow:0 0 0 2px var(--ground)}
+
+.art-layout{display:grid;grid-template-columns:minmax(0,1fr) 288px;grid-template-rows:auto 1fr;grid-template-areas:"body toc" "body more";gap:16px 56px;margin-top:32px;align-items:start}
+.toc-col{grid-area:toc}
+.more{grid-area:more;display:grid;gap:16px;align-content:start}
+.art-body{grid-area:body;max-width:760px;counter-reset:sec;min-width:0}
+.toc h2{font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.07em}
+.toc ol{list-style:none;margin:10px 0 0;padding:0;counter-reset:t}
+.toc li{counter-increment:t}
+.toc a{display:flex;gap:10px;align-items:baseline;padding:10px 0;min-height:44px;color:var(--ink-2);text-decoration:none;font-weight:600;border-top:1px solid var(--line);line-height:1.35}
+.toc li:first-child a{border-top:0}
+.toc a::before{content:counter(t);font-family:var(--head);font-size:13px;font-weight:800;color:var(--blue);min-width:16px}
+.toc li.plain a::before{content:"";min-width:16px}
+.toc a:hover{color:var(--blue)}
+
+.summary{background:var(--tint);border:1px solid var(--tint-line);border-radius:var(--r);padding:24px 26px}
+.summary h2{font-size:18px;font-weight:800;display:flex;align-items:center;gap:10px}
+.summary h2 .i{color:var(--blue)}
+.summary ul{margin:12px 0 0;padding-left:20px}
+.summary li+li{margin-top:6px}
+
+.sec{margin-top:52px}
+.sec > h2{font-size:28px;font-weight:800;letter-spacing:-0.02em;display:flex;gap:14px;align-items:flex-start}
+.sec.num > h2::before{counter-increment:sec;content:counter(sec);flex:none;width:36px;height:36px;border-radius:var(--r);background:var(--tint);color:var(--blue);font-size:17px;display:grid;place-items:center;margin-top:-1px}
+.sec > p,.sec > ul{margin-top:14px;max-width:68ch}
+.sec h3{font-size:20px;font-weight:800;margin-top:28px}
+.sec ul{padding-left:22px}
+.sec ul li+li{margin-top:6px}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:3px;cursor:help}
+
+.table-wrap{margin-top:22px;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:#fff}
+table{width:100%;border-collapse:collapse}
+caption{text-align:left;font-family:var(--head);font-weight:800;font-size:16px;padding:14px 18px;background:var(--soft);border-bottom:1px solid var(--line);color:var(--ink)}
+th,td{text-align:left;vertical-align:top;padding:13px 18px;border-bottom:1px solid var(--line);line-height:1.45}
+tr:last-child > *{border-bottom:0}
+tbody th{width:34%;font-weight:700;color:var(--ink)}
+thead th{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);background:var(--soft)}
+td{color:var(--ink-2)}
+
+.types{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px}
+.type{padding:22px}
+.type .badge{margin-bottom:10px}
+.type h3{margin-top:0;font-size:19px}
+.type p{color:var(--ink-2);margin-top:8px}
+.type h4{font-family:var(--body);font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-top:16px}
+.type ul{margin:8px 0 0;padding-left:20px;color:var(--ink-2)}
+.type li+li{margin-top:4px}
+
+.tests{list-style:none;padding:0 !important;margin:20px 0 0;display:grid;gap:10px}
+.tests li{display:flex;gap:14px;align-items:flex-start;padding:16px 18px;background:#fff;border:1px solid var(--line);border-radius:var(--r);margin:0 !important}
+.tests .ic{width:36px;height:36px;border-radius:8px;background:var(--tint);color:var(--blue);display:grid;place-items:center;flex:none}
+.tests strong{display:block;font-weight:700;color:var(--ink)}
+.tests span span{color:var(--ink-2)}
+
+.talk{display:flex;gap:12px;align-items:flex-start;margin-top:18px;padding:16px 18px;background:#fff;border:1px solid var(--line);border-radius:var(--r);color:var(--ink-2)}
+.talk .i{color:var(--blue);margin-top:2px}
+
+.community{background:var(--mint);border:1px solid var(--mint-line);border-radius:var(--r);padding:26px;margin-top:20px}
+.community .top{display:flex;gap:14px;align-items:flex-start}
+.community .ic{width:44px;height:44px;border-radius:50%;background:#fff;color:var(--mint-ink);display:grid;place-items:center;flex:none}
+.community p{color:var(--mint-ink)}
+.community .lead{font-size:18px;font-weight:600}
+.community ul{list-style:none;margin:18px 0 0;padding:0;background:#fff;border:1px solid var(--mint-line);border-radius:var(--r)}
+.community li+li{border-top:1px solid var(--line)}
+.community li a{display:flex;align-items:center;gap:12px;padding:12px 16px;min-height:52px;color:var(--ink);text-decoration:none;font-weight:600;line-height:1.35}
+.community li a:hover{color:var(--blue)}
+.community li small{display:block;font-weight:400;color:var(--muted);font-size:14px}
+.community .cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
+
+.sources{margin-top:14px;padding-left:22px;color:var(--ink-2)}
+.sources li+li{margin-top:6px}
+.disclaimer{display:flex;gap:12px;align-items:flex-start;margin-top:40px;padding:18px 20px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);color:var(--ink-2);font-size:16px}
+.disclaimer .i{color:var(--muted);margin-top:2px}
+.disclaimer strong{color:var(--ink)}
+
+.feedback{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px 24px;margin-top:24px;padding:20px 22px}
+.feedback h2{font-size:17px;font-weight:800}
+.yn{display:flex;gap:8px;margin-top:10px}
+.yn .btn{min-width:88px}
+.ask{text-align:left}
+.ask p{color:var(--ink-2);font-size:16px;margin-bottom:10px}
+
+.side-card h2{font-size:16px;font-weight:800}
+.side-card p{color:var(--ink-2);font-size:16px;margin-top:6px}
+.side-card .btn{margin-top:14px;width:100%}
+.rel{list-style:none;margin:8px 0 0;padding:0}
+.rel a{display:flex;align-items:center;gap:10px;min-height:44px;font-weight:600;text-decoration:none;border-top:1px solid var(--line)}
+.rel li:first-child a{border-top:0}
+.rel a:hover{text-decoration:underline}
+.rel .i{width:18px;height:18px}
+
+@media (max-width:1100px){
+ .art-layout{column-gap:40px;grid-template-columns:minmax(0,1fr) 260px}
+}
+@media (max-width:960px){
+ .art-layout{grid-template-columns:1fr;grid-template-rows:auto;grid-template-areas:"toc" "body" "more";gap:28px}
+ .more{grid-template-columns:1fr 1fr}
+ .art-body{max-width:none}
+}
+@media (max-width:640px){
+ .standfirst{font-size:18px}
+ .byline{flex-direction:column;align-items:flex-start;gap:8px}
+ .summary{padding:20px 18px}
+ .sec{margin-top:44px}
+ .sec > h2{font-size:24px;gap:12px}
+ .sec.num > h2::before{width:32px;height:32px;font-size:15px;margin-top:-2px}
+ .types{grid-template-columns:1fr}
+ th,td{padding:12px 14px}
+ caption{padding:12px 14px}
+ .community{padding:20px 16px}
+ .community .cta-row .btn{width:100%}
+ .feedback{flex-direction:column;align-items:stretch}
+ .yn .btn{flex:1}
+ .ask .btn{width:100%}
+ .more{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="wrap topbar-row">
+    <a class="logo" href="home.html" aria-label="mensfe home"><svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="8" fill="#2457C5"/><circle cx="13.5" cy="18.5" r="6" fill="none" stroke="#fff" stroke-width="2.4"/><path d="M18 14 24 8M19 8h5v5" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>mensfe</span></a>
+    <nav class="mainnav" aria-label="Main">
+      <ul><li><a href="boards.html">Forum</a></li><li><a href="article.html" aria-current="page">Information</a></li><li><a href="boards.html#research">Research</a></li><li><a href="#about">About</a></li></ul>
+    </nav>
+    <form class="search" role="search" action="#">
+      <label class="sr-only" for="site-search">Search topics, boards and information</label>
+      <svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="site-search" type="search" name="q" placeholder="Search topics, boards and information">
+    </form>
+    <div class="top-actions">
+      <a class="btn btn-quiet" href="#">Sign in</a>
+      <a class="btn btn-primary" href="#">Join free</a>
+    </div>
+  </div>
+</header>
+<main id="main" class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="#">Information</a></li>
+      <li><span aria-current="page">Azoospermia</span></li>
+    </ol>
+  </nav>
+
+  <article>
+    <header class="art-head">
+      <p class="kicker">Information guide &middot; Diagnosis</p>
+      <h1>Azoospermia</h1>
+      <p class="standfirst">Azoospermia means there is no measurable sperm in the ejaculate. It is a diagnosis many men have never heard of until it is theirs. This guide explains the types, the tests and the routes to parenthood.</p>
+      <div class="byline">
+        <span><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>Written by [Author name]</span>
+        <span class="reviewed"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6l-8-3z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>Medically reviewed by [Reviewer name, credentials]</span>
+        <span><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>Last reviewed [date]</span>
+      </div>
+      <p class="runby"><span class="avs" aria-hidden="true"><span class="av av-sm p">PR</span><span class="av av-sm m">RB</span></span><span>Mensfe is run by Pip Reilly, a professional fertility counsellor with over 15 years' experience with fertility charities, and Rob Barlow, a medical scientist who was diagnosed with azoospermia more than 25 years ago.</span></p>
+    </header>
+
+    <div class="art-layout">
+      <div class="toc-col">
+        <nav class="toc panel box" aria-labelledby="toc-title">
+          <h2 id="toc-title">On this page</h2>
+          <ol>
+            <li><a href="#what">What is azoospermia?</a></li>
+            <li><a href="#types">The two main types</a></li>
+            <li><a href="#diagnosis">How it is diagnosed</a></li>
+            <li><a href="#treatment">Treatment options</a></li>
+            <li><a href="#not-alone">You are not alone</a></li>
+            <li class="plain"><a href="#sources">Sources</a></li>
+          </ol>
+        </nav>
+      </div>
+
+      <div class="art-body">
+        <section class="summary" aria-labelledby="short-title">
+          <h2 id="short-title"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>In short</h2>
+          <ul>
+            <li>Azoospermia means no measurable sperm in the ejaculate. It affects about 1% of all men and around 10&ndash;15% of men with infertility.</li>
+            <li>There are two main types: <strong>obstructive</strong> (sperm are made but blocked) and <strong>non-obstructive</strong> (the testes make very little or no sperm).</li>
+            <li>Diagnosis uses repeat semen analysis, an examination, hormone and genetic blood tests, and sometimes an ultrasound scan.</li>
+            <li>Depending on the type, options include surgical repair, sperm retrieval used with <abbr title="intracytoplasmic sperm injection">ICSI</abbr>, hormone treatment in some men, or donor sperm.</li>
+          </ul>
+        </section>
+
+        <section class="sec num" id="what" aria-labelledby="what-title">
+          <h2 id="what-title">What is azoospermia?</h2>
+          <p>Azoospermia is the medical term for having no measurable sperm in the ejaculate. It affects about 1% of all men, and around 10&ndash;15% of men with infertility.</p>
+          <p>It is usually confirmed by at least two semen analyses. The laboratory spins the sample down (centrifuges it) to look closely for any sperm at all before the result is called azoospermia.</p>
+          <div class="table-wrap">
+            <table>
+              <caption>Key facts</caption>
+              <tbody>
+                <tr><th scope="row">What it means</th><td>No measurable sperm in the ejaculate</td></tr>
+                <tr><th scope="row">How common</th><td>About 1% of all men; around 10&ndash;15% of men with infertility</td></tr>
+                <tr><th scope="row">How it is confirmed</th><td>At least two semen analyses, with the sample centrifuged</td></tr>
+                <tr><th scope="row">Main types</th><td>Obstructive and non-obstructive</td></tr>
+                <tr><th scope="row">Who to talk to</th><td>A urologist or andrologist</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="sec num" id="types" aria-labelledby="types-title">
+          <h2 id="types-title">The two main types</h2>
+          <p>Knowing which type you have matters, because it shapes which treatment options are open to you.</p>
+          <div class="types">
+            <div class="type panel">
+              <span class="badge mod">Type 1</span>
+              <h3>Obstructive azoospermia</h3>
+              <p>Sperm are being made, but a blockage stops them reaching the ejaculate.</p>
+              <h4>Causes include</h4>
+              <ul>
+                <li>A previous vasectomy</li>
+                <li>Infection or injury</li>
+                <li>Congenital absence of the vas deferens, which is linked to cystic fibrosis gene changes</li>
+              </ul>
+            </div>
+            <div class="type panel">
+              <span class="badge mod">Type 2</span>
+              <h3>Non-obstructive azoospermia</h3>
+              <p>The testes make very little or no sperm.</p>
+              <h4>Causes include</h4>
+              <ul>
+                <li>Genetic conditions such as Klinefelter syndrome or Y-chromosome microdeletions</li>
+                <li>Hormone problems</li>
+                <li>A history of undescended testes</li>
+                <li>Previous chemotherapy or radiotherapy</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="sec num" id="diagnosis" aria-labelledby="diagnosis-title">
+          <h2 id="diagnosis-title">How it is diagnosed</h2>
+          <p>Your doctor will usually build up a picture from several tests. You may hear these terms at the clinic:</p>
+          <ul class="tests">
+            <li><span class="ic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3"/><path d="M7.5 15h9"/></svg></span><span><strong>Repeat semen analysis</strong><span>To confirm that no sperm are present, including in the centrifuged sample.</span></span></li>
+            <li><span class="ic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 3v6a4 4 0 0 0 8 0V3"/><path d="M10 13v2a5 5 0 0 0 10 0v-2"/><circle cx="20" cy="11" r="2"/></svg></span><span><strong>Physical examination</strong><span>A check by a doctor, often a urologist or andrologist.</span></span></li>
+            <li><span class="ic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg></span><span><strong>Hormone blood tests</strong><span><abbr title="follicle-stimulating hormone">FSH</abbr>, <abbr title="luteinising hormone">LH</abbr> and testosterone.</span></span></li>
+            <li><span class="ic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/></svg></span><span><strong>Genetic tests</strong><span>Karyotype, Y-chromosome microdeletion and <abbr title="cystic fibrosis transmembrane conductance regulator">CFTR</abbr> (cystic fibrosis gene) testing.</span></span></li>
+            <li><span class="ic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span><span><strong>Scrotal ultrasound</strong><span>Sometimes used to look at the testes and surrounding structures.</span></span></li>
+          </ul>
+        </section>
+
+        <section class="sec num" id="treatment" aria-labelledby="treatment-title">
+          <h2 id="treatment-title">Treatment options</h2>
+          <p>The options depend on the type of azoospermia and its cause.</p>
+          <div class="table-wrap">
+            <table>
+              <caption>Options by type</caption>
+              <thead>
+                <tr><th scope="col">Type</th><th scope="col">Options</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Obstructive</th><td>Surgical repair, such as vasectomy reversal; or sperm retrieval (<abbr title="percutaneous epididymal sperm aspiration">PESA</abbr>, <abbr title="microsurgical epididymal sperm aspiration">MESA</abbr>, <abbr title="testicular sperm aspiration">TESA</abbr>) used with <abbr title="intracytoplasmic sperm injection">ICSI</abbr></td></tr>
+                <tr><th scope="row">Non-obstructive</th><td>In some men, hormone treatment; surgical sperm retrieval such as <abbr title="microdissection testicular sperm extraction">micro-TESE</abbr>, used with ICSI</td></tr>
+                <tr><th scope="row">Either type</th><td>Donor sperm is another route to parenthood</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="talk"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 3v6a4 4 0 0 0 8 0V3"/><path d="M10 13v2a5 5 0 0 0 10 0v-2"/><circle cx="20" cy="11" r="2"/></svg><span>Talk your options through with a urologist or andrologist. They can explain what your own test results mean for you.</span></p>
+        </section>
+
+        <section class="sec num" id="not-alone" aria-labelledby="alone-title">
+          <h2 id="alone-title">You are not alone</h2>
+          <div class="community">
+            <div class="top">
+              <span class="ic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c1-3.5 3.5-5.5 6.5-5.5s5.5 2 6.5 5.5"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14.8c1.7.8 2.9 2.6 3.5 5.2"/></svg></span>
+              <div>
+                <p class="lead">[n] members are discussing azoospermia on the forum.</p>
+                <p>Men who have had this diagnosis, and their partners, share what happened next. Read without an account, or join free under any username.</p>
+              </div>
+            </div>
+            <ul aria-label="Recent topics in Causes of male infertility">
+              <li><a href="topic.html"><span class="av av-sm" aria-hidden="true">DR</span><span>Just diagnosed with non-obstructive azoospermia. Where do we start?<small>[n] replies &middot; 2h ago</small></span></a></li>
+              <li><a href="#"><span class="av av-sm p" aria-hidden="true">KW</span><span>Karyotype came back normal. Still waiting on the Y-chromosome test<small>[n] replies &middot; Yesterday</small></span></a></li>
+              <li><a href="#"><span class="av av-sm o" aria-hidden="true">BN</span><span>Obstructive after a vasectomy: reversal or retrieval?<small>[n] replies &middot; 4 days ago</small></span></a></li>
+            </ul>
+            <div class="cta-row">
+              <a class="btn btn-primary" href="boards.html">Go to Causes of male infertility <svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+              <a class="btn btn-secondary" href="#">Join free</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="sec" id="sources" aria-labelledby="sources-title">
+          <h2 id="sources-title">Sources</h2>
+          <ol class="sources">
+            <li>[Source 1 &mdash; e.g. NHS guidance on azoospermia]</li>
+            <li>[Source 2 &mdash; e.g. NICE fertility guideline]</li>
+            <li>[Source 3 &mdash; e.g. WHO laboratory manual for the examination of human semen]</li>
+            <li>[Source 4 &mdash; e.g. peer-reviewed review article]</li>
+          </ol>
+        </section>
+
+        <p class="disclaimer"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg><span><strong>Mensfe is peer support.</strong> It does not replace personal professional, legal or medical advice. Always talk to a qualified doctor about your own diagnosis and treatment.</span></p>
+
+        <div class="feedback panel">
+          <div role="group" aria-labelledby="helpful-title">
+            <h2 id="helpful-title">Was this page helpful?</h2>
+            <form class="yn" action="#">
+              <button class="btn btn-secondary" type="submit" name="helpful" value="yes"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 4.5 4.5L19 7"/></svg>Yes</button>
+              <button class="btn btn-secondary" type="submit" name="helpful" value="no"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg>No</button>
+            </form>
+          </div>
+          <div class="ask">
+            <p>Still have questions? Members who have been through it can help.</p>
+            <a class="btn btn-primary" href="#"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.1-4.6A8 8 0 1 1 21 12z"/></svg>Ask the community</a>
+          </div>
+        </div>
+      </div>
+
+      <aside class="more" aria-label="More from Mensfe">
+        <section class="panel box side-card" aria-labelledby="askside-title">
+          <h2 id="askside-title">Talk to men who have been there</h2>
+          <p>Post under any username. Free since 2007.</p>
+          <a class="btn btn-primary" href="#"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.1-4.6A8 8 0 1 1 21 12z"/></svg>Ask the community</a>
+        </section>
+        <section class="panel box side-card" aria-labelledby="rel-title">
+          <h2 id="rel-title">Related guides</h2>
+          <ul class="rel">
+            <li><a href="#"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg>Semen Analysis</a></li>
+            <li><a href="#"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg>Treatment</a></li>
+            <li><a href="#"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg>Vasectomy Reversal</a></li>
+            <li><a href="#"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg>Sperm Donation</a></li>
+            <li><a href="#"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg>Counselling Support</a></li>
+            <li><a href="#"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5a2 2 0 0 1 2-2h14v16H6a2 2 0 0 0-2 2V5z"/><path d="M4 19a2 2 0 0 1 2-2h14"/></svg>Medical guide: jargon explained</a></li>
+          </ul>
+        </section>
+      </aside>
+    </div>
+  </article>
+</main>
+
+<footer class="foot" id="about">
+  <div class="wrap foot-grid">
+    <div class="foot-brand">
+      <a class="logo" href="home.html" aria-label="mensfe home"><svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="8" fill="#2457C5"/><circle cx="13.5" cy="18.5" r="6" fill="none" stroke="#fff" stroke-width="2.4"/><path d="M18 14 24 8M19 8h5v5" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>mensfe</span></a>
+      <p>Information, help and support for male infertility and fertility issues, by you for you. You'll never walk alone at Mensfe.</p>
+      <p class="icsi"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6l-8-3z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg><span>Member of iCSI, International Consumer Support for Infertility. Mensfe presented a poster at the ICSI 2007 conference.</span></p>
+    </div>
+    <nav aria-label="Forum links">
+      <h2>Forum</h2>
+      <ul>
+        <li><a href="home.html">Latest discussions</a></li>
+        <li><a href="boards.html">All boards</a></li>
+        <li><a href="boards.html#research">Current research</a></li>
+        <li><a href="#">Forum rules</a></li>
+        <li><a href="#">New member guide</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Information links">
+      <h2>Information</h2>
+      <ul>
+        <li><a href="article.html">Azoospermia</a></li>
+        <li><a href="#">Semen Analysis</a></li>
+        <li><a href="#">Treatment</a></li>
+        <li><a href="#">Medical guide</a></li>
+        <li><a href="#">Emotive guide</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="About links">
+      <h2>About</h2>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Mission</a></li>
+        <li><a href="#">Patrons</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="mailto:info@mensfe.net"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg> info@mensfe.net</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="foot-base">
+    <div class="wrap">
+      <p><strong>Mensfe is peer support.</strong> It does not replace personal professional, legal or medical advice.</p>
+      <p>&copy; 2007&ndash;2026 Mensfe</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

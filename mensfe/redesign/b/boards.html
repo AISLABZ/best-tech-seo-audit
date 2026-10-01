@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forum boards | Mensfe male infertility forum</title>
+<meta name="description" content="Browse every Mensfe forum board: general discussion, causes of male infertility, dealing with doctors, Dear Doctor, feelings and relationships, and current research.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&amp;family=Source+Sans+3:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<style>
+:root{--ground:#F5F7FA;--surface:#FFFFFF;--ink:#142038;--ink-2:#45526A;--muted:#5D6880;--line:#DCE2EC;--blue:#2457C5;--blue-h:#1B439B;--tint:#E6EEFC;--tint-line:#CAD8F3;--mint:#DDF3E8;--mint-ink:#145A3A;--mint-line:#B9E2CD;--soft:#FAFBFD;--r:8px;--head:"Plus Jakarta Sans",system-ui,sans-serif;--body:"Source Sans 3",system-ui,sans-serif;
+--c-community:#2457C5;--c-medical:#0F7C80;--c-feelings:#B83A64;--c-research:#3A7A2A}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;overflow-wrap:break-word}
+h1,h2,h3,h4{font-family:var(--head);color:var(--ink);line-height:1.22;margin:0;letter-spacing:-0.012em}
+p{margin:0}
+a{color:var(--blue);text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{color:var(--blue-h)}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px;border-radius:4px}
+button{font:inherit}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip{position:absolute;left:16px;top:-80px;background:var(--blue);color:#fff;padding:12px 16px;border-radius:var(--r);font-weight:700;z-index:10}
+.skip:focus{top:12px;color:#fff}
+.wrap{max-width:1240px;margin:0 auto;padding:0 24px}
+.i{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* Top bar */
+.topbar{background:var(--surface);border-bottom:1px solid var(--line)}
+.topbar-row{display:grid;grid-template-columns:auto auto minmax(0,1fr) auto;grid-template-areas:"logo nav search actions";align-items:center;gap:0 20px;min-height:64px}
+.logo{grid-area:logo;display:inline-flex;align-items:center;gap:10px;min-height:44px;text-decoration:none;color:var(--ink);font-family:var(--head);font-weight:800;font-size:23px;letter-spacing:-0.03em}
+.logo:hover{color:var(--ink)}
+.logo-mark{width:32px;height:32px;flex:none}
+.mainnav{grid-area:nav}
+.mainnav ul{list-style:none;margin:0;padding:0;display:flex}
+.mainnav a{display:flex;align-items:center;height:64px;padding:0 12px;color:var(--ink-2);font-weight:600;text-decoration:none;border-bottom:3px solid transparent;border-top:3px solid transparent}
+.mainnav a:hover{color:var(--ink)}
+.mainnav a[aria-current="page"]{color:var(--blue);border-bottom-color:var(--blue)}
+.search{grid-area:search;position:relative;width:100%;max-width:520px;justify-self:center}
+.search input{width:100%;height:44px;border:1px solid var(--line);border-radius:var(--r);background:var(--ground);padding:0 14px 0 42px;font:inherit;font-size:16px;color:var(--ink)}
+.search input::placeholder{color:var(--muted);opacity:1}
+.search input:focus{outline:3px solid var(--blue);outline-offset:1px;background:#fff;border-color:var(--blue)}
+.search .i{position:absolute;left:13px;top:12px;color:var(--muted);pointer-events:none}
+.top-actions{grid-area:actions;display:flex;gap:8px;align-items:center}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:var(--r);font-family:var(--body);font-weight:700;font-size:16px;line-height:1.2;text-decoration:none;border:1px solid transparent;cursor:pointer;white-space:nowrap}
+.btn .i{width:18px;height:18px}
+.btn-primary{background:var(--blue);color:#fff}
+.btn-primary:hover{background:var(--blue-h);color:#fff}
+.btn-secondary{background:#fff;color:var(--blue);border-color:#B4C5E8}
+.btn-secondary:hover{background:var(--tint);color:var(--blue-h)}
+.btn-quiet{background:transparent;color:var(--ink);padding:0 14px}
+.btn-quiet:hover{background:var(--ground);color:var(--ink)}
+.btn-lg{min-height:48px;padding:0 22px;font-size:17px}
+
+/* Shared bits */
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+.crumbs{padding-top:16px}
+.crumbs ol{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:0 6px;margin:0;padding:0;font-size:15px;color:var(--muted)}
+.crumbs li+li::before{content:"\203A";margin-right:6px;color:var(--muted)}
+.crumbs a{display:inline-block;padding:10px 0;color:var(--ink-2);font-weight:600}
+.tag{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:var(--ink-2);background:var(--ground);border:1px solid var(--line);border-radius:999px;padding:1px 10px;line-height:1.55;white-space:nowrap}
+a.tag{text-decoration:none;min-height:32px}
+.dot{width:9px;height:9px;border-radius:50%;flex:none;background:var(--c,var(--blue));display:inline-block}
+.c-community{--c:var(--c-community)}.c-medical{--c:var(--c-medical)}.c-feelings{--c:var(--c-feelings)}.c-research{--c:var(--c-research)}
+.av{width:40px;height:40px;border-radius:50%;display:inline-grid;place-items:center;font-family:var(--head);font-weight:700;font-size:14px;flex:none;background:var(--tint);color:var(--blue-h);letter-spacing:0}
+.av-sm{width:32px;height:32px;font-size:12px}
+.av-lg{width:48px;height:48px;font-size:16px}
+.av.m{background:var(--mint);color:var(--mint-ink)}
+.av.p{background:#EFE7FA;color:#5B2F99}
+.av.o{background:#FCEADB;color:#874310}
+.av.r{background:#FBE5EC;color:#8F2448}
+.av.n{background:#142038;color:#fff}
+.badge{display:inline-flex;align-items:center;font-size:13px;font-weight:700;line-height:1.5;padding:0 8px;border-radius:6px;background:var(--ground);color:var(--ink-2);border:1px solid var(--line);white-space:nowrap}
+.badge.mod{background:var(--tint);color:var(--blue-h);border-color:var(--tint-line)}
+.badge.partner{background:var(--mint);color:var(--mint-ink);border-color:var(--mint-line)}
+.badge.op{background:#fff;color:var(--blue);border-color:#B4C5E8}
+.muted{color:var(--muted)}
+.kicker{font-size:13px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--blue)}
+.box{padding:20px}
+.box h2{font-size:16px;font-weight:800}
+.textlink{display:inline-flex;align-items:center;gap:6px;min-height:44px;font-weight:700;text-decoration:none}
+.textlink:hover{text-decoration:underline}
+.textlink .i{width:18px;height:18px}
+
+/* Footer */
+.foot{margin-top:64px;background:var(--surface);border-top:1px solid var(--line)}
+.foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:32px;padding-top:40px;padding-bottom:32px}
+.foot-brand p{color:var(--ink-2);margin-top:12px;max-width:40ch}
+.foot-brand .icsi{display:flex;gap:12px;align-items:flex-start;margin-top:20px;padding:14px;border:1px solid var(--line);border-radius:var(--r);background:var(--soft);font-size:15px;color:var(--ink-2);max-width:420px}
+.foot-brand .icsi .i{color:var(--blue);margin-top:2px}
+.foot h2{font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--ink);margin-bottom:6px}
+.foot ul{list-style:none;margin:0;padding:0}
+.foot nav a{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--ink-2);text-decoration:none}
+.foot nav a:hover{color:var(--blue);text-decoration:underline}
+.foot-base{background:var(--ground);border-top:1px solid var(--line);padding:20px 0;font-size:15px;color:var(--ink-2)}
+.foot-base .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px}
+.foot-base strong{color:var(--ink)}
+
+@media (max-width:1100px){
+ .topbar-row{grid-template-columns:auto minmax(0,1fr) auto;grid-template-areas:"logo search actions" "nav nav nav"}
+ .mainnav{border-top:1px solid var(--line);margin:0 -24px;padding:0 12px}
+ .mainnav a{height:48px}
+}
+@media (max-width:960px){
+ .foot-grid{grid-template-columns:1fr 1fr 1fr}
+ .foot-brand{grid-column:1/-1}
+}
+@media (max-width:640px){
+ body{font-size:17px}
+ .wrap{padding:0 16px}
+ .topbar-row{grid-template-columns:auto minmax(0,1fr);grid-template-areas:"logo actions" "search search" "nav nav";gap:0 8px;min-height:0}
+ .logo{min-height:56px;font-size:22px}
+ .top-actions{justify-self:end;gap:4px}
+ .top-actions .btn{padding:0 12px;font-size:15px}
+ .top-actions .btn-quiet{padding:0 10px}
+ .search{max-width:none;margin-bottom:10px}
+ .mainnav{margin:0 -16px;padding:0}
+ .mainnav ul{display:grid;grid-template-columns:repeat(4,1fr)}
+ .mainnav a{justify-content:center;padding:0 4px;font-size:16px}
+ .foot-grid{grid-template-columns:1fr 1fr;gap:16px 24px}
+ .foot-base .wrap{flex-direction:column}
+}
+@media print{*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+
+/* Board index */
+.page-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px 32px;padding:8px 0 0}
+.page-head h1{font-size:clamp(30px,3vw,38px);font-weight:800;letter-spacing:-0.025em}
+.page-head p{color:var(--ink-2);margin-top:6px;max-width:60ch}
+.toolbar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:20px;padding:12px;background:#fff;border:1px solid var(--line);border-radius:var(--r)}
+.fsearch{flex:1;min-width:240px;display:flex;gap:8px}
+.fsearch .field{position:relative;flex:1}
+.fsearch input{width:100%;height:44px;border:1px solid var(--line);border-radius:var(--r);background:var(--ground);padding:0 14px 0 42px;font:inherit;font-size:16px;color:var(--ink)}
+.fsearch input::placeholder{color:var(--muted);opacity:1}
+.fsearch input:focus{outline:3px solid var(--blue);outline-offset:1px;background:#fff;border-color:var(--blue)}
+.fsearch .i{position:absolute;left:13px;top:12px;color:var(--muted);pointer-events:none}
+.toolbar .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:14px;color:var(--muted);padding:0 4px}
+.toolbar .legend span{display:inline-flex;align-items:center;gap:6px}
+
+.board-layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:24px;margin-top:24px;align-items:start}
+.cat{background:#fff;border:1px solid var(--line);border-radius:var(--r);margin-bottom:20px;overflow:hidden}
+.cat:last-child{margin-bottom:0}
+.grid-row{display:grid;grid-template-columns:minmax(0,1fr) 84px 84px 280px;gap:20px;align-items:center;padding:0 20px}
+.cat-head{background:var(--soft);border-bottom:1px solid var(--line);padding-top:12px;padding-bottom:12px}
+.cat-head h2{font-size:17px;font-weight:800;display:flex;align-items:center;gap:10px}
+.cat-head h2 .dot{width:11px;height:11px}
+.cat-head .col{font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;text-align:right}
+.cat-head .col.lp{text-align:left}
+.boards{list-style:none;margin:0;padding:0}
+.board{padding-top:18px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.board:last-child{border-bottom:0}
+.board-main{display:flex;gap:14px;align-items:flex-start;min-width:0}
+.board-icon{width:44px;height:44px;border-radius:var(--r);background:var(--ground);border:1px solid var(--line);display:grid;place-items:center;color:var(--c);flex:none}
+.board h3{font-size:18px;font-weight:700;line-height:1.3}
+.board h3 a{color:var(--ink);text-decoration:none;display:inline-block;padding:4px 0}
+.board h3 a:hover{color:var(--blue);text-decoration:underline}
+.board .desc{color:var(--ink-2);font-size:16px;line-height:1.45}
+.board .flag{margin-left:6px;vertical-align:2px}
+.count{text-align:right;line-height:1.2}
+.count b{display:block;font-size:17px;font-weight:700;color:var(--ink)}
+.count span{font-size:13px;color:var(--muted)}
+.counts{display:contents}
+.last{display:flex;gap:10px;align-items:flex-start;min-width:0}
+.last div{min-width:0}
+.last a{display:block;color:var(--ink);font-weight:600;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:2px 0}
+.last a:hover{color:var(--blue);text-decoration:underline}
+.last p{font-size:14px;color:var(--muted)}
+
+.side-stack{display:grid;gap:16px}
+.online-n{display:flex;align-items:baseline;gap:8px;margin-top:10px}
+.online-n b{font-family:var(--head);font-size:28px;font-weight:800}
+.online-n span{color:var(--ink-2)}
+.online-who{font-size:15px;color:var(--muted);margin-top:8px}
+.live{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--mint-ink);background:var(--mint);border-radius:999px;padding:1px 10px}
+.live::before{content:"";width:7px;height:7px;border-radius:50%;background:#1F8A57}
+.rules{margin:12px 0 0;padding-left:20px;color:var(--ink-2)}
+.rules li+li{margin-top:6px}
+.guide{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:10px}
+.guide li{display:flex;gap:10px;align-items:flex-start;color:var(--ink-2)}
+.guide .n{width:26px;height:26px;border-radius:50%;background:var(--tint);color:var(--blue);font-family:var(--head);font-weight:800;font-size:13px;display:grid;place-items:center;flex:none;margin-top:1px}
+.stats-dl{display:grid;grid-template-columns:1fr auto;gap:8px 12px;margin:12px 0 0}
+.stats-dl dt{color:var(--ink-2)}
+.stats-dl dd{margin:0;font-weight:700;text-align:right}
+.box .textlink{margin-top:4px}
+.note{background:var(--tint);border-color:var(--tint-line)}
+.note p{color:var(--ink-2);margin-top:8px;font-size:16px}
+
+@media (max-width:1100px){
+ .grid-row{grid-template-columns:minmax(0,1fr) 72px 72px 230px;gap:16px}
+}
+@media (max-width:960px){
+ .board-layout{grid-template-columns:1fr}
+ .side-stack{grid-template-columns:1fr 1fr}
+}
+@media (max-width:760px){
+ .cat-head .col{display:none}
+ .grid-row{display:block;padding:0 16px}
+ .cat-head{padding-top:12px;padding-bottom:12px}
+ .board{padding-top:16px;padding-bottom:16px}
+ .counts{display:flex;gap:6px;margin:10px 0 0 58px;font-size:15px;color:var(--ink-2)}
+ .count{text-align:left;display:flex;gap:4px;align-items:baseline}
+ .count b{display:inline;font-size:15px}
+ .count span{font-size:15px;color:var(--ink-2)}
+ .counts .count+.count::before{content:"\00B7";margin-right:6px;color:var(--muted)}
+ .last{margin:10px 0 0 58px;padding:10px 12px;background:var(--ground);border-radius:var(--r)}
+ .side-stack{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+ .toolbar{padding:10px}
+ .toolbar > .btn{width:100%}
+ .fsearch{min-width:0;width:100%}
+ .fsearch .btn{padding:0 14px}
+ .board-icon{width:40px;height:40px}
+ .counts,.last{margin-left:54px}
+ .last{margin-left:0}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="wrap topbar-row">
+    <a class="logo" href="home.html" aria-label="mensfe home"><svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="8" fill="#2457C5"/><circle cx="13.5" cy="18.5" r="6" fill="none" stroke="#fff" stroke-width="2.4"/><path d="M18 14 24 8M19 8h5v5" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>mensfe</span></a>
+    <nav class="mainnav" aria-label="Main">
+      <ul><li><a href="boards.html" aria-current="page">Forum</a></li><li><a href="article.html">Information</a></li><li><a href="boards.html#research">Research</a></li><li><a href="#about">About</a></li></ul>
+    </nav>
+    <form class="search" role="search" action="#">
+      <label class="sr-only" for="site-search">Search topics, boards and information</label>
+      <svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="site-search" type="search" name="q" placeholder="Search topics, boards and information">
+    </form>
+    <div class="top-actions">
+      <a class="btn btn-quiet" href="#">Sign in</a>
+      <a class="btn btn-primary" href="#">Join free</a>
+    </div>
+  </div>
+</header>
+<main id="main" class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="home.html">Home</a></li>
+      <li><span aria-current="page">Forum</span></li>
+    </ol>
+  </nav>
+
+  <div class="page-head">
+    <div>
+      <h1>Forum boards</h1>
+      <p>Every board, grouped by topic. Read freely; join free to post under any username.</p>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <form class="fsearch" role="search" action="#">
+      <div class="field">
+        <label class="sr-only" for="forum-search">Search the forum</label>
+        <svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="forum-search" type="search" name="q" placeholder="Search the forum">
+      </div>
+      <button class="btn btn-secondary" type="submit">Search</button>
+    </form>
+    <a class="btn btn-primary" href="#"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 5v14M5 12h14"/></svg>Start a new topic</a>
+  </div>
+
+  <div class="board-layout">
+    <div class="board-list">
+    <section class="cat c-community" id="cat-community" aria-labelledby="h-community">
+      <div class="grid-row cat-head">
+        <h2 id="h-community"><span class="dot"></span>Community</h2>
+        <span class="col" aria-hidden="true">Topics</span><span class="col" aria-hidden="true">Posts</span><span class="col lp" aria-hidden="true">Last post</span>
+      </div>
+      <ul class="boards">
+        <li class="grid-row board">
+          <div class="board-main">
+            <span class="board-icon"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.1-4.6A8 8 0 1 1 21 12z"/></svg></span>
+            <div>
+              <h3><a href="#">General discussion</a></h3>
+              <p class="desc">Anything and everything about male fertility.</p>
+            </div>
+          </div>
+          <div class="counts">
+            <p class="count"><b>[n]</b> <span>topics</span></p>
+            <p class="count"><b>[n]</b> <span>posts</span></p>
+          </div>
+          <div class="last">
+            <span class="av av-sm o" aria-hidden="true">OA</span>
+            <div>
+              <a href="topic.html">How do we tell our parents we are using a donor?</a>
+              <p>by oakley &middot; Yesterday</p>
+            </div>
+          </div>
+        </li>
+        <li class="grid-row board">
+          <div class="board-main">
+            <span class="board-icon"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.1-4.6A8 8 0 1 1 21 12z"/></svg></span>
+            <div>
+              <h3><a href="#">Let off some steam</a></h3>
+              <p class="desc">Somewhere to vent when it all gets too much.</p>
+            </div>
+          </div>
+          <div class="counts">
+            <p class="count"><b>[n]</b> <span>topics</span></p>
+            <p class="count"><b>[n]</b> <span>posts</span></p>
+          </div>
+          <div class="last">
+            <span class="av av-sm " aria-hidden="true">SK</span>
+            <div>
+              <a href="topic.html">Another appointment cancelled. I just need to vent</a>
+              <p>by sam_k &middot; 2 days ago</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </section>
+    <section class="cat c-medical" id="cat-medical" aria-labelledby="h-medical">
+      <div class="grid-row cat-head">
+        <h2 id="h-medical"><span class="dot"></span>Medical</h2>
+        <span class="col" aria-hidden="true">Topics</span><span class="col" aria-hidden="true">Posts</span><span class="col lp" aria-hidden="true">Last post</span>
+      </div>
+      <ul class="boards">
+        <li class="grid-row board">
+          <div class="board-main">
+            <span class="board-icon"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 3v6a4 4 0 0 0 8 0V3"/><path d="M10 13v2a5 5 0 0 0 10 0v-2"/><circle cx="20" cy="11" r="2"/></svg></span>
+            <div>
+              <h3><a href="#">Causes of male infertility</a></h3>
+              <p class="desc">Azoospermia, low count, varicocele, hormones and more.</p>
+            </div>
+          </div>
+          <div class="counts">
+            <p class="count"><b>[n]</b> <span>topics</span></p>
+            <p class="count"><b>[n]</b> <span>posts</span></p>
+          </div>
+          <div class="last">
+            <span class="av av-sm " aria-hidden="true">DR</span>
+            <div>
+              <a href="topic.html">Just diagnosed with non-obstructive azoospermia. Where do we start?</a>
+              <p>by dan_r &middot; 2h ago</p>
+            </div>
+          </div>
+        </li>
+        <li class="grid-row board">
+          <div class="board-main">
+            <span class="board-icon"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 3v6a4 4 0 0 0 8 0V3"/><path d="M10 13v2a5 5 0 0 0 10 0v-2"/><circle cx="20" cy="11" r="2"/></svg></span>
+            <div>
+              <h3><a href="#">Dealing with doctors</a></h3>
+              <p class="desc">Appointments, clinics, tests and treatment.</p>
+            </div>
+          </div>
+          <div class="counts">
+            <p class="count"><b>[n]</b> <span>topics</span></p>
+            <p class="count"><b>[n]</b> <span>posts</span></p>
+          </div>
+          <div class="last">
+            <span class="av av-sm m" aria-hidden="true">MT</span>
+            <div>
+              <a href="topic.html">Micro-TESE next month: what should I ask the urologist?</a>
+              <p>by mark_t &middot; 5h ago</p>
+            </div>
+          </div>
+        </li>
+        <li class="grid-row board">
+          <div class="board-main">
+            <span class="board-icon"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 3v6a4 4 0 0 0 8 0V3"/><path d="M10 13v2a5 5 0 0 0 10 0v-2"/><circle cx="20" cy="11" r="2"/></svg></span>
+            <div>
+              <h3><a href="#">Dear Doctor (expert panel)</a></h3>
+              <p class="desc">Questions answered by our medical panel.</p>
+            </div>
+          </div>
+          <div class="counts">
+            <p class="count"><b>[n]</b> <span>topics</span></p>
+            <p class="count"><b>[n]</b> <span>posts</span></p>
+          </div>
+          <div class="last">
+            <span class="av av-sm p" aria-hidden="true">HH</span>
+            <div>
+              <a href="topic.html">Is it worth repeating hormone tests before micro-TESE?</a>
+              <p>by hopeful_h &middot; 4 days ago</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </section>
+    <section class="cat c-feelings" id="cat-feelings" aria-labelledby="h-feelings">
+      <div class="grid-row cat-head">
+        <h2 id="h-feelings"><span class="dot"></span>Feelings and relationships</h2>
+        <span class="col" aria-hidden="true">Topics</span><span class="col" aria-hidden="true">Posts</span><span class="col lp" aria-hidden="true">Last post</span>
+      </div>
+      <ul class="boards">
+        <li class="grid-row board">
+          <div class="board-main">
+            <span class="board-icon"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></span>
+            <div>
+              <h3><a href="#">Men's reactions to infertility</a></h3>
+              <p class="desc">How it feels, from the men living it.</p>
+            </div>
+          </div>
+          <div class="counts">
+            <p class="count"><b>[n]</b> <span>topics</span></p>
+            <p class="count"><b>[n]</b> <span>posts</span></p>
+          </div>
+          <div class="last">
+            <span class="av av-sm r" aria-hidden="true">QO</span>
+            <div>
+              <a href="topic.html">Feeling like I have let her down</a>
+              <p>by quiet_one &middot; 2 days ago</p>
+            </div>
+          </div>
+        </li>
+        <li class="grid-row board">
+          <div class="board-main">
+            <span class="board-icon"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></span>
+            <div>
+              <h3><a href="#">Women's reactions to male infertility</a></h3>
+              <p class="desc">Partners share their side.</p>
+            </div>
+          </div>
+          <div class="counts">
+            <p class="count"><b>[n]</b> <span>topics</span></p>
+            <p class="count"><b>[n]</b> <span>posts</span></p>
+          </div>
+          <div class="last">
+            <span class="av av-sm m" aria-hidden="true">LB</span>
+            <div>
+              <a href="topic.html">How do I support him when he doesn't want to talk about it?</a>
+              <p>by lucy_b &middot; 3 days ago</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </section>
+    <section class="cat c-research" id="research" aria-labelledby="h-research">
+      <div class="grid-row cat-head">
+        <h2 id="h-research"><span class="dot"></span>Research</h2>
+        <span class="col" aria-hidden="true">Topics</span><span class="col" aria-hidden="true">Posts</span><span class="col lp" aria-hidden="true">Last post</span>
+      </div>
+      <ul class="boards">
+        <li class="grid-row board">
+          <div class="board-main">
+            <span class="board-icon"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3"/><path d="M7.5 15h9"/></svg></span>
+            <div>
+              <h3><a href="#">Current research on male infertility</a></h3>
+              <p class="desc">New studies, trials and news.</p>
+            </div>
+          </div>
+          <div class="counts">
+            <p class="count"><b>[n]</b> <span>topics</span></p>
+            <p class="count"><b>[n]</b> <span>posts</span></p>
+          </div>
+          <div class="last">
+            <span class="av av-sm o" aria-hidden="true">RK</span>
+            <div>
+              <a href="topic.html">New paper on sperm DNA fragmentation testing: what do we make of it?</a>
+              <p>by rob_k &middot; 4h ago</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </section>
+    </div>
+
+    <aside class="side-stack" aria-label="Forum information">
+      <section class="panel box" aria-labelledby="online-title">
+        <h2 id="online-title">Who's online</h2>
+        <div class="online-n"><b>[n]</b><span>people reading now</span></div>
+        <p class="online-who"><span class="live">Live</span> [n] members and [n] guests. Members: dan_r, mark_t, jo_partner, tomh and [n] more.</p>
+      </section>
+      <section class="panel box" aria-labelledby="rules-title">
+        <h2 id="rules-title">Forum rules</h2>
+        <ol class="rules">
+          <li>Be kind. Everyone here is going through something hard.</li>
+          <li>Protect privacy: yours, your partner's and other members'.</li>
+          <li>Share experience, not instructions. This is peer support, not medical advice.</li>
+          <li>No advertising or selling.</li>
+        </ol>
+        <a class="textlink" href="#">Read the full rules <svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </section>
+      <section class="panel box" aria-labelledby="guide-title">
+        <h2 id="guide-title">New member guide</h2>
+        <ol class="guide">
+          <li><span class="n" aria-hidden="true">1</span><span>Pick an anonymous username.</span></li>
+          <li><span class="n" aria-hidden="true">2</span><span>Say hello in General discussion.</span></li>
+          <li><span class="n" aria-hidden="true">3</span><span>Ask anything, on any board.</span></li>
+        </ol>
+        <a class="textlink" href="#">Read the guide <svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </section>
+      <section class="panel box" aria-labelledby="fstats-title">
+        <h2 id="fstats-title">Forum statistics</h2>
+        <dl class="stats-dl">
+          <dt>Topics</dt><dd>[n]</dd>
+          <dt>Posts</dt><dd>[n]</dd>
+          <dt>Members</dt><dd>[n]</dd>
+          <dt>Running since</dt><dd>2007</dd>
+        </dl>
+      </section>
+      <section class="panel box note" aria-labelledby="peer-title">
+        <h2 id="peer-title">Peer support, not medical advice</h2>
+        <p>Members share their own experience. For decisions about your care, talk to your doctor. Our <a href="article.html">information guides</a> explain the medical terms.</p>
+      </section>
+    </aside>
+  </div>
+</main>
+
+<footer class="foot" id="about">
+  <div class="wrap foot-grid">
+    <div class="foot-brand">
+      <a class="logo" href="home.html" aria-label="mensfe home"><svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="8" fill="#2457C5"/><circle cx="13.5" cy="18.5" r="6" fill="none" stroke="#fff" stroke-width="2.4"/><path d="M18 14 24 8M19 8h5v5" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>mensfe</span></a>
+      <p>Information, help and support for male infertility and fertility issues, by you for you. You'll never walk alone at Mensfe.</p>
+      <p class="icsi"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6l-8-3z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg><span>Member of iCSI, International Consumer Support for Infertility. Mensfe presented a poster at the ICSI 2007 conference.</span></p>
+    </div>
+    <nav aria-label="Forum links">
+      <h2>Forum</h2>
+      <ul>
+        <li><a href="home.html">Latest discussions</a></li>
+        <li><a href="boards.html">All boards</a></li>
+        <li><a href="boards.html#research">Current research</a></li>
+        <li><a href="#">Forum rules</a></li>
+        <li><a href="#">New member guide</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Information links">
+      <h2>Information</h2>
+      <ul>
+        <li><a href="article.html">Azoospermia</a></li>
+        <li><a href="#">Semen Analysis</a></li>
+        <li><a href="#">Treatment</a></li>
+        <li><a href="#">Medical guide</a></li>
+        <li><a href="#">Emotive guide</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="About links">
+      <h2>About</h2>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Mission</a></li>
+        <li><a href="#">Patrons</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="mailto:info@mensfe.net"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg> info@mensfe.net</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="foot-base">
+    <div class="wrap">
+      <p><strong>Mensfe is peer support.</strong> It does not replace personal professional, legal or medical advice.</p>
+      <p>&copy; 2007&ndash;2026 Mensfe</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

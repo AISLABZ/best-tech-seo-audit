@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mensfe | Male infertility support forum, free since 2007</title>
+<meta name="description" content="Mensfe is a free, anonymous support forum for men facing male infertility and their partners. Read real stories, ask anything and find plain-language information on azoospermia, semen analysis and treatment.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600&amp;family=Nunito+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<style>
+/* ---------- Direction C "Stories": shared tokens and components ---------- */
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --sand:#F3EEE6;--surface:#FFFDF9;--ink:#1E2A24;--ink-2:#4D5A52;--muted:#5F6B63;--line:#E2D9CB;
+  --field:#857C6E;
+  --green:#23463A;--green-h:#183327;--tint:#E2ECE5;
+  --coral:#E07A5F;--coral-text:#A8432A;--coral-soft:#F7E0D7;--coral-ink:#7A2E1B;
+  --plum:#9A6A86;--sage:#7E9C6E;--ochre:#C99A3B;
+  --on-green:#F3EEE6;--on-green-2:#CFDCD3;
+  --serif:"Fraunces",Georgia,"Times New Roman",serif;
+  --sans:"Nunito Sans","Segoe UI",system-ui,sans-serif;
+  --r-s:14px;--r-m:20px;--r-l:24px;
+}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--sand);color:var(--ink);font-family:var(--sans);font-size:18px;line-height:1.65;font-weight:400;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:600;line-height:1.15;margin:0;color:inherit;letter-spacing:-0.012em;font-optical-sizing:auto}
+p{margin:0}
+ul,ol{margin:0}
+a{color:var(--green);text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{color:var(--green-h);text-decoration-thickness:2px}
+:focus-visible{outline:3px solid var(--green);outline-offset:3px;border-radius:8px}
+button{font:inherit}
+.ico{display:inline-block;flex:none;vertical-align:middle}
+.wrap{max-width:1200px;margin:0 auto;padding:0 32px}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.skip{position:absolute;left:-9999px;top:12px;z-index:10;background:var(--green);color:#fff;padding:12px 18px;border-radius:999px;font-weight:700}
+.skip:focus{left:16px;color:#fff}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 26px;border-radius:999px;border:1.5px solid transparent;font:700 17px/1.2 var(--sans);text-decoration:none;cursor:pointer;white-space:nowrap;transition:background-color .15s,border-color .15s,color .15s}
+.btn:hover{text-decoration:none}
+.btn-primary{background:var(--green);color:#fff}
+.btn-primary:hover{background:var(--green-h);color:#fff}
+.btn-outline{background:transparent;border-color:var(--green);color:var(--green)}
+.btn-outline:hover{background:var(--tint);color:var(--green-h)}
+.btn-light{background:var(--sand);color:var(--green)}
+.btn-light:hover{background:var(--surface);color:var(--green-h)}
+.btn-ghost-light{background:transparent;border-color:var(--on-green);color:var(--on-green)}
+.btn-ghost-light:hover{background:rgba(243,238,230,.12);color:#fff}
+.btn-sm{min-height:44px;padding:0 18px;font-size:16px}
+.on-green :focus-visible{outline-color:var(--on-green)}
+
+/* Header */
+.site-header{background:var(--surface);border-bottom:1px solid var(--line)}
+.hdr{display:flex;align-items:center;gap:24px;min-height:80px}
+.logo{display:inline-flex;align-items:center;gap:10px;min-height:44px;text-decoration:none;color:var(--ink);font-family:var(--serif);font-weight:700;font-size:29px;letter-spacing:-0.03em;line-height:1}
+.logo:hover{color:var(--ink)}
+.logo svg{width:34px;height:34px;color:var(--green)}
+.nav ul{display:flex;gap:2px;list-style:none;padding:0}
+.nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 15px;border-radius:999px;color:var(--ink);font-weight:700;font-size:16px;text-decoration:none}
+.nav a:hover{background:var(--tint);color:var(--green-h)}
+.nav a[aria-current]{background:var(--tint);color:var(--green)}
+.hdr-search{position:relative;margin-left:auto}
+.hdr-search .ico{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}
+.hdr-search input{height:44px;width:250px;border:1px solid var(--field);background:var(--sand);border-radius:999px;padding:0 18px 0 44px;font:400 16px var(--sans);color:var(--ink)}
+.hdr-search input:focus-visible{outline:3px solid var(--green);outline-offset:2px}
+input::placeholder,textarea::placeholder{color:var(--muted);opacity:1}
+.hdr-actions{display:flex;align-items:center;gap:6px}
+.signin{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;border-radius:999px;font-weight:700;font-size:16px;text-decoration:none;color:var(--ink)}
+.signin:hover{background:var(--tint);color:var(--green-h)}
+.icon-link{display:none;width:44px;height:44px;border-radius:50%;align-items:center;justify-content:center;color:var(--ink)}
+.icon-link:hover{background:var(--tint);color:var(--green-h)}
+@media (max-width:1100px){
+  .hdr{flex-wrap:wrap;gap:0 12px;min-height:0;padding-top:12px}
+  .hdr-search{display:none}
+  .icon-link{display:inline-flex}
+  .hdr-actions{margin-left:auto}
+  .nav{order:3;flex-basis:100%;border-top:1px solid var(--line);margin-top:12px}
+  .nav ul{justify-content:flex-start;gap:4px;padding:4px 0}
+}
+@media (max-width:600px){
+  .logo{font-size:25px;gap:8px}
+  .logo svg{width:30px;height:30px}
+  .hdr-actions{gap:2px}
+  .signin{padding:0 10px;font-size:15px}
+  .hdr-actions .btn-sm{padding:0 16px;font-size:15px}
+  .nav ul{justify-content:space-between;gap:0}
+  .nav a{padding:0 10px;font-size:15px}
+}
+
+/* Shared bits */
+.dot{display:inline-block;flex:none;width:10px;height:10px;border-radius:50%}
+.c-community{background:var(--green)}
+.c-medical{background:var(--coral)}
+.c-feelings{background:var(--plum)}
+.c-research{background:var(--sage)}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2)}
+.eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--coral)}
+.avatar{display:inline-grid;place-items:center;flex:none;width:44px;height:44px;border-radius:50%;background:var(--tint);color:var(--green);font:700 15px/1 var(--sans);letter-spacing:.02em}
+.av-coral{background:var(--coral-soft);color:var(--coral-ink)}
+.av-sand{background:var(--line);color:var(--ink)}
+.av-green{background:var(--green);color:#fff}
+.av-plum{background:#EADFE6;color:#5A3550}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:3px 11px;border-radius:999px;font:700 13px/1.4 var(--sans);background:var(--tint);color:var(--green);white-space:nowrap}
+.badge-mod{background:var(--green);color:#fff}
+.badge-partner{background:var(--coral-soft);color:var(--coral-ink)}
+.badge-op{background:var(--coral);color:var(--ink)}
+.board-tag{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;padding:5px 13px;border-radius:999px;background:var(--sand);color:var(--ink-2);font-size:14px;font-weight:700;line-height:1.3}
+.crumbs ol{display:flex;flex-wrap:wrap;align-items:center;list-style:none;padding:0;font-size:15px;color:var(--muted)}
+.crumbs li{display:inline-flex;align-items:center}
+.crumbs li+li::before{content:"\203A";margin:0 10px;color:var(--muted)}
+.crumbs a{display:inline-flex;align-items:center;min-height:44px;font-weight:700;color:var(--green);text-decoration:none}
+.crumbs a:hover{text-decoration:underline}
+.crumbs [aria-current]{color:var(--ink-2)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-l)}
+.side-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-m);padding:26px 26px 24px;margin-bottom:20px}
+.side-card h2{font-size:22px;margin-bottom:12px}
+.side-card p{font-size:16px;color:var(--ink-2)}
+.side-card ul,.side-card ol{padding-left:0;list-style:none}
+.side-links li+li{border-top:1px solid var(--line)}
+.side-links a{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:48px;padding:8px 0;font-size:16px;font-weight:700;text-decoration:none}
+.side-links a:hover{text-decoration:underline}
+.more-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;font-weight:700;text-decoration:none;white-space:nowrap}
+.more-link:hover{text-decoration:underline}
+.chips{display:flex;flex-wrap:wrap;gap:12px;list-style:none;padding:0}
+.chips a{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 22px;border-radius:999px;background:var(--surface);border:1px solid var(--line);color:var(--ink);font-weight:700;font-size:17px;text-decoration:none;transition:background-color .15s,border-color .15s}
+.chips a:hover{background:var(--tint);border-color:var(--green);color:var(--green-h)}
+.chips a .dot{background:var(--coral)}
+
+/* Footer */
+.site-footer{background:var(--green);color:var(--on-green);margin-top:104px;padding:72px 0 40px}
+.site-footer :focus-visible{outline-color:var(--on-green)}
+.site-footer a{color:var(--on-green);text-decoration:none}
+.site-footer a:hover{color:#fff;text-decoration:underline}
+.ft-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px}
+.ft-brand .logo{color:var(--on-green)}
+.ft-brand .logo svg{color:var(--on-green)}
+.ft-brand p{margin-top:16px;color:var(--on-green-2);font-size:17px;max-width:34ch}
+.ft-brand .ft-tag{font-family:var(--serif);font-size:24px;line-height:1.3;color:var(--on-green);font-weight:600;margin-top:20px}
+.ft-col h2{font-family:var(--sans);font-size:14px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--on-green-2);margin-bottom:10px}
+.ft-col ul{list-style:none;padding:0}
+.ft-col a{display:inline-flex;align-items:center;min-height:44px;font-size:17px}
+.ft-disclaimer{margin-top:56px;padding:22px 26px;border:1px solid rgba(243,238,230,.28);border-radius:var(--r-m);font-size:16px;color:var(--on-green-2)}
+.ft-disclaimer strong{color:var(--on-green)}
+.ft-bottom{display:flex;flex-wrap:wrap;gap:8px 28px;align-items:center;margin-top:28px;font-size:15px;color:var(--on-green-2)}
+.ft-bottom ul{display:flex;flex-wrap:wrap;gap:0 20px;list-style:none;padding:0;margin-left:auto}
+.ft-bottom a{display:inline-flex;align-items:center;min-height:44px}
+@media (max-width:900px){.ft-grid{grid-template-columns:1fr 1fr}.ft-brand{grid-column:1/-1}}
+@media (max-width:600px){
+  .wrap{padding:0 16px}
+  .site-footer{margin-top:72px;padding-top:56px}
+  .ft-grid{grid-template-columns:1fr;gap:28px}
+  .ft-bottom ul{margin-left:0}
+}
+@media print{*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+
+/* ---------- Home ---------- */
+.section{padding:88px 0 0}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:36px}
+.sec-head h2{font-size:clamp(32px,3.6vw,46px)}
+.sec-head p{color:var(--ink-2);margin-top:12px;max-width:600px}
+
+.hero{padding:104px 0 24px;text-align:center}
+.hero h1{font-size:clamp(46px,7.2vw,96px);line-height:1.02;letter-spacing:-0.03em;max-width:11ch;margin:24px auto 0}
+.hero h1 em{font-style:italic;color:var(--green);text-decoration:underline;text-decoration-color:var(--coral);text-decoration-thickness:.07em;text-underline-offset:.13em}
+.hero .lede{font-size:21px;line-height:1.6;color:var(--ink-2);max-width:620px;margin:28px auto 0}
+.cta-row{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:38px}
+.trust{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 30px;list-style:none;padding:0;margin:48px auto 0;font-size:15px;font-weight:700;color:var(--ink-2)}
+.trust li{display:inline-flex;align-items:center;gap:10px}
+.trust li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--coral)}
+
+/* Featured story */
+.feature{padding-top:64px}
+.story-main{margin:0}
+.story-card{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:64px;padding:72px 72px 64px}
+.story-card::after{content:"";position:absolute;width:360px;height:360px;border-radius:50%;background:var(--coral-soft);right:-120px;top:-150px;pointer-events:none}
+.story-card > *{position:relative;z-index:1}
+.qmark{display:block;font-family:var(--serif);font-weight:700;font-size:150px;line-height:.8;height:72px;color:var(--coral);margin-bottom:12px}
+.story-card blockquote{margin:0}
+.story-card .q-lead{font-family:var(--serif);font-weight:600;font-size:clamp(26px,2.7vw,36px);line-height:1.3;letter-spacing:-0.015em;color:var(--ink)}
+.story-card .q-rest{margin-top:22px;font-size:19px;line-height:1.75;color:var(--ink-2);max-width:58ch}
+.story-card .q-rest + .q-rest{margin-top:12px}
+.attrib{display:flex;align-items:center;gap:14px;margin-top:32px;font-size:16px}
+.attrib strong{display:block;font-size:17px}
+.attrib span.sub{color:var(--muted)}
+.story-side{display:flex;flex-direction:column;gap:18px;padding-top:12px}
+.story-side .label{font-size:14px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--coral-text)}
+.story-side .ctx{font-size:16px;color:var(--ink-2)}
+.story-side .ctx a{display:block;margin-top:6px;font-family:var(--serif);font-size:22px;line-height:1.3;color:var(--ink);text-decoration:none}
+.story-side .ctx a:hover{text-decoration:underline;color:var(--green-h)}
+.story-side .note{margin-top:auto;padding-top:20px;border-top:1px solid var(--line);font-size:15px;color:var(--muted)}
+
+/* Stories row */
+.stories{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;list-style:none;padding:0}
+.story{display:flex;flex-direction:column;gap:16px;padding:30px 30px 24px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-m)}
+.story h3{font-size:24px;line-height:1.25}
+.story h3 a{color:var(--ink);text-decoration:none}
+.story h3 a:hover{text-decoration:underline;color:var(--green-h)}
+.story .excerpt{font-size:17px;color:var(--ink-2)}
+.story .by{display:flex;align-items:center;gap:12px;margin-top:auto;padding-top:18px;border-top:1px solid var(--line);font-size:15px;color:var(--muted)}
+.story .by strong{color:var(--ink)}
+.story .by .replies{margin-left:auto;display:inline-flex;align-items:center;gap:6px}
+.also{margin-top:28px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:0 24px;align-items:start}
+.also h3{font-family:var(--sans);font-size:14px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2);padding-top:14px}
+.also ul{list-style:none;padding:0}
+.also li{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;padding:12px 0;border-bottom:1px solid var(--line)}
+.also li a{font-weight:700;font-size:17px;text-decoration:none;color:var(--ink)}
+.also li a:hover{text-decoration:underline;color:var(--green-h)}
+.also li span{font-size:15px;color:var(--muted)}
+
+/* Boards */
+.band{margin-top:96px;padding:88px 0;background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.asks{display:flex;flex-wrap:wrap;gap:10px 12px;list-style:none;padding:0;margin:-8px 0 36px}
+.asks li{font-family:var(--serif);font-style:italic;font-weight:600;font-size:18px;color:var(--ink);background:var(--sand);padding:8px 18px;border-radius:999px}
+.legend{display:flex;flex-wrap:wrap;gap:8px 22px;list-style:none;padding:0;margin-bottom:18px;font-size:15px;font-weight:700;color:var(--ink-2)}
+.legend li{display:inline-flex;align-items:center;gap:8px}
+.board-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:64px;list-style:none;padding:0}
+.board-list li{border-top:1px solid var(--line)}
+.board-list a{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:4px 16px;align-items:start;padding:22px 6px;color:var(--ink);text-decoration:none;border-radius:var(--r-s)}
+.board-list a:hover{background:var(--sand)}
+.board-list .dot{width:12px;height:12px;margin-top:10px}
+.bl-name{font-family:var(--serif);font-weight:600;font-size:22px;line-height:1.3}
+.bl-desc{display:block;font-family:var(--sans);font-weight:400;font-size:16px;color:var(--ink-2);margin-top:4px}
+.bl-meta{font-size:14px;font-weight:700;color:var(--muted);white-space:nowrap;padding-top:6px}
+.boards-foot{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:36px}
+
+/* New here */
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;list-style:none;padding:0}
+.step{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-l);padding:16px 16px 30px}
+.art{position:relative;height:190px;border-radius:16px;display:flex;align-items:center;justify-content:center;overflow:hidden;font-family:var(--serif)}
+.art-1{background:var(--tint);color:var(--green);flex-direction:column;gap:10px}
+.art-1 .handle{font-size:38px;font-weight:600;font-style:italic;letter-spacing:-0.02em}
+.art-1 .handle b{font-style:normal;color:var(--coral-text);font-weight:700}
+.art-1 .cap{font-family:var(--sans);font-size:14px;font-weight:700;color:var(--green);background:var(--surface);padding:4px 12px;border-radius:999px}
+.art-2{background:var(--coral);color:var(--ink)}
+.art-2 span{font-size:84px;font-style:italic;font-weight:600;letter-spacing:-0.04em}
+.art-3{background:var(--green);color:var(--on-green)}
+.art-3 span{font-size:150px;font-weight:700;line-height:1}
+.art-3 small{position:absolute;left:20px;bottom:16px;font-family:var(--sans);font-size:14px;font-weight:700;color:var(--on-green-2)}
+.step .num{margin:26px 14px 0;font-size:14px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--coral-text)}
+.step h3{margin:8px 14px 0;font-size:26px}
+.step p{margin:10px 14px 0;color:var(--ink-2);font-size:17px}
+.step .more-link{margin:10px 14px 0}
+
+/* Info */
+.info-grid{display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:start}
+.info-grid h2{font-size:clamp(32px,3.6vw,46px)}
+.info-grid .intro{margin-top:14px;color:var(--ink-2)}
+.free{display:inline-flex;align-items:center;gap:8px;margin-top:22px;font-weight:700;color:var(--green);background:var(--tint);padding:6px 16px;border-radius:999px;font-size:15px}
+.guides{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:28px}
+.guide{display:flex;flex-direction:column;gap:4px;padding:20px 22px;border-radius:var(--r-m);background:var(--surface);border:1px solid var(--line);text-decoration:none;color:var(--ink)}
+.guide:hover{border-color:var(--green);background:var(--tint);color:var(--ink)}
+.guide strong{font-family:var(--serif);font-size:21px;font-weight:600}
+.guide span{font-size:15px;color:var(--ink-2)}
+.info-grid .chips{padding-top:6px}
+
+/* Research */
+.research{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:56px;padding:64px;border-radius:var(--r-l);background:var(--green);color:var(--on-green)}
+.research::before{content:"";position:absolute;width:280px;height:280px;border-radius:50%;border:44px solid rgba(224,122,95,.9);right:-110px;bottom:-130px;pointer-events:none}
+.research > *{position:relative}
+.research .eyebrow{color:var(--on-green-2)}
+.research h2{font-size:clamp(30px,3.4vw,44px);margin-top:16px;color:var(--on-green)}
+.research p{margin-top:16px;color:var(--on-green-2);max-width:48ch}
+.research .cta-row{justify-content:flex-start;margin-top:30px}
+.research ul{list-style:none;padding:0;align-self:center}
+.research li{display:flex;gap:14px;align-items:flex-start;padding:16px 0;border-top:1px solid rgba(243,238,230,.22);font-size:17px;color:var(--on-green)}
+.research li:first-child{border-top:0}
+.research li .ico{margin-top:3px;color:var(--on-green-2)}
+
+/* Founders */
+.founders{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:56px;align-items:start}
+.founders h2{font-size:clamp(32px,3.6vw,46px);margin-top:16px}
+.about-link{margin-top:12px}
+.founders .intro{margin-top:14px;color:var(--ink-2)}
+.people{display:grid;grid-template-columns:1fr 1fr;gap:20px;list-style:none;padding:0}
+.person{padding:30px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-l)}
+.person .avatar{width:64px;height:64px;font-family:var(--serif);font-size:24px;font-weight:600}
+.person h3{margin-top:18px;font-size:26px}
+.person .role{margin-top:4px;font-size:15px;font-weight:700;color:var(--coral-text)}
+.person p.bio{margin-top:12px;font-size:17px;color:var(--ink-2)}
+
+/* Book */
+.book{text-align:center}
+.cover{position:relative;width:300px;aspect-ratio:2/3;margin:0 auto;padding:34px 28px 28px 38px;display:flex;flex-direction:column;justify-content:space-between;text-align:left;background:var(--green);color:var(--on-green);border-radius:6px 16px 16px 6px;box-shadow:0 30px 60px -30px rgba(30,42,36,.55),0 2px 0 rgba(30,42,36,.15)}
+.cover::before{content:"";position:absolute;left:14px;top:0;bottom:0;width:2px;background:rgba(243,238,230,.25)}
+.cover .c-kicker{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--on-green-2)}
+.cover .c-title{font-family:var(--serif);font-weight:600;font-size:33px;line-height:1.08;letter-spacing:-0.02em}
+.cover .c-band{margin:0 -28px 0 -38px;padding:14px 28px 14px 38px;background:var(--coral);color:var(--ink);font-family:var(--serif);font-style:italic;font-weight:600;font-size:24px}
+.cover .c-author{font-weight:700;font-size:16px;letter-spacing:.06em;text-transform:uppercase}
+.book-eyebrow{margin-top:56px}
+.book h2{margin:14px auto 0;font-size:clamp(32px,4vw,52px);max-width:18ch}
+.book .by{margin-top:12px;font-weight:700;color:var(--ink-2)}
+.book .tagline{margin:26px auto 0;font-family:var(--serif);font-style:italic;font-weight:600;font-size:clamp(22px,2.4vw,28px);color:var(--green);max-width:28ch}
+.book .desc{margin:20px auto 0;max-width:620px;color:var(--ink-2)}
+.book .cta-row{margin-top:32px}
+
+@media (max-width:1100px){
+  .story-card{grid-template-columns:1fr;gap:36px;padding:56px}
+  .story-side{padding-top:0}
+  .stories{grid-template-columns:1fr 1fr}
+  .stories li:last-child{grid-column:1/-1}
+  .info-grid,.founders{grid-template-columns:1fr;gap:36px}
+  .research{grid-template-columns:1fr;gap:28px;padding:48px}
+}
+@media (max-width:800px){
+  .steps{grid-template-columns:1fr}
+  .board-list{grid-template-columns:1fr}
+  .board-list li:last-child{border-bottom:1px solid var(--line)}
+  .stories{grid-template-columns:1fr}
+  .people{grid-template-columns:1fr}
+}
+@media (max-width:600px){
+  .section{padding-top:64px}
+  .hero{padding:56px 0 8px}
+  .hero .lede{font-size:19px}
+  .cta-row .btn{width:100%}
+  .trust{display:grid;grid-template-columns:1fr 1fr;gap:12px 16px;text-align:left;font-size:14px}
+  .trust li{align-items:flex-start}
+  .trust li::before{margin-top:7px;flex:none}
+  .sec-head{flex-direction:column;align-items:flex-start;gap:8px;margin-bottom:28px}
+  .feature{padding-top:44px}
+  .story-card{padding:36px 22px 28px;border-radius:var(--r-m)}
+  .story-card::after{width:220px;height:220px;right:-90px;top:-100px}
+  .qmark{font-size:110px;height:52px}
+  .story-card .q-rest{font-size:17px}
+  .story{padding:24px 22px 20px}
+  .also{grid-template-columns:1fr}
+  .also h3{padding-top:0}
+  .band{margin-top:64px;padding:64px 0}
+  .asks li{font-size:16px}
+  .board-list a{padding:18px 4px;grid-template-columns:auto minmax(0,1fr)}
+  .bl-meta{grid-column:2;padding-top:2px}
+  .bl-name{font-size:20px}
+  .art{height:150px}
+  .art-2 span{font-size:68px}
+  .art-3 span{font-size:120px}
+  .guides{grid-template-columns:1fr}
+  .chips{gap:10px}
+  .chips a{padding:0 18px;font-size:16px}
+  .research{padding:36px 22px;border-radius:var(--r-m)}
+  .research::before{width:180px;height:180px;border-width:30px;right:-80px;bottom:-90px}
+  .person{padding:24px}
+  .cover{width:240px;padding:26px 22px 22px 32px}
+  .cover .c-title{font-size:27px}
+  .cover .c-band{margin:0 -22px 0 -32px;padding:12px 22px 12px 32px;font-size:20px}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap hdr">
+    <a class="logo" href="home.html" aria-label="mensfe, home"><svg viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle cx="17" cy="23" r="10.5" fill="none" stroke="currentColor" stroke-width="3.2"/><path d="M25 15L33.5 6.5M25.5 6.5h8v8" fill="none" stroke="#E07A5F" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>mensfe</span></a>
+    <nav class="nav" aria-label="Main">
+      <ul>
+        <li><a href="boards.html">Forum</a></li>
+        <li><a href="#">Information</a></li>
+        <li><a href="#">Research</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+    </nav>
+    <form class="hdr-search" role="search" action="#">
+      <label class="sr-only" for="hdr-q">Search the forum and guides</label>
+      <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.2-4.2"/></svg>
+      <input id="hdr-q" type="search" name="q" placeholder="Search topics and guides">
+    </form>
+    <div class="hdr-actions">
+      <a class="icon-link" href="boards.html#forum-search" aria-label="Search the forum"><svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.2-4.2"/></svg></a>
+      <a class="signin" href="#">Sign in</a>
+      <a class="btn btn-primary btn-sm" href="#">Join free</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap">
+      <p class="eyebrow">The men&rsquo;s fertility forum, since 2007</p>
+      <h1 id="hero-title">You&rsquo;ll never walk <em>alone.</em></h1>
+      <p class="lede">Information, help and support for male infertility and fertility issues, by you for you. You don&rsquo;t have to work this out on your own.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#">Join the forum, free <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-outline" href="boards.html">Read without an account</a>
+      </div>
+      <ul class="trust" aria-label="Why men trust Mensfe">
+        <li>6.5 million visits in 2025</li>
+        <li>Post under any username</li>
+        <li>Free since 2007</li>
+        <li>Member of iCSI</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="feature" aria-labelledby="feature-title">
+    <div class="wrap">
+      <h2 id="feature-title" class="sr-only">Featured member story</h2>
+      <div class="card story-card">
+        <figure class="story-main">
+          <span class="qmark" aria-hidden="true">&ldquo;</span>
+          <blockquote>
+            <p class="q-lead">I was exactly where you are three years ago. Write your questions down before the appointment, because you will forget them in the room.</p>
+            <p class="q-rest">Ask whether they have checked your karyotype and for Y-chromosome microdeletions, because that changed what our options were.</p>
+            <p class="q-rest">And look after yourself. The first month was the hardest part for me.</p>
+          </blockquote>
+          <figcaption class="attrib">
+            <span class="avatar av-coral" aria-hidden="true">MT</span>
+            <span><strong>mark_t, Causes of male infertility board</strong><span class="sub">Member, replying to a newly diagnosed member</span></span>
+          </figcaption>
+        </figure>
+        <div class="story-side">
+          <p class="label">Featured member story</p>
+          <p class="ctx">In reply to
+            <a href="topic.html">&ldquo;Just diagnosed with non-obstructive azoospermia. Where do we start?&rdquo;</a>
+          </p>
+          <a class="more-link" href="topic.html">Read the whole conversation <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <p class="note">Every story on Mensfe is shared under a username. Nobody needs to know who you are to be heard.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="stories-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2 id="stories-title">Stories from the forum</h2>
+          <p>The latest conversations, in members&rsquo; own words. Read along, or add your voice when you are ready.</p>
+        </div>
+        <a class="more-link" href="boards.html">All latest discussions <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <ul class="stories">
+        <li class="story">
+          <span class="board-tag"><span class="dot c-medical"></span>Causes of male infertility</span>
+          <h3><a href="topic.html">Just diagnosed with non-obstructive azoospermia. Where do we start?</a></h3>
+          <p class="excerpt">Two semen analyses with no sperm found and a high FSH result. Looking for what to ask at the next appointment.</p>
+          <p class="by"><span class="avatar av-sand" aria-hidden="true">DR</span><span><strong>dan_r</strong> &middot; 2h ago</span><span class="replies"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5.5h16v10.5H10l-6 4.5z"/></svg> [n]</span></p>
+        </li>
+        <li class="story">
+          <span class="board-tag"><span class="dot c-community"></span>General discussion</span>
+          <h3><a href="#">How do we tell our parents we are using a donor?</a></h3>
+          <p class="excerpt">We have decided on donor conception and want to share it with family. How did others start that conversation?</p>
+          <p class="by"><span class="avatar" aria-hidden="true">OA</span><span><strong>oakley</strong> &middot; Yesterday</span><span class="replies"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5.5h16v10.5H10l-6 4.5z"/></svg> [n]</span></p>
+        </li>
+        <li class="story">
+          <span class="board-tag"><span class="dot c-feelings"></span>Men&rsquo;s reactions to infertility</span>
+          <h3><a href="#">Feeling like I have let her down</a></h3>
+          <p class="excerpt">Since the diagnosis I keep feeling responsible. Has anyone else felt this way, and what helped?</p>
+          <p class="by"><span class="avatar av-plum" aria-hidden="true">QO</span><span><strong>quiet_one</strong> &middot; 2 days ago</span><span class="replies"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5.5h16v10.5H10l-6 4.5z"/></svg> [n]</span></p>
+        </li>
+      </ul>
+      <div class="also">
+        <h3>Also new</h3>
+        <ul>
+          <li><a href="#">Micro-TESE next month: what should I ask the urologist?</a><span>Dealing with doctors &middot; mark_t &middot; 5h ago</span></li>
+          <li><a href="#">Second semen analysis came back better. Anyone else?</a><span>Causes of male infertility &middot; tomh &middot; Yesterday</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="boards-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2 id="boards-title">Whatever brought you here, there&rsquo;s a board for it</h2>
+          <p>Men arrive with all kinds of questions. Someone here has usually asked yours before.</p>
+        </div>
+        <a class="more-link" href="boards.html">See the full forum <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <ul class="asks" aria-label="Questions members often bring">
+        <li>Seeking help for male infertility?</li>
+        <li>Low sperm count, low testosterone or motility?</li>
+        <li>Trying to understand treatment options?</li>
+        <li>Finding it hard to talk about?</li>
+      </ul>
+      <ul class="legend" aria-label="Board categories">
+        <li><span class="dot c-community"></span>Community</li>
+        <li><span class="dot c-medical"></span>Medical</li>
+        <li><span class="dot c-feelings"></span>Feelings and relationships</li>
+        <li><span class="dot c-research"></span>Research</li>
+      </ul>
+      <ul class="board-list">
+        <li><a href="#"><span class="dot c-community"></span><span class="bl-name">General discussion<span class="bl-desc">Anything and everything about male fertility.</span></span><span class="bl-meta">[n] topics</span></a></li>
+        <li><a href="#"><span class="dot c-community"></span><span class="bl-name">Let off some steam<span class="bl-desc">Somewhere to vent when it all gets too much.</span></span><span class="bl-meta">[n] topics</span></a></li>
+        <li><a href="#"><span class="dot c-medical"></span><span class="bl-name">Causes of male infertility<span class="bl-desc">Azoospermia, low count, varicocele, hormones and more.</span></span><span class="bl-meta">[n] topics</span></a></li>
+        <li><a href="#"><span class="dot c-medical"></span><span class="bl-name">Dealing with doctors<span class="bl-desc">Appointments, clinics, tests and treatment.</span></span><span class="bl-meta">[n] topics</span></a></li>
+        <li><a href="#"><span class="dot c-medical"></span><span class="bl-name">Dear Doctor (expert panel)<span class="bl-desc">Questions answered by our medical panel.</span></span><span class="bl-meta">[n] topics</span></a></li>
+        <li><a href="#"><span class="dot c-feelings"></span><span class="bl-name">Men&rsquo;s reactions to infertility<span class="bl-desc">How it feels, from the men living it.</span></span><span class="bl-meta">[n] topics</span></a></li>
+        <li><a href="#"><span class="dot c-feelings"></span><span class="bl-name">Women&rsquo;s reactions to male infertility<span class="bl-desc">Partners share their side.</span></span><span class="bl-meta">[n] topics</span></a></li>
+        <li><a href="#"><span class="dot c-research"></span><span class="bl-name">Current research on male infertility<span class="bl-desc">New studies, trials and news.</span></span><span class="bl-meta">[n] topics</span></a></li>
+      </ul>
+      <div class="boards-foot">
+        <a class="btn btn-primary" href="boards.html">Browse all boards</a>
+        <a class="btn btn-outline" href="#">Start a new topic</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="new-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2 id="new-title">New here? Start in three small steps</h2>
+          <p>There is no right way to begin. Many members read quietly for weeks before they post, and that is fine too.</p>
+        </div>
+      </div>
+      <ol class="steps">
+        <li class="step">
+          <div class="art art-1" aria-hidden="true"><span class="handle"><b>@</b>any_name</span><span class="cap">Only your username is shown</span></div>
+          <p class="num">Step 1</p>
+          <h3>Choose an anonymous username</h3>
+          <p>Join free and pick any name you like. Nobody on the forum needs to know who you are.</p>
+          <a class="more-link" href="#">Join free <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </li>
+        <li class="step">
+          <div class="art art-2" aria-hidden="true"><span>Hello.</span></div>
+          <p class="num">Step 2</p>
+          <h3>Say hello</h3>
+          <p>Introduce yourself in General discussion. Share as much or as little as you like.</p>
+          <a class="more-link" href="#">Go to General discussion <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </li>
+        <li class="step">
+          <div class="art art-3" aria-hidden="true"><span>?</span><small>no question too small</small></div>
+          <p class="num">Step 3</p>
+          <h3>Ask anything</h3>
+          <p>Tests, treatment, feelings, relationships. Members who have been there will answer from experience.</p>
+          <a class="more-link" href="#">Start a topic <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="info-title">
+    <div class="wrap info-grid">
+      <div>
+        <h2 id="info-title">Plain-language information</h2>
+        <p class="intro">Clear guides to the words, tests and choices you will meet, each linked to the boards where men talk them through.</p>
+        <p class="free"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg> Our information resources are free for everyone</p>
+        <div class="guides">
+          <a class="guide" href="#"><strong>Medical guide</strong><span>The jargon, explained</span></a>
+          <a class="guide" href="#"><strong>Emotive guide</strong><span>The emotional side of it</span></a>
+        </div>
+      </div>
+      <ul class="chips" aria-label="Information topics">
+        <li><a href="#"><span class="dot"></span>Male fertility</a></li>
+        <li><a href="#"><span class="dot"></span>Infertility</a></li>
+        <li><a href="#"><span class="dot"></span>Semen analysis</a></li>
+        <li><a href="article.html"><span class="dot"></span>Azoospermia</a></li>
+        <li><a href="#"><span class="dot"></span>Varicocele</a></li>
+        <li><a href="#"><span class="dot"></span>Treatment</a></li>
+        <li><a href="#"><span class="dot"></span>Vasectomy reversal</a></li>
+        <li><a href="#"><span class="dot"></span>Erection problems</a></li>
+        <li><a href="#"><span class="dot"></span>Egg donation</a></li>
+        <li><a href="#"><span class="dot"></span>Sperm donation</a></li>
+        <li><a href="#"><span class="dot"></span>Nutrition</a></li>
+        <li><a href="#"><span class="dot"></span>Counselling support</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="research-title">
+    <div class="wrap">
+      <div class="research on-green">
+        <div>
+          <p class="eyebrow">Research board</p>
+          <h2 id="research-title">Current Research On Male Infertility</h2>
+          <p>Members share and discuss new studies, trials and news, and talk about what it might mean for them. A calm place to make sense of the headlines.</p>
+          <div class="cta-row">
+            <a class="btn btn-light" href="#">Visit the research board <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </div>
+        <ul aria-label="On the research board">
+          <li><svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3"/><path d="M7.4 15h9.2"/></svg><span>New studies and clinical trials, shared and discussed by members</span></li>
+          <li><svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5.5h16v10.5H10l-6 4.5z"/></svg><span>Questions to take to your own clinic or consultant</span></li>
+          <li><svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.5 3.4-5.5 6.5-5.5s5.7 2 6.5 5.5"/><path d="M16 4.8a3.5 3.5 0 0 1 0 6.4M18 14.8c1.8.7 3 2.4 3.5 5.2"/></svg><span>Mensfe is a member of iCSI and presented a poster at the iCSI 2007 conference</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="founders-title">
+    <div class="wrap founders">
+      <div>
+        <p class="eyebrow">Who runs Mensfe</p>
+        <h2 id="founders-title">Started by people who have been there</h2>
+        <p class="intro">Mensfe is run by a fertility counsellor and a man who was told he had azoospermia. Since 2007 it has been a place for men to be honest about something that often goes unspoken.</p>
+        <a class="more-link about-link" href="#">About us and our mission <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <ul class="people">
+        <li class="person">
+          <span class="avatar av-coral" aria-hidden="true">PR</span>
+          <h3>Pip Reilly</h3>
+          <p class="role">Co-founder &middot; Fertility counsellor</p>
+          <p class="bio">A professional fertility counsellor with over 15 years&rsquo; experience with fertility charities, and author of <em>A Journey Through Male Infertility</em>.</p>
+        </li>
+        <li class="person">
+          <span class="avatar av-green" aria-hidden="true">RB</span>
+          <h3>Rob Barlow</h3>
+          <p class="role">Co-founder &middot; Medical scientist</p>
+          <p class="bio">A medical scientist who was diagnosed with azoospermia more than 25 years ago, and knows first-hand what that news feels like.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section book" aria-labelledby="book-title">
+    <div class="wrap">
+      <div class="cover" role="img" aria-label="Book cover: A Journey Through Male Infertility, Stronger Together, by Pip Reilly">
+        <span class="c-kicker">A book for men that women should read</span>
+        <span class="c-title">A Journey Through Male Infertility</span>
+        <span class="c-band">Stronger Together</span>
+        <span class="c-author">Pip Reilly</span>
+      </div>
+      <p class="eyebrow book-eyebrow">The book</p>
+      <h2 id="book-title">A Journey Through Male Infertility: Stronger Together</h2>
+      <p class="by">by Pip Reilly, co-founder of Mensfe</p>
+      <p class="tagline">&ldquo;A book for men that women should read.&rdquo;</p>
+      <p class="desc">An honest, accessible account of the relational, emotional and physical challenges men face, often unspoken, with practical support strategies for both partners. You are stronger together.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://www.amazon.co.uk/dp/B0G8LX5FBJ" rel="noopener">Buy on Amazon <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <a class="logo" href="home.html" aria-label="mensfe, home"><svg viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle cx="17" cy="23" r="10.5" fill="none" stroke="currentColor" stroke-width="3.2"/><path d="M25 15L33.5 6.5M25.5 6.5h8v8" fill="none" stroke="#E07A5F" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>mensfe</span></a>
+        <p class="ft-tag">You don&rsquo;t have to work this out on your own.</p>
+        <p>Information, help and support for male infertility and fertility issues, by you for you. Our information resources are free for everyone.</p>
+        <p><a href="mailto:info@mensfe.net"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5L12 13l8.5-6.5"/></svg>&nbsp; info@mensfe.net</a></p>
+      </div>
+      <nav class="ft-col" aria-label="Forum links">
+        <h2>Forum</h2>
+        <ul>
+          <li><a href="boards.html">All boards</a></li>
+          <li><a href="#">Latest discussions</a></li>
+          <li><a href="#">General discussion</a></li>
+          <li><a href="#">Dear Doctor (expert panel)</a></li>
+          <li><a href="#">Forum rules</a></li>
+        </ul>
+      </nav>
+      <nav class="ft-col" aria-label="Information links">
+        <h2>Information</h2>
+        <ul>
+          <li><a href="article.html">Azoospermia</a></li>
+          <li><a href="#">Semen analysis</a></li>
+          <li><a href="#">Treatment</a></li>
+          <li><a href="#">Counselling support</a></li>
+          <li><a href="#">Medical guide</a></li>
+          <li><a href="#">Emotive guide</a></li>
+        </ul>
+      </nav>
+      <nav class="ft-col" aria-label="About Mensfe">
+        <h2>About</h2>
+        <ul>
+          <li><a href="#">About us</a></li>
+          <li><a href="#">Mission</a></li>
+          <li><a href="#">Patrons</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">iCSI membership</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="ft-disclaimer">
+      <p><strong>Peer support, not medical advice.</strong> Mensfe is peer support. It does not replace personal professional, legal or medical advice.</p>
+    </div>
+    <div class="ft-bottom">
+      <p>&copy; 2007&ndash;2026 Mensfe</p>
+      <p>Member of iCSI (International Consumer Support for Infertility)</p>
+      <ul>
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Accessibility</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

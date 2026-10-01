@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forum boards | Mensfe male infertility support forum</title>
+<meta name="description" content="Browse every Mensfe forum board: general discussion, causes of male infertility, dealing with doctors, the Dear Doctor expert panel, men's and partners' reactions, and current research.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600&amp;family=Nunito+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<style>
+/* ---------- Direction C "Stories": shared tokens and components ---------- */
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --sand:#F3EEE6;--surface:#FFFDF9;--ink:#1E2A24;--ink-2:#4D5A52;--muted:#5F6B63;--line:#E2D9CB;
+  --field:#857C6E;
+  --green:#23463A;--green-h:#183327;--tint:#E2ECE5;
+  --coral:#E07A5F;--coral-text:#A8432A;--coral-soft:#F7E0D7;--coral-ink:#7A2E1B;
+  --plum:#9A6A86;--sage:#7E9C6E;--ochre:#C99A3B;
+  --on-green:#F3EEE6;--on-green-2:#CFDCD3;
+  --serif:"Fraunces",Georgia,"Times New Roman",serif;
+  --sans:"Nunito Sans","Segoe UI",system-ui,sans-serif;
+  --r-s:14px;--r-m:20px;--r-l:24px;
+}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--sand);color:var(--ink);font-family:var(--sans);font-size:18px;line-height:1.65;font-weight:400;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:600;line-height:1.15;margin:0;color:inherit;letter-spacing:-0.012em;font-optical-sizing:auto}
+p{margin:0}
+ul,ol{margin:0}
+a{color:var(--green);text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{color:var(--green-h);text-decoration-thickness:2px}
+:focus-visible{outline:3px solid var(--green);outline-offset:3px;border-radius:8px}
+button{font:inherit}
+.ico{display:inline-block;flex:none;vertical-align:middle}
+.wrap{max-width:1200px;margin:0 auto;padding:0 32px}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.skip{position:absolute;left:-9999px;top:12px;z-index:10;background:var(--green);color:#fff;padding:12px 18px;border-radius:999px;font-weight:700}
+.skip:focus{left:16px;color:#fff}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 26px;border-radius:999px;border:1.5px solid transparent;font:700 17px/1.2 var(--sans);text-decoration:none;cursor:pointer;white-space:nowrap;transition:background-color .15s,border-color .15s,color .15s}
+.btn:hover{text-decoration:none}
+.btn-primary{background:var(--green);color:#fff}
+.btn-primary:hover{background:var(--green-h);color:#fff}
+.btn-outline{background:transparent;border-color:var(--green);color:var(--green)}
+.btn-outline:hover{background:var(--tint);color:var(--green-h)}
+.btn-light{background:var(--sand);color:var(--green)}
+.btn-light:hover{background:var(--surface);color:var(--green-h)}
+.btn-ghost-light{background:transparent;border-color:var(--on-green);color:var(--on-green)}
+.btn-ghost-light:hover{background:rgba(243,238,230,.12);color:#fff}
+.btn-sm{min-height:44px;padding:0 18px;font-size:16px}
+.on-green :focus-visible{outline-color:var(--on-green)}
+
+/* Header */
+.site-header{background:var(--surface);border-bottom:1px solid var(--line)}
+.hdr{display:flex;align-items:center;gap:24px;min-height:80px}
+.logo{display:inline-flex;align-items:center;gap:10px;min-height:44px;text-decoration:none;color:var(--ink);font-family:var(--serif);font-weight:700;font-size:29px;letter-spacing:-0.03em;line-height:1}
+.logo:hover{color:var(--ink)}
+.logo svg{width:34px;height:34px;color:var(--green)}
+.nav ul{display:flex;gap:2px;list-style:none;padding:0}
+.nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 15px;border-radius:999px;color:var(--ink);font-weight:700;font-size:16px;text-decoration:none}
+.nav a:hover{background:var(--tint);color:var(--green-h)}
+.nav a[aria-current]{background:var(--tint);color:var(--green)}
+.hdr-search{position:relative;margin-left:auto}
+.hdr-search .ico{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}
+.hdr-search input{height:44px;width:250px;border:1px solid var(--field);background:var(--sand);border-radius:999px;padding:0 18px 0 44px;font:400 16px var(--sans);color:var(--ink)}
+.hdr-search input:focus-visible{outline:3px solid var(--green);outline-offset:2px}
+input::placeholder,textarea::placeholder{color:var(--muted);opacity:1}
+.hdr-actions{display:flex;align-items:center;gap:6px}
+.signin{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;border-radius:999px;font-weight:700;font-size:16px;text-decoration:none;color:var(--ink)}
+.signin:hover{background:var(--tint);color:var(--green-h)}
+.icon-link{display:none;width:44px;height:44px;border-radius:50%;align-items:center;justify-content:center;color:var(--ink)}
+.icon-link:hover{background:var(--tint);color:var(--green-h)}
+@media (max-width:1100px){
+  .hdr{flex-wrap:wrap;gap:0 12px;min-height:0;padding-top:12px}
+  .hdr-search{display:none}
+  .icon-link{display:inline-flex}
+  .hdr-actions{margin-left:auto}
+  .nav{order:3;flex-basis:100%;border-top:1px solid var(--line);margin-top:12px}
+  .nav ul{justify-content:flex-start;gap:4px;padding:4px 0}
+}
+@media (max-width:600px){
+  .logo{font-size:25px;gap:8px}
+  .logo svg{width:30px;height:30px}
+  .hdr-actions{gap:2px}
+  .signin{padding:0 10px;font-size:15px}
+  .hdr-actions .btn-sm{padding:0 16px;font-size:15px}
+  .nav ul{justify-content:space-between;gap:0}
+  .nav a{padding:0 10px;font-size:15px}
+}
+
+/* Shared bits */
+.dot{display:inline-block;flex:none;width:10px;height:10px;border-radius:50%}
+.c-community{background:var(--green)}
+.c-medical{background:var(--coral)}
+.c-feelings{background:var(--plum)}
+.c-research{background:var(--sage)}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2)}
+.eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--coral)}
+.avatar{display:inline-grid;place-items:center;flex:none;width:44px;height:44px;border-radius:50%;background:var(--tint);color:var(--green);font:700 15px/1 var(--sans);letter-spacing:.02em}
+.av-coral{background:var(--coral-soft);color:var(--coral-ink)}
+.av-sand{background:var(--line);color:var(--ink)}
+.av-green{background:var(--green);color:#fff}
+.av-plum{background:#EADFE6;color:#5A3550}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:3px 11px;border-radius:999px;font:700 13px/1.4 var(--sans);background:var(--tint);color:var(--green);white-space:nowrap}
+.badge-mod{background:var(--green);color:#fff}
+.badge-partner{background:var(--coral-soft);color:var(--coral-ink)}
+.badge-op{background:var(--coral);color:var(--ink)}
+.board-tag{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;padding:5px 13px;border-radius:999px;background:var(--sand);color:var(--ink-2);font-size:14px;font-weight:700;line-height:1.3}
+.crumbs ol{display:flex;flex-wrap:wrap;align-items:center;list-style:none;padding:0;font-size:15px;color:var(--muted)}
+.crumbs li{display:inline-flex;align-items:center}
+.crumbs li+li::before{content:"\203A";margin:0 10px;color:var(--muted)}
+.crumbs a{display:inline-flex;align-items:center;min-height:44px;font-weight:700;color:var(--green);text-decoration:none}
+.crumbs a:hover{text-decoration:underline}
+.crumbs [aria-current]{color:var(--ink-2)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-l)}
+.side-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-m);padding:26px 26px 24px;margin-bottom:20px}
+.side-card h2{font-size:22px;margin-bottom:12px}
+.side-card p{font-size:16px;color:var(--ink-2)}
+.side-card ul,.side-card ol{padding-left:0;list-style:none}
+.side-links li+li{border-top:1px solid var(--line)}
+.side-links a{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:48px;padding:8px 0;font-size:16px;font-weight:700;text-decoration:none}
+.side-links a:hover{text-decoration:underline}
+.more-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;font-weight:700;text-decoration:none;white-space:nowrap}
+.more-link:hover{text-decoration:underline}
+.chips{display:flex;flex-wrap:wrap;gap:12px;list-style:none;padding:0}
+.chips a{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 22px;border-radius:999px;background:var(--surface);border:1px solid var(--line);color:var(--ink);font-weight:700;font-size:17px;text-decoration:none;transition:background-color .15s,border-color .15s}
+.chips a:hover{background:var(--tint);border-color:var(--green);color:var(--green-h)}
+.chips a .dot{background:var(--coral)}
+
+/* Footer */
+.site-footer{background:var(--green);color:var(--on-green);margin-top:104px;padding:72px 0 40px}
+.site-footer :focus-visible{outline-color:var(--on-green)}
+.site-footer a{color:var(--on-green);text-decoration:none}
+.site-footer a:hover{color:#fff;text-decoration:underline}
+.ft-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px}
+.ft-brand .logo{color:var(--on-green)}
+.ft-brand .logo svg{color:var(--on-green)}
+.ft-brand p{margin-top:16px;color:var(--on-green-2);font-size:17px;max-width:34ch}
+.ft-brand .ft-tag{font-family:var(--serif);font-size:24px;line-height:1.3;color:var(--on-green);font-weight:600;margin-top:20px}
+.ft-col h2{font-family:var(--sans);font-size:14px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--on-green-2);margin-bottom:10px}
+.ft-col ul{list-style:none;padding:0}
+.ft-col a{display:inline-flex;align-items:center;min-height:44px;font-size:17px}
+.ft-disclaimer{margin-top:56px;padding:22px 26px;border:1px solid rgba(243,238,230,.28);border-radius:var(--r-m);font-size:16px;color:var(--on-green-2)}
+.ft-disclaimer strong{color:var(--on-green)}
+.ft-bottom{display:flex;flex-wrap:wrap;gap:8px 28px;align-items:center;margin-top:28px;font-size:15px;color:var(--on-green-2)}
+.ft-bottom ul{display:flex;flex-wrap:wrap;gap:0 20px;list-style:none;padding:0;margin-left:auto}
+.ft-bottom a{display:inline-flex;align-items:center;min-height:44px}
+@media (max-width:900px){.ft-grid{grid-template-columns:1fr 1fr}.ft-brand{grid-column:1/-1}}
+@media (max-width:600px){
+  .wrap{padding:0 16px}
+  .site-footer{margin-top:72px;padding-top:56px}
+  .ft-grid{grid-template-columns:1fr;gap:28px}
+  .ft-bottom ul{margin-left:0}
+}
+@media print{*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+
+/* ---------- Board index ---------- */
+.page-head{padding:44px 0 40px}
+.page-head h1{margin-top:14px;font-size:clamp(40px,5.4vw,66px);letter-spacing:-0.025em;line-height:1.05}
+.page-head .lede{margin-top:16px;max-width:640px;font-size:20px;color:var(--ink-2)}
+.toolbar{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;margin-top:32px}
+.fsearch{flex:1 1 420px;display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap}
+.fsearch .field{flex:1 1 240px;display:flex;flex-direction:column;gap:6px}
+.fsearch label{font-size:15px;font-weight:700;color:var(--ink-2)}
+.fsearch .inp{position:relative}
+.fsearch .inp .ico{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}
+.fsearch input{width:100%;height:52px;border:1px solid var(--field);border-radius:999px;background:var(--surface);padding:0 20px 0 48px;font:400 17px var(--sans);color:var(--ink)}
+.fsearch input:focus-visible{outline:3px solid var(--green);outline-offset:2px}
+.readnote{display:flex;align-items:center;gap:10px;margin-top:20px;font-size:15px;color:var(--ink-2)}
+.readnote .ico{color:var(--green)}
+
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:40px;align-items:start}
+.cat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-l);overflow:hidden;margin-bottom:28px}
+.cat-head{display:flex;align-items:center;gap:16px;padding:26px 32px;background:#FAF6EF;border-bottom:1px solid var(--line)}
+.cat-head .dot{width:16px;height:16px}
+.cat-head h2{font-size:28px}
+.cat-head p{font-size:15px;color:var(--ink-2);margin-top:2px}
+.cat-head .count{margin-left:auto;font-size:14px;font-weight:700;color:var(--muted);white-space:nowrap}
+.brows{list-style:none;padding:0}
+.brow{display:grid;grid-template-columns:minmax(0,1fr) 120px 270px;gap:28px;align-items:center;padding:24px 32px}
+.brow + .brow{border-top:1px solid var(--line)}
+.bname{display:flex;gap:16px;align-items:flex-start}
+.bicon{display:grid;place-items:center;flex:none;width:46px;height:46px;border-radius:14px;background:var(--sand);color:var(--green)}
+.bname h3{font-size:22px;line-height:1.25}
+.bname h3 a{color:var(--ink);text-decoration:none}
+.bname h3 a:hover{color:var(--green-h);text-decoration:underline}
+.bname p{margin-top:4px;font-size:16px;color:var(--ink-2)}
+.bname .panel{margin-top:8px}
+.bstats{font-size:15px;color:var(--muted);line-height:1.5}
+.bstats b{color:var(--ink);font-weight:700}
+.blast{font-size:15px;line-height:1.45;color:var(--muted)}
+.blast .lbl{display:block;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.blast a{display:block;font-weight:700;font-size:16px;color:var(--ink);text-decoration:none;padding:2px 0}
+.blast a:hover{color:var(--green-h);text-decoration:underline}
+
+.online .names{margin-top:12px;font-size:15px;color:var(--ink-2)}
+.online .stack{display:flex;margin-top:14px}
+.online .stack .avatar{width:38px;height:38px;font-size:13px;border:2px solid var(--surface);margin-right:-8px}
+.rules{counter-reset:r}
+.rules li{counter-increment:r;display:flex;gap:12px;padding:9px 0;font-size:16px;color:var(--ink-2)}
+.rules li::before{content:counter(r);flex:none;display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--tint);color:var(--green);font-weight:700;font-size:14px;margin-top:1px}
+.guide-card{background:var(--green);color:var(--on-green);border-color:var(--green)}
+.guide-card h2{color:var(--on-green)}
+.guide-card p{color:var(--on-green-2)}
+.guide-card ol{margin-top:12px}
+.guide-card li{display:flex;gap:12px;padding:8px 0;font-size:16px;color:var(--on-green)}
+.guide-card li span.n{flex:none;font-family:var(--serif);font-weight:700;font-size:20px;line-height:1.3;color:#F2B4A3}
+.guide-card .btn{margin-top:14px;width:100%}
+.help-card .btn{margin-top:14px}
+
+@media (max-width:1100px){
+  .layout{grid-template-columns:1fr}
+  .brow{grid-template-columns:minmax(0,1fr) 250px;}
+  .bstats{display:none}
+  .sidebar{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .sidebar .side-card{margin-bottom:0}
+}
+@media (max-width:700px){
+  .sidebar{grid-template-columns:1fr}
+  .brow{grid-template-columns:1fr;gap:14px;padding:22px 20px}
+  .bstats{display:block;padding-left:62px}
+  .blast{margin-left:62px;padding:12px 16px;background:var(--sand);border-radius:var(--r-s)}
+  .cat-head{padding:22px 20px;align-items:flex-start}
+  .cat-head .dot{margin-top:9px}
+  .cat-head h2{font-size:24px}
+  .cat-head .count{display:none}
+}
+@media (max-width:600px){
+  .page-head{padding:28px 0 32px}
+  .page-head .lede{font-size:18px}
+  .toolbar .btn,.fsearch .btn{width:100%}
+  .cat{border-radius:var(--r-m)}
+  .bstats{padding-left:0}
+  .blast{margin-left:0}
+  .bicon{width:40px;height:40px;border-radius:12px}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap hdr">
+    <a class="logo" href="home.html" aria-label="mensfe, home"><svg viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle cx="17" cy="23" r="10.5" fill="none" stroke="currentColor" stroke-width="3.2"/><path d="M25 15L33.5 6.5M25.5 6.5h8v8" fill="none" stroke="#E07A5F" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>mensfe</span></a>
+    <nav class="nav" aria-label="Main">
+      <ul>
+        <li><a href="boards.html" aria-current="page">Forum</a></li>
+        <li><a href="#">Information</a></li>
+        <li><a href="#">Research</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+    </nav>
+    <form class="hdr-search" role="search" action="#">
+      <label class="sr-only" for="hdr-q">Search the forum and guides</label>
+      <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.2-4.2"/></svg>
+      <input id="hdr-q" type="search" name="q" placeholder="Search topics and guides">
+    </form>
+    <div class="hdr-actions">
+      <a class="icon-link" href="boards.html#forum-search" aria-label="Search the forum"><svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.2-4.2"/></svg></a>
+      <a class="signin" href="#">Sign in</a>
+      <a class="btn btn-primary btn-sm" href="#">Join free</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="page-head">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="home.html">Home</a></li>
+          <li><span aria-current="page">Forum</span></li>
+        </ol>
+      </nav>
+      <h1>The forum</h1>
+      <p class="lede">Eight boards, one community. Find the conversation that fits where you are today, or start your own.</p>
+      <div class="toolbar">
+        <form class="fsearch" role="search" action="#" id="forum-search">
+          <div class="field">
+            <label for="fq">Search the forum</label>
+            <div class="inp"><svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.2-4.2"/></svg><input id="fq" type="search" name="q" placeholder="Try &ldquo;micro-TESE&rdquo; or &ldquo;telling family&rdquo;"></div>
+          </div>
+          <button class="btn btn-outline" type="submit">Search</button>
+        </form>
+        <a class="btn btn-primary" href="#"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5v14M5 12h14"/></svg> Start a new topic</a>
+      </div>
+      <p class="readnote"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></svg> You can read every board without an account. Join free to post.</p>
+    </div>
+
+    <div class="layout">
+      <div class="boards">
+
+        <section class="cat" aria-labelledby="cat-community">
+          <div class="cat-head">
+            <span class="dot c-community"></span>
+            <div><h2 id="cat-community">Community</h2><p>Say hello, talk about anything, let it out.</p></div>
+            <span class="count">2 boards</span>
+          </div>
+          <ul class="brows">
+            <li class="brow">
+              <div class="bname"><span class="bicon"><svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5.5h16v10.5H10l-6 4.5z"/></svg></span><div><h3><a href="#">General discussion</a></h3><p>Anything and everything about male fertility.</p></div></div>
+              <p class="bstats"><b>[n]</b> topics<br><b>[n]</b> posts</p>
+              <div class="blast"><span class="lbl">Last post</span><a href="#">How do we tell our parents we are using a donor?</a>by oakley &middot; Yesterday</div>
+            </li>
+            <li class="brow">
+              <div class="bname"><span class="bicon"><svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 19c0-8 5-13 14-14 0 9-5 14-13 14"/><path d="M5 19l7-7"/></svg></span><div><h3><a href="#">Let off some steam</a></h3><p>Somewhere to vent when it all gets too much.</p></div></div>
+              <p class="bstats"><b>[n]</b> topics<br><b>[n]</b> posts</p>
+              <div class="blast"><span class="lbl">Last post</span><a href="#">Another pregnancy announcement at work today</a>by sam_k &middot; 3h ago</div>
+            </li>
+          </ul>
+        </section>
+
+        <section class="cat" aria-labelledby="cat-medical">
+          <div class="cat-head">
+            <span class="dot c-medical"></span>
+            <div><h2 id="cat-medical">Medical</h2><p>Causes, tests, doctors and treatment.</p></div>
+            <span class="count">3 boards</span>
+          </div>
+          <ul class="brows">
+            <li class="brow">
+              <div class="bname"><span class="bicon"><svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.6v.1"/></svg></span><div><h3><a href="#">Causes of male infertility</a></h3><p>Azoospermia, low count, varicocele, hormones and more.</p></div></div>
+              <p class="bstats"><b>[n]</b> topics<br><b>[n]</b> posts</p>
+              <div class="blast"><span class="lbl">Last post</span><a href="topic.html">Just diagnosed with non-obstructive azoospermia. Where do we start?</a>by dan_r &middot; 2h ago</div>
+            </li>
+            <li class="brow">
+              <div class="bname"><span class="bicon"><svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><h3><a href="#">Dealing with doctors</a></h3><p>Appointments, clinics, tests and treatment.</p></div></div>
+              <p class="bstats"><b>[n]</b> topics<br><b>[n]</b> posts</p>
+              <div class="blast"><span class="lbl">Last post</span><a href="#">Micro-TESE next month: what should I ask the urologist?</a>by mark_t &middot; 5h ago</div>
+            </li>
+            <li class="brow">
+              <div class="bname"><span class="bicon"><svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6z"/></svg></span><div><h3><a href="#">Dear Doctor (expert panel)</a></h3><p>Questions answered by our medical panel.</p><p class="panel"><span class="badge">Expert answers</span></p></div></div>
+              <p class="bstats"><b>[n]</b> topics<br><b>[n]</b> posts</p>
+              <div class="blast"><span class="lbl">Last post</span><a href="#">Does a high FSH result change what retrieval can find?</a>by ali_h &middot; 3 days ago</div>
+            </li>
+          </ul>
+        </section>
+
+        <section class="cat" aria-labelledby="cat-feelings">
+          <div class="cat-head">
+            <span class="dot c-feelings"></span>
+            <div><h2 id="cat-feelings">Feelings and relationships</h2><p>How infertility feels, for men and for the people beside them.</p></div>
+            <span class="count">2 boards</span>
+          </div>
+          <ul class="brows">
+            <li class="brow">
+              <div class="bname"><span class="bicon"><svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></span><div><h3><a href="#">Men&rsquo;s reactions to infertility</a></h3><p>How it feels, from the men living it.</p></div></div>
+              <p class="bstats"><b>[n]</b> topics<br><b>[n]</b> posts</p>
+              <div class="blast"><span class="lbl">Last post</span><a href="#">Feeling like I have let her down</a>by quiet_one &middot; 2 days ago</div>
+            </li>
+            <li class="brow">
+              <div class="bname"><span class="bicon"><svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.5 3.4-5.5 6.5-5.5s5.7 2 6.5 5.5"/><path d="M16 4.8a3.5 3.5 0 0 1 0 6.4M18 14.8c1.8.7 3 2.4 3.5 5.2"/></svg></span><div><h3><a href="#">Women&rsquo;s reactions to male infertility</a></h3><p>Partners share their side.</p></div></div>
+              <p class="bstats"><b>[n]</b> topics<br><b>[n]</b> posts</p>
+              <div class="blast"><span class="lbl">Last post</span><a href="#">How do I support him when he doesn&rsquo;t want to talk?</a>by jo_partner &middot; 4 days ago</div>
+            </li>
+          </ul>
+        </section>
+
+        <section class="cat" aria-labelledby="cat-research">
+          <div class="cat-head">
+            <span class="dot c-research"></span>
+            <div><h2 id="cat-research">Research</h2><p>What is new in the science, discussed calmly.</p></div>
+            <span class="count">1 board</span>
+          </div>
+          <ul class="brows">
+            <li class="brow">
+              <div class="bname"><span class="bicon"><svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3"/><path d="M7.4 15h9.2"/></svg></span><div><h3><a href="#">Current research on male infertility</a></h3><p>New studies, trials and news.</p></div></div>
+              <p class="bstats"><b>[n]</b> topics<br><b>[n]</b> posts</p>
+              <div class="blast"><span class="lbl">Last post</span><a href="#">Has anyone read the latest paper on micro-TESE?</a>by tomh &middot; 1 week ago</div>
+            </li>
+          </ul>
+        </section>
+
+      </div>
+
+      <aside class="sidebar" aria-label="Forum information">
+        <section class="side-card online" aria-labelledby="online-title">
+          <h2 id="online-title">Who&rsquo;s online</h2>
+          <p><b>[n]</b> members and <b>[n]</b> guests are reading right now.</p>
+          <div class="stack" aria-hidden="true">
+            <span class="avatar av-sand">DR</span><span class="avatar av-coral">MT</span><span class="avatar">OA</span><span class="avatar av-plum">QO</span><span class="avatar av-green">+</span>
+          </div>
+          <p class="names">dan_r, mark_t, oakley, quiet_one and [n] others</p>
+        </section>
+
+        <section class="side-card guide-card on-green" aria-labelledby="guide-title">
+          <h2 id="guide-title">New member guide</h2>
+          <p>Three small steps to your first post.</p>
+          <ol>
+            <li><span class="n">1</span><span>Join free and choose an anonymous username.</span></li>
+            <li><span class="n">2</span><span>Say hello in General discussion.</span></li>
+            <li><span class="n">3</span><span>Ask anything. Someone has been there.</span></li>
+          </ol>
+          <a class="btn btn-light" href="#">Read the full guide</a>
+        </section>
+
+        <section class="side-card" aria-labelledby="rules-title">
+          <h2 id="rules-title">Forum rules</h2>
+          <ol class="rules">
+            <li>Be kind. Everyone here is going through something.</li>
+            <li>Protect your privacy and other people&rsquo;s.</li>
+            <li>Share experience, not medical instructions.</li>
+            <li>No advertising or promotion of clinics or products.</li>
+          </ol>
+          <a class="more-link" href="#">Read all forum rules <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </section>
+
+        <section class="side-card help-card" aria-labelledby="help-title">
+          <h2 id="help-title">Need to talk to someone?</h2>
+          <p>Mensfe is peer support. Our Counselling Support page lists services if you would like professional help.</p>
+          <a class="btn btn-outline btn-sm" href="#">Counselling support</a>
+        </section>
+      </aside>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <a class="logo" href="home.html" aria-label="mensfe, home"><svg viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle cx="17" cy="23" r="10.5" fill="none" stroke="currentColor" stroke-width="3.2"/><path d="M25 15L33.5 6.5M25.5 6.5h8v8" fill="none" stroke="#E07A5F" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>mensfe</span></a>
+        <p class="ft-tag">You don&rsquo;t have to work this out on your own.</p>
+        <p>Information, help and support for male infertility and fertility issues, by you for you. Our information resources are free for everyone.</p>
+        <p><a href="mailto:info@mensfe.net"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5L12 13l8.5-6.5"/></svg>&nbsp; info@mensfe.net</a></p>
+      </div>
+      <nav class="ft-col" aria-label="Forum links">
+        <h2>Forum</h2>
+        <ul>
+          <li><a href="boards.html">All boards</a></li>
+          <li><a href="#">Latest discussions</a></li>
+          <li><a href="#">General discussion</a></li>
+          <li><a href="#">Dear Doctor (expert panel)</a></li>
+          <li><a href="#">Forum rules</a></li>
+        </ul>
+      </nav>
+      <nav class="ft-col" aria-label="Information links">
+        <h2>Information</h2>
+        <ul>
+          <li><a href="article.html">Azoospermia</a></li>
+          <li><a href="#">Semen analysis</a></li>
+          <li><a href="#">Treatment</a></li>
+          <li><a href="#">Counselling support</a></li>
+          <li><a href="#">Medical guide</a></li>
+          <li><a href="#">Emotive guide</a></li>
+        </ul>
+      </nav>
+      <nav class="ft-col" aria-label="About Mensfe">
+        <h2>About</h2>
+        <ul>
+          <li><a href="#">About us</a></li>
+          <li><a href="#">Mission</a></li>
+          <li><a href="#">Patrons</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">iCSI membership</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="ft-disclaimer">
+      <p><strong>Peer support, not medical advice.</strong> Mensfe is peer support. It does not replace personal professional, legal or medical advice.</p>
+    </div>
+    <div class="ft-bottom">
+      <p>&copy; 2007&ndash;2026 Mensfe</p>
+      <p>Member of iCSI (International Consumer Support for Infertility)</p>
+      <ul>
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Accessibility</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
