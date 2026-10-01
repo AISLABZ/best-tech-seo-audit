@@ -5,8 +5,8 @@ cd "$(dirname "$0")/../redesign"
 export NODE_PATH=$(npm root -g)
 node ../tools/render-redesign.js .
 mkdir -p previews pdf
-dirs="a b c d"
-pages() { if [ "$1" = d ]; then echo "home-desktop home-mobile board-desktop topic-desktop article-desktop"; else echo "home-desktop home-mobile boards-desktop topic-desktop article-desktop"; fi; }
+dirs="a b c d d-light"
+pages() { if [ "${1:0:1}" = d ]; then echo "home-desktop home-mobile board-desktop topic-desktop article-desktop"; else echo "home-desktop home-mobile boards-desktop topic-desktop article-desktop"; fi; }
 for d in $dirs; do
   convert build/$d-home-desktop.png -crop 1440x900+0+0 +repage -resize 1200x -quality 82 previews/$d-home-hero.jpg
   convert build/$d-home-mobile.png -crop 780x1688+0+0 +repage -resize 390x -quality 82 previews/$d-home-mobile.jpg

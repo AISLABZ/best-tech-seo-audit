@@ -9,12 +9,12 @@ const out = path.join(root, 'build');
 fs.mkdirSync(out, { recursive: true });
 const shotsFor = (dir) => [
   ['home', 1440], ['home', 390],
-  [dir === 'd' ? 'board' : 'boards', 1440],
+  [dir.startsWith('d') ? 'board' : 'boards', 1440],
   ['topic', 1440], ['article', 1440],
 ];
 (async () => {
   const browser = await chromium.launch();
-  for (const dir of ['a', 'b', 'c', 'd']) {
+  for (const dir of ['a', 'b', 'c', 'd', 'd-light']) {
     if (!fs.existsSync(path.join(root, dir, 'home.html'))) { console.log('skip', dir); continue; }
     for (const [name, w] of shotsFor(dir)) {
       const tag = `${dir}-${name}-${w === 390 ? 'mobile' : 'desktop'}`;
