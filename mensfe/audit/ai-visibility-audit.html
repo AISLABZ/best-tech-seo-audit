@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mensfe AI Visibility Audit — October 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1A1F24;--ink2:#46505A;--muted:#5E6873;--line:#DCE1E5;--soft:#F3F5F6;--brand:#1D5866;--brandtint:#E3EEF0;
+--crit:#A4221B;--crit-t:#FBE9E7;--high:#9A4100;--high-t:#FDF0E2;--med:#6E5600;--med-t:#FBF4D9;--ok:#1E6B3A;--ok-t:#E3F2E8}
+@page{size:A4;margin:16mm 15mm 18mm}
+*{box-sizing:border-box}
+body{margin:0;background:#E9ECEE;color:var(--ink);font:400 10.5pt/1.55 "IBM Plex Sans",system-ui,sans-serif}
+.page{background:#fff;max-width:210mm;margin:0 auto;padding:18mm 16mm}
+@media screen{.page{margin:24px auto;box-shadow:0 2px 14px rgba(0,0,0,.08)}}
+@media print{body{background:#fff}.page{padding:0;margin:0;max-width:none;box-shadow:none}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+h1,h2,h3{font-family:"Source Serif 4",Georgia,serif;color:var(--ink);line-height:1.2}
+h1{font-size:30pt;margin:0 0 6mm;letter-spacing:-.01em}
+h2{font-size:17pt;margin:10mm 0 4mm;padding-top:2mm;border-top:2px solid var(--ink)}
+h3{font-size:12.5pt;margin:6mm 0 2mm}
+h2,h3{break-after:avoid}
+p{margin:0 0 3mm}
+a{color:var(--brand)}
+.eyebrow{font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-size:8.5pt;color:var(--brand);margin:0 0 3mm}
+.cover{min-height:250mm;display:flex;flex-direction:column;justify-content:space-between;break-after:page}
+.cover .lead{font-size:13pt;color:var(--ink2);max-width:150mm}
+.meta{display:grid;grid-template-columns:repeat(3,1fr);gap:4mm;border-top:1px solid var(--line);padding-top:5mm;font-size:9.5pt}
+.meta b{display:block;font-size:8pt;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:3mm;margin:5mm 0}
+.stat{border:1px solid var(--line);border-radius:3mm;padding:4mm}
+.stat .n{font-family:"Source Serif 4",serif;font-size:22pt;font-weight:700;line-height:1}
+.stat .l{font-size:8.5pt;color:var(--ink2);margin-top:1.5mm}
+.note{background:var(--soft);border-radius:3mm;padding:4mm 5mm;font-size:9.5pt;color:var(--ink2)}
+.tag{display:inline-block;font-size:7.5pt;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:.6mm 2mm;border-radius:1.5mm;white-space:nowrap}
+.t-crit{background:var(--crit-t);color:var(--crit)}.t-high{background:var(--high-t);color:var(--high)}.t-med{background:var(--med-t);color:var(--med)}.t-ok{background:var(--ok-t);color:var(--ok)}.t-na{background:var(--soft);color:var(--ink2)}
+.finding{border:1px solid var(--line);border-radius:3mm;padding:4mm 5mm;margin:0 0 3.5mm;break-inside:avoid}
+.finding .hd{display:flex;gap:3mm;align-items:baseline;margin-bottom:1.5mm}
+.finding .id{font-weight:700;color:var(--muted);font-size:9pt;min-width:9mm}
+.finding .tt{font-weight:700;font-size:11pt;flex:1}
+.finding dl{display:grid;grid-template-columns:22mm 1fr;gap:1mm 3mm;margin:0;font-size:9.5pt}
+.finding dt{color:var(--muted);font-weight:600}
+.finding dd{margin:0}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:8.6pt;background:var(--soft);padding:.2mm 1mm;border-radius:1mm}
+pre{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:8pt;background:#0F1A1F;color:#E6EEF0;padding:4mm 5mm;border-radius:3mm;white-space:pre-wrap;line-height:1.45;break-inside:avoid}
+table{width:100%;border-collapse:collapse;font-size:9.3pt;margin:2mm 0 4mm}
+th{text-align:left;font-size:8pt;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);border-bottom:1.5px solid var(--ink);padding:1.5mm 2mm}
+td{border-bottom:1px solid var(--line);padding:2mm;vertical-align:top}
+tr{break-inside:avoid}
+ol.prio{padding-left:5mm;margin:0}ol.prio li{margin-bottom:2mm}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:5mm}
+.phase{border-top:3px solid var(--brand);padding-top:3mm}
+.phase h3{margin-top:0}
+.phase ul{padding-left:4.5mm;margin:0;font-size:9.5pt}
+.brk{break-before:page}
+.foot{margin-top:10mm;font-size:8.5pt;color:var(--muted);border-top:1px solid var(--line);padding-top:3mm}
+</style>
+</head>
+<body>
+<main class="page">
+
+<section class="cover">
+<div>
+<p class="eyebrow">AI visibility audit · Prepared for Mensfe</p>
+<h1>How AI assistants see Mensfe</h1>
+<p class="lead">More people now ask ChatGPT, Google's AI Overviews, Perplexity, Gemini, Copilot and Claude where to find support instead of scrolling search results. This audit looks at whether those systems find Mensfe, how they describe it, and what would make them recommend and cite it.</p>
+</div>
+<div>
+<div class="stats">
+<div class="stat"><div class="n">5</div><div class="l">search prompts tested</div></div>
+<div class="stat"><div class="n">3 / 5</div><div class="l">prompts where Mensfe appeared</div></div>
+<div class="stat"><div class="n">1 / 3</div><div class="l">non-branded prompts where Mensfe appeared</div></div>
+<div class="stat"><div class="n">0</div><div class="l">structured data entities on the homepage</div></div>
+</div>
+<div class="meta">
+<div><b>Site</b>www.mensfe.net</div>
+<div><b>Date</b>1 October 2026</div>
+<div><b>Companion report</b>SEO audit (same date)</div>
+</div>
+</div>
+</section>
+
+<h2>Summary</h2>
+<p>AI assistants recommend sources they can <strong>find</strong> (crawlable, indexed pages), <strong>understand</strong> (a clear entity with consistent facts) and <strong>trust</strong> (visible expertise, freshness and other sites vouching for them). Mensfe is findable for its own name, and when it does appear the AI describes it accurately, but it repeats Mensfe's dated meta description almost word for word. For the questions a worried man is likely to ask ("where can I get support for azoospermia?"), Mensfe is currently absent. The answers go to Mumsnet, Fertility Network UK's HIMfertility, counselling bodies and private clinics.</p>
+<p>Mensfe's strongest asset for AI visibility is one these systems value highly: <strong>18+ years of authentic, first-hand forum discussion by men</strong>, run by a fertility counsellor and a medical scientist with lived experience of azoospermia. The work is to make that asset readable, attributable and referenced.</p>
+
+<h3>Top five actions</h3>
+<ol class="prio">
+<li><strong>Fix the technical blockers from the SEO audit first</strong>: HTTPS, a single domain, mobile-friendliness and Bing Webmaster Tools. ChatGPT search and Copilot draw on Bing's index, Google's AI Overviews on Google's.</li>
+<li><strong>Define the Mensfe entity</strong>: one name, one description, Organization and Person schema, consistent profiles and directory listings.</li>
+<li><strong>Rewrite the homepage and meta descriptions</strong> in the words you want AI to repeat ("free, anonymous peer support forum for men facing infertility, founded in 2007 by…").</li>
+<li><strong>Make forum knowledge citable</strong>: clean topic URLs, <code>DiscussionForumPosting</code> schema, and "community wisdom" summary pages that answer the most common questions.</li>
+<li><strong>Earn mentions on the sites AI already trusts for this topic</strong>: Fertility Network UK, BICA, NHS-adjacent and clinic resource pages, Mumsnet discussions and podcasts.</li>
+</ol>
+
+<div class="note" style="margin-top:5mm"><strong>Method and limits.</strong> We ran five realistic prompts through a web search engine of the kind AI assistants use to ground their answers, and recorded which sources were returned and how the AI-generated summary described Mensfe. The site itself could not be crawled from our environment, so on-site signals come from the homepage source supplied by the client. AI answers vary by tool, location, date and phrasing. Treat this as a baseline snapshot, and repeat it monthly with the tracking set in section 5.</div>
+
+<h2 class="brk">1. Prompt test results</h2>
+<table>
+<thead><tr><th style="width:30%">Prompt</th><th style="width:14%">Mensfe present?</th><th>Who the answer cited or recommended</th></tr></thead>
+<tbody>
+<tr><td>"mensfe male infertility forum" <br><span style="color:var(--muted)">branded</span></td><td><span class="tag t-ok">Yes, strong</span></td><td>mensfe.net, mensfe.co.uk (duplicate), forum index, Research board and a 2010-era topic. The summary described Mensfe correctly and listed real boards (General Discussion, Causes of Male Infertility, Dealing with Doctors, "Dear Doctor", Let off some Steam).</td></tr>
+<tr><td>"best male infertility support forum online"</td><td><span class="tag t-ok">Yes, #7 of 10</span></td><td>Raconteur, Mumsnet, TRIO Fertility, PatientsLikeMe, RESOLVE, Fertilicare. Mensfe was described using its meta description wording: "an online support website for men having fertility and infertility issues, with discussion topics on azoospermia, ICSI, undescended testicles…"</td></tr>
+<tr><td>"azoospermia support forum men UK"</td><td><span class="tag t-crit">No</span></td><td>A Mumsnet azoospermia thread, private clinics (Fertility Solutions, Northway, IVI, Jonathan Ramsay), Fertility Family and Fertility Network UK support groups.</td></tr>
+<tr><td>"where can men get emotional support for male infertility UK"</td><td><span class="tag t-crit">No</span></td><td>Fertility Network UK and HIMfertility, the Male Infertility Support Network, BICA, Mind, Leeds Beckett University research and clinic blogs.</td></tr>
+<tr><td>Founder query: Pip Reilly / Rob Barlow</td><td><span class="tag t-ok">Yes</span></td><td>mensfe.net About and Patrons pages, plus third-party mentions: robinhadley.co.uk and Gateway Women resource lists, Fertility Network UK's <em>Affinity</em> magazine (2021) and International Men's Day UK (2011).</td></tr>
+</tbody>
+</table>
+
+<h3>What this tells us</h3>
+<ul style="padding-left:5mm">
+<li><strong>The brand is known but not chosen.</strong> AI systems can describe Mensfe accurately when asked about it directly, but it is rarely what they reach for when someone describes their situation.</li>
+<li><strong>AI repeats your own words.</strong> The meta description written years ago (with "Undescended testicles" and "ICSI" up front) is effectively Mensfe's AI-era elevator pitch. It should be rewritten deliberately.</li>
+<li><strong>Peer-support answers already favour forums.</strong> Mumsnet threads rank for azoospermia support. Mensfe's forum is exactly this kind of content, made by men, but it is not being surfaced.</li>
+<li><strong>Competitors in AI answers:</strong> Fertility Network UK / HIMfertility, Mumsnet Infertility, Men's Fertility Support (Facebook group), RESOLVE (US), TRIO Fertility, Fertilicare and BICA.</li>
+</ul>
+
+<h2>2. AI readiness scorecard</h2>
+<table>
+<thead><tr><th style="width:26%">Area</th><th style="width:14%">Rating</th><th>What we found</th></tr></thead>
+<tbody>
+<tr><td>Crawl access and indexing</td><td><span class="tag t-high">Weak</span></td><td>Indexed on HTTP across two duplicate domains, with SMF parameter URLs. robots.txt rules for AI crawlers are unknown (section 6).</td></tr>
+<tr><td>Entity clarity</td><td><span class="tag t-crit">Poor</span></td><td>No Organization schema, no <code>sameAs</code>, six different names for the site, and no Wikidata or Wikipedia entry.</td></tr>
+<tr><td>Extractable answers</td><td><span class="tag t-crit">Poor</span></td><td>No headings, key messages in images, and a thin homepage. AI cannot lift a clean definition or summary from the page.</td></tr>
+<tr><td>Expertise and trust (YMYL)</td><td><span class="tag t-high">Hidden</span></td><td>Strong founders and an expert panel exist but are not shown on content pages. There are no reviewer details, dates or sources.</td></tr>
+<tr><td>Freshness</td><td><span class="tag t-high">Weak</span></td><td>"© 2007–2025", a 2007 conference poster on the homepage and no visible "updated" dates.</td></tr>
+<tr><td>Unique first-hand content</td><td><span class="tag t-ok">Strong</span></td><td>Years of real discussions by men, plus a research board and an expert panel. This is the differentiator.</td></tr>
+<tr><td>Third-party mentions</td><td><span class="tag t-med">Some</span></td><td>Resource-list mentions and charity magazine coverage exist, but are few and dated.</td></tr>
+<tr><td>Measurement</td><td><span class="tag t-crit">None</span></td><td>No working analytics, so AI referral traffic (chatgpt.com, perplexity.ai, copilot, gemini) cannot be seen.</td></tr>
+</tbody>
+</table>
+
+<h2>3. Findings and fixes</h2>
+
+<div class="finding"><div class="hd"><span class="id">A1</span><span class="tt">Make the site crawlable by search and AI bots</span><span class="tag t-crit">Critical</span></div>
+<dl><dt>Why</dt><dd>AI answers are grounded in search indexes and their own crawlers. Bing powers ChatGPT search and Copilot; Google powers AI Overviews and Gemini. Pages that are duplicated, insecure or hard to render are cited less.</dd>
+<dt>Fix</dt><dd>HTTPS on one domain with 301s (SEO audit T2/T3). Register in Bing Webmaster Tools and Google Search Console and submit a sitemap that includes forum topics. Enable IndexNow (via Bing) so new topics are discovered quickly.</dd></dl></div>
+
+<div class="finding"><div class="hd"><span class="id">A2</span><span class="tt">Decide your AI crawler policy in robots.txt</span><span class="tag t-high">High</span></div>
+<dl><dt>Why</dt><dd>Search-and-answer bots need access to cite you. Training bots are a separate choice the forum may want to make on behalf of its members.</dd>
+<dt>Fix</dt><dd>Allow the search and answer bots: <code>OAI-SearchBot</code>, <code>ChatGPT-User</code>, <code>PerplexityBot</code>, <code>Claude-SearchBot</code>, <code>Claude-User</code>, <code>Bingbot</code> and <code>Googlebot</code>. Decide deliberately on the training bots (<code>GPTBot</code>, <code>ClaudeBot</code>, <code>Google-Extended</code>, <code>CCBot</code>). Members' posts are personal health stories, so explain the policy in the forum rules. Never block member-only areas by robots.txt alone; keep them behind login.</dd></dl></div>
+
+<div class="finding"><div class="hd"><span class="id">A3</span><span class="tt">Establish Mensfe as a clear entity</span><span class="tag t-crit">Critical</span></div>
+<dl><dt>Why</dt><dd>AI systems build a picture of an organisation from consistent facts across many sources. Mensfe currently presents six names and no machine-readable profile.</dd>
+<dt>Fix</dt><dd>Use one name and descriptor: "Mensfe — the men's fertility forum". Add Organization and Person schema (founders, founding date 2007, email, logo, <code>sameAs</code>), and author pages for Pip Reilly and Rob Barlow. Create a Wikidata item for Mensfe, and an author item for the book. Make the About, Mission and Patrons pages consistent.</dd></dl></div>
+
+<div class="finding"><div class="hd"><span class="id">A4</span><span class="tt">Write the sentences you want AI to repeat</span><span class="tag t-crit">Critical</span></div>
+<dl><dt>Why</dt><dd>In our test the AI described Mensfe in its old meta description's words. Clear, factual, quotable sentences near the top of key pages tend to be what gets summarised.</dd>
+<dt>Fix</dt><dd>Homepage opening paragraph and meta description, for example: <em>"Mensfe is a free, anonymous peer-support forum for men facing infertility, founded in 2007 by fertility counsellor Pip Reilly and medical scientist Rob Barlow. Men discuss azoospermia, low sperm count, ICSI, donor conception and the emotional side of male infertility."</em> Reuse the same core sentence in directory listings and social bios.</dd></dl></div>
+
+<div class="finding"><div class="hd"><span class="id">A5</span><span class="tt">Structure information pages for answers</span><span class="tag t-high">High</span></div>
+<dl><dt>Why</dt><dd>AI pulls short, self-contained passages that answer a question directly under a matching heading.</dd>
+<dt>Fix</dt><dd>On each of the 12 guides: an H1, an "In short" two-to-three sentence summary, question-style H2s ("What is azoospermia?", "What tests will I have?", "What are the treatment options?"), short paragraphs, a key-facts table, sources, reviewer and date. Mark up with <code>MedicalWebPage</code> and <code>BreadcrumbList</code>. Link to the matching forum board ("Talk to men who've been through it").</dd></dl></div>
+
+<div class="finding"><div class="hd"><span class="id">A6</span><span class="tt">Turn forum knowledge into citable pages</span><span class="tag t-high">High</span></div>
+<dl><dt>Why</dt><dd>AI systems cite forums heavily for "what's it really like" questions, but long threads are hard to quote. Summaries of recurring questions, linking to the source threads, give AI a clean page to cite and send people into the community.</dd>
+<dt>Fix</dt><dd>Create 10–15 "community wisdom" pages from the most-read threads, with members' consent and anonymised quotes. Suggested topics:
+<ul style="margin:1mm 0 0;padding-left:4mm">
+<li>What to ask before micro-TESE</li>
+<li>Telling family about donor conception</li>
+<li>How men really feel after an azoospermia diagnosis</li>
+<li>Supporting your partner through male-factor IVF</li>
+<li>Questions to take to your urologist</li>
+</ul>
+Add <code>DiscussionForumPosting</code> schema to topics and use descriptive topic URLs.</dd></dl></div>
+
+<div class="finding"><div class="hd"><span class="id">A7</span><span class="tt">Own the "men's lived experience" niche</span><span class="tag t-high">High</span></div>
+<dl><dt>Why</dt><dd>For purely medical definitions, AI will keep preferring the NHS, NICE and clinics. Mensfe can win where those sources are thin: the male perspective, emotions, relationships and peer experience.</dd>
+<dt>Fix</dt><dd>Lead every page with that angle. Make the founders' story visible: a medical scientist who has lived with azoospermia for over 25 years is a distinctive, citable fact. Use Pip Reilly's book (<em>A Journey Through Male Infertility</em>) for author interviews and podcast guest spots.</dd></dl></div>
+
+<div class="finding"><div class="hd"><span class="id">A8</span><span class="tt">Earn mentions where AI already looks</span><span class="tag t-high">High</span></div>
+<dl><dt>Why</dt><dd>The sources cited for support questions were Fertility Network UK, Mumsnet, BICA, Mind and clinic blogs. Being mentioned by them is the most direct route into those answers.</dd>
+<dt>Fix</dt><dd>Request resource listings from Fertility Network UK (HIMfertility), BICA, iCSI and UK fertility clinics' "support" pages. Update the existing listings (robinhadley.co.uk, Gateway Women) to the HTTPS URL. Contribute expert comment to Men's Health Week and International Men's Day coverage. Take part, transparently, in relevant Mumsnet and Reddit discussions.</dd></dl></div>
+
+<div class="finding"><div class="hd"><span class="id">A9</span><span class="tt">Show freshness and maintenance</span><span class="tag t-med">Medium</span></div>
+<dl><dt>Fix</dt><dd>Show "last reviewed" dates and an automatic copyright year. Put recent topics on the homepage, a news/research digest updated monthly from the Research board, and <code>dateModified</code> in schema.</dd></dl></div>
+
+<div class="finding"><div class="hd"><span class="id">A10</span><span class="tt">Add an llms.txt file</span><span class="tag t-med">Medium</span></div>
+<dl><dt>Why</dt><dd>Low effort and an emerging convention, not a ranking factor. It gives AI tools a curated map of the most useful pages.</dd>
+<dt>Fix</dt><dd>Publish <code>/llms.txt</code> with a one-paragraph description of Mensfe, the 12 guides, the forum boards and the community-wisdom pages (example in section 6).</dd></dl></div>
+
+<div class="finding"><div class="hd"><span class="id">A11</span><span class="tt">Measure AI referrals</span><span class="tag t-crit">Critical</span></div>
+<dl><dt>Fix</dt><dd>Install GA4 and create a channel group for AI referrers (chatgpt.com, perplexity.ai, copilot.microsoft.com, gemini.google.com, claude.ai). Track forum sign-ups as a conversion, and run the monthly prompt-tracking set below.</dd></dl></div>
+
+<h2>4. Roadmap</h2>
+<div class="cols" style="grid-template-columns:1fr 1fr 1fr">
+<div class="phase"><h3>First 30 days</h3><ul>
+<li>HTTPS, a single domain, Search Console and Bing</li>
+<li>robots.txt AI bot policy</li>
+<li>New homepage summary and meta descriptions</li>
+<li>Organization and Person schema</li>
+<li>GA4 with AI referral tracking</li>
+<li>Baseline prompt tracking</li>
+</ul></div>
+<div class="phase"><h3>Days 31–60</h3><ul>
+<li>Restructure the 12 guides (answer-first)</li>
+<li>Founder author pages; Wikidata item</li>
+<li>Forum schema and clean URLs</li>
+<li>First 5 community-wisdom pages</li>
+<li>llms.txt</li>
+</ul></div>
+<div class="phase"><h3>Days 61–90</h3><ul>
+<li>Outreach: FNUK, BICA, clinics, iCSI</li>
+<li>Book-led PR and podcasts</li>
+<li>Next 5–10 community-wisdom pages</li>
+<li>Monthly research digest</li>
+<li>Re-test prompts and report</li>
+</ul></div>
+</div>
+
+<h2>5. Monthly prompt-tracking set</h2>
+<p>Run each prompt in ChatGPT (with search), Google (AI Overview), Perplexity, Gemini and Copilot. Record whether Mensfe is <strong>mentioned</strong>, <strong>linked or cited</strong>, and <strong>described accurately</strong>.</p>
+<table>
+<thead><tr><th style="width:6%">#</th><th>Prompt</th><th style="width:22%">Intent</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Is there a support forum for men with male infertility?</td><td>Discovery</td></tr>
+<tr><td>2</td><td>I've just been diagnosed with azoospermia. Where can I talk to other men?</td><td>Support</td></tr>
+<tr><td>3</td><td>How do men cope emotionally with infertility?</td><td>Emotional</td></tr>
+<tr><td>4</td><td>What questions should I ask before micro-TESE?</td><td>Treatment</td></tr>
+<tr><td>5</td><td>How can I support my husband with male factor infertility?</td><td>Partner</td></tr>
+<tr><td>6</td><td>Male infertility charities in the UK</td><td>Discovery</td></tr>
+<tr><td>7</td><td>Best books about male infertility for couples</td><td>Book</td></tr>
+<tr><td>8</td><td>What is Mensfe?</td><td>Brand accuracy</td></tr>
+<tr><td>9</td><td>Telling family we're using donor sperm. Advice from other dads?</td><td>Donor conception</td></tr>
+<tr><td>10</td><td>Low sperm count: what helped other men?</td><td>Experience</td></tr>
+</tbody>
+</table>
+
+<h2>6. Starter files</h2>
+<h3>robots.txt (illustrative; confirm the training-bot policy with the trustees first)</h3>
+<pre>User-agent: *
+Disallow: /forum/index.php?action=profile
+Disallow: /forum/index.php?action=search
+Disallow: /forum/index.php?action=printpage
+Disallow: /forum/index.php?action=login
+
+# Search and answer assistants: allowed so Mensfe can be cited
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: PerplexityBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+Allow: /
+
+# Model-training crawlers: decide as a policy (example shows opting out)
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: Google-Extended
+User-agent: CCBot
+Disallow: /forum/
+
+Sitemap: https://www.mensfe.net/sitemap.xml</pre>
+<h3>llms.txt</h3>
+<pre># Mensfe — the men's fertility forum
+&gt; Free, anonymous peer-support forum for men facing infertility, founded in 2007 by
+&gt; fertility counsellor Pip Reilly and medical scientist Rob Barlow.
+
+## Guides
+- [Azoospermia](https://www.mensfe.net/azoospermia.htm): types, tests and treatment options
+- [Semen analysis](https://www.mensfe.net/semen_analysis.htm): understanding your results
+- [Counselling support](https://www.mensfe.net/counselling_support.htm): where to get help
+- … (all 12 guides)
+
+## Forum
+- [Causes of male infertility](https://www.mensfe.net/forum/…)
+- [Men's reactions to infertility](https://www.mensfe.net/forum/…)
+- [Current research on male infertility](https://www.mensfe.net/forum/index.php?board=11.0)</pre>
+
+</main>
+</body>
+</html>

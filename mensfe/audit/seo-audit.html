@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mensfe SEO Audit — October 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1A1F24;--ink2:#46505A;--muted:#5E6873;--line:#DCE1E5;--soft:#F3F5F6;--brand:#1D5866;--brandtint:#E3EEF0;
+--crit:#A4221B;--crit-t:#FBE9E7;--high:#9A4100;--high-t:#FDF0E2;--med:#6E5600;--med-t:#FBF4D9;--ok:#1E6B3A;--ok-t:#E3F2E8}
+@page{size:A4;margin:16mm 15mm 18mm}
+*{box-sizing:border-box}
+body{margin:0;background:#E9ECEE;color:var(--ink);font:400 10.5pt/1.55 "IBM Plex Sans",system-ui,sans-serif}
+.page{background:#fff;max-width:210mm;margin:0 auto;padding:18mm 16mm}
+@media screen{.page{margin:24px auto;box-shadow:0 2px 14px rgba(0,0,0,.08)}}
+@media print{body{background:#fff}.page{padding:0;margin:0;max-width:none;box-shadow:none}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+h1,h2,h3{font-family:"Source Serif 4",Georgia,serif;color:var(--ink);line-height:1.2}
+h1{font-size:30pt;margin:0 0 6mm;letter-spacing:-.01em}
+h2{font-size:17pt;margin:10mm 0 4mm;padding-top:2mm;border-top:2px solid var(--ink)}
+h3{font-size:12.5pt;margin:6mm 0 2mm}
+h2,h3{break-after:avoid}
+p{margin:0 0 3mm}
+a{color:var(--brand)}
+.eyebrow{font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-size:8.5pt;color:var(--brand);margin:0 0 3mm}
+.cover{min-height:250mm;display:flex;flex-direction:column;justify-content:space-between;break-after:page}
+.cover .lead{font-size:13pt;color:var(--ink2);max-width:150mm}
+.meta{display:grid;grid-template-columns:repeat(3,1fr);gap:4mm;border-top:1px solid var(--line);padding-top:5mm;font-size:9.5pt}
+.meta b{display:block;font-size:8pt;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:3mm;margin:5mm 0}
+.stat{border:1px solid var(--line);border-radius:3mm;padding:4mm}
+.stat .n{font-family:"Source Serif 4",serif;font-size:22pt;font-weight:700;line-height:1}
+.stat .l{font-size:8.5pt;color:var(--ink2);margin-top:1.5mm}
+.note{background:var(--soft);border-radius:3mm;padding:4mm 5mm;font-size:9.5pt;color:var(--ink2)}
+.tag{display:inline-block;font-size:7.5pt;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:.6mm 2mm;border-radius:1.5mm;white-space:nowrap}
+.t-crit{background:var(--crit-t);color:var(--crit)}.t-high{background:var(--high-t);color:var(--high)}.t-med{background:var(--med-t);color:var(--med)}.t-ok{background:var(--ok-t);color:var(--ok)}.t-na{background:var(--soft);color:var(--ink2)}
+.finding{border:1px solid var(--line);border-radius:3mm;padding:4mm 5mm;margin:0 0 3.5mm;break-inside:avoid}
+.finding .hd{display:flex;gap:3mm;align-items:baseline;margin-bottom:1.5mm}
+.finding .id{font-weight:700;color:var(--muted);font-size:9pt;min-width:9mm}
+.finding .tt{font-weight:700;font-size:11pt;flex:1}
+.finding dl{display:grid;grid-template-columns:22mm 1fr;gap:1mm 3mm;margin:0;font-size:9.5pt}
+.finding dt{color:var(--muted);font-weight:600}
+.finding dd{margin:0}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:8.6pt;background:var(--soft);padding:.2mm 1mm;border-radius:1mm}
+pre{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:8pt;background:#0F1A1F;color:#E6EEF0;padding:4mm 5mm;border-radius:3mm;white-space:pre-wrap;line-height:1.45;break-inside:avoid}
+table{width:100%;border-collapse:collapse;font-size:9.3pt;margin:2mm 0 4mm}
+th{text-align:left;font-size:8pt;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);border-bottom:1.5px solid var(--ink);padding:1.5mm 2mm}
+td{border-bottom:1px solid var(--line);padding:2mm;vertical-align:top}
+tr{break-inside:avoid}
+ol.prio{padding-left:5mm;margin:0}ol.prio li{margin-bottom:2mm}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:5mm}
+.phase{border-top:3px solid var(--brand);padding-top:3mm}
+.phase h3{margin-top:0}
+.phase ul{padding-left:4.5mm;margin:0;font-size:9.5pt}
+.brk{break-before:page}
+.foot{margin-top:10mm;font-size:8.5pt;color:var(--muted);border-top:1px solid var(--line);padding-top:3mm}
+</style>
+</head>
+<body>
+<main class="page">
+
+<section class="cover">
+<div>
+<p class="eyebrow">SEO audit · Prepared for Mensfe</p>
+<h1>mensfe.net<br>Search engine optimisation audit</h1>
+<p class="lead">A review of how well Mensfe, the men's fertility forum, can be found, crawled and trusted by search engines, and a prioritised plan to fix what is holding it back.</p>
+</div>
+<div>
+<div class="stats">
+<div class="stat"><div class="n">28</div><div class="l">findings in total</div></div>
+<div class="stat"><div class="n" style="color:var(--crit)">6</div><div class="l">critical</div></div>
+<div class="stat"><div class="n" style="color:var(--high)">11</div><div class="l">high</div></div>
+<div class="stat"><div class="n" style="color:var(--med)">11</div><div class="l">medium</div></div>
+</div>
+<div class="meta">
+<div><b>Site</b>www.mensfe.net (+ forum)</div>
+<div><b>Date</b>1 October 2026</div>
+<div><b>Platform</b>Static HTML + SMF forum</div>
+</div>
+</div>
+</section>
+
+<h2>Summary</h2>
+<p>Mensfe has something most health websites would envy: a long-running, genuine community, credible founders, and a public index of real discussions about male infertility going back to 2007. Search engines can still find the brand (it ranks for its own name and appears in some "male infertility forum" results), but the site is technically stuck in 2007. It is not mobile-friendly, it is served over insecure HTTP on two duplicate domains, it has no working analytics, and it gives Google almost no structured signals about what it is or who stands behind it.</p>
+<p>Because Mensfe covers health topics, Google treats it as "Your Money or Your Life" content and holds it to a higher standard of trust. The good news is that most of the trust ingredients already exist; they just are not visible to search engines.</p>
+
+<h3>Top five priorities</h3>
+<ol class="prio">
+<li><strong>Make the site mobile-friendly</strong> (viewport + responsive layout or a new theme). Google indexes the mobile version first; today's fixed 867px tables are a ranking penalty on every page.</li>
+<li><strong>Move to HTTPS on one domain.</strong> 301-redirect <code>http://</code> and <code>mensfe.co.uk</code> to <code>https://www.mensfe.net</code>.</li>
+<li><strong>Install Google Analytics 4, Google Search Console and Bing Webmaster Tools.</strong> The current tracking script stopped collecting data years ago.</li>
+<li><strong>Give every page a proper heading structure, title and description</strong>, starting with the homepage and the 12 information pages.</li>
+<li><strong>Show who is behind Mensfe.</strong> Put the founders' credentials, a medical reviewer and "last reviewed" dates on the information pages, and add Organization, Person and forum structured data.</li>
+</ol>
+
+<div class="note" style="margin-top:5mm"><strong>How this audit was done.</strong> The site could not be reached from our audit environment (it requires a VPN from our location), so this review is based on the full homepage source code and rendered screenshots supplied by the client, plus what public search results show about the site's indexed pages on 1 October 2026. Items that need direct access to confirm (robots.txt, XML sitemap, Core Web Vitals, index coverage, backlinks) are listed in section 6 with how to check them.</div>
+
+<h2 class="brk">1. Technical foundations</h2>
+
+<div class="finding"><div class="hd"><span class="id">T1</span><span class="tt">Not mobile-friendly: no viewport, fixed-width table layout</span><span class="tag t-crit">Critical</span></div>
+<dl><dt>Evidence</dt><dd>No <code>&lt;meta name="viewport"&gt;</code>. The whole page is nested <code>&lt;table width="867"&gt;</code> layouts with fixed pixel widths and inline font sizes.</dd>
+<dt>Impact</dt><dd>Google ranks using the mobile rendering. On a phone the page appears as a shrunken desktop page with tiny text and tap targets, which harms rankings and engagement on every page.</dd>
+<dt>Fix</dt><dd>Rebuild the static pages on a responsive layout and install a responsive SMF theme (see the accompanying redesign concepts). Short-term: add the viewport tag only once the layout can respond to it.</dd></dl></div>
+
+<div class="finding"><div class="hd"><span class="id">T2</span><span class="tt">Site is indexed on insecure HTTP</span><span class="tag t-crit">Critical</span></div>
+<dl><dt>Evidence</dt><dd>Search results list <code>http://www.mensfe.net/</code>, <code>http://www.mensfe.net/forum/index.php</code> and other pages on plain HTTP. Internal links (e.g. the forum button) and the analytics script are hard-coded to <code>http://</code>.</dd>
+<dt>Impact</dt><dd>Chrome labels the site "Not secure", including on the forum login and registration pages. HTTPS is a confirmed (light) ranking signal and a strong trust signal for a health community.</dd>
+<dt>Fix</dt><dd>Install a TLS certificate (free via Let's Encrypt), 301-redirect all HTTP URLs to HTTPS, update SMF's forum URL setting, change hard-coded links to relative or HTTPS, then add HSTS.</dd></dl></div>
+
+<div class="finding"><div class="hd"><span class="id">T3</span><span class="tt">Duplicate site on mensfe.co.uk</span><span class="tag t-crit">Critical</span></div>
+<dl><dt>Evidence</dt><dd>Search results show <code>http://www.mensfe.co.uk/</code> with the identical title "Male Infertility and Mens Fertility Forum and Chat" alongside mensfe.net.</dd>
+<dt>Impact</dt><dd>Two copies of the same site split links and authority, and Google (and AI systems) may pick the "wrong" one to show.</dd>
+<dt>Fix</dt><dd>Choose <code>https://www.mensfe.net</code> as the single home. Permanently (301) redirect every mensfe.co.uk URL to the same path on mensfe.net. Verify both in Search Console.</dd></dl></div>
+
+<div class="finding"><div class="hd"><span class="id">T4</span><span class="tt">No working analytics or Search Console data</span><span class="tag t-crit">Critical</span></div>
+<dl><dt>Evidence</dt><dd>The only tracking is <code>urchin.js</code> with property <code>UA-1558618-9</code>, loaded over HTTP. This legacy Google script predates Universal Analytics, and Universal Analytics itself stopped processing data in July 2023.</dd>
+<dt>Impact</dt><dd>Nothing is being measured: no traffic, sources, search queries or conversions. The "6,531,247 visits in 2025" figure on the homepage therefore needs a documented source (e.g. server logs) before it is quoted.</dd>
+<dt>Fix</dt><dd>Remove urchin.js. Install GA4 (with a cookie consent banner for UK visitors), Google Search Console and Bing Webmaster Tools. Submit the sitemap in both.</dd></dl></div>
+
+<div class="finding"><div class="hd"><span class="id">T5</span><span class="tt">No canonical tags; forum URL variants</span><span class="tag t-high">High</span></div>
+<dl><dt>Evidence</dt><dd>No <code>rel="canonical"</code> on the homepage. The forum is linked as both <code>/forum</code> and <code>forum/index.php</code>; SMF exposes parameter URLs (<code>?board=11.0</code>, <code>?board=11.60</code>, <code>?topic=97.0</code>) plus print, profile, login and search URLs.</dd>
+<dt>Fix</dt><dd>Add self-referencing canonicals site-wide. In SMF, enable search-engine-friendly URLs, and keep low-value pages (profiles, print views, search results, login, "who's online") out of the index with <code>noindex</code>.</dd></dl></div>
+
+<div class="finding"><div class="hd"><span class="id">T6</span><span class="tt">Outdated code: HTML 4.01, ISO-8859-1, jQuery 1.10.1</span><span class="tag t-high">High</span></div>
+<dl><dt>Evidence</dt><dd>HTML 4.01 Transitional doctype; <code>charset=iso-8859-1</code>; jQuery 1.10.1 (2013) from Google's CDN; Dreamweaver <code>MM_swapImage</code> rollover scripts; invalid markup (<code>border="o"</code>, an unclosed <code>&lt;p&gt;</code>, a missing <code>&lt;/td&gt;&lt;/tr&gt;</code>).</dd>
+<dt>Impact</dt><dd>Old jQuery versions have published security vulnerabilities, and Lighthouse flags them. The legacy charset can corrupt characters such as curly quotes and dashes.</dd>
+<dt>Fix</dt><dd>Use <code>&lt;!DOCTYPE html&gt;</code> and UTF-8. Replace rollovers with CSS hover, and update or remove jQuery (the slider can be pure CSS).</dd></dl></div>
+
+<div class="finding"><div class="hd"><span class="id">T7</span><span class="tt">Forum platform version and theme need review</span><span class="tag t-high">High</span></div>
+<dl><dt>Evidence</dt><dd>The forum runs on Simple Machines Forum (SMF). Its index title is "The Mens Fertility Forum - Mensfe - Index", and the URLs use SMF's default parameter format.</dd>
+<dt>Fix</dt><dd>Confirm the SMF version and upgrade to the current supported release (security and PHP compatibility). Install a responsive theme, enable SEO-friendly URLs, and set descriptive board titles and meta descriptions.</dd></dl></div>
+
+<div class="finding"><div class="hd"><span class="id">T8</span><span class="tt">Every internal link opens a new tab</span><span class="tag t-med">Medium</span></div>
+<dl><dt>Evidence</dt><dd>All navigation links use <code>target="_blank"</code>, including About, Mission and all 12 information pages.</dd>
+<dt>Fix</dt><dd>Open internal links in the same tab. Keep <code>_blank</code> only for external links, and add <code>rel="noopener"</code> to them.</dd></dl></div>
+
+<h2>2. On-page SEO</h2>
+
+<div class="finding"><div class="hd"><span class="id">P1</span><span class="tt">No H1 or heading structure</span><span class="tag t-crit">Critical</span></div>
+<dl><dt>Evidence</dt><dd>There are no <code>&lt;h1&gt;</code>–<code>&lt;h3&gt;</code> elements at all. The visual headings ("Welcome to the Men's Fertility Web Site – MENSFE MATTERS", "Male Infertility Support", "FORUM") are styled <code>&lt;span&gt;</code>s.</dd>
+<dt>Fix</dt><dd>One H1 per page that states the topic (homepage: "Male infertility support forum for men"), with H2s for each section. Apply this to all 12 information pages and the forum theme.</dd></dl></div>
+
+<div class="finding"><div class="hd"><span class="id">P2</span><span class="tt">Title tag and meta description</span><span class="tag t-high">High</span></div>
+<dl><dt>Evidence</dt><dd>Title (69 characters): "Male Infertility and Mens Fertility Forum and Chat | Help and Support", which is likely to be cut off in results and does not contain the brand. The meta description (~170 characters) opens "A online support web site…" and ends "..".</dd>
+<dt>Fix</dt><dd>Title: <em>"Male Infertility Forum &amp; Support for Men | Mensfe"</em>. Description: <em>"Free, anonymous support for men facing infertility: azoospermia, low sperm count, ICSI and IVF. Join the Mensfe forum and talk to men who understand."</em> Write a unique title and description for every information page and forum board.</dd></dl></div>
+
+<div class="finding"><div class="hd"><span class="id">P3</span><span class="tt">Thin homepage copy; key topics only appear as link text</span><span class="tag t-high">High</span></div>
+<dl><dt>Evidence</dt><dd>The centre column is a 12-image slider, four empty <code>&amp;nbsp;</code> paragraphs and a quotation. Topics such as azoospermia, semen analysis and varicocele appear only as navigation links.</dd>
+<dt>Fix</dt><dd>Add 300–600 words of real introductory copy explaining who Mensfe is for, what the forum offers and the most common topics, with contextual links to the information pages and boards. Show the latest forum discussions on the homepage.</dd></dl></div>
+
+<div class="finding"><div class="hd"><span class="id">P4</span><span class="tt">No structured data</span><span class="tag t-high">High</span></div>
+<dl><dt>Evidence</dt><dd>No JSON-LD or microdata anywhere on the homepage.</dd>
+<dt>Fix</dt><dd>Homepage: <code>Organization</code> (name, logo, founders, email, <code>sameAs</code>) and <code>WebSite</code> with a <code>SearchAction</code>. Forum topics: <code>DiscussionForumPosting</code> (Google uses it for its "Discussions and forums" features). Information pages: <code>MedicalWebPage</code> with <code>author</code>, <code>reviewedBy</code> and <code>lastReviewed</code>. Book: <code>Book</code> with author Pip Reilly. Everywhere: <code>BreadcrumbList</code>. A starter snippet is in section 7.</dd></dl></div>
+
+<div class="finding"><div class="hd"><span class="id">P5</span><span class="tt">Obsolete meta tags with misspellings</span><span class="tag t-med">Medium</span></div>
+<dl><dt>Evidence</dt><dd><code>keywords</code>, <code>keyphrases</code>, <code>Abstract</code>, <code>class</code>, <code>classification</code>, <code>distribution</code>, <code>Title</code> and <code>revisit-after</code> are all ignored by Google. The keywords list also contains "Impotance", "Prostrate" and "Gamette".</dd>
+<dt>Fix</dt><dd>Delete them. Add Open Graph and Twitter card tags so shared links show a proper title, description and image.</dd></dl></div>
+
+<div class="finding"><div class="hd"><span class="id">P6</span><span class="tt">Copy errors and unclear calls to action</span><span class="tag t-med">Medium</span></div>
+<dl><dt>Evidence</dt><dd>"Share and see all your story's" (should be "stories"), "Mens" (should be "Men's"), "To find out about all the above please click on for link", and an unexplained "(M0D2088113817)" beside the book. The main call to action is a plain text link.</dd>
+<dt>Fix</dt><dd>Proofread all pages. Turn the forum link into a clear button such as "Join the forum, free" or "Read members' stories".</dd></dl></div>
+
+<div class="finding"><div class="hd"><span class="id">P7</span><span class="tt">Text inside images</span><span class="tag t-med">Medium</span></div>
+<dl><dt>Evidence</dt><dd>The banner tagline ("You'll never walk alone…… at Mensfe"), the logo and the "Perseverance" quote slide are all images. The banner's alt text describes different words from those shown in the image.</dd>
+<dt>Fix</dt><dd>Use real HTML text for taglines and quotes. Make alt text match what the image shows. Make the logo its own image that links to the homepage.</dd></dl></div>
+
+<h2>3. Content, trust and E-E-A-T</h2>
+
+<div class="finding"><div class="hd"><span class="id">E1</span><span class="tt">Founders' expertise is hidden</span><span class="tag t-crit">Critical</span></div>
+<dl><dt>Evidence</dt><dd>The About page says Mensfe was founded by Pip Reilly, a professional fertility counsellor with more than 15 years' work with fertility charities, and Rob Barlow, a medical scientist diagnosed with azoospermia more than 25 years ago. None of this appears on the homepage or the information pages, and the About link opens in a new tab.</dd>
+<dt>Impact</dt><dd>For health topics, Google's quality guidelines put heavy weight on demonstrated experience and expertise. Mensfe has both (lived experience and professional counselling) but does not show them.</dd>
+<dt>Fix</dt><dd>Add a "Who runs Mensfe" section to the homepage. Give each founder an author page with a photo and credentials, and mark them up with <code>Person</code> schema linked from <code>Organization</code>.</dd></dl></div>
+
+<div class="finding"><div class="hd"><span class="id">E2</span><span class="tt">Medical pages lack authorship, review and dates</span><span class="tag t-high">High</span></div>
+<dl><dt>Evidence</dt><dd>The homepage gives no indication of who wrote or reviewed the information pages, or when. The forum has a "Dear Doctor" expert panel, but its experts are not identified on the main site.</dd>
+<dt>Fix</dt><dd>On every information page, show "Written by", "Medically reviewed by [name, credentials]", "Last reviewed [date]" and a list of sources (NHS, NICE, HFEA, WHO). Review pages at least yearly.</dd></dl></div>
+
+<div class="finding"><div class="hd"><span class="id">E3</span><span class="tt">Stale signals</span><span class="tag t-high">High</span></div>
+<dl><dt>Evidence</dt><dd>The footer reads "© 2007–2025". The homepage still promotes a 2007 conference poster, and the visitor statistic refers to 2025.</dd>
+<dt>Fix</dt><dd>Update the footer year automatically. Replace the 2007 item with recent news or forum activity, and show "updated" dates on content.</dd></dl></div>
+
+<div class="finding"><div class="hd"><span class="id">E4</span><span class="tt">The forum's value is not surfaced</span><span class="tag t-high">High</span></div>
+<dl><dt>Evidence</dt><dd>The homepage gives no glimpse of recent discussions, board names or member stories; it shows one "FORUM" text link. Search results for queries like "azoospermia support forum men UK" go to Mumsnet threads and clinics instead.</dd>
+<dt>Fix</dt><dd>Show latest topics and featured boards on the homepage. Link each information page to its matching board, and link boards back to the guides. Write short "community wisdom" summaries for evergreen questions (e.g. "What to ask before micro-TESE").</dd></dl></div>
+
+<div class="finding"><div class="hd"><span class="id">E5</span><span class="tt">Inconsistent brand naming</span><span class="tag t-med">Medium</span></div>
+<dl><dt>Evidence</dt><dd>"Mensfe", "MENSFE MATTERS", "Mens fertility network", "Mensfe – the mens fertility forum", "Men's Fertility Web Site" and "Male Infertility Support Group".</dd>
+<dt>Fix</dt><dd>Pick one name and one descriptor (e.g. "Mensfe — the men's fertility forum") and use them consistently in titles, schema, social profiles and directory listings.</dd></dl></div>
+
+<div class="finding"><div class="hd"><span class="id">E6</span><span class="tt">Possibly unlicensed stock images</span><span class="tag t-med">Medium</span></div>
+<dl><dt>Evidence</dt><dd>Slider file names such as <code>happy-couple-7784917</code> and <code>Autumn-wallpaper-autumn-9444937-1280-1024[1]</code> look like downloads from wallpaper or stock sites, and one image appears to carry a stock watermark.</dd>
+<dt>Fix</dt><dd>Confirm licences or replace the images with licensed or original ones. This is a legal risk as well as a trust issue.</dd></dl></div>
+
+<h2>4. Images, performance and accessibility</h2>
+
+<div class="finding"><div class="hd"><span class="id">I1</span><span class="tt">Twelve slider images with empty alt text</span><span class="tag t-high">High</span></div>
+<dl><dt>Evidence</dt><dd>All 12 slider images have <code>alt=""</code> and meaningless file names (<code>download</code>, <code>thIR60IRP3</code>). One is a <code>.jfif</code> file. None declares width and height, and all of them load on first paint.</dd>
+<dt>Fix</dt><dd>Cut the slider down to one or two meaningful images, or remove it. Use descriptive file names and alt text, WebP/AVIF formats, explicit dimensions and <code>loading="lazy"</code> below the fold.</dd></dl></div>
+
+<div class="finding"><div class="hd"><span class="id">I2</span><span class="tt">Low colour contrast</span><span class="tag t-med">Medium</span></div>
+<dl><dt>Evidence</dt><dd>Olive text on white (the ICSI poster note), light grey on mid-grey (the footer bar) and red on a grey-pink panel.</dd>
+<dt>Fix</dt><dd>Meet WCAG AA contrast (4.5:1 for body text). This also lifts Lighthouse accessibility scores.</dd></dl></div>
+
+<div class="finding"><div class="hd"><span class="id">I3</span><span class="tt">Render-blocking scripts and preloaded rollover images</span><span class="tag t-med">Medium</span></div>
+<dl><dt>Evidence</dt><dd>jQuery loads synchronously in <code>&lt;head&gt;</code>. <code>onLoad</code> preloads five rollover images, and the slider script and urchin.js load at the end of the page.</dd>
+<dt>Fix</dt><dd>Remove the rollover JavaScript and jQuery, and <code>defer</code> any scripts that remain. Then measure Core Web Vitals (see section 6).</dd></dl></div>
+
+<div class="finding"><div class="hd"><span class="id">I4</span><span class="tt">Email address exposed in plain text</span><span class="tag t-med">Medium</span></div>
+<dl><dt>Evidence</dt><dd><code>mailto:info@mensfe.net</code> appears in the page source, where spam harvesters can collect it.</dd>
+<dt>Fix</dt><dd>Use a contact form with spam protection, or obfuscate the address.</dd></dl></div>
+
+<h2>5. Off-page and brand visibility</h2>
+
+<div class="finding"><div class="hd"><span class="id">O1</span><span class="tt">Ranks for its brand, weak for non-branded support searches</span><span class="tag t-high">High</span></div>
+<dl><dt>Evidence</dt><dd>On 1 October 2026, "mensfe male infertility forum" returned five mensfe pages in the top 10, and "best male infertility support forum online" showed mensfe.net at position 7. Mensfe did not appear in the top 10 for "azoospermia support forum men UK" or "where can men get emotional support for male infertility UK"; those results were led by Mumsnet, Fertility Network UK (HIMfertility), BICA and private clinics.</dd>
+<dt>Fix</dt><dd>Address the technical issues first, then build pages and forum hubs around these support-intent searches (see the AI visibility audit).</dd></dl></div>
+
+<div class="finding"><div class="hd"><span class="id">O2</span><span class="tt">Existing mentions to build on</span><span class="tag t-med">Medium</span></div>
+<dl><dt>Evidence</dt><dd>Mensfe is listed on resource pages for childless men (robinhadley.co.uk, Gateway Women), appears in Fertility Network UK's <em>Affinity</em> magazine (2021) and in International Men's Day UK coverage. It is also a member of iCSI.</dd>
+<dt>Fix</dt><dd>Ask these sites to update their links to the HTTPS domain. Then pursue listings on Fertility Network UK, BICA and clinic resource pages, plus podcast and press opportunities around Pip Reilly's book.</dd></dl></div>
+
+<div class="finding"><div class="hd"><span class="id">O3</span><span class="tt">No social profiles or <code>sameAs</code> links</span><span class="tag t-med">Medium</span></div>
+<dl><dt>Evidence</dt><dd>The homepage links to no social profiles.</dd>
+<dt>Fix</dt><dd>Claim consistent profiles (Facebook, X/Bluesky, LinkedIn, YouTube or a podcast) and reference them in <code>Organization.sameAs</code>.</dd></dl></div>
+
+<h2>6. Not yet verified: checks that need site access</h2>
+<table>
+<thead><tr><th style="width:28%">Check</th><th>How to verify</th><th style="width:18%">Status</th></tr></thead>
+<tbody>
+<tr><td>robots.txt</td><td>Open <code>https://www.mensfe.net/robots.txt</code>. Make sure it does not block CSS/JS or the forum, and that it references the sitemap.</td><td><span class="tag t-na">To check</span></td></tr>
+<tr><td>XML sitemap</td><td>Check whether <code>/sitemap.xml</code> exists. SMF has sitemap mods; the static pages need adding too. Submit it in Search Console and Bing.</td><td><span class="tag t-na">To check</span></td></tr>
+<tr><td>Core Web Vitals</td><td>Run PageSpeed Insights (mobile) for the homepage, one information page, the board index and one topic.</td><td><span class="tag t-na">To check</span></td></tr>
+<tr><td>Index coverage</td><td>In Search Console's Pages report, look for duplicate, soft-404 and "crawled, not indexed" forum URLs.</td><td><span class="tag t-na">To check</span></td></tr>
+<tr><td>Information and forum pages</td><td>Repeat this audit's on-page checks (title, H1, description, alt text) on all 12 information pages and the SMF theme templates.</td><td><span class="tag t-na">To check</span></td></tr>
+<tr><td>Backlink profile</td><td>Export links from Search Console (or Ahrefs/Semrush). Look for toxic links on a domain this old, and reclaim links still pointing at mensfe.co.uk or HTTP.</td><td><span class="tag t-na">To check</span></td></tr>
+<tr><td>SMF version and security</td><td>Admin › Support &amp; Credits shows the version. Upgrade if it is not the current supported release.</td><td><span class="tag t-na">To check</span></td></tr>
+</tbody>
+</table>
+
+<h2>7. Roadmap</h2>
+<div class="cols" style="grid-template-columns:1fr 1fr 1fr">
+<div class="phase"><h3>First 30 days</h3><ul>
+<li>HTTPS and 301 redirects; merge mensfe.co.uk into mensfe.net</li>
+<li>GA4, Search Console and Bing Webmaster Tools</li>
+<li>New homepage title, description, H1 and copy</li>
+<li>Remove obsolete meta tags; add canonical and Open Graph</li>
+<li>Organization and WebSite schema</li>
+<li>Fix copy errors and the footer date</li>
+</ul></div>
+<div class="phase"><h3>Days 31–60</h3><ul>
+<li>Responsive redesign of the static pages</li>
+<li>Upgrade SMF; responsive theme; SEO-friendly URLs</li>
+<li>DiscussionForumPosting schema on topics</li>
+<li>Founder author pages; reviewer and dates on information pages</li>
+<li>Image clean-up and licence check</li>
+</ul></div>
+<div class="phase"><h3>Days 61–90</h3><ul>
+<li>Topic hubs linking guides ↔ boards</li>
+<li>"Community wisdom" pages for top questions</li>
+<li>Outreach: FNUK, BICA, clinics, book PR</li>
+<li>Core Web Vitals tuning</li>
+<li>Monthly reporting from GA4 and Search Console</li>
+</ul></div>
+</div>
+
+<h3 style="margin-top:8mm">Starter code for the homepage <code>&lt;head&gt;</code></h3>
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="en-GB"&gt;
+&lt;head&gt;
+&lt;meta charset="utf-8"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+&lt;title&gt;Male Infertility Forum &amp;amp; Support for Men | Mensfe&lt;/title&gt;
+&lt;meta name="description" content="Free, anonymous support for men facing infertility: azoospermia,
+  low sperm count, ICSI and IVF. Join the Mensfe forum and talk to men who understand."&gt;
+&lt;link rel="canonical" href="https://www.mensfe.net/"&gt;
+&lt;meta property="og:type" content="website"&gt;
+&lt;meta property="og:title" content="Mensfe — the men's fertility forum"&gt;
+&lt;meta property="og:description" content="Free, anonymous peer support for men facing infertility."&gt;
+&lt;meta property="og:url" content="https://www.mensfe.net/"&gt;
+&lt;meta property="og:image" content="https://www.mensfe.net/images/og-mensfe.jpg"&gt;
+&lt;script type="application/ld+json"&gt;
+{"@context":"https://schema.org","@graph":[
+ {"@type":"Organization","@id":"https://www.mensfe.net/#org","name":"Mensfe",
+  "alternateName":"Mensfe — the men's fertility forum","url":"https://www.mensfe.net/",
+  "logo":"https://www.mensfe.net/images/logo.png","email":"info@mensfe.net","foundingDate":"2007",
+  "founder":[{"@type":"Person","name":"Pip Reilly","jobTitle":"Fertility counsellor"},
+             {"@type":"Person","name":"Rob Barlow","jobTitle":"Medical scientist"}],
+  "sameAs":["[social profile URLs]"]},
+ {"@type":"WebSite","@id":"https://www.mensfe.net/#site","url":"https://www.mensfe.net/","name":"Mensfe",
+  "publisher":{"@id":"https://www.mensfe.net/#org"},
+  "potentialAction":{"@type":"SearchAction",
+   "target":"https://www.mensfe.net/forum/index.php?action=search2;search={q}",
+   "query-input":"required name=q"}}
+]}
+&lt;/script&gt;
+&lt;/head&gt;</pre>
+
+</main>
+</body>
+</html>
