@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en" data-palette="#184f95,#2a78d6,#86b6ef">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>InstaTech SEO Growth Engine</title>
+<style>
+  .viz-root{
+    color-scheme: light;
+    --surface-1:#fcfcfb; --plane:#f9f9f7;
+    --text-primary:#0b0b0b; --text-secondary:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --axis:#c3c2b7; --border:rgba(11,11,11,0.10);
+    --sev-critical:#184f95; --sev-high:#2a78d6; --sev-medium:#86b6ef;
+    --st-good:#0ca30c; --st-warning:#fab219; --st-serious:#ec835a; --st-critical:#d03b3b;
+    --seq-100:#cde2fb; --seq-450:#2a78d6; --seq-600:#184f95;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:where(:not([data-theme="light"])) .viz-root{
+      color-scheme: dark;
+      --surface-1:#1a1a19; --plane:#0d0d0d;
+      --text-primary:#ffffff; --text-secondary:#c3c2b7; --muted:#898781;
+      --grid:#2c2c2a; --axis:#383835; --border:rgba(255,255,255,0.10);
+      --sev-critical:#b7d3f6; --sev-high:#5598e7; --sev-medium:#256abf;
+      --seq-100:#184f95; --seq-450:#3987e5; --seq-600:#9ec5f4;
+    }
+  }
+  :root[data-theme="dark"] .viz-root{
+    color-scheme: dark;
+    --surface-1:#1a1a19; --plane:#0d0d0d;
+    --text-primary:#ffffff; --text-secondary:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --axis:#383835; --border:rgba(255,255,255,0.10);
+    --sev-critical:#b7d3f6; --sev-high:#5598e7; --sev-medium:#256abf;
+    --seq-100:#184f95; --seq-450:#3987e5; --seq-600:#9ec5f4;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--plane,#f9f9f7)}
+  .viz-root{
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background:var(--plane); color:var(--text-primary);
+    min-height:100vh; padding:32px 24px 64px;
+  }
+  .wrap{max-width:1120px;margin:0 auto}
+  header.top{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;margin-bottom:28px}
+  h1{font-size:22px;font-weight:650;margin:0 0 6px;letter-spacing:-0.01em}
+  .sub{font-size:13px;color:var(--text-secondary);margin:0;line-height:1.5}
+  .toggle{background:var(--surface-1);border:1px solid var(--border);border-radius:8px;
+    color:var(--text-secondary);font:inherit;font-size:12px;padding:7px 12px;cursor:pointer}
+  .toggle:hover{color:var(--text-primary)}
+  .card{background:var(--surface-1);border:1px solid var(--border);border-radius:12px;padding:20px 22px;margin-bottom:18px}
+  .card h2{font-size:14px;font-weight:600;margin:0 0 4px;letter-spacing:.01em}
+  .card .cap{font-size:12px;color:var(--muted);margin:0 0 18px;line-height:1.5}
+  .grid{display:grid;gap:18px}
+  .hero-row{grid-template-columns:minmax(240px,1fr) 2fr}
+  @media(max-width:820px){.hero-row{grid-template-columns:1fr}}
+  .hero .figure{font-size:64px;font-weight:650;line-height:1;letter-spacing:-0.03em;margin:6px 0 10px}
+  .hero .label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em}
+  .hero .note{font-size:12.5px;color:var(--text-secondary);line-height:1.55;margin:0}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  @media(max-width:820px){.kpis{grid-template-columns:repeat(2,1fr)}}
+  .kpi{background:var(--surface-1);border:1px solid var(--border);border-radius:12px;padding:16px 18px}
+  .kpi .k-label{font-size:11.5px;color:var(--muted);line-height:1.4;margin-bottom:8px}
+  .kpi .k-val{font-size:28px;font-weight:650;letter-spacing:-0.02em;line-height:1}
+  .kpi .k-sub{font-size:11.5px;color:var(--text-secondary);margin-top:7px;display:flex;align-items:center;gap:5px}
+  .dot{width:8px;height:8px;border-radius:50%;flex:none;display:inline-block}
+  /* severity bars */
+  .sevrow{display:grid;grid-template-columns:78px 1fr 34px;align-items:center;gap:12px;margin-bottom:12px}
+  .sevname{font-size:12.5px;color:var(--text-secondary);display:flex;align-items:center;gap:7px}
+  .sevtrack{height:20px;position:relative}
+  .sevbar{height:20px;border-radius:0 4px 4px 0;transition:filter .12s}
+  .sevrow:hover .sevbar{filter:brightness(1.08)}
+  .sevval{font-size:13px;font-weight:600;text-align:right;font-variant-numeric:tabular-nums}
+  /* meters */
+  .meters{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  @media(max-width:820px){.meters{grid-template-columns:1fr}}
+  .meter .m-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:9px}
+  .meter .m-name{font-size:12.5px;color:var(--text-secondary)}
+  .meter .m-val{font-size:20px;font-weight:650;letter-spacing:-0.01em}
+  .m-track{height:10px;border-radius:5px;background:var(--seq-100);position:relative;overflow:hidden}
+  .m-fill{height:10px;border-radius:5px}
+  .m-scale{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:7px;font-variant-numeric:tabular-nums}
+  .m-foot{font-size:11.5px;color:var(--text-secondary);margin-top:9px;display:flex;align-items:center;gap:6px;line-height:1.4}
+  /* weight chart */
+  .wrow{display:grid;grid-template-columns:150px 1fr 76px;align-items:center;gap:12px;margin-bottom:10px}
+  .wname{font-size:12.5px;color:var(--text-secondary)}
+  .wbar{height:18px;border-radius:0 4px 4px 0}
+  .wval{font-size:12.5px;text-align:right;color:var(--text-secondary);font-variant-numeric:tabular-nums}
+  /* table */
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  th{text-align:left;font-weight:600;color:var(--muted);font-size:11px;text-transform:uppercase;
+    letter-spacing:.05em;padding:0 10px 9px 0;border-bottom:1px solid var(--grid);white-space:nowrap}
+  td{padding:9px 10px 9px 0;border-bottom:1px solid var(--grid);color:var(--text-secondary);vertical-align:top}
+  tbody tr:hover td{background:color-mix(in srgb, var(--text-primary) 3.5%, transparent)}
+  td.p{color:var(--text-primary);font-weight:500;white-space:nowrap}
+  .num{font-variant-numeric:tabular-nums;text-align:right}
+  .bad{color:var(--st-critical);font-weight:600}
+  .okv{color:var(--st-good);font-weight:600}
+  /* findings */
+  .find{border-bottom:1px solid var(--grid);padding:15px 0;display:grid;grid-template-columns:96px 1fr;gap:16px}
+  .find:last-child{border-bottom:0;padding-bottom:0}
+  .badge{font-size:10.5px;font-weight:650;letter-spacing:.05em;text-transform:uppercase;
+    display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 9px;border-radius:6px;
+    border:1px solid var(--border);white-space:nowrap}
+  .f-title{font-size:13.5px;font-weight:600;color:var(--text-primary);margin:0 0 5px;line-height:1.4}
+  .f-body{font-size:12.5px;color:var(--text-secondary);margin:0;line-height:1.6}
+  .f-body code{background:color-mix(in srgb, var(--text-primary) 6%, transparent);
+    padding:1px 5px;border-radius:4px;font-size:11.5px;font-family:ui-monospace,Menlo,monospace}
+  .f-fix{font-size:12.5px;color:var(--text-secondary);margin:7px 0 0;line-height:1.6}
+  .f-fix b{color:var(--text-primary);font-weight:600}
+  ol.steps{margin:0;padding-left:20px}
+  ol.steps li{font-size:13px;color:var(--text-secondary);line-height:1.65;margin-bottom:11px}
+  ol.steps li b{color:var(--text-primary);font-weight:600}
+  .foot{font-size:11.5px;color:var(--muted);line-height:1.65;margin:0}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:11.5px;color:var(--text-secondary);margin-bottom:16px}
+  .legend span{display:flex;align-items:center;gap:6px}
+  /* growth engine additions */
+  .phases{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  @media(max-width:920px){.phases{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.phases{grid-template-columns:1fr}}
+  .phase{border:1px solid var(--border);border-radius:10px;padding:14px 15px;background:var(--plane)}
+  .phase .ph-when{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px}
+  .phase .ph-name{font-size:14px;font-weight:650;margin:0 0 8px}
+  .phase ul{margin:0;padding-left:17px}
+  .phase li{font-size:12.3px;color:var(--text-secondary);line-height:1.55;margin-bottom:6px}
+  .arenas{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:820px){.arenas{grid-template-columns:1fr}}
+  .arena{border-left:3px solid var(--sev-high);padding:2px 0 2px 14px}
+  .arena h3{font-size:13.5px;margin:0 0 4px}
+  .arena .odds{font-size:11.5px;color:var(--muted);margin:0 0 7px}
+  .arena p{font-size:12.5px;color:var(--text-secondary);line-height:1.6;margin:0}
+  .pill{display:inline-block;font-size:10.5px;font-weight:600;padding:2px 8px;border-radius:10px;
+    border:1px solid var(--border);color:var(--text-secondary);white-space:nowrap}
+  .tablewrap{overflow-x:auto}
+  .loop{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:12.5px;color:var(--text-secondary)}
+  .loop .step{background:var(--plane);border:1px solid var(--border);border-radius:8px;padding:7px 11px}
+  .loop .step b{color:var(--text-primary)}
+  .loop .arr{color:var(--muted)}
+  .verdict{font-size:14px;line-height:1.65;color:var(--text-primary);margin:0}
+  .verdict + .verdict{margin-top:10px;color:var(--text-secondary);font-size:13px}
+  @media(max-width:560px){.viz-root{padding:24px 16px 48px}.find{grid-template-columns:1fr;gap:8px}.wrow{grid-template-columns:110px 1fr 60px}}
+</style>
+</head>
+<body>
+<div class="viz-root">
+<div class="wrap">
+
+  <header class="top">
+    <div>
+      <h1>InstaTech — SEO growth engine</h1>
+      <p class="sub">instatech.uk · WordPress + WooCommerce + Rank Math · Hostinger CDN + LiteSpeed Cache<br>
+      276 URLs crawled from the live sitemaps · 21 October 2026 · shops in Bloomsbury WC1, Moorgate EC1, Oxford Circus W1 (opening)</p>
+    </div>
+    <button class="toggle" id="tg">Dark / light</button>
+  </header>
+
+  <!-- EXECUTIVE VERDICT -->
+  <div class="card">
+    <h2>Executive summary</h2>
+    <p class="cap">What stands between instatech.uk and the top position, in order of leverage.</p>
+    <p class="verdict">The technical foundation is sound: every URL returns 200, 276 of 276 pages carry a
+    self-referencing canonical, 269 have exactly one H1, analytics fires sitewide, and LocalBusiness and FAQ
+    schema are already in place. Hygiene is not what is holding the site back.</p>
+    <p class="verdict">The gap to the top position is <b>commercial depth, internal authority flow and
+    off-site prominence</b>. The site has one repair-type page (screen repair) and no device- or model-level pages,
+    and that one page receives only 2 internal links while the location pages receive 280. Outside the site, a
+    brand search returns nothing for InstaTech. It returns similarly named competitors instead. The engine below
+    fixes the leaks in two weeks, builds the pages that capture buying intent, and then compounds reviews, links and local signals
+    every week after that.</p>
+  </div>
+
+  <!-- HERO + KPIs -->
+  <div class="grid hero-row">
+    <div class="card hero">
+      <div class="label">Issues found</div>
+      <div class="figure">16</div>
+      <p class="note">Five are critical. None of the five is a broken setting. They are structural and
+      competitive gaps, so closing them moves rankings, not only audit scores.</p>
+    </div>
+    <div class="card">
+      <h2>Findings by severity</h2>
+      <p class="cap">Severity is an ordered scale, shown as one hue getting darker. Counts are direct-labelled.</p>
+      <div class="sevrow">
+        <div class="sevname"><span class="dot" style="background:var(--st-critical)"></span>Critical</div>
+        <div class="sevtrack"><div class="sevbar" style="width:83.3%;background:var(--sev-critical)"></div></div>
+        <div class="sevval">5</div>
+      </div>
+      <div class="sevrow">
+        <div class="sevname"><span class="dot" style="background:var(--st-serious)"></span>High</div>
+        <div class="sevtrack"><div class="sevbar" style="width:100%;background:var(--sev-high)"></div></div>
+        <div class="sevval">6</div>
+      </div>
+      <div class="sevrow">
+        <div class="sevname"><span class="dot" style="background:var(--st-warning)"></span>Medium</div>
+        <div class="sevtrack"><div class="sevbar" style="width:83.3%;background:var(--sev-medium)"></div></div>
+        <div class="sevval">5</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="kpis" style="margin-bottom:18px">
+    <div class="kpi"><div class="k-label">URLs in sitemaps</div><div class="k-val">276</div>
+      <div class="k-sub"><span class="dot" style="background:var(--st-good)"></span>All HTTP 200</div></div>
+    <div class="kpi"><div class="k-label">Internal links to /screen-repair/</div><div class="k-val">2</div>
+      <div class="k-sub"><span class="dot" style="background:var(--st-critical)"></span>vs 280 to each location page</div></div>
+    <div class="kpi"><div class="k-label">Device- or model-level repair pages</div><div class="k-val">0</div>
+      <div class="k-sub"><span class="dot" style="background:var(--st-critical)"></span>No iPhone, Samsung or MacBook pages</div></div>
+    <div class="kpi"><div class="k-label">Images without alt text</div><div class="k-val">28%</div>
+      <div class="k-sub"><span class="dot" style="background:var(--st-warning)"></span>972 of 3,449</div></div>
+    <div class="kpi"><div class="k-label">Self-referencing canonicals</div><div class="k-val">276</div>
+      <div class="k-sub"><span class="dot" style="background:var(--st-good)"></span>Every crawled URL</div></div>
+    <div class="kpi"><div class="k-label">Pages with exactly one H1</div><div class="k-val">269</div>
+      <div class="k-sub"><span class="dot" style="background:var(--st-warning)"></span>6 blog archives + 1 demo page have none</div></div>
+    <div class="kpi"><div class="k-label">Category pages with a meta description</div><div class="k-val">1/39</div>
+      <div class="k-sub"><span class="dot" style="background:var(--st-serious)"></span>33 shop + 6 blog archives</div></div>
+    <div class="kpi"><div class="k-label">Homepage mobile weight (lab)</div><div class="k-val">2.2 MB</div>
+      <div class="k-sub"><span class="dot" style="background:var(--st-serious)"></span>2,412 DOM nodes</div></div>
+  </div>
+
+  <!-- WHAT #1 MEANS -->
+  <div class="card">
+    <h2>What "number 1" means here: three arenas</h2>
+    <p class="cap">A walk-in repair business wins or loses in three different result types. Each needs a different lever,
+    and the realistic timeline differs.</p>
+    <div class="arenas">
+      <div class="arena">
+        <h3>1 · Local pack (map results)</h3>
+        <p class="odds">Winnable within about 90 days near each shop</p>
+        <p>"phone repair near me", "iphone screen repair" searched within roughly 1 km of Marchmont Street,
+        City Road or Great Castle Street. Ranked on Google Business Profile relevance, proximity and prominence
+        (review volume, recency, citations). This is where most walk-in revenue comes from.</p>
+      </div>
+      <div class="arena">
+        <h3>2 · Neighbourhood organic</h3>
+        <p class="odds">Winnable within 3–6 months</p>
+        <p>"phone repair Bloomsbury / Holborn / King's Cross / Moorgate / Old Street / Barbican / Oxford Circus".
+        Competition is thin. The live results show directories and one iSmash station page. The location pages
+        already exist, so they need nearby-area depth, reviews and links.</p>
+      </div>
+      <div class="arena">
+        <h3>3 · London head terms</h3>
+        <p class="odds">A 6–12 month campaign</p>
+        <p>"iphone screen repair london", "macbook repair london", "phone repair london". These are contested by
+        national chains with dedicated device and station pages. Winning needs the model-level page architecture
+        in Phase 2 plus sustained link acquisition.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CRITICAL -->
+  <div class="card">
+    <h2>Critical findings</h2>
+    <p class="cap">Structural and competitive gaps that cap rankings regardless of on-page polish.</p>
+
+    <div class="find">
+      <div><span class="badge"><span class="dot" style="background:var(--st-critical)"></span>Critical</span></div>
+      <div>
+        <p class="f-title">The highest-intent page on the site is almost unlinked</p>
+        <p class="f-body"><code>/mobile-repair-services/screen-repair/</code> ("from £49, same day") receives internal links from
+        only 2 of 276 pages: <code>/mobile-repair-services/</code> and one blog post. The homepage, header and footer do not link to it.
+        By contrast, the Bloomsbury, Moorgate and laptop pages each receive about 280 links through the site-wide navigation.
+        Internal links are the cheapest ranking signal the business controls, and right now that signal points away from
+        the page that sells.</p>
+        <p class="f-fix"><b>Fix:</b> add "Screen repair" and every future repair-type page to the main navigation and footer.
+        Link it from the homepage hero, from each location page, and with descriptive anchors from all 61 blog posts that
+        mention screens. This takes about one hour of work and has the highest leverage on this list.</p>
+      </div>
+    </div>
+
+    <div class="find">
+      <div><span class="badge"><span class="dot" style="background:var(--st-critical)"></span>Critical</span></div>
+      <div>
+        <p class="f-title">No device- or model-level commercial pages</p>
+        <p class="f-body">People search by device and fault: "iPhone 15 screen replacement", "Samsung S24 battery",
+        "MacBook Air keyboard repair". The site has broad category pages (mobile, tablet, laptop, smartwatch) and a single
+        repair-type page. There is nothing that matches a model, a brand or a fault such as battery, charging port, water
+        damage or back glass. Competitors that dominate the London results, such as iSmash, publish a device selector and
+        dedicated pages for each station. Meanwhile, the blog targets these intents with informational posts that cannot
+        convert and that compete with the service pages.</p>
+        <p class="f-fix"><b>Fix:</b> build the commercial page architecture in Phase 2 below. Start with 12 pages: brand
+        hubs, repair-type pages and the four most-repaired iPhone generations. Each page needs real prices, turnaround,
+        parts grade and warranty, so it is not a thin doorway page.</p>
+      </div>
+    </div>
+
+    <div class="find">
+      <div><span class="badge"><span class="dot" style="background:var(--st-critical)"></span>Critical</span></div>
+      <div>
+        <p class="f-title">Weak off-site entity: the brand is effectively invisible beyond its own site</p>
+        <p class="f-body">A web search for "InstaTech phone repair London" returned no result for instatech.uk. It returned
+        similarly named businesses instead (Instant Technology Centre, iTech, London Phone Repairs). The schema's
+        <code>sameAs</code> and <code>hasMap</code> point to Google Maps <i>name-search</i> URLs rather than place-ID links,
+        the sitewide Organization node has no <code>sameAs</code> profiles, and no third-party review platform was found.
+        The brand is also written two ways: "instaTech" appears in the Google Maps listing names and 4 page titles, and
+        "InstaTech" appears in 268 titles.</p>
+        <p class="f-fix"><b>Fix:</b> standardise on one spelling everywhere. Replace the Maps search URLs with each
+        listing's share link or CID. Add Instagram, TikTok, Facebook and the GBP links to the Organization
+        <code>sameAs</code>. Then run the citation and review programme in Phase 3.</p>
+      </div>
+    </div>
+
+    <div class="find">
+      <div><span class="badge"><span class="dot" style="background:var(--st-critical)"></span>Critical</span></div>
+      <div>
+        <p class="f-title">Homepage H1 announces a launch instead of the service</p>
+        <p class="f-body">The homepage H1 is currently "2 shops weren't enough. Oxford Circus is next." It contains no service,
+        device or location term. The title tag is strong ("Phone &amp; Laptop Repair London – Same Day"), but the most
+        prominent on-page heading on the most-linked URL does not support it.</p>
+        <p class="f-fix"><b>Fix:</b> keep the Oxford Circus message as a banner or H2. Restore a descriptive H1, for example
+        "Phone, laptop and tablet repair in central London — same day, walk-in". Apply the same rule to service-page H1s
+        such as "Professional Mobile Repair Services": lead with the searched phrase.</p>
+      </div>
+    </div>
+
+    <div class="find">
+      <div><span class="badge"><span class="dot" style="background:var(--st-critical)"></span>Critical</span></div>
+      <div>
+        <p class="f-title">Mobile performance: heavy pages and main-thread congestion</p>
+        <p class="f-body">Lighthouse mobile lab runs (see limitations) scored the homepage 27/100. Total blocking time was
+        3.45 s, page weight 2.2 MB and DOM size 2,412 nodes. Screen repair scored 45 and Bloomsbury 42. Every page loads
+        about 168 KB of unused JavaScript, 191 KB of Google Tag Manager, and icon fonts from the wishlist and pop-up plugins.
+        One Bloomsbury run measured a 2.8 s server response, so cache misses are slow. The absolute LCP figures from this run
+        are inflated by the test network, but the weight, DOM and unused-JS findings do not depend on the network.</p>
+        <p class="f-fix"><b>Fix:</b> in LiteSpeed Cache, enable JS delay for GTM and non-critical scripts, remove unused CSS
+        and lazy-load iframes and maps. Dequeue the wishlist and advanced-popups assets on non-shop pages. Trim the homepage
+        DOM, and enable cache crawler warm-up so visitors are not served cache misses. Confirm with PageSpeed Insights field data
+        once it is available.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- HIGH -->
+  <div class="card">
+    <h2>High-priority findings</h2>
+    <p class="cap">Leaks in crawl budget, relevance and trust. All of them can be fixed in WordPress within two weeks.</p>
+
+    <div class="find">
+      <div><span class="badge"><span class="dot" style="background:var(--st-serious)"></span>High</span></div>
+      <div>
+        <p class="f-title">Broken and redirecting internal links left over from the theme demo</p>
+        <p class="f-body">Seven blog posts link to six URLs that return 404: <code>/electronics-repair-1/</code>,
+        <code>/electronics-repair-2/</code>, <code>/electronics-store-1/</code>, <code>/electronics-store-2/</code>,
+        <code>/signs-your-gadget-needs-repair-service-soon/</code> and <code>/budget-friendly-gadgets-with-premium-features/</code>.
+        The source posts are <code>/why-is-my-phone-battery-draining/</code>, <code>/desktop-computer-repair-near-me/</code>,
+        <code>/tablet-screen-repair-near-me/</code>, <code>/laptop-charger-replacement/</code>,
+        <code>/tablet-battery-replacement-service-guide/</code> and <code>/phone-screen-repair-cost/</code>.
+        Several other internal links still pass through 301 redirects, such as <code>/services/…</code>,
+        <code>/request-quote/</code> and <code>/testimonials/</code>.</p>
+        <p class="f-fix"><b>Fix:</b> repoint each link to the matching live service page. Point links at final URLs
+        rather than through redirects.</p>
+      </div>
+    </div>
+
+    <div class="find">
+      <div><span class="badge"><span class="dot" style="background:var(--st-serious)"></span>High</span></div>
+      <div>
+        <p class="f-title">Theme demo pages are live and indexable</p>
+        <p class="f-body"><code>/layouts/battery/</code> ("Battery - InstaTech") and <code>/layouts/display/</code> are set to
+        <code>index, follow</code> and linked from blog posts. <code>/blog-standard/</code> is a demo-slug URL listed in the
+        post sitemap with no H1. <code>/category/uncategorized/</code> is indexed.</p>
+        <p class="f-fix"><b>Fix:</b> delete or noindex the <code>/layouts/</code> pages. 301 <code>/blog-standard/</code> to a
+        proper <code>/blog/</code> or <code>/repair-guides/</code> hub. Recategorise posts out of "Uncategorized" and remove that archive.</p>
+      </div>
+    </div>
+
+    <div class="find">
+      <div><span class="badge"><span class="dot" style="background:var(--st-serious)"></span>High</span></div>
+      <div>
+        <p class="f-title">Blog posts compete with the service pages they should support</p>
+        <p class="f-body">Several posts target commercial "near me" and cost queries that belong to service pages:
+        <code>/tablet-screen-repair-near-me/</code> vs <code>/tablet-repairs/</code>, <code>/phone-screen-repair-cost/</code>
+        vs <code>/mobile-repair-services/screen-repair/</code>, and <code>/desktop-computer-repair-near-me/</code> and
+        <code>/laptop-repair-near-me-what-to-check-first/</code> vs <code>/laptop-desktop-repair/</code>. Posts average
+        2,098 words, which is substantial. When two URLs target the same intent, Google usually ranks neither strongly.</p>
+        <p class="f-fix"><b>Fix:</b> in Search Console, check which URL each query is ranking. Then either merge the post into the service page
+        with a 301, or re-angle it to a genuinely informational query that links to the service page.</p>
+      </div>
+    </div>
+
+    <div class="find">
+      <div><span class="badge"><span class="dot" style="background:var(--st-serious)"></span>High</span></div>
+      <div>
+        <p class="f-title">Category archives have no meta descriptions, and blog archives have no H1</p>
+        <p class="f-body">None of the 33 product category pages has a meta description, so Google writes its own from page
+        chrome. Five of the six blog category archives have no description, and none of the six has an H1.</p>
+        <p class="f-fix"><b>Fix:</b> in Rank Math → Titles &amp; Meta → Product Categories, set a description template, for example
+        "%term% — buy online or collect today from our Bloomsbury and Moorgate shops". Then hand-write descriptions for the
+        top ten categories. Add an archive H1 in the theme template.</p>
+      </div>
+    </div>
+
+    <div class="find">
+      <div><span class="badge"><span class="dot" style="background:var(--st-serious)"></span>High</span></div>
+      <div>
+        <p class="f-title">About Us is orphaned</p>
+        <p class="f-body"><code>/about-us/</code> receives no internal links. It is reachable only through the
+        <code>/testimonials/</code> redirect. This is the page that establishes who repairs the devices, which is a
+        trust signal for both customers and Google.</p>
+        <p class="f-fix"><b>Fix:</b> link it from the header or footer. Add named technicians, years of experience,
+        parts sourcing and warranty terms, and link each blog author profile to it.</p>
+      </div>
+    </div>
+
+    <div class="find">
+      <div><span class="badge"><span class="dot" style="background:var(--st-serious)"></span>High</span></div>
+      <div>
+        <p class="f-title">Oxford Circus: the opening is the best ranking window, and it is happening now</p>
+        <p class="f-body"><code>/locations/oxford-circus/</code> carries only WebPage and Breadcrumb schema, and the site
+        says the shop opens in October 2026. A Google Business Profile that is verified and populated before the doors open
+        will collect reviews from day one. The main local competitor, iSmash, is inside Oxford Circus station and is
+        closed on Sundays, while InstaTech advertises opening seven days a week.</p>
+        <p class="f-fix"><b>Fix:</b> verify the Great Castle Street GBP now with an opening date. Add Store/LocalBusiness
+        schema with geo, hours and phone. Lead with Sunday opening, and launch with a review-request push in the first 30 days.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MEDIUM -->
+  <div class="card">
+    <h2>Medium-priority findings</h2>
+    <p class="cap">Polish that compounds across 276 URLs.</p>
+    <div class="find">
+      <div><span class="badge"><span class="dot" style="background:var(--st-warning)"></span>Medium</span></div>
+      <div><p class="f-title">972 of 3,449 images have no alt text</p>
+      <p class="f-body">791 of those images are on product pages, 125 on blog posts and 17 on core pages.
+      <b>Fix:</b> as a stopgap, use Rank Math's image SEO setting to fill missing alt text from the product title.
+      Hand-write alt text on service and location pages.</p></div>
+    </div>
+    <div class="find">
+      <div><span class="badge"><span class="dot" style="background:var(--st-warning)"></span>Medium</span></div>
+      <div><p class="f-title">Duplicate and missing product metadata</p>
+      <p class="f-body">26 products have no meta description. There are 19 duplicate titles and 26 duplicate descriptions,
+      many copied from supplier text such as "Compatible with almost…". <b>Fix:</b> add a model or variant to duplicated
+      titles, and write descriptions that mention in-store collection.</p></div>
+    </div>
+    <div class="find">
+      <div><span class="badge"><span class="dot" style="background:var(--st-warning)"></span>Medium</span></div>
+      <div><p class="f-title">Location pages use thinner schema than the homepage</p>
+      <p class="f-body">The location pages declare <code>Store</code> without <code>geo</code>, <code>sameAs</code> or
+      <code>hasMap</code>, while the homepage carries richer MobilePhoneStore nodes. <b>Fix:</b> move the full LocalBusiness
+      node, with an <code>@id</code>, onto each location page and reference it from the homepage. Each shop then has
+      one canonical entity.</p></div>
+    </div>
+    <div class="find">
+      <div><span class="badge"><span class="dot" style="background:var(--st-warning)"></span>Medium</span></div>
+      <div><p class="f-title">Lighthouse SEO and accessibility failures</p>
+      <p class="f-body">All three tested pages fail "links are not crawlable", colour contrast, tap-target size, heading order,
+      and focusable elements inside <code>aria-hidden</code>. Accessibility scores range from 82 to 89. <b>Fix:</b> replace
+      <code>href="#"</code> and JavaScript-only links with real URLs, and enlarge mobile tap targets.</p></div>
+    </div>
+    <div class="find">
+      <div><span class="badge"><span class="dot" style="background:var(--st-warning)"></span>Medium</span></div>
+      <div><p class="f-title">Contact numbers are mobile numbers only</p>
+      <p class="f-body">Both shops list 07 numbers (+44 7377 244454 and +44 7508 088898). These work, but a London 020 number
+      reads as more established and is a common citation-matching field. <b>Fix:</b> optional. If adopted, update the number
+      in every citation at the same time to keep business details consistent.</p></div>
+    </div>
+  </div>
+
+  <!-- THE ENGINE -->
+  <div class="card">
+    <h2>The growth engine: four phases, one weekly loop</h2>
+    <p class="cap">Phases overlap. Phase 1 is a one-off, and Phases 3 and 4 run permanently once started.</p>
+    <div class="phases">
+      <div class="phase">
+        <div class="ph-when">Weeks 1–2</div>
+        <p class="ph-name">1 · Fix the leaks</p>
+        <ul>
+          <li>Add screen repair to the navigation and footer, and link it from the homepage and location pages</li>
+          <li>Rewrite the homepage and service-page H1s</li>
+          <li>Repoint the 6 dead and 6+ redirecting internal links</li>
+          <li>Noindex or delete <code>/layouts/*</code>, 301 <code>/blog-standard/</code>, retire "Uncategorized"</li>
+          <li>Set category description templates, and add an H1 to blog archives</li>
+          <li>Link About Us, and fix the brand spelling to one form</li>
+          <li>LiteSpeed: delay JS, dequeue plugin assets, enable cache warm-up</li>
+          <li>Confirm Search Console ownership and submit the sitemap index</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="ph-when">Weeks 3–8</div>
+        <p class="ph-name">2 · Build the money pages</p>
+        <ul>
+          <li><b>Brand hubs:</b> iPhone repair, Samsung repair, iPad repair, MacBook repair, Apple Watch repair</li>
+          <li><b>Repair-type pages:</b> battery replacement, charging port, water damage, back glass (screen exists)</li>
+          <li><b>Model pages:</b> iPhone 16, 15, 14, 13 series, each with a price table per fault</li>
+          <li>Each page needs prices, turnaround, parts grade, warranty, FAQ, Service + Offer schema and a booking CTA</li>
+          <li>Resolve blog overlap by merging or re-angling posts</li>
+          <li>Deepen location pages with nearby areas, directions from stations and shop-specific reviews</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="ph-when">Week 2 onward</div>
+        <p class="ph-name">3 · Local prominence</p>
+        <ul>
+          <li>Three GBPs: primary category "Mobile phone repair shop", with services and prices listed, weekly photos and posts</li>
+          <li><b>Review engine:</b> send an SMS or email with a direct review link after every completed repair, and reply to every review</li>
+          <li>Citations with identical business details: Apple Business Connect, Bing Places, Yell, Yelp, Thomson Local, Foursquare, Trustpilot</li>
+          <li>Oxford Circus GBP verified before opening</li>
+          <li>Link schema <code>sameAs</code> to every profile</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="ph-when">Month 2 onward</div>
+        <p class="ph-name">4 · Authority &amp; reach</p>
+        <ul>
+          <li>Student partnerships with nearby universities, such as UCL, SOAS and Birkbeck near Bloomsbury. Discount pages earn .ac.uk links</li>
+          <li>Local business associations and BIDs for Marchmont Street, City Road and the Oxford Circus area</li>
+          <li>Data-led PR from repair data, for example "the most-cracked phone in London"</li>
+          <li>Two blog posts a month, each feeding a money page</li>
+          <li>Consistent entity facts so AI assistants can cite the shops</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>The weekly operating loop</h2>
+    <p class="cap">The repeatable cycle that keeps the work compounding after the first 90 days.</p>
+    <div class="loop">
+      <span class="step"><b>Mon · Measure</b> GSC queries, GBP calls and directions, rank grid</span><span class="arr">→</span>
+      <span class="step"><b>Prioritise</b> queries at position 4–15 and pages losing clicks</span><span class="arr">→</span>
+      <span class="step"><b>Build</b> one money page or upgrade one existing page</span><span class="arr">→</span>
+      <span class="step"><b>Earn</b> reviews, one citation or link, and a GBP post per shop</span><span class="arr">→</span>
+      <span class="step"><b>Fri · Report</b> scorecard below</span>
+    </div>
+  </div>
+
+  <!-- SCORECARD -->
+  <div class="card">
+    <h2>Scorecard</h2>
+    <p class="cap">The baseline is set from Search Console and GBP Insights in week 1. No ranking or traffic data could
+    be retrieved for this audit (see limitations), so the targets are directional.</p>
+    <div class="tablewrap">
+    <table>
+      <thead><tr><th>Metric</th><th>Source</th><th>Today</th><th>Day 90 target</th><th>Cadence</th></tr></thead>
+      <tbody>
+        <tr><td class="p">Local pack top-3 coverage, 1 km grid per shop</td><td>Rank-grid tool</td><td>Baseline wk 1</td><td>Majority of grid points</td><td>Weekly</td></tr>
+        <tr><td class="p">Non-brand organic clicks</td><td>Search Console</td><td>Baseline wk 1</td><td>Clear upward trend</td><td>Weekly</td></tr>
+        <tr><td class="p">Calls + direction requests + bookings</td><td>GBP Insights, GA4</td><td>Baseline wk 1</td><td>Tracked as the primary outcome</td><td>Weekly</td></tr>
+        <tr><td class="p">New Google reviews per shop</td><td>GBP</td><td>Baseline wk 1</td><td>Steady weekly velocity</td><td>Weekly</td></tr>
+        <tr><td class="p">Commercial repair pages live</td><td>Site</td><td class="bad">1</td><td>13+</td><td>Fortnightly</td></tr>
+        <tr><td class="p">Internal links to screen repair</td><td>Crawl</td><td class="bad">2</td><td>270+</td><td>Monthly</td></tr>
+        <tr><td class="p">Dead internal links</td><td>Crawl</td><td class="bad">6</td><td class="okv">0</td><td>Monthly</td></tr>
+        <tr><td class="p">Images without alt</td><td>Crawl</td><td class="bad">972</td><td>&lt; 100</td><td>Monthly</td></tr>
+        <tr><td class="p">Referring domains (local and relevant)</td><td>Backlink tool</td><td>Not measured</td><td>+15 relevant</td><td>Monthly</td></tr>
+        <tr><td class="p">Mobile Core Web Vitals (field)</td><td>CrUX / PSI</td><td>No field data seen</td><td>All "Good"</td><td>Monthly</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <!-- PAGE DATA -->
+  <div class="card">
+    <h2>Crawl summary by page type</h2>
+    <p class="cap">Measured directly from all 276 sitemap URLs on 21 October 2026.</p>
+    <div class="tablewrap">
+    <table>
+      <thead><tr><th>Type</th><th class="num">URLs</th><th class="num">One H1</th><th class="num">Meta desc.</th><th class="num">Avg words</th><th class="num">Imgs / no alt</th><th>Schema present</th></tr></thead>
+      <tbody>
+        <tr><td class="p">Core pages</td><td class="num">17</td><td class="num okv">17</td><td class="num okv">17</td><td class="num">1,367</td><td class="num">97 / 17</td><td>LocalBusiness, MobilePhoneStore, Service, FAQPage</td></tr>
+        <tr><td class="p">Blog posts</td><td class="num">61</td><td class="num">60</td><td class="num okv">61</td><td class="num">2,098</td><td class="num">489 / 125</td><td>BlogPosting, Person</td></tr>
+        <tr><td class="p">Products</td><td class="num">159</td><td class="num okv">159</td><td class="num">133</td><td class="num">606</td><td class="num">2,387 / 791</td><td>Product, Offer</td></tr>
+        <tr><td class="p">Product categories</td><td class="num">33</td><td class="num okv">33</td><td class="num bad">0</td><td class="num">783</td><td class="num">393 / 33</td><td>CollectionPage</td></tr>
+        <tr><td class="p">Blog categories</td><td class="num">6</td><td class="num bad">0</td><td class="num bad">1</td><td class="num">631</td><td class="num">83 / 6</td><td>CollectionPage</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Method &amp; limitations</h2>
+    <p class="foot">
+      All 276 URLs in the Rank Math sitemaps were fetched and parsed on 21 October 2026. Titles, descriptions, H1s,
+      canonicals, robots directives, JSON-LD types, image alt text and internal links are measured counts, not estimates.
+      Performance figures come from Lighthouse 12 mobile lab runs on the homepage, screen repair and Bloomsbury pages,
+      executed from a cloud container. Every run recorded an artefactual same-URL "redirect" of about 9 s from the test
+      network, so the LCP and FCP values are inflated and should be read as relative only. Page weight, DOM size, unused JS
+      and third-party bytes do not depend on the network. Competitive observations come from live web-search results.
+      <b>Not available for this audit:</b> Semrush returned "insufficient API units", Ahrefs returned "insufficient plan",
+      and the PageSpeed Insights API quota was exhausted. As a result, keyword volumes, current rankings, backlink counts and
+      CrUX field data are not included. No Google Search Console or GBP access was available. A Search Console
+      verification meta tag was not found in the HTML, but ownership may be verified by DNS.
+    </p>
+  </div>
+
+</div>
+</div>
+<script>
+  document.getElementById('tg').addEventListener('click', function(){
+    var r = document.documentElement;
+    var cur = r.getAttribute('data-theme');
+    if(!cur){ cur = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
+    r.setAttribute('data-theme', cur === 'dark' ? 'light' : 'dark');
+  });
+</script>
+</body>
+</html>
