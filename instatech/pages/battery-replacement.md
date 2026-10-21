@@ -6,8 +6,8 @@
 | Field | Value |
 |---|---|
 | URL | `/mobile-repair-services/battery-replacement/` (sits beside `/screen-repair/` under Mobile Repair) |
-| SEO title (57 chars) | Phone Battery Replacement London – From £29, Same Day \| InstaTech |
-| Meta description (152 chars) | New phone battery in 20–40 minutes at our Bloomsbury and Moorgate shops. From £29, free diagnostic, no fix no fee. Walk in 7 days a week, open until 9pm. |
+| SEO title (55 chars) | Phone Battery Replacement London – From £29 \| InstaTech |
+| Meta description (153 chars) | New phone battery in 20–40 minutes at our Bloomsbury and Moorgate shops. From £29, free diagnostic, no fix no fee. Walk in 7 days a week, open until 9pm. |
 | H1 | Phone battery replacement in London, done while you wait |
 | Primary query | phone battery replacement london |
 | Secondary queries | iphone battery replacement london · samsung battery replacement london · battery replacement near me (Bloomsbury, King's Cross, Russell Square, Moorgate, Old Street) · swollen phone battery |
