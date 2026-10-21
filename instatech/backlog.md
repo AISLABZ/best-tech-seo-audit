@@ -25,7 +25,8 @@ site without the owner's explicit approval in a conversation. Approved changes a
 | 1.8 | Make the 19 duplicate product titles unique (`-2` duplicates) | todo | Check whether the `-2` products are true duplicates, and propose a merge with a 301 or a variant name |
 | 1.9 | Image alt text (972 missing at baseline) | live | The mu-plugin covers attachment images. Re-measure on the Monday crawl |
 | 1.10 | Link About Us from the header or footer; add named technicians, experience and warranty | live | Footer link is live (v1.1.0). Content still needs owner facts |
-| 1.11 | Entity: one spelling ("InstaTech") everywhere, including GBP names; Maps CID links in the schema; full MobilePhoneStore node on each location page; Store schema on Oxford Circus | todo | sameAs is done by the mu-plugin. Needs GBP share links from the owner |
+| 1.11 | Entity: one spelling ("InstaTech") everywhere, including GBP names; Maps CID links in the schema; full MobilePhoneStore node on each location page; Store schema on Oxford Circus | live | sameAs (v1.0) and Maps cid links plus pinned directions (v1.2) are live. Still to do: rename the GBP listings from "instaTech - (Bloomsbury)" and "instaTech - Moorgate" to "InstaTech Bloomsbury" and "InstaTech Moorgate" (owner, in GBP); a full MobilePhoneStore node on each location page |
+| 1.17 | Google review links for the review engine: Bloomsbury https://search.google.com/local/writereview?placeid=ChIJg5Ii0NUbdkgRQL_2omA3r5M · Moorgate https://search.google.com/local/writereview?placeid=ChIJm5ZiHwAddkgRICvcMAd8o3Q | ready | Use in the post-repair SMS and email (Phase 3.3), and on receipts or QR cards in-store |
 | 1.12 | Performance: LiteSpeed JS delay for GTM, remove unused CSS, dequeue TI Wishlist and Advanced Popups off-shop | todo | Settings change. Draft for approval, and verify with Lighthouse |
 | 1.13 | Search Console: confirm ownership and submit `/sitemap_index.xml` | blocked | Owner to confirm GSC access |
 | 1.14 | Lighthouse: links not crawlable (`href="#"`), tap targets, contrast | todo | Identify the elements and draft fixes |
@@ -52,7 +53,7 @@ site without the owner's explicit approval in a conversation. Approved changes a
 | # | Item | Status |
 |---|---|---|
 | 3.1 | Full GBP content for Bloomsbury, Moorgate and Oxford Circus (categories, services, prices, attributes, photos) | todo |
-| 3.2 | Oxford Circus GBP verified before opening; lead with Sunday opening | blocked: owner action |
+| 3.2 | Oxford Circus GBP verified before opening; lead with Sunday opening | blocked: owner action. No listing exists on Google Maps as of 21 Oct 2026. Create it as "InstaTech Oxford Circus" at 22 Great Castle St W1G 0HY |
 | 3.3 | Review-request SMS and email templates (all customers, no incentives) | todo |
 | 3.4 | Citations with identical business details: Apple Business Connect, Bing Places, Yell, Yelp, Thomson Local, Foursquare, Trustpilot. Tracked in `citations.md` | todo |
 | 3.5 | Weekly GBP post per shop | recurring (Thursday run) |

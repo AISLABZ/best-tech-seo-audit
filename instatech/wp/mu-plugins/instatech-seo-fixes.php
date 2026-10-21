@@ -3,7 +3,7 @@
  * Plugin Name: InstaTech SEO fixes
  * Description: Phase 1 SEO fixes from the instatech.uk audit (Oct 2026). Output filters only, no database writes.
  *              Roll back by replacing this file with an empty one, or define INSTATECH_SEO_FIXES_OFF in wp-config.php.
- * Version:     1.1.0
+ * Version:     1.2.0
  * Source:      https://github.com/aislabz/best-tech-seo-audit (instatech/wp/mu-plugins/instatech-seo-fixes.php)
  */
 
@@ -344,6 +344,84 @@ function instatech_seo_home_h1( $html ) {
 }
 add_filter( 'the_content', 'instatech_seo_home_h1', 1000 );
 add_filter( 'elementor/widget/render_content', 'instatech_seo_home_h1', 21 );
+
+/**
+ * Each shop's Google Business Profile, resolved from Google Maps on 21 Oct 2026.
+ * cid gives a permanent link to the listing; place_id pins directions to it.
+ */
+function instatech_seo_shop_listings() {
+	return array(
+		'bloomsbury' => array(
+			'cid'      => '10641785332690239296',
+			'place_id' => 'ChIJg5Ii0NUbdkgRQL_2omA3r5M',
+		),
+		'moorgate'   => array(
+			'cid'      => '8404697699929828128',
+			'place_id' => 'ChIJm5ZiHwAddkgRICvcMAd8o3Q',
+		),
+	);
+}
+
+/**
+ * Point Google Maps search links (in schema, buttons and text links) at the exact listings, and pin directions links
+ * to the listing's place ID. Embedded map iframes (output=embed) are left untouched.
+ */
+function instatech_seo_maps_links( $html ) {
+	if ( ! is_string( $html ) || false === strpos( $html, 'google.' ) ) {
+		return $html;
+	}
+
+	$shops = instatech_seo_shop_listings();
+	$cid   = array(
+		'bloomsbury' => 'https://maps.google.com/?cid=' . $shops['bloomsbury']['cid'],
+		'moorgate'   => 'https://maps.google.com/?cid=' . $shops['moorgate']['cid'],
+	);
+
+	$html = str_replace(
+		array(
+			'https://www.google.com/maps/place/instaTech+-+(Bloomsbury)/',
+			'https://www.google.com/maps/place/instaTech+-+Moorgate/',
+		),
+		array( $cid['bloomsbury'], $cid['moorgate'] ),
+		$html
+	);
+
+	// Address searches, only where the URL ends there (a quote follows), so embeds keep working.
+	$html = preg_replace(
+		array(
+			'#https://www\.google\.com/maps\?q=67\+Marchmont\+Street,\+London\+WC1N\+1AP(?=\\\\?"|&quot;|\')#',
+			'#https://www\.google\.com/maps\?q=16\+City\+Road,\+London\+EC1Y\+2AA(?=\\\\?"|&quot;|\')#',
+		),
+		array( $cid['bloomsbury'], $cid['moorgate'] ),
+		$html
+	);
+
+	// Directions: add the destination place ID unless one is already present.
+	$html = preg_replace(
+		array(
+			'#(https://www\.google\.com/maps/dir/\?api=1(?:&amp;|&)destination=67\+Marchmont\+Street\+London\+WC1N\+1AP)(?!(?:&amp;|&)destination_place_id)#',
+			'#(https://www\.google\.com/maps/dir/\?api=1(?:&amp;|&)destination=16\+City\+Road\+London\+EC1Y\+2AA)(?!(?:&amp;|&)destination_place_id)#',
+		),
+		array(
+			'$1&amp;destination_place_id=' . $shops['bloomsbury']['place_id'],
+			'$1&amp;destination_place_id=' . $shops['moorgate']['place_id'],
+		),
+		$html
+	);
+
+	return $html;
+}
+
+add_action(
+	'template_redirect',
+	function () {
+		if ( is_admin() || is_feed() || wp_doing_ajax() || ( defined( 'REST_REQUEST' ) && REST_REQUEST ) ) {
+			return;
+		}
+		ob_start( 'instatech_seo_maps_links' );
+	},
+	1
+);
 
 add_action(
 	'wp_head',

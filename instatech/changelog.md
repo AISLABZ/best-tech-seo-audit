@@ -34,5 +34,18 @@ Same file and the same rollback (re-upload v1.0.0 from git history or an empty f
 
 Smoke test: `/`, `/mobile-repair-services/`, `/locations/bloomsbury/`, `/shop/`, a blog post and `/wp-login.php` all returned 200. Caches were purged.
 
+### Deployed plugin v1.2.0 (approved by owner): Google Maps links point to the exact listings
+Listings were resolved from Google Maps on 21 Oct 2026. Each cid link was confirmed to open the right listing:
+
+| Shop | Listing name on Google | Permanent link | Place ID |
+|---|---|---|---|
+| Bloomsbury | instaTech - (Bloomsbury) | https://maps.google.com/?cid=10641785332690239296 | ChIJg5Ii0NUbdkgRQL_2omA3r5M |
+| Moorgate | instaTech - Moorgate | https://maps.google.com/?cid=8404697699929828128 | ChIJm5ZiHwAddkgRICvcMAd8o3Q |
+| Oxford Circus | No listing found | — | — |
+
+- Name-search and address-search Maps links in the schema (`sameAs`, `hasMap`) and in "Find us" links now use the cid links. "Directions" buttons now carry `destination_place_id`. Embedded map iframes are unchanged.
+- Verified on `/`, `/locations/`, both location pages, `/about-us/`, `/mobile-repair-services/` and `/locations/oxford-circus/`: 0 old links remain, embeds still render, and all JSON-LD parses. Caches were purged.
+- Mechanism: an output buffer on front-end HTML (`template_redirect`). Rollback is the same as for earlier versions.
+
 ### Elementor Pro security update
 Requested an update from 4.2.0, which is affected by an arbitrary-file-upload vulnerability fixed in 4.2.2, through Hostinger `wordpress_plugins_update`. **Result:** the job was accepted, but the plugin still reported 4.2.0 several minutes later. Elementor Pro updates normally need an active licence. **Action for owner:** in WP Admin → Elementor → License, confirm the licence is active, then update from Plugins (or upload the 4.2.2+ zip from your elementor.com account). Re-check on the next Monday run.
