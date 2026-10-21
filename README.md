@@ -69,6 +69,7 @@ Fixed in Webflow (21 Oct 2026), live and verified:
 - [x] GA4 confirmed already live (`G-CX5GX4VKHQ`)
 - [x] "AI assistants" custom channel group added in GA4 Admin (by site owner, 21 Oct)
 - [x] FAQ sections (6 questions each) added to the laptop, tablet and smartwatch pages, live and verified. See `faq-drafts.md`
+- [x] FAQ sections (5 questions each) added to the five `/services/` pages via a new CMS "FAQ" field and template section, live and verified. See `faq-drafts-services.md`. FAQ structured data is not attached there yet (the existing script would also add a sticky call bar)
 - [ ] Published prices (parked by site owner, 21 Oct: repair prices will not be posted)
 - [ ] `www` DNS record (deferred by site owner, 21 Oct). Webflow is ready; it needs `CNAME www → cdn.webflow.com` at the DNS provider
 

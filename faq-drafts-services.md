@@ -1,4 +1,4 @@
-# FAQ drafts for approval — problem pages
+# FAQ — problem pages (approved and published 21 Oct 2026)
 
 Drafted 21 October 2026 for the five `/services/` pages. Each set goes into the new **FAQ**
 field on the Services collection and shows in a new section below the process steps.
