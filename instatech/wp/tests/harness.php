@@ -1,12 +1,12 @@
 <?php
 // Stubbed-WordPress test harness for instatech-seo-fixes.php.
 // Run: php instatech/wp/tests/harness.php instatech/wp/mu-plugins/instatech-seo-fixes.php
-define('ABSPATH','/x/');
+define('ABSPATH','/x/'); define('OBJECT','OBJECT'); function get_page_by_path($p){return null;}
 $F=[]; function add_filter($h,$cb,$p=10,$n=1){global $F;$F[$h][]=[$cb,$n];}
 function add_action($h,$cb,$p=10,$n=1){} function untrailingslashit($s){return rtrim($s,'/');} function is_front_page(){return false;} function is_page(){return false;}
 function apply($h,...$a){global $F;foreach($F[$h] as [$cb,$n]){$a[0]=$cb(...array_slice($a,0,$n));}return $a[0];}
 $CTX=['admin'=>false,'post'=>(object)['post_name'=>'desktop-computer-repair-near-me'],'tax'=>null,'cat'=>false,'prod'=>false,'title'=>'EnergyBar T20 20,000mAh'];
-function is_admin(){global $CTX;return $CTX['admin'];} function get_post(){global $CTX;return $CTX['post'];}
+function is_admin(){global $CTX;return $CTX['admin'];} function get_post(){global $CTX;return $CTX['post'];} function get_option($k){return false;} function esc_html($s){return $s;}
 function home_url(){return 'https://instatech.uk';} function trailingslashit($s){return rtrim($s,'/').'/';}
 function esc_url($u){return $u;} function wp_unslash($s){return $s;} function wp_strip_all_tags($s){return strip_tags($s);}
 function is_category($s=null){global $CTX;return $s? $CTX['cat']===$s : (bool)$CTX['cat'];}

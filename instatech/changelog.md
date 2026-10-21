@@ -47,6 +47,23 @@ Listings were resolved from Google Maps on 21 Oct 2026. Each cid link was confir
 - Verified on `/`, `/locations/`, both location pages, `/about-us/`, `/mobile-repair-services/` and `/locations/oxford-circus/`: 0 old links remain, embeds still render, and all JSON-LD parses. Caches were purged.
 - Mechanism: an output buffer on front-end HTML (`template_redirect`). Rollback is the same as for earlier versions.
 
+### Published: Phone Battery Replacement page (approved by owner)
+- **URL:** https://instatech.uk/mobile-repair-services/battery-replacement/ (page ID 76574, child of Mobile Repair Services 75806).
+- **Created by:** the one-shot mu-plugin `wp-content/mu-plugins/instatech-create-battery-replacement.php`, which does nothing once the page exists. Source block: `instatech/pages/battery-replacement.block.html`, built by `instatech/tools/build_service_page.py`.
+- **Design:** the same template stylesheet and script as `/screen-repair/`. Interactive symptom checker, brand tabs, step journey and FAQ were all checked live with 0 JS errors, on desktop and mobile.
+- **Search details:** SEO title "Phone Battery Replacement London – Same Day | InstaTech", meta description and focus keyword stored in Rank Math. Indexable, self-canonical and in `page-sitemap.xml`. One H1. Valid JSON-LD (Service, BreadcrumbList, FAQPage); the FAQ is generated from the visible FAQ.
+- **Programme rules:** no prices; warranty described as repair-dependent; both parts claims; general Apple wording.
+- **Rollback:** set the page to Draft in WP Admin (Pages → Battery Replacement), and re-upload plugin v1.2.0.
+
+### Deployed plugin v1.3.1
+- "Battery Replacement" now appears after "Screen Repair" in the desktop, sticky and mobile menus and the footer services list, but only while the page is published.
+- `/how-long-does-phone-repair-take/`: the "Battery replacements" link now goes to the new page.
+- Verified: 4 navigation links to the battery page on every page tested (`/`, `/locations/moorgate/`, `/shop/`), plus the contextual link.
+- v1.3.0 read a WordPress option to decide whether to show the links, and that option read back empty on this server (probably the object cache). v1.3.1 checks the published page directly instead.
+
+### Finding: LiteSpeed Guest Mode reloads every page on a visitor's first visit
+A fresh mobile visit loads the page, POSTs to `/wp-content/plugins/litespeed-cache/guest.vary.php`, sets `_lscache_vary`, then reloads the page. This was confirmed on `/`, `/locations/bloomsbury/` and the battery page. It explains the ~8–10 s same-URL "redirect" in the audit's Lighthouse runs. It is not a test artefact; it affects real first visits and Core Web Vitals. Logged as backlog 1.12a for approval.
+
 ### Elementor Pro security update
 Requested an update from 4.2.0, which is affected by an arbitrary-file-upload vulnerability fixed in 4.2.2, through Hostinger `wordpress_plugins_update`. **Result:** the job was accepted, but the plugin still reported 4.2.0 several minutes later. Elementor Pro updates normally need an active licence. **Action for owner:** in WP Admin → Elementor → License, confirm the licence is active, then update from Plugins (or upload the 4.2.2+ zip from your elementor.com account). Re-check on the next Monday run.
 
@@ -62,3 +79,6 @@ Source: `instatech/proposals/2026-10-21-keyword-cluster-decisions.md` §1–2 (b
 - Tests: `php -l` clean; `harness-v13.php` 11/11; `harness-v11.php` 13/13 and `harness-v12.php` 11/11 unchanged; `harness.php` output identical to v1.2.0.
 - Server and CDN cache cleared. `/`, `/locations/bloomsbury/` and both changed pages render without errors.
 - Note: the session's permission check blocked the raw-HTML verification, so meta description and OG tags are to be confirmed on the Monday crawl. Both pages also emit a second, non-Rank Math `og:title` ("Phone Accessories and Trade-In in London", "Tablet Repairs"); its source is still to be traced.
+
+### v1.3.0 overwritten by v1.3.1; combined v1.3.2 prepared (not deployed)
+Two sessions deployed the same plugin file in parallel. This session's v1.3.0 (keyword-cluster changes, backlog 5.3 and 5.6) went up at about 13:00. A parallel session's v1.3.1 (battery page links) went up at about 13:05 and replaced it; v1.3.1 does not contain the 5.3 and 5.6 changes. The live file was confirmed as v1.3.1 (483 lines, 15,238 bytes). `instatech/wp/mu-plugins/instatech-seo-fixes.php` is now v1.3.2: v1.3.1 unchanged, plus the keyword-cluster overrides. Tests: `php -l` clean; harness-v11 13/13, v12 11/11, v13 11/11, v13-clusters 11/11; `harness.php` output identical to v1.3.1. **Awaiting owner go-ahead to redeploy.**

@@ -9,8 +9,8 @@ until the first pull confirms them.
 | phone repair london | S1 | primary | `/mobile-repair-services/` | — | — | — |
 | phone screen repair london | S2 | primary | `/mobile-repair-services/screen-repair/` | — | — | — |
 | iphone screen repair london | S2 | supporting (monthly SERP check) | `/mobile-repair-services/screen-repair/` | — | — | — |
-| phone battery replacement london | S3 | primary | gap (2.1 drafted) | — | — | — |
-| iphone battery replacement london | S3 | supporting (monthly SERP check) | gap (2.1 drafted) | — | — | — |
+| phone battery replacement london | S3 | primary | `/mobile-repair-services/battery-replacement/` | — | — | — |
+| iphone battery replacement london | S3 | supporting (monthly SERP check) | `/mobile-repair-services/battery-replacement/` | — | — | — |
 | charging port repair london | S4 | primary | gap (2.2) | — | — | — |
 | water damaged phone repair london | S5 | primary | gap (2.3) | — | — | — |
 | laptop repair london | S6 | primary | `/laptop-desktop-repair/` | — | — | — |

@@ -12,6 +12,18 @@ and update it. Statuses:
 **Autonomy rule (set by the owner, 21 Oct 2026):** scheduled runs draft and propose only. Nothing is changed on the live
 site without the owner's explicit approval in a conversation. Approved changes are deployed and logged in `changelog.md`.
 
+## Programme rules (set by the owner, 21 Oct 2026; apply to every page, post, GBP post, schema and proposal)
+1. **No prices.** Never write, add, request or placeholder prices: no "from £X", no price tables, no `offers` or
+   `priceSpecification` in schema, no price-led titles or meta descriptions. Lead with speed, free diagnostic,
+   no fix no fee, warranty, walk-in 7 days and late opening instead. Do not ask the owner for prices. (Existing price
+   mentions already on the live site are the owner's business. Leave them alone, and don't copy them into new content.)
+2. **Warranty:** say "warranty on every repair, covering parts and labour; the period depends on the repair and is
+   confirmed before work starts." Never state a fixed period.
+3. **Parts:** both claims are true and may be used together: "genuine replacement parts and high-quality parts that
+   meet or exceed the original specification."
+4. **Apple:** keep it general ("we repair iPhones / we replace iPhone batteries"). Don't mention a genuine Apple
+   battery option, Apple's own pricing or "unknown part" notices on service pages.
+
 ## Phase 1: fix the leaks
 | # | Item | Status | Notes |
 |---|---|---|---|
@@ -27,6 +39,7 @@ site without the owner's explicit approval in a conversation. Approved changes a
 | 1.10 | Link About Us from the header or footer; add named technicians, experience and warranty | live | Footer link is live (v1.1.0). Content still needs owner facts |
 | 1.11 | Entity: one spelling ("InstaTech") everywhere, including GBP names; Maps CID links in the schema; full MobilePhoneStore node on each location page; Store schema on Oxford Circus | live | sameAs (v1.0) and Maps cid links plus pinned directions (v1.2) are live. Still to do: rename the GBP listings from "instaTech - (Bloomsbury)" and "instaTech - Moorgate" to "InstaTech Bloomsbury" and "InstaTech Moorgate" (owner, in GBP); a full MobilePhoneStore node on each location page |
 | 1.17 | Google review links for the review engine: Bloomsbury https://search.google.com/local/writereview?placeid=ChIJg5Ii0NUbdkgRQL_2omA3r5M · Moorgate https://search.google.com/local/writereview?placeid=ChIJm5ZiHwAddkgRICvcMAd8o3Q | ready | Use in the post-repair SMS and email (Phase 3.3), and on receipts or QR cards in-store |
+| 1.12a | **Top performance item: LiteSpeed Guest Mode reload.** Every first visit loads the page twice (`guest.vary.php`, then a reload to set the `_lscache_vary` mobile variant), which is the ~9 s Lighthouse "redirect". Proposal: LiteSpeed Cache → General → Guest Mode **OFF** (or keep it on but turn Cache → Mobile → Cache Mobile **OFF**, since the theme is responsive and needs no separate mobile cache). Then purge and re-test first-visit loads and Lighthouse | drafted | Settings change: owner approval needed. Can be applied via WP Admin in 1 minute |
 | 1.12 | Performance: LiteSpeed JS delay for GTM, remove unused CSS, dequeue TI Wishlist and Advanced Popups off-shop | todo | Settings change. Draft for approval, and verify with Lighthouse |
 | 1.13 | Search Console: confirm ownership and submit `/sitemap_index.xml` | blocked | Owner to confirm GSC access |
 | 1.14 | Lighthouse: links not crawlable (`href="#"`), tap targets, contrast | todo | Identify the elements and draft fixes |
@@ -38,16 +51,16 @@ site without the owner's explicit approval in a conversation. Approved changes a
 
 | # | Page | Status | Needs from owner |
 |---|---|---|---|
-| 2.1 | Battery replacement | drafted | `instatech/pages/battery-replacement.md`. Pricing removed (owner rule); warranty and parts wording resolved. Needs: genuine Apple battery option (yes/no) and approval to publish |
+| 2.1 | Battery replacement | live | https://instatech.uk/mobile-repair-services/battery-replacement/ (ID 76574), published 21 Oct 2026. Linked from the menus and footer (v1.3.1). Next: contextual links from the battery guide, the draining and battery-health posts, and both location pages |
 | 2.2 | Charging port repair | todo | — |
-| 2.3 | Water damage repair | todo | Diagnostic fee policy (stated without prices) |
+| 2.3 | Water damage repair | todo | — |
 | 2.4 | Back glass repair | todo | — |
-| 2.5 | iPhone repair hub | todo | — (no pricing, owner rule) |
-| 2.6 | Samsung repair hub | todo | — (no pricing, owner rule) |
+| 2.5 | iPhone repair hub (faults covered, by model family, with no prices) | todo | — |
+| 2.6 | Samsung repair hub | todo | — |
 | 2.7 | iPad repair (consolidate with `/tablet-repairs/`) | todo | — |
-| 2.8 | MacBook repair | todo | — (no pricing, owner rule) |
+| 2.8 | MacBook repair | todo | — |
 | 2.9 | Apple Watch repair (retitle the smartwatch page) | todo | — |
-| 2.10–2.13 | iPhone 16, 15, 14 and 13 series model pages | todo | Faults covered per model (no pricing) |
+| 2.10–2.13 | iPhone 16, 15, 14 and 13 series model pages | deferred | Without prices, separate model pages would be thin and close to duplicates. Cover the model families as sections inside the iPhone hub (2.5) instead. Revisit with GSC data if model queries show demand |
 | 2.14 | Cannibalisation review: `/phone-screen-repair-cost/`, `/tablet-screen-repair-near-me/`, `/desktop-computer-repair-near-me/`, `/laptop-repair-near-me-what-to-check-first/` | moved to 5.4 | — |
 | 2.15 | Deepen location pages with nearby areas, station directions and shop reviews | todo | — |
 
@@ -77,15 +90,15 @@ copy facts are in `claims.md`. Every action carries its rule and cluster ID. At 
 |---|---|---|---|---|---|
 | 5.1 | Search Console data route for the monthly pull: connector, browser report, or owner CSV export to `instatech/data/gsc/` | — | — | blocked | Same blocker as 1.13. The Search Console connector failed to connect on 21 Oct 2026 |
 | 5.2 | Baseline pull and first cluster review: confirm primaries, ranking URLs, R6/R7/R8 flags; fill the refresh queue | all | — | todo | Monthly review, 1 Nov 2026. October is the baseline month; R5 starts in December |
-| 5.3 | Retarget `/phone-accessories-trade-in/` to accessories; `/buy-sell-phones/` owns trade-in (owner decision Q1) | R7 · S9/S11 | H + L | live | Plugin v1.3.0, 21 Oct 2026. Monday crawl to confirm meta and OG tags |
+| 5.3 | Retarget `/phone-accessories-trade-in/` to accessories; `/buy-sell-phones/` owns trade-in (owner decision Q1) | R7 · S9/S11 | H + L | approved, **not live** | Deployed in v1.3.0, then overwritten by v1.3.1 (parallel session, 21 Oct 13:05). Combined plugin v1.3.2 is ready to redeploy |
 | 5.4 | Commercial-intent posts competing with service pages: `/phone-screen-repair-cost/` (S2), `/laptop-repair-near-me-what-to-check-first/` and `/desktop-computer-repair-near-me/` (S6), `/tablet-screen-repair-near-me/` (S7), `/guide-to-phone-battery-replacement-uk/` (S3) | R7 · S2/S3/S6/S7 | H + L | todo | Supersedes 2.14. Confirm with the 5.2 data before merging or re-angling |
 | 5.5 | Informational overlap: five wireless-charging posts (I1), four power-bank posts (I3), two refurbished posts (I5) | R7 · I1/I3/I5 | H + L | todo | Merge only where the data shows the posts share queries |
-| 5.6 | `/tablet-repairs/` title, meta and H1 cover both shops, not Bloomsbury only (owner confirmed, Q2) | S7 | L (title/meta) · H (H1) | live | Plugin v1.3.0, 21 Oct 2026, no prices. Monday crawl to confirm meta and OG tags |
+| 5.6 | `/tablet-repairs/` title, meta and H1 cover both shops, not Bloomsbury only (owner confirmed, Q2) | S7 | L (title/meta) · H (H1) | approved, **not live** | As 5.3: restored in v1.3.2, awaiting redeploy. No prices |
 | 5.7 | Data recovery service page (owner confirmed the service, Q3) | R8 · S10 | H | approved (brief) | `proposals/2026-10-21-keyword-cluster-decisions.md` §3. No pricing (owner rule); next Wednesday build run drafts the page |
 
 ## Needs from owner
-- Turnaround by repair type (warranty varies by repair and parts wording stands, per owner 21 Oct 2026; no pricing anywhere)
-- Google Maps share or CID links for each shop's Google Business Profile, and confirmation of Search Console access
+- (No prices needed. See the programme rules.)
+- Confirmation of Search Console access (the GBP links are resolved: see 1.11 and 1.17)
 - Technician names and experience for About Us
 - Approval on items marked "drafted"
 - Keyword clusters: confirm the ignore list (Q4 in `keyword-clusters.md`); data recovery pricing; Moorgate opening hours
@@ -96,3 +109,4 @@ copy facts are in `claims.md`. Every action carries its rule and cluster ID. At 
 - 2026-10-21: Owner decided Q1–Q3 and the warranty and parts wording. 5.3, 5.6 and 5.7 moved to drafted.
 - 2026-10-21: Owner approved 5.3, 5.6 (amended: no pricing) and 5.7, and set the rule "no pricing added anywhere"; Phase 2 price needs removed. Moorgate hours confirmed on the site.
 - 2026-10-21: 5.3 and 5.6 deployed in plugin v1.3.0 (see changelog).
+- 2026-10-21: Merged the keyword-cluster work into the programme branch. v1.3.0 (5.3, 5.6) was overwritten on the live site by v1.3.1 from a parallel session; plugin v1.3.2 combines both and awaits redeploy. Battery page (2.1) is live, so S3 is no longer a gap.

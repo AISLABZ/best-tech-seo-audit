@@ -12,7 +12,8 @@ The goal is to make instatech.uk number 1 in three arenas:
 ## Rules for working on the live site
 - Take a full backup, or confirm a restorable one exists, before the first change. Log every change, with URL, field, old value and new value, in `instatech/changelog.md` in the repo, and push it.
 - Ask me before deleting any page or post, or changing the theme, plugins, menus or LiteSpeed settings. Content and metadata edits listed below are pre-approved.
-- Never invent prices, warranties, turnaround times, staff names or reviews. If a page needs a fact I haven't given you, leave a clearly marked placeholder and add it to a "needs from owner" list.
+- **Programme rules (owner, 21 Oct 2026). These override anything below that mentions prices:** no prices anywhere (no price tables, "from £X", `offers` in schema, or price requests to the owner); warranty "covers parts and labour, period depends on the repair"; parts "genuine replacement parts and high-quality parts that meet or exceed the original specification"; Apple kept general (no genuine-Apple-battery or "unknown part" mentions on service pages). See `instatech/backlog.md` → Programme rules.
+- Never invent warranties, turnaround times, staff names or reviews. If a page needs a fact I haven't given you, leave a clearly marked placeholder and add it to a "needs from owner" list.
 - Follow Google's review policy: review requests go to every customer, with no incentives and no filtering to only happy customers.
 - Do not create doorway pages. Every new page must carry unique, real content: prices, faults, turnaround, parts grade, warranty and FAQ.
 - After each batch, re-crawl the affected URLs and confirm the change is live. Purge the LiteSpeed cache if needed.

@@ -16,7 +16,7 @@ Cluster IDs: **S** commercial service/device · **L** hyperlocal · **B** brand 
 |---|---|---|---|---|---|---|
 | S1 | Phone repair (any device) | `/mobile-repair-services/` | phone repair london | mobile phone repair london · phone repair near me · same day phone repair · samsung repair london (until 2.6 exists) | `/` | Hub owns any-device searches only |
 | S2 | Phone screen repair | `/mobile-repair-services/screen-repair/` | phone screen repair london | iphone screen repair london · cracked phone screen repair · screen replacement near me · phone screen repair cost | `/phone-screen-repair-cost/`, `/how-to-fix-cracked-phone-screen/` | **R7 risk:** the cost post targets a commercial query (backlog 2.14) |
-| S3 | Battery replacement | **gap** → `/mobile-repair-services/battery-replacement/` (drafted, 2.1) | phone battery replacement london | iphone battery replacement london · samsung battery replacement · swollen phone battery | `/guide-to-phone-battery-replacement-uk/` | **R8 gap**; the guide post must be re-angled to informational when the page launches |
+| S3 | Battery replacement | `/mobile-repair-services/battery-replacement/` (live 21 Oct 2026, 2.1) | phone battery replacement london | iphone battery replacement london · samsung battery replacement · swollen phone battery | `/guide-to-phone-battery-replacement-uk/` | Page live; re-angle the guide post to the informational question and link it to the page |
 | S4 | Charging port repair | **gap** (2.2) | charging port repair london | phone not charging repair · iphone charging port repair | `/how-to-fix-phone-charging-issues/`, `/how-to-clean-charging-port-safely/` | R8 gap |
 | S5 | Water damage repair | **gap** (2.3) | water damaged phone repair london | phone dropped in water repair | `/can-water-damaged-phones-recover/`, `/phone-corrosion-after-water-damage/` | R8 gap |
 | S6 | Laptop and desktop repair | `/laptop-desktop-repair/` | laptop repair london | computer repair london · pc repair london · laptop repair near me | `/laptop-repair-near-me-what-to-check-first/`, `/desktop-computer-repair-near-me/` | **R7 risk:** two "near me" posts (backlog 2.14) |
@@ -132,6 +132,6 @@ Runs in the monthly review, straight after the Search Console pull and before th
 ## 6. Refresh queue
 | Cluster | Rule | Action | Backlog item | Last changed | Result next month (pos / impr before → after) |
 |---|---|---|---|---|---|
-| S9/S11 | R7 | Retarget `/phone-accessories-trade-in/` to accessories; trade-in stays on `/buy-sell-phones/` | 5.3 | 21 Oct 2026 (v1.3.0) | — |
-| S7 | Owner decision Q2 | `/tablet-repairs/` title, meta and H1 cover both shops | 5.6 | 21 Oct 2026 (v1.3.0) | — |
+| S9/S11 | R7 | Retarget `/phone-accessories-trade-in/` to accessories; trade-in stays on `/buy-sell-phones/` | 5.3 | Pending redeploy (v1.3.2) | — |
+| S7 | Owner decision Q2 | `/tablet-repairs/` title, meta and H1 cover both shops | 5.6 | Pending redeploy (v1.3.2) | — |
 | S10 | R8 | Data recovery service page | 5.7 | — | — |
