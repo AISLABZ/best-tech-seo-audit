@@ -12,6 +12,18 @@ and update it. Statuses:
 **Autonomy rule (set by the owner, 21 Oct 2026):** scheduled runs draft and propose only. Nothing is changed on the live
 site without the owner's explicit approval in a conversation. Approved changes are deployed and logged in `changelog.md`.
 
+## Programme rules (set by the owner, 21 Oct 2026; apply to every page, post, GBP post, schema and proposal)
+1. **No prices.** Never write, add, request or placeholder prices: no "from £X", no price tables, no `offers` or
+   `priceSpecification` in schema, no price-led titles or meta descriptions. Lead with speed, free diagnostic,
+   no fix no fee, warranty, walk-in 7 days and late opening instead. Do not ask the owner for prices. (Existing price
+   mentions already on the live site are the owner's business. Leave them alone, and don't copy them into new content.)
+2. **Warranty:** say "warranty on every repair, covering parts and labour; the period depends on the repair and is
+   confirmed before work starts." Never state a fixed period.
+3. **Parts:** both claims are true and may be used together: "genuine replacement parts and high-quality parts that
+   meet or exceed the original specification."
+4. **Apple:** keep it general ("we repair iPhones / we replace iPhone batteries"). Don't mention a genuine Apple
+   battery option, Apple's own pricing or "unknown part" notices on service pages.
+
 ## Phase 1: fix the leaks
 | # | Item | Status | Notes |
 |---|---|---|---|
@@ -36,23 +48,23 @@ site without the owner's explicit approval in a conversation. Approved changes a
 ## Phase 2: money pages (draft as WordPress drafts or repo files for approval)
 | # | Page | Status | Needs from owner |
 |---|---|---|---|
-| 2.1 | Battery replacement | drafted | `instatech/pages/battery-replacement.md`. Needs per-model prices, warranty period, parts wording ("genuine" vs "meets OEM spec" is inconsistent on the live site) and the genuine Apple battery option |
-| 2.2 | Charging port repair | todo | Same |
-| 2.3 | Water damage repair | todo | Same, plus diagnostic fee policy |
-| 2.4 | Back glass repair | todo | Same |
-| 2.5 | iPhone repair hub | todo | Price matrix |
-| 2.6 | Samsung repair hub | todo | Price matrix |
+| 2.1 | Battery replacement | drafted | `instatech/pages/battery-replacement.md`, revised to the programme rules. Owner: confirm the Android brand list, then approve the build |
+| 2.2 | Charging port repair | todo | — |
+| 2.3 | Water damage repair | todo | — |
+| 2.4 | Back glass repair | todo | — |
+| 2.5 | iPhone repair hub (faults covered, by model family, with no prices) | todo | — |
+| 2.6 | Samsung repair hub | todo | — |
 | 2.7 | iPad repair (consolidate with `/tablet-repairs/`) | todo | — |
-| 2.8 | MacBook repair | todo | Price matrix |
+| 2.8 | MacBook repair | todo | — |
 | 2.9 | Apple Watch repair (retitle the smartwatch page) | todo | — |
-| 2.10–2.13 | iPhone 16, 15, 14 and 13 series model pages | todo | Per-fault prices |
+| 2.10–2.13 | iPhone 16, 15, 14 and 13 series model pages | deferred | Without prices, separate model pages would be thin and close to duplicates. Cover the model families as sections inside the iPhone hub (2.5) instead. Revisit with GSC data if model queries show demand |
 | 2.14 | Cannibalisation review: `/phone-screen-repair-cost/`, `/tablet-screen-repair-near-me/`, `/desktop-computer-repair-near-me/`, `/laptop-repair-near-me-what-to-check-first/` | todo | GSC data preferred |
 | 2.15 | Deepen location pages with nearby areas, station directions and shop reviews | todo | — |
 
 ## Phase 3: local prominence
 | # | Item | Status |
 |---|---|---|
-| 3.1 | Full GBP content for Bloomsbury, Moorgate and Oxford Circus (categories, services, prices, attributes, photos) | todo |
+| 3.1 | Full GBP content for Bloomsbury, Moorgate and Oxford Circus (categories, services without prices, attributes, photos) | todo |
 | 3.2 | Oxford Circus GBP verified before opening; lead with Sunday opening | blocked: owner action. No listing exists on Google Maps as of 21 Oct 2026. Create it as "InstaTech Oxford Circus" at 22 Great Castle St W1G 0HY |
 | 3.3 | Review-request SMS and email templates (all customers, no incentives) | todo |
 | 3.4 | Citations with identical business details: Apple Business Connect, Bing Places, Yell, Yelp, Thomson Local, Foursquare, Trustpilot. Tracked in `citations.md` | todo |
@@ -67,7 +79,7 @@ site without the owner's explicit approval in a conversation. Approved changes a
 | 4.4 | Two blog posts a month, each linking to a money page | recurring |
 
 ## Needs from owner
-- Repair price matrix by model and fault, plus warranty, turnaround and parts-grade policy
-- Google Maps share or CID links for each shop's Google Business Profile, and confirmation of Search Console access
+- (No prices needed. See the programme rules.)
+- Confirmation of Search Console access (the GBP links are resolved: see 1.11 and 1.17)
 - Technician names and experience for About Us
 - Approval on items marked "drafted"

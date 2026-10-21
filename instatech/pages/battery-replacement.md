@@ -1,22 +1,24 @@
 # Draft: Phone Battery Replacement London (Phase 2.1)
 
-**Status:** drafted 21 Oct 2026, awaiting owner review. Not published.
-**Build route:** in Elementor, duplicate `/mobile-repair-services/screen-repair/` (Templates → Saved, or Duplicate Post) and swap in the copy below. The new page then inherits the proven layout, booking widget, hours block and styling.
+**Status:** drafted 21 Oct 2026, revised to the programme rules (no prices; warranty varies by repair; general Apple wording). Awaiting owner approval to build. Not published.
+**Build route:** in Elementor, duplicate `/mobile-repair-services/screen-repair/` (Templates → Saved, or Duplicate Post) and swap in the copy below. Remove any price elements from the duplicated layout. The new page inherits the proven layout, booking widget, hours block and styling.
 
 | Field | Value |
 |---|---|
 | URL | `/mobile-repair-services/battery-replacement/` (sits beside `/screen-repair/` under Mobile Repair) |
-| SEO title (55 chars) | Phone Battery Replacement London – From £29 \| InstaTech |
-| Meta description (153 chars) | New phone battery in 20–40 minutes at our Bloomsbury and Moorgate shops. From £29, free diagnostic, no fix no fee. Walk in 7 days a week, open until 9pm. |
+| SEO title (55 chars) | Phone Battery Replacement London – Same Day \| InstaTech |
+| Meta description (150 chars) | New phone battery fitted in 20–40 minutes at our Bloomsbury and Moorgate shops. Free diagnostic, no fix no fee. Walk in 7 days a week, open until 9pm. |
 | H1 | Phone battery replacement in London, done while you wait |
 | Primary query | phone battery replacement london |
 | Secondary queries | iphone battery replacement london · samsung battery replacement london · battery replacement near me (Bloomsbury, King's Cross, Russell Square, Moorgate, Old Street) · swollen phone battery |
 
-**Fact sources:** every claim below is already published on instatech.uk unless it is marked **[OWNER]**:
-- "From £29 · 20–40 min" and "Free diagnostic", from `/mobile-repair-services/`
+**Fact sources:** all claims are already published on instatech.uk:
+- "20–40 min" and "Free diagnostic", from `/mobile-repair-services/`
 - "No fix, no fee", "warranty on parts and labour" and "walk in, 7 days", from `/mobile-repair-services/screen-repair/`
+- "Ask us in-store for the specific warranty period", from the `/mobile-repair-services/` FAQ
 - Opening hours, from `/locations/bloomsbury/` and `/locations/moorgate/`
 - Reviews, quoted verbatim from the location pages
+- Parts wording uses both claims, which the owner confirmed are true (21 Oct 2026)
 
 ---
 
@@ -27,9 +29,9 @@
 
 Phone dying by lunchtime, shutting down at 30%, or bulging at the back? We fit a new battery at our Bloomsbury or Moorgate shop, usually in 20 to 40 minutes. Every job starts with a free diagnostic, and if we can't fix it, you pay nothing.
 
-- **From £29.** We confirm the exact price for your model before any work starts.
+- **Free diagnostic.** No fix, no fee.
 - **20–40 minutes** for most phones, while you wait.
-- **Warranty on parts and labour.** [OWNER: state the period, e.g. "6-month" or "12-month". The nearest chain competitor advertises a lifetime warranty, so a stated period matters.]
+- **Warranty on every repair**, covering the part and the labour.
 - **Walk in 7 days a week, open until 9pm** Monday to Saturday.
 
 [Book a battery replacement] → `/book-an-appointment/`  ·  [Call Bloomsbury] `tel:+447377244454`  ·  [Call Moorgate] `tel:+447508088898`
@@ -41,34 +43,29 @@ Phone dying by lunchtime, shutting down at 30%, or bulging at the back? We fit a
 - The phone gets hot while charging or during light use.
 - **The back or screen is lifting.** A swollen battery is a safety issue. Stop charging the phone, switch it off, keep it away from heat, and bring it in as soon as you can. See our [guide to swollen and failing batteries](/guide-to-phone-battery-replacement-uk/).
 
-Not sure it's the battery? Draining can also come from software, a faulty charging port or a damaged cable. The free diagnostic tells you which before you spend anything. Related reading: [Why is my phone battery draining?](/why-is-my-phone-battery-draining/) and [iPhone battery health not showing](/iphone-battery-health-not-showing/).
+Not sure it's the battery? Draining can also come from software, a faulty charging port or a damaged cable. The free diagnostic tells you which before any work starts. Related reading: [Why is my phone battery draining?](/why-is-my-phone-battery-draining/) and [iPhone battery health not showing](/iphone-battery-health-not-showing/).
 
-### Battery replacement prices
-| Device | From | Typical time |
-|---|---|---|
-| Most smartphones | **£29** | 20–40 min |
-| iPhone 16 / 16 Plus / 16 Pro / 16 Pro Max | [OWNER] | [OWNER] |
-| iPhone 15 range | [OWNER] | [OWNER] |
-| iPhone 14 range | [OWNER] | [OWNER] |
-| iPhone 13 range | [OWNER] | [OWNER] |
-| iPhone 12 / 11 / SE | [OWNER] | [OWNER] |
-| Samsung Galaxy S series | [OWNER] | [OWNER] |
-| Samsung Galaxy A series | [OWNER] | [OWNER] |
-| Google Pixel | [OWNER] | [OWNER] |
-| iPad / tablet | [OWNER] (link to `/tablet-repairs/`) | [OWNER] |
-| MacBook / laptop | [OWNER] (link to `/laptop-desktop-repair/`) | [OWNER] |
+### Phones and devices we replace batteries for
+| Brand | Devices |
+|---|---|
+| Apple | iPhone battery replacement for current and recent models |
+| Samsung | Galaxy S, A, Z and Note series |
+| Google | Pixel phones |
+| Other Android brands | Motorola, OnePlus, Xiaomi, Oppo and more. Ask about your model |
+| Tablets | iPad and Android tablets (see [tablet repairs](/tablet-repairs/)) |
+| Laptops | MacBook and Windows laptops (see [laptop and desktop repair](/laptop-desktop-repair/)) |
 
-*The exact price for your model is confirmed after the free diagnostic, before any work starts. No fix, no fee.*
+*Not sure about your model? Walk in for a free diagnostic, or call either shop.*
+[OWNER: confirm the "Other Android brands" list matches the brands you service, or shorten it to "and other Android brands".]
 
 ### How it works
-1. **Walk in or book.** Either shop, any day. Booking holds the battery for less common models.
+1. **Walk in or book.** Either shop, any day. Booking means the right battery is ready for less common models.
 2. **Free diagnostic.** We check battery health and rule out charging-port or software causes.
 3. **Fitted while you wait.** Most batteries take 20–40 minutes.
-4. **Collect with warranty.** The warranty covers the part and the work.
+4. **Collect with warranty.** The warranty covers the part and the work. The warranty period depends on the repair, and we confirm it before we start.
 
 ### Parts and data
-- **Parts:** we fit high-quality replacement batteries that meet or exceed the original specification, tested before and after fitting. [OWNER: confirm the wording. `/mobile-repair-services/` currently says "genuine replacement cell" while other pages say "meet or exceed OEM specification". Use one claim sitewide and only claim "genuine" if the cells are manufacturer-original.]
-- **iPhone note:** on recent iPhones, a non-Apple battery can show a "Non-genuine part" or "Unknown part" message in Settings. The phone still works normally. See [iPhone unknown part message explained](/iphone-unknown-part-message/). [OWNER: confirm whether you offer a genuine Apple battery option, and its price.]
+- **Parts:** we fit genuine replacement batteries and high-quality cells that meet or exceed the original specification, tested before and after fitting.
 - **Your data:** a battery replacement doesn't touch your photos, messages or apps. We still recommend a backup before any repair.
 
 ### Why InstaTech
@@ -88,11 +85,11 @@ Not sure it's the battery? Draining can also come from software, a faulty chargi
 **Opening soon: InstaTech Oxford Circus**, 22 Great Castle Street, W1. → `/locations/oxford-circus/`
 
 ### FAQ
-**How much does a phone battery replacement cost in London?**
-At InstaTech, battery replacement starts from £29. The exact price depends on your model, and we confirm it after a free diagnostic, before any work starts.
-
 **How long does a battery replacement take?**
-Most phone batteries are replaced in 20 to 40 minutes while you wait. Book ahead for less common models so the battery is in stock.
+Most phone batteries are replaced in 20 to 40 minutes while you wait. Book ahead for less common models so the right battery is ready.
+
+**Do you replace iPhone batteries?**
+Yes. We replace batteries in iPhones, as well as Samsung, Google Pixel and other Android phones, at both our Bloomsbury and Moorgate shops.
 
 **Do I need an appointment?**
 No. Walk in to Bloomsbury or Moorgate any day of the week. Booking is optional.
@@ -103,16 +100,13 @@ No. A battery replacement doesn't affect your photos, messages or apps. A backup
 **My battery is swollen. Is it safe to bring in?**
 Yes, and the sooner the better. Stop charging the phone, switch it off, keep it away from heat, and bring it to either shop. Don't try to press the case back together.
 
-**Will my iPhone show a warning after a battery replacement?**
-Recent iPhones may show a "Non-genuine part" or "Unknown part" notice in Settings after a third-party battery is fitted. The phone works normally. [OWNER: add the genuine-battery option here if you offer one.]
-
 **Is there a warranty?**
-Yes. Every battery replacement carries a warranty on the part and the labour. [OWNER: period.]
+Yes. Every repair carries a warranty on the part and the labour. The period depends on the repair, and we confirm it before any work starts.
 
 ---
 
 ## Structured data (JSON-LD)
-Paste into an Elementor HTML widget, or add it via Rank Math → Schema → Custom. Before publishing, replace `[OWNER]` values and make sure the visible FAQ above matches the FAQ schema word for word.
+Paste into an Elementor HTML widget, or add it via Rank Math → Schema → Custom. The visible FAQ above must match the FAQ schema word for word. Per the programme rules, there are no prices and no `offers`.
 
 ```json
 {
@@ -123,7 +117,7 @@ Paste into an Elementor HTML widget, or add it via Rank Math → Schema → Cust
       "@id": "https://instatech.uk/mobile-repair-services/battery-replacement/#service",
       "name": "Phone battery replacement",
       "serviceType": "Mobile phone battery replacement",
-      "description": "Phone battery replacement in central London, usually in 20 to 40 minutes, with a free diagnostic and no fix, no fee.",
+      "description": "Phone battery replacement in central London for iPhone, Samsung, Google Pixel and other Android phones, usually in 20 to 40 minutes, with a free diagnostic and no fix, no fee.",
       "areaServed": { "@type": "City", "name": "London" },
       "provider": [
         {
@@ -140,13 +134,7 @@ Paste into an Elementor HTML widget, or add it via Rank Math → Schema → Cust
           "address": { "@type": "PostalAddress", "streetAddress": "16 City Road", "addressLocality": "London", "postalCode": "EC1Y 2AA", "addressCountry": "GB" },
           "hasMap": "https://maps.google.com/?cid=8404697699929828128"
         }
-      ],
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "GBP",
-        "priceSpecification": { "@type": "PriceSpecification", "minPrice": 29, "priceCurrency": "GBP" },
-        "url": "https://instatech.uk/mobile-repair-services/battery-replacement/"
-      }
+      ]
     },
     {
       "@type": "BreadcrumbList",
@@ -159,11 +147,12 @@ Paste into an Elementor HTML widget, or add it via Rank Math → Schema → Cust
     {
       "@type": "FAQPage",
       "mainEntity": [
-        { "@type": "Question", "name": "How much does a phone battery replacement cost in London?", "acceptedAnswer": { "@type": "Answer", "text": "At InstaTech, battery replacement starts from £29. The exact price depends on your model, and we confirm it after a free diagnostic, before any work starts." } },
-        { "@type": "Question", "name": "How long does a battery replacement take?", "acceptedAnswer": { "@type": "Answer", "text": "Most phone batteries are replaced in 20 to 40 minutes while you wait. Book ahead for less common models so the battery is in stock." } },
+        { "@type": "Question", "name": "How long does a battery replacement take?", "acceptedAnswer": { "@type": "Answer", "text": "Most phone batteries are replaced in 20 to 40 minutes while you wait. Book ahead for less common models so the right battery is ready." } },
+        { "@type": "Question", "name": "Do you replace iPhone batteries?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We replace batteries in iPhones, as well as Samsung, Google Pixel and other Android phones, at both our Bloomsbury and Moorgate shops." } },
         { "@type": "Question", "name": "Do I need an appointment?", "acceptedAnswer": { "@type": "Answer", "text": "No. Walk in to Bloomsbury or Moorgate any day of the week. Booking is optional." } },
         { "@type": "Question", "name": "Will I lose my data?", "acceptedAnswer": { "@type": "Answer", "text": "No. A battery replacement doesn't affect your photos, messages or apps. A backup beforehand is always sensible." } },
-        { "@type": "Question", "name": "My battery is swollen. Is it safe to bring in?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, and the sooner the better. Stop charging the phone, switch it off, keep it away from heat, and bring it to either shop. Don't try to press the case back together." } }
+        { "@type": "Question", "name": "My battery is swollen. Is it safe to bring in?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, and the sooner the better. Stop charging the phone, switch it off, keep it away from heat, and bring it to either shop. Don't try to press the case back together." } },
+        { "@type": "Question", "name": "Is there a warranty?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every repair carries a warranty on the part and the labour. The period depends on the repair, and we confirm it before any work starts." } }
       ]
     }
   ]
@@ -188,17 +177,14 @@ No `aggregateRating` is included on purpose. Google does not show self-published
 | `/how-long-does-phone-repair-take/` | Battery replacements | Repoint the existing link (currently plugin-mapped to `/mobile-repair-services/`) |
 | `/locations/bloomsbury/` and `/locations/moorgate/` | battery replacement | Contextual, in the services sentence |
 
-**Links out from the new page:** `/book-an-appointment/`, both location pages, the battery guide, the draining-battery and battery-health posts, `/iphone-unknown-part-message/`, `/tablet-repairs/` and `/laptop-desktop-repair/`.
+**Links out from the new page:** `/book-an-appointment/`, both location pages, the battery guide, the draining-battery and battery-health posts, `/tablet-repairs/` and `/laptop-desktop-repair/`.
 
 **Cannibalisation check:**
-- `/guide-to-phone-battery-replacement-uk/` (1,936 words, informational) stays as it is. It answers "when and why", and the new page answers "where, how much, how fast". The fix is the contextual link above.
+- `/guide-to-phone-battery-replacement-uk/` (1,936 words, informational) stays as it is. It answers "when and why", and the new page answers "where and how fast". The fix is the contextual link above.
 - No existing URL targets "battery replacement london" commercially, so nothing needs merging.
 
 ---
 
-## Needs from owner before publishing
-1. Battery prices by model (the table above). A photo of the price board is fine.
-2. Warranty period.
-3. Parts wording, "genuine" versus "meets or exceeds OEM", to be made consistent sitewide.
-4. Whether a genuine Apple battery option exists, and its price.
-5. Approval to publish, plus the menu and footer links (plugin v1.3).
+## Needs from owner before building
+1. Confirm the Android brand list in "Phones and devices we replace batteries for", or shorten it.
+2. Approval to build and publish, plus the menu and footer links (plugin v1.3).
