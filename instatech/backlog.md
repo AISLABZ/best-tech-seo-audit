@@ -51,7 +51,7 @@ site without the owner's explicit approval in a conversation. Approved changes a
 
 | # | Page | Status | Needs from owner |
 |---|---|---|---|
-| 2.1 | Battery replacement | live | https://instatech.uk/mobile-repair-services/battery-replacement/ (ID 76574), published 21 Oct 2026. Linked from the menus and footer (v1.3.1). Next: contextual links from the battery guide, the draining and battery-health posts, and both location pages |
+| 2.1 | Battery replacement | live | https://instatech.uk/mobile-repair-services/battery-replacement/ (ID 76574), published 21 Oct 2026. Linked from the menus and footer (v1.3.1). Contextual links from the battery guide, the draining and battery-health posts, and both location pages are live (v1.4.0) |
 | 2.2 | Charging port repair | todo | — |
 | 2.3 | Water damage repair | todo | — |
 | 2.4 | Back glass repair | todo | — |
