@@ -1,0 +1,64 @@
+# InstaTech
+
+> Walk-in phone, tablet, laptop and smartwatch repair in central London. Two shops: Bloomsbury (67 Marchmont Street, WC1N 1AP) and Moorgate (16 City Road, EC1Y 2AA). Open 7 days. Free diagnostic, no fix no fee, warranty on every repair. Most repairs are done the same day, often while you wait. Free Pick & Drop collects and returns devices anywhere in London.
+
+## Locations
+
+### InstaTech Bloomsbury
+- Address: 67 Marchmont Street, London WC1N 1AP, United Kingdom
+- Nearest stations: Russell Square, King's Cross St Pancras
+- Phone: +44 7377 244454
+- Hours: Monday-Saturday 9:30 am - 9:00 pm; Sunday 10:00 am - 8:00 pm
+- Page: https://instatech.uk/locations/bloomsbury/
+
+### InstaTech Moorgate
+- Address: 16 City Road, London EC1Y 2AA, United Kingdom
+- Nearest stations: Moorgate, Old Street
+- Phone: +44 7508 088898
+- Hours: Monday-Saturday 9:00 am - 9:00 pm; Sunday 10:00 am - 8:00 pm
+- Page: https://instatech.uk/locations/moorgate/
+
+### InstaTech Oxford Circus (opening October 2026)
+- Address: 22 Great Castle Street, London W1G 0HY, United Kingdom
+- Page: https://instatech.uk/locations/oxford-circus/
+
+Email for all shops: info@instatech.uk
+
+## Repair prices (starting from, exact quote after free diagnostic)
+
+| Device | Repair | From | Typical time |
+|---|---|---|---|
+| Phone | Screen replacement (iPhone, Samsung, Google Pixel and more) | £49 | 30-60 min |
+| Phone | Battery replacement | £29 | 20-40 min |
+| Phone | Charging port repair | £35 | 30-60 min |
+| Phone | Camera repair | £45 | 1-2 hrs |
+| Phone | Speaker / microphone | £30 | 30-45 min |
+| Phone | Button repair | £25 | 30-60 min |
+| Phone | Water damage | Free diagnostic | Same day |
+| Tablet / iPad | Screen replacement | £59 | Same day |
+| Tablet / iPad | Battery replacement | £39 | 1-2 hrs |
+| Laptop / MacBook | Screen replacement | £79 | Same day |
+| Laptop / MacBook | Battery replacement | £49 | 1-2 hrs |
+| Laptop / MacBook | Keyboard replacement | £55 | Same day |
+| Laptop / desktop | Virus and malware removal | £45 | Same day |
+| Smartwatch / Apple Watch | Screen replacement | £49 | Same day |
+| Smartwatch / Apple Watch | Battery replacement | £35 | 1-2 hrs |
+| Any device | Data recovery | Free assessment | 1-48 hrs |
+
+## Other services
+- Buy, sell and trade in phones for cash: https://instatech.uk/buy-sell-phones/
+- Phone accessories in store and online (chargers, cables, power banks, earphones): https://instatech.uk/shop/
+- Free Pick & Drop collection and return across London
+
+## Key pages
+- [Locations](https://instatech.uk/locations/): addresses, opening hours and directions
+- [Phone repair](https://instatech.uk/mobile-repair-services/)
+- [Phone screen repair](https://instatech.uk/mobile-repair-services/screen-repair/)
+- [Tablet and iPad repair](https://instatech.uk/tablet-repairs/)
+- [Laptop, MacBook and desktop repair](https://instatech.uk/laptop-desktop-repair/)
+- [Smartwatch and Apple Watch repair](https://instatech.uk/smartwatch-repair-service/)
+- [Book an appointment](https://instatech.uk/book-an-appointment/)
+- [About InstaTech](https://instatech.uk/about-us/)
+
+## Sitemaps
+- [XML Sitemap](https://instatech.uk/sitemap_index.xml)

@@ -34,3 +34,21 @@ All sitemap URLs were fetched and parsed from the live site. AI-crawler access w
 Performance comes from a local Lighthouse 12 mobile run (PageSpeed Insights quota was exhausted, so there is
 no field data). The off-site footprint was assessed by web search. Ahrefs, Semrush and Search Console data
 were unavailable for this run.
+
+## Fix pack
+
+Ready-to-apply fixes are in [`fixes/`](fixes/README.md): a must-use plugin (noindex rules, 64 meta
+descriptions, Organization and author schema), corrected LocalBusiness JSON-LD, a revised llms.txt,
+copy changes, performance settings and the off-site GEO playbook.
+
+## Status
+
+- [ ] 1. Homepage H1
+- [ ] 2. SEO fixes mu-plugin installed
+- [ ] 3. LocalBusiness schema replaced
+- [ ] 4. Brand spelling unified
+- [ ] 5. llms.txt updated
+- [ ] 6. Mobile performance pass
+- [ ] 7. Bing Webmaster Tools, IndexNow, Search Console
+- [ ] 8. Off-site presence (GBP, Bing Places, Apple Business Connect, citations, reviews)
+- [ ] 9. Hygiene (duplicate products, alt text, accessibility, blog consolidation)
