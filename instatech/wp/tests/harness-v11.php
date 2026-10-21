@@ -15,7 +15,7 @@ function trailingslashit( $s ) { return rtrim( $s, '/' ) . '/'; }
 function untrailingslashit( $s ) { return rtrim( $s, '/' ); }
 function esc_url( $u ) { return $u; }
 function wp_strip_all_tags( $s ) { return strip_tags( $s ); }
-function get_post() { return null; }
+function get_post() { return null; } function get_option( $k ) { return false; } function esc_html( $s ) { return $s; }
 require $argv[1];
 
 $fail = 0;

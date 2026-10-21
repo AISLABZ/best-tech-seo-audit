@@ -3,7 +3,7 @@
  * Plugin Name: InstaTech SEO fixes
  * Description: Phase 1 SEO fixes from the instatech.uk audit (Oct 2026). Output filters only, no database writes.
  *              Roll back by replacing this file with an empty one, or define INSTATECH_SEO_FIXES_OFF in wp-config.php.
- * Version:     1.2.0
+ * Version:     1.3.0
  * Source:      https://github.com/aislabz/best-tech-seo-audit (instatech/wp/mu-plugins/instatech-seo-fixes.php)
  */
 
@@ -39,11 +39,15 @@ function instatech_seo_link_map() {
  * Per-post overrides where the generic target is not the best match for the anchor.
  */
 function instatech_seo_link_overrides() {
-	return array(
+	$overrides = array(
 		'desktop-computer-repair-near-me'           => array( '/electronics-repair-2/' => '/laptop-desktop-repair/' ),
 		'laptop-repair-near-me-what-to-check-first' => array( '/layouts/battery/' => '/laptop-desktop-repair/' ),
 		'wireless-earphones-for-calls'              => array( '/services/laptop-desktop-repair/' => '/mobile-repair-services/' ),
 	);
+	if ( get_option( 'instatech_page_created_battery-replacement' ) ) {
+		$overrides['how-long-does-phone-repair-take'] = array( '/layouts/battery/' => '/mobile-repair-services/battery-replacement/' );
+	}
+	return $overrides;
 }
 
 add_filter(
@@ -230,7 +234,27 @@ function instatech_seo_screen_repair_url() {
 }
 
 /**
- * Header and mobile menus: add "Screen Repair" under Repairs, directly after Mobile Repair Services.
+ * Repair pages to list after Mobile Repair Services in the menus and footer, in order. A page is only listed once it
+ * exists, so navigation never points at a missing page.
+ */
+function instatech_seo_service_links() {
+	$links = array(
+		array(
+			'title' => 'Screen Repair',
+			'url'   => instatech_seo_screen_repair_url(),
+		),
+	);
+	if ( get_option( 'instatech_page_created_battery-replacement' ) ) {
+		$links[] = array(
+			'title' => 'Battery Replacement',
+			'url'   => home_url( '/mobile-repair-services/battery-replacement/' ),
+		);
+	}
+	return $links;
+}
+
+/**
+ * Header and mobile menus: add the repair pages under Repairs, directly after Mobile Repair Services.
  */
 add_filter(
 	'wp_nav_menu_objects',
@@ -239,39 +263,50 @@ add_filter(
 			return $items;
 		}
 
-		$target = untrailingslashit( instatech_seo_screen_repair_url() );
-		$anchor = untrailingslashit( home_url( '/mobile-repair-services/' ) );
+		$present = array();
 		foreach ( $items as $item ) {
-			if ( isset( $item->url ) && untrailingslashit( $item->url ) === $target ) {
-				return $items;
+			if ( isset( $item->url ) ) {
+				$present[ untrailingslashit( $item->url ) ] = true;
 			}
 		}
+		$missing = array();
+		foreach ( instatech_seo_service_links() as $link ) {
+			if ( empty( $present[ untrailingslashit( $link['url'] ) ] ) ) {
+				$missing[] = $link;
+			}
+		}
+		if ( ! $missing ) {
+			return $items;
+		}
 
-		$out = array();
+		$anchor = untrailingslashit( home_url( '/mobile-repair-services/' ) );
+		$out    = array();
 		foreach ( $items as $item ) {
 			$out[] = $item;
 			if ( ! isset( $item->url ) || untrailingslashit( $item->url ) !== $anchor ) {
 				continue;
 			}
 
-			$new                        = clone $item;
-			$new->ID                    = 990000 + (int) $item->ID;
-			$new->db_id                 = $new->ID;
-			$new->object_id             = 0;
-			$new->object                = 'custom';
-			$new->type                  = 'custom';
-			$new->type_label            = 'Custom Link';
-			$new->title                 = 'Screen Repair';
-			$new->url                   = instatech_seo_screen_repair_url();
-			$new->attr_title            = '';
-			$new->target                = '';
-			$new->xfn                   = '';
-			$new->description           = '';
-			$new->classes               = array( 'menu-item', 'menu-item-type-custom', 'menu-item-object-custom' );
-			$new->current               = false;
-			$new->current_item_ancestor = false;
-			$new->current_item_parent   = false;
-			$out[]                      = $new;
+			foreach ( $missing as $n => $link ) {
+				$new                        = clone $item;
+				$new->ID                    = 990000 + ( 100 * $n ) + (int) $item->ID;
+				$new->db_id                 = $new->ID;
+				$new->object_id             = 0;
+				$new->object                = 'custom';
+				$new->type                  = 'custom';
+				$new->type_label            = 'Custom Link';
+				$new->title                 = $link['title'];
+				$new->url                   = $link['url'];
+				$new->attr_title            = '';
+				$new->target                = '';
+				$new->xfn                   = '';
+				$new->description           = '';
+				$new->classes               = array( 'menu-item', 'menu-item-type-custom', 'menu-item-object-custom' );
+				$new->current               = false;
+				$new->current_item_ancestor = false;
+				$new->current_item_parent   = false;
+				$out[]                      = $new;
+			}
 		}
 
 		return $out;
@@ -280,7 +315,7 @@ add_filter(
 );
 
 /**
- * Footer widgets: add Screen Repair to the services link list and link the "About Us" heading.
+ * Footer widgets: add the repair pages to the services link list and link the "About Us" heading.
  */
 add_filter(
 	'elementor/widget/render_content',
@@ -290,18 +325,23 @@ add_filter(
 		}
 		$name = $widget->get_name();
 
-		if ( 'trx_widget_custom_links' === $name
-			&& false !== strpos( $content, '/mobile-repair-services/"' )
-			&& false === strpos( $content, '/screen-repair/' ) ) {
-			$li      = '<li class="custom_links_list_item"><a class="custom_links_list_item_link" href="'
-				. esc_url( instatech_seo_screen_repair_url() )
-				. '"><span class="custom_links_list_item_title">Screen Repair</span></a></li>';
-			$content = preg_replace(
-				'#(<li class="custom_links_list_item"><a [^>]*href="[^"]*/mobile-repair-services/"[^>]*>.*?</li>)#s',
-				'$1' . $li,
-				$content,
-				1
-			);
+		if ( 'trx_widget_custom_links' === $name && false !== strpos( $content, '/mobile-repair-services/"' ) ) {
+			$li = '';
+			foreach ( instatech_seo_service_links() as $link ) {
+				if ( false === strpos( $content, 'href="' . esc_url( $link['url'] ) . '"' ) ) {
+					$li .= '<li class="custom_links_list_item"><a class="custom_links_list_item_link" href="'
+						. esc_url( $link['url'] )
+						. '"><span class="custom_links_list_item_title">' . esc_html( $link['title'] ) . '</span></a></li>';
+				}
+			}
+			if ( '' !== $li ) {
+				$content = preg_replace(
+					'#(<li class="custom_links_list_item"><a [^>]*href="[^"]*/mobile-repair-services/"[^>]*>.*?</li>)#s',
+					'$1' . str_replace( array( '\\', '$' ), array( '\\\\', '\\$' ), $li ),
+					$content,
+					1
+				);
+			}
 		}
 
 		if ( 'trx_sc_title' === $name
