@@ -1,0 +1,97 @@
+<!-- InstaTech LocalBusiness schema, ready to paste (values filled 21 Oct 2026). Replace the whole old
+     script block that contains "locations/#bloomsbury" (Elementor > Custom Code, or WPCode > Header & Footer).
+     Oxford Circus is deliberately absent until that shop trades. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["MobilePhoneStore", "ElectronicsStore"],
+      "@id": "https://instatech.uk/locations/bloomsbury/#store",
+      "name": "InstaTech Bloomsbury",
+      "description": "Walk-in phone, tablet, laptop and smartwatch repair shop in Bloomsbury, minutes from Russell Square and King's Cross. Free diagnostic, no fix no fee, most repairs done while you wait.",
+      "url": "https://instatech.uk/locations/bloomsbury/",
+      "image": "https://instatech.uk/wp-content/uploads/2026/10/instatech-bloomsbury-shopfront.jpg",
+      "logo": "https://instatech.uk/wp-content/uploads/2026/05/WhatsApp-Image-2026-05-07-at-21.04.38-1.png",
+      "telephone": "+447377244454",
+      "email": "info@instatech.uk",
+      "priceRange": "££",
+      "currenciesAccepted": "GBP",
+      "paymentAccepted": "Cash, Credit Card, Debit Card",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "67 Marchmont Street",
+        "addressLocality": "London",
+        "addressRegion": "Greater London",
+        "postalCode": "WC1N 1AP",
+        "addressCountry": "GB"
+      },
+      "geo": { "@type": "GeoCoordinates", "latitude": 51.5253, "longitude": -0.1255 },
+      "hasMap": "https://share.google/tBOjmKNlewpVjXnjD",
+      "areaServed": [
+        { "@type": "City", "name": "London" },
+        { "@type": "Place", "name": "Bloomsbury" },
+        { "@type": "Place", "name": "King's Cross" }
+      ],
+      "parentOrganization": { "@id": "https://instatech.uk/#organization" },
+      "openingHoursSpecification": [
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "09:30", "closes": "21:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "10:00", "closes": "20:00" }
+      ],
+      "makesOffer": { "@id": "https://instatech.uk/#repair-catalog" },
+      "sameAs": ["https://www.tiktok.com/@instatechlondon"]
+    },
+    {
+      "@type": ["MobilePhoneStore", "ElectronicsStore"],
+      "@id": "https://instatech.uk/locations/moorgate/#store",
+      "name": "InstaTech Moorgate",
+      "description": "Walk-in phone, tablet, laptop and smartwatch repair shop on City Road, between Old Street and Moorgate. Free diagnostic, no fix no fee, most repairs done while you wait.",
+      "url": "https://instatech.uk/locations/moorgate/",
+      "image": "https://instatech.uk/wp-content/uploads/2026/10/instatech-moorgate-shopfront.jpg",
+      "logo": "https://instatech.uk/wp-content/uploads/2026/05/WhatsApp-Image-2026-05-07-at-21.04.38-1.png",
+      "telephone": "+447508088898",
+      "email": "info@instatech.uk",
+      "priceRange": "££",
+      "currenciesAccepted": "GBP",
+      "paymentAccepted": "Cash, Credit Card, Debit Card",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "16 City Road",
+        "addressLocality": "London",
+        "addressRegion": "Greater London",
+        "postalCode": "EC1Y 2AA",
+        "addressCountry": "GB"
+      },
+      "geo": { "@type": "GeoCoordinates", "latitude": 51.5222, "longitude": -0.0874 },
+      "hasMap": "https://share.google/wKZhs6fusdxbbLy9P",
+      "areaServed": [
+        { "@type": "City", "name": "London" },
+        { "@type": "Place", "name": "Moorgate" },
+        { "@type": "Place", "name": "Old Street" },
+        { "@type": "Place", "name": "City of London" }
+      ],
+      "parentOrganization": { "@id": "https://instatech.uk/#organization" },
+      "openingHoursSpecification": [
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "09:00", "closes": "21:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "10:00", "closes": "20:00" }
+      ],
+      "makesOffer": { "@id": "https://instatech.uk/#repair-catalog" },
+      "sameAs": ["https://www.tiktok.com/@instatechlondon"]
+    },
+    {
+      "@type": "OfferCatalog",
+      "@id": "https://instatech.uk/#repair-catalog",
+      "name": "InstaTech repair prices (starting from)",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Phone screen replacement", "url": "https://instatech.uk/mobile-repair-services/screen-repair/" }, "priceSpecification": { "@type": "PriceSpecification", "minPrice": 49, "priceCurrency": "GBP" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Phone battery replacement", "url": "https://instatech.uk/mobile-repair-services/" }, "priceSpecification": { "@type": "PriceSpecification", "minPrice": 29, "priceCurrency": "GBP" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Phone charging port repair", "url": "https://instatech.uk/mobile-repair-services/" }, "priceSpecification": { "@type": "PriceSpecification", "minPrice": 35, "priceCurrency": "GBP" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Tablet and iPad screen replacement", "url": "https://instatech.uk/tablet-repairs/" }, "priceSpecification": { "@type": "PriceSpecification", "minPrice": 59, "priceCurrency": "GBP" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Laptop and MacBook screen replacement", "url": "https://instatech.uk/laptop-desktop-repair/" }, "priceSpecification": { "@type": "PriceSpecification", "minPrice": 79, "priceCurrency": "GBP" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Laptop battery replacement", "url": "https://instatech.uk/laptop-desktop-repair/" }, "priceSpecification": { "@type": "PriceSpecification", "minPrice": 49, "priceCurrency": "GBP" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Smartwatch and Apple Watch screen replacement", "url": "https://instatech.uk/smartwatch-repair-service/" }, "priceSpecification": { "@type": "PriceSpecification", "minPrice": 49, "priceCurrency": "GBP" } }
+      ]
+    }
+  ]
+}
+</script>

@@ -45,9 +45,9 @@ copy changes, performance settings and the off-site GEO playbook.
 
 - [ ] 1. Homepage H1
 - [x] 2. SEO fixes mu-plugin installed (21 Oct 2026; category-sitemap cache still to be refreshed)
-- [ ] 3. LocalBusiness schema replaced
+- [ ] 3. LocalBusiness schema replaced (values filled in `fixes/localbusiness-schema-ready.html`; paste in wp-admin pending)
 - [ ] 4. Brand spelling unified
-- [ ] 5. llms.txt updated
+- [x] 5. llms.txt updated (21 Oct 2026, static file at site root)
 - [ ] 6. Mobile performance pass
 - [ ] 7. Bing Webmaster Tools, IndexNow, Search Console
 - [ ] 8. Off-site presence (GBP, Bing Places, Apple Business Connect, citations, reviews)
