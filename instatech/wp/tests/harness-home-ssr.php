@@ -1,7 +1,9 @@
 <?php
 // Tests for instatech-home-ssr.php against a saved raw homepage.
-// Run: php instatech/wp/tests/harness-home-ssr.php instatech/wp/mu-plugins/instatech-home-ssr.php <home-raw.html>
+// Run: php instatech/wp/tests/harness-home-ssr.php instatech/wp/mu-plugins/instatech-home-ssr.php <home-raw.html> [<server-seen script>]
 define( 'ABSPATH', '/x/' );
+define( 'WP_CONTENT_DIR', sys_get_temp_dir() . '/itx-ssr-' . getmypid() );
+function wp_mkdir_p( $d ) { return is_dir( $d ) || mkdir( $d, 0777, true ); }
 function add_action( $h, $cb, $p = 10 ) {}
 require $argv[1];
 $raw = file_get_contents( $argv[2] );
@@ -22,6 +24,13 @@ check( 'pre-LiteSpeed HTML (what the plugin sees): fingerprint still matches', $
 $edited = str_replace( "['Charging Cables','Lightning, USB-C, braided XL'", "['Charging Cables','Lightning, USB-C, braided XXL'", $raw );
 check( 'edited homepage script: steps aside, page unchanged', $edited !== $raw && $edited === instatech_home_ssr( $edited ) );
 
+if ( isset( $argv[3] ) ) {
+	// The script exactly as the plugin saw it on the server (captured by the mismatch diagnostic).
+	$seen = file_get_contents( $argv[3] );
+	$at = strpos( $raw, 'CATURL' ); $o = strrpos( substr( $raw, 0, $at ), '<script' ); $st = strpos( $raw, '>', $o ) + 1; $en = strpos( $raw, '</script>', $at );
+	$server_html = substr( $raw, 0, $st ) . $seen . substr( $raw, $en );
+	check( 'server-seen script (untrimmed, un-lazied): fingerprint matches', 5 === $filled( instatech_home_ssr( $server_html ) ) );
+}
 check( 'idempotent: second pass changes nothing', $out === instatech_home_ssr( $out ) );
 check( 'non-homepage HTML untouched', '<p>x</p>' === instatech_home_ssr( '<p>x</p>' ) );
 check( 'rest of the page untouched', strlen( $out ) - strlen( $raw ) === array_sum( array_map( 'strlen', instatech_home_ssr_sections() ) ) );

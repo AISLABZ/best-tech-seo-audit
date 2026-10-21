@@ -12,7 +12,7 @@
 defined( 'ABSPATH' ) || exit;
 
 function instatech_home_ssr_fingerprint( $script ) {
-	$norm = preg_replace( '#<iframe[^>]*>#', '<iframe>', $script );
+	$norm = preg_replace( '#<iframe[^>]*>#', '<iframe>', trim( $script ) );
 	$norm = preg_replace( '#<img[^>]*>#', '<img>', $norm );
 	return sha1( $norm );
 }
@@ -51,7 +51,15 @@ function instatech_home_ssr( $html ) {
 	if ( false === $start || false === $end ) {
 		return $html;
 	}
-	if ( 'f3d0e9a8642febd131f7a6dec12c3c02ed94f8f9' !== instatech_home_ssr_fingerprint( substr( $html, $start + 1, $end - $start - 1 ) ) ) {
+	$script = substr( $html, $start + 1, $end - $start - 1 );
+	if ( 'f3d0e9a8642febd131f7a6dec12c3c02ed94f8f9' !== instatech_home_ssr_fingerprint( $script ) ) {
+		// Record what the plugin saw, once, so a mismatch can be diagnosed (wp-content/instatech-ops/).
+		$dir = WP_CONTENT_DIR . '/instatech-ops';
+		$seen = instatech_home_ssr_fingerprint( $script );
+		$file = $dir . '/home-ssr-mismatch-' . $seen . '.txt';
+		if ( ! file_exists( $file ) && wp_mkdir_p( $dir ) ) {
+			file_put_contents( $file, $script );
+		}
 		return $html;
 	}
 	foreach ( instatech_home_ssr_sections() as $id => $inner ) {

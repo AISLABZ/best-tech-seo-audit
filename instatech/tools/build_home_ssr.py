@@ -36,9 +36,9 @@ def homepage_script(html):
 
 
 def fingerprint(script):
-    # LiteSpeed rewrites <iframe>/<img> tags for lazy-loading after WordPress renders the page, so those tags are
-    # normalised; everything else must match exactly.
-    norm = re.sub(r"<iframe[^>]*>", "<iframe>", script)
+    # LiteSpeed rewrites <iframe>/<img> tags for lazy-loading and trims whitespace around the script after WordPress
+    # renders the page, so those are normalised; everything else must match exactly.
+    norm = re.sub(r"<iframe[^>]*>", "<iframe>", script.strip())
     norm = re.sub(r"<img[^>]*>", "<img>", norm)
     return hashlib.sha1(norm.encode("utf-8")).hexdigest()
 
@@ -75,7 +75,7 @@ def main(capture_dir):
 defined( 'ABSPATH' ) || exit;
 
 function instatech_home_ssr_fingerprint( $script ) {{
-	$norm = preg_replace( '#<iframe[^>]*>#', '<iframe>', $script );
+	$norm = preg_replace( '#<iframe[^>]*>#', '<iframe>', trim( $script ) );
 	$norm = preg_replace( '#<img[^>]*>#', '<img>', $norm );
 	return sha1( $norm );
 }}
@@ -100,7 +100,15 @@ function instatech_home_ssr( $html ) {{
 	if ( false === $start || false === $end ) {{
 		return $html;
 	}}
-	if ( '{fp}' !== instatech_home_ssr_fingerprint( substr( $html, $start + 1, $end - $start - 1 ) ) ) {{
+	$script = substr( $html, $start + 1, $end - $start - 1 );
+	if ( '{fp}' !== instatech_home_ssr_fingerprint( $script ) ) {{
+		// Record what the plugin saw, once, so a mismatch can be diagnosed (wp-content/instatech-ops/).
+		$dir = WP_CONTENT_DIR . '/instatech-ops';
+		$seen = instatech_home_ssr_fingerprint( $script );
+		$file = $dir . '/home-ssr-mismatch-' . $seen . '.txt';
+		if ( ! file_exists( $file ) && wp_mkdir_p( $dir ) ) {{
+			file_put_contents( $file, $script );
+		}}
 		return $html;
 	}}
 	foreach ( instatech_home_ssr_sections() as $id => $inner ) {{
