@@ -44,7 +44,7 @@ copy changes, performance settings and the off-site GEO playbook.
 ## Status
 
 - [ ] 1. Homepage H1
-- [x] 2. SEO fixes mu-plugin installed (21 Oct 2026; category-sitemap cache still to be refreshed)
+- [x] 2. SEO fixes mu-plugin installed (21 Oct 2026; /category/uncategorized/ still in category sitemap, set noindex on the term in wp-admin)
 - [ ] 3. LocalBusiness schema replaced (values filled in `fixes/localbusiness-schema-ready.html`; paste in wp-admin pending)
 - [ ] 4. Brand spelling unified
 - [x] 5. llms.txt updated (21 Oct 2026, static file at site root)
