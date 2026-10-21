@@ -48,17 +48,16 @@ Everything else in the dashboard is outstanding.
 Re-audit of all 73 live pages on 21 October 2026, extended to **generative engine optimisation**
 (visibility in ChatGPT Search, Perplexity, Google AI Overviews and similar).
 
-**AI visibility score: 50 / 100.** 16 open findings: 3 critical, 6 high, 7 medium.
+**AI visibility score: 50 / 100.** 15 open findings: 2 critical, 6 high, 7 medium.
 
 Since August: sitemap, H1s, canonicals, structured data, unique titles/descriptions, template residue and
-Search Console verification are all resolved, and a well-written `llms.txt` is live. All seven AI/search
+Search Console verification and GA4 (with call, WhatsApp and email events) are all resolved, and a well-written `llms.txt` is live. All seven AI/search
 crawlers tested are served the full page.
 
 Critical:
 
 1. `www.best-tech.co.uk` has no DNS record. Only the bare domain resolves.
-2. There is still no GA4 or tag manager, so AI-assistant referrals and bookings cannot be measured.
-3. AI answers cite a third-party magicpin listing (11 ratings), not best-tech.co.uk. The brand appeared in 2 of 5 test prompts and the own site in 0.
+2. AI answers cite a third-party magicpin listing (11 ratings), not best-tech.co.uk. The brand appeared in 2 of 5 test prompts and the own site in 0.
 
 High: no £ prices on any page; a seasonal homepage H1; no dates on 59 posts; no named author or technician;
 a review claim with no count; and the 4K hero video is still served to phones.

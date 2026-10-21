@@ -139,11 +139,11 @@
     </div>
     <div class="card">
       <h2>Findings by severity</h2>
-      <p class="cap">16 open findings. 9 of the 30 August findings are now resolved.</p>
+      <p class="cap">15 open findings. 10 of the 30 August findings are now resolved.</p>
       <div class="sevrow">
         <div class="sevname"><span class="dot" style="background:var(--st-critical)"></span>Critical</div>
-        <div class="sevtrack"><div class="sevbar" style="width:42.9%;background:var(--sev-critical)"></div></div>
-        <div class="sevval">3</div>
+        <div class="sevtrack"><div class="sevbar" style="width:28.6%;background:var(--sev-critical)"></div></div>
+        <div class="sevval">2</div>
       </div>
       <div class="sevrow">
         <div class="sevname"><span class="dot" style="background:var(--st-serious)"></span>High</div>
@@ -177,9 +177,9 @@
       <div class="k-sub"><span class="dot" style="background:var(--st-critical)"></span>Including the pricing guide</div>
     </div>
     <div class="kpi">
-      <div class="k-label">Analytics tags live</div>
-      <div class="k-val">0</div>
-      <div class="k-sub"><span class="dot" style="background:var(--st-critical)"></span>Unchanged since August</div>
+      <div class="k-label">Pages with GA4 live</div>
+      <div class="k-val">73 <span style="font-size:15px;color:var(--muted);font-weight:500">/ 73</span></div>
+      <div class="k-sub"><span class="dot" style="background:var(--st-good)"></span>Loaded as a hosted script</div>
     </div>
   </div>
 
@@ -200,7 +200,7 @@
         <tr><td class="p">Search Console verification</td><td class="num bad">No</td><td class="num okv">Yes</td><td>Resolved</td></tr>
         <tr><td class="p">llms.txt for AI engines</td><td class="num">—</td><td class="num okv">Live</td><td>New, well written</td></tr>
         <tr><td class="p">Images with alt text</td><td class="num bad">32%</td><td class="num">76% (203 / 266)</td><td>Improved</td></tr>
-        <tr><td class="p">GA4 / Tag Manager</td><td class="num bad">0</td><td class="num bad">0</td><td>Open</td></tr>
+        <tr><td class="p">GA4 (G-CX5GX4VKHQ) with call, WhatsApp and email events</td><td class="num bad">0</td><td class="num okv">73 / 73</td><td>Resolved</td></tr>
         <tr><td class="p">4K hero video served to mobile</td><td class="num bad">Yes</td><td class="num bad">Yes, 14 pages</td><td>Open</td></tr>
       </tbody>
     </table>
@@ -234,7 +234,7 @@
   <!-- CRITICAL -->
   <div class="card">
     <h2>Critical findings</h2>
-    <p class="cap">Three issues. Each loses customers or data today.</p>
+    <p class="cap">Two issues. Each loses customers today.</p>
 
     <div class="find">
       <div><span class="badge" style="color:var(--st-critical)"><span class="dot" style="background:var(--st-critical)"></span>Critical</span></div>
@@ -244,34 +244,22 @@
         resolvers. Only the bare domain, <code>best-tech.co.uk</code>, answers. Anyone who types the www form, or follows
         a printed or third-party link that uses it, sees a browser error. The address submitted for this audit was the
         www form.</p>
-        <p class="f-fix"><b>Fix:</b> at the domain registrar, add <code>CNAME www → proxy-ssl.webflow.com</code>. In Webflow → Hosting,
-        add <code>www.best-tech.co.uk</code>, keep <code>best-tech.co.uk</code> as the default domain so www 301-redirects to it,
-        then publish. Allow about 15 minutes, then confirm in a browser.</p>
+        <p class="f-fix"><b>Fix:</b> Webflow already lists <code>www.best-tech.co.uk</code> as a custom domain, so only the DNS record is missing.
+        At the DNS provider for the domain, add <code>CNAME www → cdn.webflow.com</code> (or the exact target Webflow → Site settings →
+        Publishing shows), keep <code>best-tech.co.uk</code> as the default domain so www 301-redirects to it, then confirm in a browser.</p>
       </div>
     </div>
 
     <div class="find">
       <div><span class="badge" style="color:var(--st-critical)"><span class="dot" style="background:var(--st-critical)"></span>Critical</span></div>
       <div>
-        <p class="f-title">2 · AI traffic and the effect of this work cannot be measured</p>
-        <p class="f-body">There is still no GA4, Tag Manager or pixel on any of the 73 pages. Search Console is now verified,
-        which covers Google organic traffic. Referrals from <code>chatgpt.com</code>, <code>perplexity.ai</code>,
-        <code>gemini.google.com</code> and <code>copilot.microsoft.com</code> are invisible, as are bookings and WhatsApp clicks.</p>
-        <p class="f-fix"><b>Fix:</b> install GA4 through Webflow → Site settings → Integrations. Mark <code>tel:</code>, <code>wa.me</code>
-        and booking-form submits as key events. Add a custom channel group named "AI assistants" that matches the referrers above.</p>
-      </div>
-    </div>
-
-    <div class="find">
-      <div><span class="badge" style="color:var(--st-critical)"><span class="dot" style="background:var(--st-critical)"></span>Critical</span></div>
-      <div>
-        <p class="f-title">3 · AI engines describe Best Tech from a third-party listing, not its own site</p>
+        <p class="f-title">2 · AI engines describe Best Tech from a third-party listing, not its own site</p>
         <p class="f-body">best-tech.co.uk was not cited in any of the five tests. When the brand was found, the source was a magicpin
         directory page showing 11 ratings and a service mix (console repair, SSD upgrades, euro and dollar payments) that
         doesn't match the site's own positioning. The engine itself called 11 ratings "a thin basis".</p>
         <p class="f-fix"><b>Fix:</b> build the off-site entity footprint AI engines retrieve from. Steps: claim and complete the magicpin
         profile; list on Yell, Apple Business Connect, Bing Places, Trustpilot and Checkatrade with identical name, address and phone details;
-        add those URLs to the <code>sameAs</code> array in the homepage schema; and run a review drive (see finding 8).</p>
+        add those URLs to the <code>sameAs</code> array in the homepage schema; and run a review drive (see finding 7). In GA4, add an "AI assistants" channel group so referrals from <code>chatgpt.com</code>, <code>perplexity.ai</code>, <code>gemini.google.com</code> and <code>copilot.microsoft.com</code> show up separately.</p>
       </div>
     </div>
   </div>
@@ -284,7 +272,7 @@
     <div class="find">
       <div><span class="badge" style="color:var(--st-serious)"><span class="dot" style="background:var(--st-serious)"></span>High</span></div>
       <div>
-        <p class="f-title">4 · No prices are published anywhere, not even on the pricing guide</p>
+        <p class="f-title">3 · No prices are published anywhere, not even on the pricing guide</p>
         <p class="f-body">None of the 73 pages contains a £ figure. That includes <code>/post/transparent-repair-pricing-guide-london-devices</code>
         and <code>/post/macbook-screen-repair-cost</code>. Cost questions ("how much is an iPhone 15 screen in London?") are among the
         most common repair prompts, and AI engines answer them only from sources that publish numbers.</p>
@@ -297,7 +285,7 @@
     <div class="find">
       <div><span class="badge" style="color:var(--st-serious)"><span class="dot" style="background:var(--st-serious)"></span>High</span></div>
       <div>
-        <p class="f-title">5 · The homepage H1 is a seasonal slogan</p>
+        <p class="f-title">4 · The homepage H1 is a seasonal slogan</p>
         <p class="f-body">The homepage's only H1 reads <code>Cold mornings kill tired batteries.</code> The H1 is the strongest on-page
         statement of what the business is and where. This one names neither the service nor the location.</p>
         <p class="f-fix"><b>Fix:</b> make the H1 permanent, for example "Phone &amp; Laptop Repair inside Piccadilly Circus Station". Keep the
@@ -308,7 +296,7 @@
     <div class="find">
       <div><span class="badge" style="color:var(--st-serious)"><span class="dot" style="background:var(--st-serious)"></span>High</span></div>
       <div>
-        <p class="f-title">6 · 59 articles carry no publish or update date</p>
+        <p class="f-title">5 · 59 articles carry no publish or update date</p>
         <p class="f-body">The <code>BlogPosting</code> schema on every post omits <code>datePublished</code> and <code>dateModified</code>,
         and no date is shown on the page. AI engines and Google weigh freshness, and model-specific posts (iPhone 17, Pixel 10,
         Galaxy S25) lose value when they carry no date.</p>
@@ -320,7 +308,7 @@
     <div class="find">
       <div><span class="badge" style="color:var(--st-serious)"><span class="dot" style="background:var(--st-serious)"></span>High</span></div>
       <div>
-        <p class="f-title">7 · No named expert behind any of the content</p>
+        <p class="f-title">6 · No named expert behind any of the content</p>
         <p class="f-body">All 59 posts list the author as the Organization "Best Tech Repair". Nothing names a technician or states
         qualifications, years at the bench, or repair volumes. This is the experience signal both Google's quality guidelines and AI
         engines use to choose which source to trust.</p>
@@ -332,7 +320,7 @@
     <div class="find">
       <div><span class="badge" style="color:var(--st-serious)"><span class="dot" style="background:var(--st-serious)"></span>High</span></div>
       <div>
-        <p class="f-title">8 · The "Rated 5.0 on Google" claim has no review count</p>
+        <p class="f-title">7 · The "Rated 5.0 on Google" claim has no review count</p>
         <p class="f-body">The homepage title, description and social cards all say "Rated 5.0 on Google". Third-party sources
         show 11 ratings. A rating with no count reads as weak evidence to both people and AI engines, and the engine flagged
         it explicitly.</p>
@@ -344,7 +332,7 @@
     <div class="find">
       <div><span class="badge" style="color:var(--st-serious)"><span class="dot" style="background:var(--st-serious)"></span>High</span></div>
       <div>
-        <p class="f-title">9 · The 4K hero video is still served to phones</p>
+        <p class="f-title">8 · The 4K hero video is still served to phones</p>
         <p class="f-body">The same <code>3840 × 2160 30fps</code> master clip found in August (5.78 MB MP4 then) is still embedded on
         14 pages, including the homepage and every service page. In August this drove mobile LCP to 9.0s. A fresh PageSpeed run was
         rate-limited during this audit, so mobile vitals were not re-measured.</p>
@@ -361,23 +349,23 @@
     <table>
       <thead><tr><th>#</th><th>Issue</th><th>Detail and fix</th></tr></thead>
       <tbody>
-        <tr><td class="num">10</td><td class="p">Topic cannibalisation</td><td>At least 8 posts compete for screen repair intent (cracked screen, same-day screen,
+        <tr><td class="num">9</td><td class="p">Topic cannibalisation</td><td>At least 8 posts compete for screen repair intent (cracked screen, same-day screen,
           repair vs replacement, vs new phone, iPhone screen, Samsung screen, Galaxy S25, OEM screens), alongside <code>/services/screen-replacement</code>. Make the
           service page the hub. Link every spoke to it with consistent anchor text, and merge the two weakest posts into it.</td></tr>
-        <tr><td class="num">11</td><td class="p">Uniform, templated articles</td><td>57 of 59 posts fall between 1,300 and 1,950 words, with similar structure and keyword-led
+        <tr><td class="num">10</td><td class="p">Uniform, templated articles</td><td>57 of 59 posts fall between 1,300 and 1,950 words, with similar structure and keyword-led
           titles ("…You Can Trust"). This risks being read as scaled content. Add first-hand evidence: real repair photos, measured turnaround
           times, the part grades used, and before-and-after battery health figures.</td></tr>
-        <tr><td class="num">12</td><td class="p">Money pages lack question-and-answer sections</td><td>The nine service and device pages average about 700 words, and no page has a Q&amp;A block. Add 5–8 direct
+        <tr><td class="num">11</td><td class="p">Money pages lack question-and-answer sections</td><td>The nine service and device pages average about 700 words, and no page has a Q&amp;A block. Add 5–8 direct
           question headings ("How long does an iPhone screen take?", "Is my data safe?"), each answered in 40–60 words, which is the passage length AI engines
           extract. FAQPage schema is optional: Google limits its rich results, but AI parsers still read it.</td></tr>
-        <tr><td class="num">13</td><td class="p">Soho / Leicester Square gap</td><td>A test answer said no MacBook repair shop exists in Soho or Leicester Square, yet the shop is
+        <tr><td class="num">12</td><td class="p">Soho / Leicester Square gap</td><td>A test answer said no MacBook repair shop exists in Soho or Leicester Square, yet the shop is
           about 300 m away. <code>/post/phone-repair-near-leicester-square-soho-covent-garden</code> has 847 words and covers phones only. Expand it to cover laptops,
           add walking times and directions from each landmark, and link it from the laptop page.</td></tr>
-        <tr><td class="num">14</td><td class="p">Alt text on shared components</td><td>63 images still lack alt text. 54 of them are 6 per page across the nine <code>/works/</code> and
+        <tr><td class="num">13</td><td class="p">Alt text on shared components</td><td>63 images still lack alt text. 54 of them are 6 per page across the nine <code>/works/</code> and
           <code>/services/</code> pages, which points to one shared component. Fixing the component fixes most of the remainder. The about page has 5 more.</td></tr>
-        <tr><td class="num">15</td><td class="p">Newest posts incomplete</td><td>The four newest posts (iPhone 17 ×2, Pixel 10 ×2) have no <code>og:image</code>. Two titles run past 60
+        <tr><td class="num">14</td><td class="p">Newest posts incomplete</td><td>The four newest posts (iPhone 17 ×2, Pixel 10 ×2) have no <code>og:image</code>. Two titles run past 60
           characters (63 and 62), so search results will cut them off.</td></tr>
-        <tr><td class="num">16</td><td class="p">US English on a UK site</td><td>"How to Choose a <b>Cell</b> Phone Repair Shop": UK searchers and UK-localised answers use "mobile phone". Retitle the post and redirect the old URL.</td></tr>
+        <tr><td class="num">15</td><td class="p">US English on a UK site</td><td>"How to Choose a <b>Cell</b> Phone Repair Shop": UK searchers and UK-localised answers use "mobile phone". Retitle the post and redirect the old URL.</td></tr>
       </tbody>
     </table>
     </div>
@@ -404,7 +392,7 @@
     <p class="cap">Ordered by impact per hour of work. Items 1–4 take under a day in total.</p>
     <ol class="steps">
       <li><b>This week: fix the www DNS record</b> (finding 1). Ten minutes of work, and it stops the loss of every visitor who uses the www address.</li>
-      <li><b>This week: install GA4</b> with an "AI assistants" channel and call, WhatsApp and booking events, so everything below can be measured.</li>
+      <li><b>This week: add an "AI assistants" channel group in GA4</b>. The GA4 tag and call, WhatsApp and email events are already live, so this is an admin setting only.</li>
       <li><b>This week: replace the homepage H1</b> and bind publish and update dates into the post schema.</li>
       <li><b>Within 30 days: publish a "from £" price table</b> on the pricing guide and the four device pages.</li>
       <li><b>Within 30 days: start the review programme</b> (counter QR code and WhatsApp follow-up) and claim the magicpin, Yell, Apple Business Connect, Bing Places and Trustpilot listings.</li>
@@ -418,8 +406,8 @@
   <div class="card">
     <h2>Method &amp; limitations</h2>
     <p class="foot">
-      All 73 URLs in the live sitemap were fetched on 21 October 2026 and all returned HTTP 200. Headings, meta tags, canonicals, alt text,
-      tracking tags and JSON-LD were parsed directly from the HTML. Every count above comes from that parse. AI crawler access was tested by
+      All 73 URLs in the live sitemap were fetched on 21 October 2026 (the CMS holds further published posts the cached sitemap does not yet list) and all returned HTTP 200. Headings, meta tags, canonicals, alt text,
+      and JSON-LD were parsed directly from the HTML. Analytics was confirmed from the Webflow site scripts after an inline-only check missed the hosted GA4 script. Every count above comes from that parse. AI crawler access was tested by
       requesting the homepage with each bot's user-agent string. This confirms the server response. It does not confirm what each vendor
       later indexes. The prompt tests used a search-grounded AI answer engine as a proxy for ChatGPT Search, Perplexity and AI Overviews. Answers
       vary by platform, location and day, so treat the score of 50 as a directional baseline, not a ranking.
