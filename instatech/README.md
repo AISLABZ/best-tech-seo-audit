@@ -44,7 +44,7 @@ copy changes, performance settings and the off-site GEO playbook.
 ## Status
 
 - [ ] 1. Homepage H1
-- [ ] 2. SEO fixes mu-plugin installed
+- [x] 2. SEO fixes mu-plugin installed (21 Oct 2026; category-sitemap cache still to be refreshed)
 - [ ] 3. LocalBusiness schema replaced
 - [ ] 4. Brand spelling unified
 - [ ] 5. llms.txt updated
