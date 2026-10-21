@@ -1,4 +1,4 @@
-# FAQ drafts for approval — device pages
+# FAQ — device pages (approved and published 21 Oct 2026)
 
 Drafted 21 October 2026 for `/works/laptop-repair`, `/works/tablet-repair` and
 `/works/smartwatch-repair`, matching the FAQ already live on `/works/mobile-phone-repair`.
