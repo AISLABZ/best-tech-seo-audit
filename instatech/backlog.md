@@ -29,7 +29,7 @@ site without the owner's explicit approval in a conversation. Approved changes a
 | 1.12 | Performance: LiteSpeed JS delay for GTM, remove unused CSS, dequeue TI Wishlist and Advanced Popups off-shop | todo | Settings change. Draft for approval, and verify with Lighthouse |
 | 1.13 | Search Console: confirm ownership and submit `/sitemap_index.xml` | blocked | Owner to confirm GSC access |
 | 1.14 | Lighthouse: links not crawlable (`href="#"`), tap targets, contrast | todo | Identify the elements and draft fixes |
-| 1.15 | Elementor Pro security update (4.2.0 → ≥ 4.2.2) | live | Requested 21 Oct; confirm the version on the next run |
+| 1.15 | Elementor Pro security update (4.2.0 → ≥ 4.2.2) | blocked | The Hostinger update job did not apply, most likely a licence issue. Owner to update via WP Admin → Elementor → License / Plugins |
 | 1.16 | Review the Soro "SEO Autopilot" plugin output: posts publish daily and earlier ones contained theme-demo links | todo | Check that new posts link to money pages, not demo URLs |
 
 ## Phase 2: money pages (draft as WordPress drafts or repo files for approval)
