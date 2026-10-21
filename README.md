@@ -2,6 +2,8 @@
 
 Audit of **best-tech.co.uk** (Webflow, CMS plan), carried out 13 August 2026.
 
+See also: [InstaTech (instatech.uk) SEO & GEO audit](instatech/), 21 October 2026.
+
 Open **`index.html`** in a browser for the full dashboard, or view the rendered
 version via GitHub Pages if enabled for this repo.
 

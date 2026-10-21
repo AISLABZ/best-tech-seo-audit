@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en" data-palette="#184f95,#2a78d6,#86b6ef">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>InstaTech SEO &amp; GEO Audit</title>
+<style>
+  .viz-root{
+    color-scheme: light;
+    --surface-1:#fcfcfb; --plane:#f9f9f7;
+    --text-primary:#0b0b0b; --text-secondary:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --axis:#c3c2b7; --border:rgba(11,11,11,0.10);
+    --sev-critical:#184f95; --sev-high:#2a78d6; --sev-medium:#86b6ef;
+    --st-good:#0ca30c; --st-warning:#fab219; --st-serious:#ec835a; --st-critical:#d03b3b;
+    --seq-100:#cde2fb; --seq-450:#2a78d6; --seq-600:#184f95;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:where(:not([data-theme="light"])) .viz-root{
+      color-scheme: dark;
+      --surface-1:#1a1a19; --plane:#0d0d0d;
+      --text-primary:#ffffff; --text-secondary:#c3c2b7; --muted:#898781;
+      --grid:#2c2c2a; --axis:#383835; --border:rgba(255,255,255,0.10);
+      --sev-critical:#b7d3f6; --sev-high:#5598e7; --sev-medium:#256abf;
+      --seq-100:#184f95; --seq-450:#3987e5; --seq-600:#9ec5f4;
+    }
+  }
+  :root[data-theme="dark"] .viz-root{
+    color-scheme: dark;
+    --surface-1:#1a1a19; --plane:#0d0d0d;
+    --text-primary:#ffffff; --text-secondary:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --axis:#383835; --border:rgba(255,255,255,0.10);
+    --sev-critical:#b7d3f6; --sev-high:#5598e7; --sev-medium:#256abf;
+    --seq-100:#184f95; --seq-450:#3987e5; --seq-600:#9ec5f4;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--plane,#f9f9f7)}
+  .viz-root{
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background:var(--plane); color:var(--text-primary);
+    min-height:100vh; padding:32px 24px 64px;
+  }
+  .wrap{max-width:1120px;margin:0 auto}
+  header.top{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;margin-bottom:28px}
+  h1{font-size:22px;font-weight:650;margin:0 0 6px;letter-spacing:-0.01em}
+  .sub{font-size:13px;color:var(--text-secondary);margin:0;line-height:1.5}
+  .toggle{background:var(--surface-1);border:1px solid var(--border);border-radius:8px;
+    color:var(--text-secondary);font:inherit;font-size:12px;padding:7px 12px;cursor:pointer}
+  .toggle:hover{color:var(--text-primary)}
+  .card{background:var(--surface-1);border:1px solid var(--border);border-radius:12px;padding:20px 22px;margin-bottom:18px}
+  .card h2{font-size:14px;font-weight:600;margin:0 0 4px;letter-spacing:.01em}
+  .card .cap{font-size:12px;color:var(--muted);margin:0 0 18px;line-height:1.5}
+  .grid{display:grid;gap:18px}
+  .hero-row{grid-template-columns:minmax(240px,1fr) 2fr}
+  @media(max-width:820px){.hero-row{grid-template-columns:1fr}}
+  .hero .figure{font-size:64px;font-weight:650;line-height:1;letter-spacing:-0.03em;margin:6px 0 10px}
+  .hero .label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em}
+  .hero .note{font-size:12.5px;color:var(--text-secondary);line-height:1.55;margin:0}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  @media(max-width:820px){.kpis{grid-template-columns:repeat(2,1fr)}}
+  .kpi{background:var(--surface-1);border:1px solid var(--border);border-radius:12px;padding:16px 18px}
+  .kpi .k-label{font-size:11.5px;color:var(--muted);line-height:1.4;margin-bottom:8px}
+  .kpi .k-val{font-size:28px;font-weight:650;letter-spacing:-0.02em;line-height:1}
+  .kpi .k-sub{font-size:11.5px;color:var(--text-secondary);margin-top:7px;display:flex;align-items:center;gap:5px}
+  .dot{width:8px;height:8px;border-radius:50%;flex:none;display:inline-block}
+  /* severity bars */
+  .sevrow{display:grid;grid-template-columns:78px 1fr 34px;align-items:center;gap:12px;margin-bottom:12px}
+  .sevname{font-size:12.5px;color:var(--text-secondary);display:flex;align-items:center;gap:7px}
+  .sevtrack{height:20px;position:relative}
+  .sevbar{height:20px;border-radius:0 4px 4px 0;transition:filter .12s}
+  .sevrow:hover .sevbar{filter:brightness(1.08)}
+  .sevval{font-size:13px;font-weight:600;text-align:right;font-variant-numeric:tabular-nums}
+  /* meters */
+  .meters{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  @media(max-width:820px){.meters{grid-template-columns:1fr}}
+  .meter .m-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:9px}
+  .meter .m-name{font-size:12.5px;color:var(--text-secondary)}
+  .meter .m-val{font-size:20px;font-weight:650;letter-spacing:-0.01em}
+  .m-track{height:10px;border-radius:5px;background:var(--seq-100);position:relative;overflow:hidden}
+  .m-fill{height:10px;border-radius:5px}
+  .m-scale{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:7px;font-variant-numeric:tabular-nums}
+  .m-foot{font-size:11.5px;color:var(--text-secondary);margin-top:9px;display:flex;align-items:center;gap:6px;line-height:1.4}
+  /* weight chart */
+  .wrow{display:grid;grid-template-columns:150px 1fr 76px;align-items:center;gap:12px;margin-bottom:10px}
+  .wname{font-size:12.5px;color:var(--text-secondary)}
+  .wbar{height:18px;border-radius:0 4px 4px 0}
+  .wval{font-size:12.5px;text-align:right;color:var(--text-secondary);font-variant-numeric:tabular-nums}
+  /* table */
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  th{text-align:left;font-weight:600;color:var(--muted);font-size:11px;text-transform:uppercase;
+    letter-spacing:.05em;padding:0 10px 9px 0;border-bottom:1px solid var(--grid);white-space:nowrap}
+  td{padding:9px 10px 9px 0;border-bottom:1px solid var(--grid);color:var(--text-secondary);vertical-align:top}
+  tbody tr:hover td{background:color-mix(in srgb, var(--text-primary) 3.5%, transparent)}
+  td.p{color:var(--text-primary);font-weight:500;white-space:nowrap}
+  .num{font-variant-numeric:tabular-nums;text-align:right}
+  .bad{color:var(--st-critical);font-weight:600}
+  .okv{color:var(--st-good);font-weight:600}
+  /* findings */
+  .find{border-bottom:1px solid var(--grid);padding:15px 0;display:grid;grid-template-columns:96px 1fr;gap:16px}
+  .find:last-child{border-bottom:0;padding-bottom:0}
+  .badge{font-size:10.5px;font-weight:650;letter-spacing:.05em;text-transform:uppercase;
+    display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 9px;border-radius:6px;
+    border:1px solid var(--border);white-space:nowrap}
+  .f-title{font-size:13.5px;font-weight:600;color:var(--text-primary);margin:0 0 5px;line-height:1.4}
+  .f-body{font-size:12.5px;color:var(--text-secondary);margin:0;line-height:1.6}
+  .f-body code{background:color-mix(in srgb, var(--text-primary) 6%, transparent);
+    padding:1px 5px;border-radius:4px;font-size:11.5px;font-family:ui-monospace,Menlo,monospace}
+  .f-fix{font-size:12.5px;color:var(--text-secondary);margin:7px 0 0;line-height:1.6}
+  .f-fix b{color:var(--text-primary);font-weight:600}
+  ol.steps{margin:0;padding-left:20px}
+  ol.steps li{font-size:13px;color:var(--text-secondary);line-height:1.65;margin-bottom:11px}
+  ol.steps li b{color:var(--text-primary);font-weight:600}
+  .foot{font-size:11.5px;color:var(--muted);line-height:1.65;margin:0}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:11.5px;color:var(--text-secondary);margin-bottom:16px}
+  .legend span{display:flex;align-items:center;gap:6px}
+  .okrow{display:grid;grid-template-columns:repeat(2,1fr);gap:9px 26px}
+  @media(max-width:820px){.okrow{grid-template-columns:1fr}}
+  .okrow div{font-size:12.5px;color:var(--text-secondary);line-height:1.55;display:flex;gap:9px;align-items:baseline}
+  .okrow div .dot{position:relative;top:1px}
+  .tbl-wrap{overflow-x:auto}
+</style>
+</head>
+<body>
+<div class="viz-root">
+<div class="wrap">
+
+  <header class="top">
+    <div>
+      <h1>InstaTech — SEO &amp; GEO audit</h1>
+      <p class="sub">instatech.uk · WordPress + WooCommerce + Rank Math · Hostinger (LiteSpeed / hCDN) · 276 URLs crawled · audited 21 October 2026<br>
+      GEO = generative engine optimisation: how likely ChatGPT, Gemini, Perplexity, Copilot and Google AI Overviews are to find, trust and recommend the business</p>
+    </div>
+    <button class="toggle" id="tg">Dark / light</button>
+  </header>
+
+  <!-- HERO + KPIs -->
+  <div class="grid hero-row">
+    <div class="card hero">
+      <div class="label">Issues found</div>
+      <div class="figure">15</div>
+      <p class="note">The on-site technical work is mostly solid: schema, canonicals, sitemap, llms.txt and
+      AI-crawler access are all in place. The main gap is <b>off-site</b>. Outside its own domain the brand
+      barely registers on the web, and AI assistants build their local recommendations from those outside sources.</p>
+    </div>
+    <div class="card">
+      <h2>Findings by severity</h2>
+      <p class="cap">Severity is an ordered scale, shown as one hue getting darker. Counts are direct-labelled.</p>
+      <div class="sevrow">
+        <div class="sevname"><span class="dot" style="background:var(--st-critical)"></span>Critical</div>
+        <div class="sevtrack"><div class="sevbar" style="width:37.5%;background:var(--sev-critical)"></div></div>
+        <div class="sevval">3</div>
+      </div>
+      <div class="sevrow">
+        <div class="sevname"><span class="dot" style="background:var(--st-serious)"></span>High</div>
+        <div class="sevtrack"><div class="sevbar" style="width:50%;background:var(--sev-high)"></div></div>
+        <div class="sevval">4</div>
+      </div>
+      <div class="sevrow">
+        <div class="sevname"><span class="dot" style="background:var(--st-warning)"></span>Medium</div>
+        <div class="sevtrack"><div class="sevbar" style="width:100%;background:var(--sev-medium)"></div></div>
+        <div class="sevval">8</div>
+      </div>
+      <p class="foot" style="margin-top:14px">Critical = materially limits being found or recommended. High = weakens trust
+      or entity signals. Medium = hygiene, worth fixing in the next pass.</p>
+    </div>
+  </div>
+
+  <div class="kpis" style="margin-bottom:18px">
+    <div class="kpi">
+      <div class="k-label">URLs returning 200 with self-canonical</div>
+      <div class="k-val">276 <span style="font-size:15px;color:var(--muted);font-weight:500">/ 276</span></div>
+      <div class="k-sub"><span class="dot" style="background:var(--st-good)"></span>Clean index base</div>
+    </div>
+    <div class="kpi">
+      <div class="k-label">AI crawlers allowed (robots + server)</div>
+      <div class="k-val">11 <span style="font-size:15px;color:var(--muted);font-weight:500">/ 11</span></div>
+      <div class="k-sub"><span class="dot" style="background:var(--st-good)"></span>GPTBot, ClaudeBot, PerplexityBot…</div>
+    </div>
+    <div class="kpi">
+      <div class="k-label">Third-party review / directory hits found</div>
+      <div class="k-val">0</div>
+      <div class="k-sub"><span class="dot" style="background:var(--st-critical)"></span>Brand not retrievable off-site</div>
+    </div>
+    <div class="kpi">
+      <div class="k-label">Mobile LCP, homepage (lab)</div>
+      <div class="k-val">10.1s</div>
+      <div class="k-sub"><span class="dot" style="background:var(--st-critical)"></span>Target ≤ 2.5s</div>
+    </div>
+  </div>
+
+  <!-- STRENGTHS -->
+  <div class="card">
+    <h2>Already in good shape</h2>
+    <p class="cap">These are already strong signals for both classic search and AI retrieval. Protect them during future changes.</p>
+    <div class="okrow">
+      <div><span class="dot" style="background:var(--st-good)"></span>All 276 sitemap URLs return 200, with no redirect chains; http→https and www→apex are single 301s; real 404s are served.</div>
+      <div><span class="dot" style="background:var(--st-good)"></span>Every URL has a self-referencing canonical; no stray noindex; snippet directives allow full previews.</div>
+      <div><span class="dot" style="background:var(--st-good)"></span>All 17 core pages have one H1 and unique titles and meta descriptions within length limits.</div>
+      <div><span class="dot" style="background:var(--st-good)"></span>Structured data on every template: MobilePhoneStore/LocalBusiness with geo and opening hours, Service, FAQPage (5 pages), BlogPosting, Product.</div>
+      <div><span class="dot" style="background:var(--st-good)"></span>An <code>llms.txt</code> with both shops' addresses, phone numbers, hours and key pages, which gives AI systems a clean summary of the business.</div>
+      <div><span class="dot" style="background:var(--st-good)"></span>Service pages state explicit prices (e.g. screen repair “from £49”, 15 price points on that page). AI answers can quote concrete figures like these.</div>
+      <div><span class="dot" style="background:var(--st-good)"></span>Robots.txt and the CDN both serve AI crawlers (GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, PerplexityBot, CCBot, Google-Extended) the same 200 response.</div>
+      <div><span class="dot" style="background:var(--st-good)"></span>GA4 (gtag) is installed. Page-level caching (LiteSpeed + hCDN) is active.</div>
+    </div>
+  </div>
+
+  <!-- CORE WEB VITALS -->
+  <div class="card">
+    <h2>Core Web Vitals — mobile (lab)</h2>
+    <p class="cap">Local Lighthouse 12 run with simulated mobile throttling, 21 Oct 2026. Performance score <b>27 / 100</b> on the homepage
+    and <b>44 / 100</b> on /mobile-repair-services/screen-repair/. Treat these as indicative: the run used a constrained cloud CPU, and
+    PageSpeed Insights (which also returns Google's real-user field data) was over its daily quota. The direction is clear even so.</p>
+    <div class="meters">
+      <div class="meter">
+        <div class="m-top"><span class="m-name">Largest Contentful Paint</span><span class="m-val">10.1s</span></div>
+        <div class="m-track"><div class="m-fill" style="width:100%;background:var(--st-critical)"></div></div>
+        <div class="m-scale"><span>0s</span><span>good ≤ 2.5s</span><span>4.0s+</span></div>
+        <div class="m-foot"><span class="dot" style="background:var(--st-critical)"></span>Poor. Screen-repair page: 9.0s.</div>
+      </div>
+      <div class="meter">
+        <div class="m-top"><span class="m-name">Total Blocking Time (INP proxy)</span><span class="m-val">2,990ms</span></div>
+        <div class="m-track"><div class="m-fill" style="width:100%;background:var(--st-critical)"></div></div>
+        <div class="m-scale"><span>0</span><span>good ≤ 200ms</span><span>600ms+</span></div>
+        <div class="m-foot"><span class="dot" style="background:var(--st-critical)"></span>Poor. 44 script tags; 168 KiB of unused JS.</div>
+      </div>
+      <div class="meter">
+        <div class="m-top"><span class="m-name">Cumulative Layout Shift</span><span class="m-val">0.002</span></div>
+        <div class="m-track"><div class="m-fill" style="width:2%;background:var(--st-good)"></div></div>
+        <div class="m-scale"><span>0</span><span>good ≤ 0.1</span><span>0.25+</span></div>
+        <div class="m-foot"><span class="dot" style="background:var(--st-good)"></span>Good on both pages tested.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CRITICAL -->
+  <div class="card">
+    <h2>Critical findings</h2>
+    <p class="cap">Each of these materially limits whether the business is found in Google or recommended by an AI assistant.</p>
+
+    <div class="find">
+      <div><span class="badge"><span class="dot" style="background:var(--st-critical)"></span>Critical</span></div>
+      <div>
+        <p class="f-title">GEO: the brand has almost no presence off its own website</p>
+        <p class="f-body">Web searches for “InstaTech phone repair London Marchmont Street reviews” and for the literal domain
+        <code>"instatech.uk"</code> return no InstaTech result: no review profile, directory listing or press mention. Category
+        prompts (“best phone repair shop Bloomsbury”, “phone screen repair Moorgate Old Street”) surface iSmash Tottenham Court Road
+        and Square Repair instead. ChatGPT search runs largely on Bing's index, and Perplexity, Copilot and AI Overviews all favour
+        corroborating third-party sources. A shop that exists only on its own domain is therefore rarely named, however good that site is.
+        The schema's <code>sameAs</code> lists only TikTok and two Google Maps links.</p>
+        <p class="f-fix"><b>Fix:</b> (1) Fully complete Google Business Profiles for both shops, with categories, services, prices, photos and a
+        review-request routine. (2) Claim <b>Bing Places</b> and <b>Apple Business Connect</b>: these feed ChatGPT/Copilot and Siri/Apple Maps.
+        (3) Build consistent NAP citations on Trustpilot, Yelp, Yell, Thomson Local, FreeIndex, Checkatrade and Cylex.
+        (4) Pursue 3–5 local editorial mentions (Bloomsbury/Clerkenwell/City local press, the UCL/SOAS student guides near Marchmont Street).
+        (5) Add every resulting profile URL to Organization and LocalBusiness <code>sameAs</code>.</p>
+      </div>
+    </div>
+
+    <div class="find">
+      <div><span class="badge"><span class="dot" style="background:var(--st-critical)"></span>Critical</span></div>
+      <div>
+        <p class="f-title">Mobile load is very slow: LCP ~10s, main thread blocked ~3s</p>
+        <p class="f-body">Homepage: performance 27, FCP 10.0s, LCP 10.1s, TBT 2,990ms, 2.2 MB transferred, 2,035 DOM nodes, 44 scripts.
+        One homepage request recorded a 2.5s server response (a cache miss; a cached hit measured 0.6s). Third-party code blocked the main
+        thread for 290ms. LCP is a ranking input, and slow first paint also cuts walk-in conversions from “near me” mobile searches.</p>
+        <p class="f-fix"><b>Fix:</b> In LiteSpeed Cache, enable JS defer/delay for non-critical scripts, CSS critical-path generation and
+        unused-CSS removal. Dequeue WooCommerce cart/fragment scripts on non-shop pages. Preload the hero image with <code>fetchpriority="high"</code>.
+        Reduce page-builder DOM depth on the homepage. Re-test in PageSpeed Insights and use its field data as the measure of success.</p>
+      </div>
+    </div>
+
+    <div class="find">
+      <div><span class="badge"><span class="dot" style="background:var(--st-critical)"></span>Critical</span></div>
+      <div>
+        <p class="f-title">The homepage H1 is a promotional banner, not what the business does</p>
+        <p class="f-body">The homepage's only H1 is <code>2 shops weren’t enough. Oxford Circus is next.</code> The page's main heading,
+        which search engines and AI extractors weight most heavily when deciding what a page is about, therefore carries no service
+        (“phone repair”) and no location. The title tag (“Phone &amp; Laptop Repair London – Same Day”) is well targeted, but the H1 contradicts it.</p>
+        <p class="f-fix"><b>Fix:</b> Make the H1 something like <i>“Phone, laptop &amp; tablet repair in central London, same day”</i> and
+        demote the Oxford Circus announcement to an H2 or a banner.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- HIGH -->
+  <div class="card">
+    <h2>High-priority findings</h2>
+    <p class="cap">These weaken entity clarity and trust: the signals AI systems use to decide whom to cite.</p>
+
+    <div class="find">
+      <div><span class="badge"><span class="dot" style="background:var(--st-serious)"></span>High</span></div>
+      <div>
+        <p class="f-title">The brand name is spelt two ways: “InstaTech” and “instaTech”</p>
+        <p class="f-body">Most titles and the Organization schema use <code>InstaTech</code>. The Moorgate, Bloomsbury, Oxford Circus and
+        screen-repair titles, the Service schema's provider names and the Google Maps listing names use <code>instaTech</code>.
+        Entity-matching systems treat consistent naming as a confidence signal when linking a website, a Maps listing and third-party
+        mentions into one business.</p>
+        <p class="f-fix"><b>Fix:</b> Choose one form and apply it everywhere: titles, schema, both GBP listings, social handles and citations.</p>
+      </div>
+    </div>
+
+    <div class="find">
+      <div><span class="badge"><span class="dot" style="background:var(--st-serious)"></span>High</span></div>
+      <div>
+        <p class="f-title">The LocalBusiness schema is present but underspecified</p>
+        <p class="f-body">Both shops' <code>url</code> points to <code>/locations/</code> rather than their own location pages.
+        <code>hasMap</code> uses generic Maps search URLs with no place ID or CID. <code>image</code> is the logo file
+        (<code>WhatsApp-Image-2026-05-07…png</code>) rather than a shopfront photo. Organization has no <code>sameAs</code>,
+        <code>contactPoint</code> or <code>foundingDate</code>. The third shop (22 Great Castle St, W1, opening October 2026) is missing
+        from the schema and from <code>llms.txt</code>.</p>
+        <p class="f-fix"><b>Fix:</b> Point each <code>url</code> at its location page. Use the GBP share link containing the CID for <code>hasMap</code>.
+        Add shopfront photos and <code>sameAs</code> profiles. Add the Oxford Circus location to the schema and llms.txt once it is trading.</p>
+      </div>
+    </div>
+
+    <div class="find">
+      <div><span class="badge"><span class="dot" style="background:var(--st-serious)"></span>High</span></div>
+      <div>
+        <p class="f-title">The blog author entity is empty on 60 posts</p>
+        <p class="f-body">Every BlogPosting references <code>#author</code>, but that Person node has no name, URL or credentials.
+        Repair-advice content (“are third-party repairs safe”, “iPhone unknown part message”) is the kind of content where demonstrable
+        hands-on expertise decides whether Google and AI answers trust it.</p>
+        <p class="f-fix"><b>Fix:</b> Publish a named technician author with a bio page (years repairing, device specialisms, shop location).
+        Give the Person node a <code>name</code>, <code>url</code>, <code>jobTitle</code> and <code>worksFor</code>. Add first-hand repair photos to posts.</p>
+      </div>
+    </div>
+
+    <div class="find">
+      <div><span class="badge"><span class="dot" style="background:var(--st-serious)"></span>High</span></div>
+      <div>
+        <p class="f-title">Blog volume and spread carry a scaled-content risk</p>
+        <p class="f-body">61 posts of a uniform ~1,800–3,100 words, 36 of them showing the same last-modified date (13 Sep 2026).
+        Roughly a third are generic affiliate-style buying guides (“best power banks for students”, “best phone mounts for cars”) that
+        are unrelated to the core repair intent. A theme demo page, <code>/blog-standard/</code>, is indexed, has no H1 and is in the sitemap.</p>
+        <p class="f-fix"><b>Fix:</b> Noindex or delete <code>/blog-standard/</code>. Consolidate the accessory guides into fewer, stronger pages
+        or retire them. Put effort into repair-intent pages that carry original evidence: real prices, turnaround times, before/after photos
+        and London-specific detail. Those are the passages AI answers quote.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MEDIUM -->
+  <div class="card">
+    <h2>Medium-priority findings</h2>
+    <p class="cap">Hygiene and accessibility items, best batched into one maintenance pass.</p>
+
+    <div class="find">
+      <div><span class="badge"><span class="dot" style="background:var(--st-warning)"></span>Medium</span></div>
+      <div><p class="f-title">Shop: 26 of 159 products have no meta description; 5 product title pairs and 6 product descriptions are duplicated</p>
+      <p class="f-body">This includes the Lightning splitter, travel adapter, USB-C HDMI and QUATRE multi-port variants. 8 product titles exceed 60 characters.</p></div>
+    </div>
+    <div class="find">
+      <div><span class="badge"><span class="dot" style="background:var(--st-warning)"></span>Medium</span></div>
+      <div><p class="f-title">Archives: 33 of 33 product categories and 5 of 6 blog categories have no meta description; blog categories have no H1</p>
+      <p class="f-body">An empty <code>/category/uncategorized/</code> archive is indexed. Set it to noindex, or write a short intro for each archive that is worth keeping.</p></div>
+    </div>
+    <div class="find">
+      <div><span class="badge"><span class="dot" style="background:var(--st-warning)"></span>Medium</span></div>
+      <div><p class="f-title">972 of 3,449 images (28%) have no alt text</p>
+      <p class="f-body">Mostly product gallery images (791 of the 972). Core pages are close to complete, with one missing per page, which is likely a shared theme element.</p></div>
+    </div>
+    <div class="find">
+      <div><span class="badge"><span class="dot" style="background:var(--st-warning)"></span>Medium</span></div>
+      <div><p class="f-title">Accessibility: Lighthouse scores 82 (home) and 89 (screen repair)</p>
+      <p class="f-body">Failing checks: colour contrast, touch-target size, focusable elements inside <code>aria-hidden</code>, out-of-order headings,
+      and a non-crawlable <code>&lt;a class="search_close"&gt;</code> anchor with no href.</p></div>
+    </div>
+    <div class="find">
+      <div><span class="badge"><span class="dot" style="background:var(--st-warning)"></span>Medium</span></div>
+      <div><p class="f-title">The currency-exchange service muddies the topical entity</p>
+      <p class="f-body"><code>/currency-exchange-service/</code> (1,669 words) sits in a site that otherwise covers only device repair and trade. If it is a real
+      in-shop service, keep it but keep it out of the main repair navigation and schema, so that the business stays classified as a repair shop.</p></div>
+    </div>
+    <div class="find">
+      <div><span class="badge"><span class="dot" style="background:var(--st-warning)"></span>Medium</span></div>
+      <div><p class="f-title">The tablet-repair title targets Bloomsbury only</p>
+      <p class="f-body">“Tablet &amp; iPad Repair in Bloomsbury, London WC1” excludes the Moorgate shop, unlike the phone, laptop and watch pages, which target London as a whole.</p></div>
+    </div>
+    <div class="find">
+      <div><span class="badge"><span class="dot" style="background:var(--st-warning)"></span>Medium</span></div>
+      <div><p class="f-title">No Google or Bing verification tag is visible; IndexNow is not confirmed</p>
+      <p class="f-body">Search Console and Bing Webmaster Tools may be verified by DNS, which this audit cannot see. Confirm both properties exist and submit the sitemap
+      in Bing. Rank Math can ping IndexNow, which gets new pages into Bing (and so into ChatGPT search) within hours.</p></div>
+    </div>
+    <div class="find">
+      <div><span class="badge"><span class="dot" style="background:var(--st-warning)"></span>Medium</span></div>
+      <div><p class="f-title">llms.txt could carry more answerable facts</p>
+      <p class="f-body">It currently lists locations and links. Add a short price table (screen, battery and charging-port repairs by model family), typical turnaround times,
+      warranty terms, brands covered and the Oxford Circus opening date: the facts an assistant needs to answer “how much / how long / where”.</p></div>
+    </div>
+  </div>
+
+  <!-- PAGE DATA -->
+  <div class="card">
+    <h2>Crawl data by template</h2>
+    <p class="cap">Measured from all 276 URLs in the Rank Math sitemaps. The median word count excludes navigation, scripts and styles.</p>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Template</th><th class="num">URLs</th><th class="num">One H1</th><th class="num">Meta desc.</th><th class="num">Schema</th><th class="num">Median words</th><th class="num">Img no alt</th></tr></thead>
+      <tbody>
+        <tr><td class="p">Pages</td><td class="num">17</td><td class="num okv">17</td><td class="num okv">17</td><td class="num okv">17</td><td class="num">1,278</td><td class="num">17 / 97</td></tr>
+        <tr><td class="p">Blog posts</td><td class="num">61</td><td class="num">60</td><td class="num okv">61</td><td class="num okv">61</td><td class="num">1,990</td><td class="num">125 / 489</td></tr>
+        <tr><td class="p">Products</td><td class="num">159</td><td class="num okv">159</td><td class="num bad">133</td><td class="num">158</td><td class="num">604</td><td class="num bad">791 / 2,387</td></tr>
+        <tr><td class="p">Product categories</td><td class="num">33</td><td class="num okv">33</td><td class="num bad">0</td><td class="num okv">33</td><td class="num">784</td><td class="num">33 / 393</td></tr>
+        <tr><td class="p">Blog categories</td><td class="num">6</td><td class="num bad">0</td><td class="num bad">1</td><td class="num okv">6</td><td class="num">668</td><td class="num">6 / 83</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <!-- COMPARISON -->
+  <div class="card">
+    <h2>Benchmark against Best Tech (best-tech.co.uk, audited 13 Aug 2026)</h2>
+    <p class="cap">Both are central-London walk-in repair shops. Best Tech figures come from this repository's earlier audit, before its outstanding fixes.</p>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Signal</th><th>InstaTech</th><th>Best Tech</th></tr></thead>
+      <tbody>
+        <tr><td class="p">Indexable pages</td><td>276</td><td>16</td></tr>
+        <tr><td class="p">Pages with structured data</td><td class="okv">276 / 276</td><td class="bad">0 / 16</td></tr>
+        <tr><td class="p">Pages with an H1</td><td class="okv">269 / 276</td><td class="bad">0 / 16</td></tr>
+        <tr><td class="p">llms.txt / AI-crawler access</td><td class="okv">Yes / all allowed</td><td>No / allowed by default</td></tr>
+        <tr><td class="p">Analytics</td><td class="okv">GA4</td><td class="bad">None</td></tr>
+        <tr><td class="p">Mobile LCP (lab)</td><td class="bad">10.1s</td><td class="bad">9.0s</td></tr>
+        <tr><td class="p">Off-site footprint found</td><td class="bad">Negligible</td><td>Not assessed</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="foot" style="margin-top:12px">InstaTech is well ahead on on-site SEO. Neither business currently has the third-party corroboration that AI assistants rely on,
+    so the off-site work in Critical #1 is where either one could take the lead.</p>
+  </div>
+
+  <div class="card">
+    <h2>Where to start</h2>
+    <ol class="steps">
+      <li><b>This week:</b> change the homepage H1; noindex <code>/blog-standard/</code> and <code>/category/uncategorized/</code>; standardise the brand spelling.</li>
+      <li><b>This week:</b> claim and complete Bing Places and Apple Business Connect for both shops; audit both Google Business Profiles; start asking every completed repair for a review.</li>
+      <li><b>Next 2 weeks:</b> tighten the LocalBusiness and Organization schema (location URLs, Maps CIDs, shopfront images, <code>sameAs</code>) and add a named technician author.</li>
+      <li><b>Next 2 weeks:</b> a LiteSpeed Cache performance pass (JS delay, critical CSS, WooCommerce script dequeue, LCP preload), then re-measure in PageSpeed Insights.</li>
+      <li><b>Next 60 days:</b> 15–20 consistent NAP citations plus 3–5 local editorial mentions; prune or merge the accessory buying guides; enrich llms.txt with prices and turnaround times.</li>
+      <li><b>Ongoing:</b> each month, test 10–15 fixed prompts (“phone repair near Russell Square”, “iPhone screen repair Old Street price”…) in ChatGPT, Perplexity, Gemini and Google AI Mode, and log whether InstaTech is named.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Method &amp; limitations</h2>
+    <p class="foot">
+      All 276 URLs in the Rank Math sitemap index (17 pages, 61 posts, 159 products, 33 product categories, 6 blog categories) were fetched and
+      parsed from the live site on 21 October 2026. Every on-page count comes from that parse. AI-crawler access was tested by requesting a
+      service page with each crawler's user agent. Performance comes from one local Lighthouse 12 mobile run per page (homepage and screen
+      repair). The run used constrained cloud hardware, so treat absolute values as indicative. PageSpeed Insights, and with it Google's real-user
+      field data, was unavailable (daily API quota exhausted). The off-site footprint was assessed with web searches for brand, domain and
+      category-plus-locality queries. That is a proxy, not a full citation or backlink audit.
+      Not available in this run: Ahrefs backlink and AI-citation data (the connected plan does not include these endpoints), Semrush keyword and
+      traffic data (the account had insufficient API units), and Google Search Console (the connector failed to connect). Google Business Profile
+      content and review counts were not inspected.
+    </p>
+  </div>
+
+</div>
+</div>
+<script>
+  document.getElementById('tg').addEventListener('click', function(){
+    var r = document.documentElement;
+    var cur = r.getAttribute('data-theme');
+    if(!cur){ cur = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
+    r.setAttribute('data-theme', cur === 'dark' ? 'light' : 'dark');
+  });
+</script>
+</body>
+</html>
