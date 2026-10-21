@@ -3,7 +3,7 @@
  * Plugin Name: InstaTech SEO fixes
  * Description: Phase 1 SEO fixes from the instatech.uk audit (Oct 2026). Output filters only, no database writes.
  *              Roll back by replacing this file with an empty one, or define INSTATECH_SEO_FIXES_OFF in wp-config.php.
- * Version:     1.0.0
+ * Version:     1.1.0
  * Source:      https://github.com/aislabz/best-tech-seo-audit (instatech/wp/mu-plugins/instatech-seo-fixes.php)
  */
 
@@ -220,4 +220,137 @@ add_filter(
 	},
 	99,
 	2
+);
+
+/**
+ * URL of the screen repair money page, which needs internal links from navigation.
+ */
+function instatech_seo_screen_repair_url() {
+	return home_url( '/mobile-repair-services/screen-repair/' );
+}
+
+/**
+ * Header and mobile menus: add "Screen Repair" under Repairs, directly after Mobile Repair Services.
+ */
+add_filter(
+	'wp_nav_menu_objects',
+	function ( $items ) {
+		if ( is_admin() || ! is_array( $items ) ) {
+			return $items;
+		}
+
+		$target = untrailingslashit( instatech_seo_screen_repair_url() );
+		$anchor = untrailingslashit( home_url( '/mobile-repair-services/' ) );
+		foreach ( $items as $item ) {
+			if ( isset( $item->url ) && untrailingslashit( $item->url ) === $target ) {
+				return $items;
+			}
+		}
+
+		$out = array();
+		foreach ( $items as $item ) {
+			$out[] = $item;
+			if ( ! isset( $item->url ) || untrailingslashit( $item->url ) !== $anchor ) {
+				continue;
+			}
+
+			$new                        = clone $item;
+			$new->ID                    = 990000 + (int) $item->ID;
+			$new->db_id                 = $new->ID;
+			$new->object_id             = 0;
+			$new->object                = 'custom';
+			$new->type                  = 'custom';
+			$new->type_label            = 'Custom Link';
+			$new->title                 = 'Screen Repair';
+			$new->url                   = instatech_seo_screen_repair_url();
+			$new->attr_title            = '';
+			$new->target                = '';
+			$new->xfn                   = '';
+			$new->description           = '';
+			$new->classes               = array( 'menu-item', 'menu-item-type-custom', 'menu-item-object-custom' );
+			$new->current               = false;
+			$new->current_item_ancestor = false;
+			$new->current_item_parent   = false;
+			$out[]                      = $new;
+		}
+
+		return $out;
+	},
+	20
+);
+
+/**
+ * Footer widgets: add Screen Repair to the services link list and link the "About Us" heading.
+ */
+add_filter(
+	'elementor/widget/render_content',
+	function ( $content, $widget ) {
+		if ( ! is_string( $content ) || ! is_object( $widget ) || ! method_exists( $widget, 'get_name' ) ) {
+			return $content;
+		}
+		$name = $widget->get_name();
+
+		if ( 'trx_widget_custom_links' === $name
+			&& false !== strpos( $content, '/mobile-repair-services/"' )
+			&& false === strpos( $content, '/screen-repair/' ) ) {
+			$li      = '<li class="custom_links_list_item"><a class="custom_links_list_item_link" href="'
+				. esc_url( instatech_seo_screen_repair_url() )
+				. '"><span class="custom_links_list_item_title">Screen Repair</span></a></li>';
+			$content = preg_replace(
+				'#(<li class="custom_links_list_item"><a [^>]*href="[^"]*/mobile-repair-services/"[^>]*>.*?</li>)#s',
+				'$1' . $li,
+				$content,
+				1
+			);
+		}
+
+		if ( 'trx_sc_title' === $name
+			&& false !== strpos( $content, '<span class="sc_item_title_text">About Us</span>' )
+			&& false === strpos( $content, '/about-us/' ) ) {
+			$content = str_replace(
+				'<span class="sc_item_title_text">About Us</span>',
+				'<span class="sc_item_title_text"><a href="' . esc_url( home_url( '/about-us/' ) ) . '" style="color:inherit">About Us</a></span>',
+				$content
+			);
+		}
+
+		return $content;
+	},
+	20,
+	2
+);
+
+/**
+ * Homepage: the hero H1 carries a campaign message. Prefix it with a small, visible line naming the service and
+ * location so the H1 describes the page. The campaign headline and its styling are untouched. Skips itself once the
+ * H1 already mentions repair.
+ */
+function instatech_seo_home_h1( $html ) {
+	if ( ! is_string( $html ) || false !== strpos( $html, 'it-h1-kw' ) || ! is_front_page() ) {
+		return $html;
+	}
+	if ( ! preg_match( '#<h1\b[^>]*>(.*?)</h1>#is', $html, $m ) ) {
+		return $html;
+	}
+	if ( false !== stripos( wp_strip_all_tags( $m[1] ), 'repair' ) ) {
+		return $html;
+	}
+	return preg_replace(
+		'#(<h1\b[^>]*>)#i',
+		'$1<span class="it-h1-kw">Phone, laptop &amp; tablet repair in central London</span>',
+		$html,
+		1
+	);
+}
+add_filter( 'the_content', 'instatech_seo_home_h1', 1000 );
+add_filter( 'elementor/widget/render_content', 'instatech_seo_home_h1', 21 );
+
+add_action(
+	'wp_head',
+	function () {
+		if ( is_front_page() ) {
+			echo '<style id="instatech-seo-h1">.it-h1-kw{display:block;font-size:13px;font-weight:700;letter-spacing:.08em;line-height:1.4;text-transform:uppercase;opacity:.85;margin:0 0 10px;white-space:normal}</style>' . "\n";
+		}
+	},
+	99
 );

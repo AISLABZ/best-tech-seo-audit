@@ -15,8 +15,8 @@ site without the owner's explicit approval in a conversation. Approved changes a
 ## Phase 1: fix the leaks
 | # | Item | Status | Notes |
 |---|---|---|---|
-| 1.1 | Link `/mobile-repair-services/screen-repair/` from the menu, footer, homepage hero and location pages | todo | Elementor and menu change. Draft the exact placement for approval |
-| 1.2 | Homepage H1 → "Phone, laptop and tablet repair in central London — same day, walk-in"; keep the Oxford Circus message as a banner or H2. Service-page H1s should lead with the searched phrase | todo | Elementor change. Draft for approval |
+| 1.1 | Link `/mobile-repair-services/screen-repair/` from the menu, footer, homepage hero and location pages | verified | Header, mobile and footer links are live via plugin v1.1.0 (4 per page). Contextual links from location pages and posts are still todo |
+| 1.2 | Homepage H1 → "Phone, laptop and tablet repair in central London — same day, walk-in"; keep the Oxford Circus message as a banner or H2. Service-page H1s should lead with the searched phrase | live | The homepage H1 now carries the service line (v1.1.0). Service-page H1s ("ProfessionalMobile RepairServices" etc.) are still todo. Draft for approval |
 | 1.3 | Repoint 17 dead or redirecting links in 12 posts | verified | Done by the mu-plugin. Fix permanently in post content when convenient |
 | 1.4 | Noindex `/layouts/*` and `/category/uncategorized/` | verified | Done by the mu-plugin. Deleting the demo pages and re-categorising posts still needs approval |
 | 1.5 | 301 `/blog-standard/` to a proper blog hub | todo | Confirm the target with the owner first. It currently serves as the blog listing |
@@ -24,7 +24,7 @@ site without the owner's explicit approval in a conversation. Approved changes a
 | 1.7 | Fix category name casing ("USB-C HUBS", "ETHERNET Cables", "For C-C phones", "MacBook/Laptop charger") | todo | Term rename. Draft for approval |
 | 1.8 | Make the 19 duplicate product titles unique (`-2` duplicates) | todo | Check whether the `-2` products are true duplicates, and propose a merge with a 301 or a variant name |
 | 1.9 | Image alt text (972 missing at baseline) | live | The mu-plugin covers attachment images. Re-measure on the Monday crawl |
-| 1.10 | Link About Us from the header or footer; add named technicians, experience and warranty | todo | About Us has 0 inlinks. Needs owner facts |
+| 1.10 | Link About Us from the header or footer; add named technicians, experience and warranty | live | Footer link is live (v1.1.0). Content still needs owner facts |
 | 1.11 | Entity: one spelling ("InstaTech") everywhere, including GBP names; Maps CID links in the schema; full MobilePhoneStore node on each location page; Store schema on Oxford Circus | todo | sameAs is done by the mu-plugin. Needs GBP share links from the owner |
 | 1.12 | Performance: LiteSpeed JS delay for GTM, remove unused CSS, dequeue TI Wishlist and Advanced Popups off-shop | todo | Settings change. Draft for approval, and verify with Lighthouse |
 | 1.13 | Search Console: confirm ownership and submit `/sitemap_index.xml` | blocked | Owner to confirm GSC access |
