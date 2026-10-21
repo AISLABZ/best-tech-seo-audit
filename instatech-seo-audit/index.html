@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en" data-palette="#184f95,#2a78d6,#86b6ef">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>InstaTech SEO Audit</title>
+<meta name="description" content="SEO and performance audit of instatech.uk, October 2026.">
+<style>
+  .viz-root{
+    color-scheme: light;
+    --surface-1:#fcfcfb; --plane:#f9f9f7;
+    --text-primary:#0b0b0b; --text-secondary:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --axis:#c3c2b7; --border:rgba(11,11,11,0.10);
+    --sev-critical:#184f95; --sev-high:#2a78d6; --sev-medium:#86b6ef;
+    --st-good:#0ca30c; --st-warning:#fab219; --st-serious:#ec835a; --st-critical:#d03b3b;
+    --seq-100:#cde2fb; --seq-450:#2a78d6; --seq-600:#184f95;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:where(:not([data-theme="light"])) .viz-root{
+      color-scheme: dark;
+      --surface-1:#1a1a19; --plane:#0d0d0d;
+      --text-primary:#ffffff; --text-secondary:#c3c2b7; --muted:#898781;
+      --grid:#2c2c2a; --axis:#383835; --border:rgba(255,255,255,0.10);
+      --sev-critical:#b7d3f6; --sev-high:#5598e7; --sev-medium:#256abf;
+      --seq-100:#184f95; --seq-450:#3987e5; --seq-600:#9ec5f4;
+    }
+  }
+  :root[data-theme="dark"] .viz-root{
+    color-scheme: dark;
+    --surface-1:#1a1a19; --plane:#0d0d0d;
+    --text-primary:#ffffff; --text-secondary:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --axis:#383835; --border:rgba(255,255,255,0.10);
+    --sev-critical:#b7d3f6; --sev-high:#5598e7; --sev-medium:#256abf;
+    --seq-100:#184f95; --seq-450:#3987e5; --seq-600:#9ec5f4;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--plane,#f9f9f7)}
+  .viz-root{
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background:var(--plane); color:var(--text-primary);
+    min-height:100vh; padding:32px 24px 64px;
+  }
+  .wrap{max-width:1120px;margin:0 auto}
+  header.top{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;margin-bottom:28px}
+  h1{font-size:22px;font-weight:650;margin:0 0 6px;letter-spacing:-0.01em}
+  .sub{font-size:13px;color:var(--text-secondary);margin:0;line-height:1.5}
+  .toggle{background:var(--surface-1);border:1px solid var(--border);border-radius:8px;
+    color:var(--text-secondary);font:inherit;font-size:12px;padding:7px 12px;cursor:pointer}
+  .toggle:hover{color:var(--text-primary)}
+  .card{background:var(--surface-1);border:1px solid var(--border);border-radius:12px;padding:20px 22px;margin-bottom:18px}
+  .card h2{font-size:14px;font-weight:600;margin:0 0 4px;letter-spacing:.01em}
+  .card .cap{font-size:12px;color:var(--muted);margin:0 0 18px;line-height:1.5}
+  .grid{display:grid;gap:18px}
+  .hero-row{grid-template-columns:minmax(240px,1fr) 2fr}
+  @media(max-width:820px){.hero-row{grid-template-columns:1fr}}
+  .hero .figure{font-size:64px;font-weight:650;line-height:1;letter-spacing:-0.03em;margin:6px 0 10px}
+  .hero .label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em}
+  .hero .note{font-size:12.5px;color:var(--text-secondary);line-height:1.55;margin:0}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  @media(max-width:820px){.kpis{grid-template-columns:repeat(2,1fr)}}
+  .kpi{background:var(--surface-1);border:1px solid var(--border);border-radius:12px;padding:16px 18px}
+  .kpi .k-label{font-size:11.5px;color:var(--muted);line-height:1.4;margin-bottom:8px}
+  .kpi .k-val{font-size:28px;font-weight:650;letter-spacing:-0.02em;line-height:1}
+  .kpi .k-sub{font-size:11.5px;color:var(--text-secondary);margin-top:7px;display:flex;align-items:center;gap:5px}
+  .dot{width:8px;height:8px;border-radius:50%;flex:none;display:inline-block}
+  /* severity bars */
+  .sevrow{display:grid;grid-template-columns:78px 1fr 34px;align-items:center;gap:12px;margin-bottom:12px}
+  .sevname{font-size:12.5px;color:var(--text-secondary);display:flex;align-items:center;gap:7px}
+  .sevtrack{height:20px;position:relative}
+  .sevbar{height:20px;border-radius:0 4px 4px 0;transition:filter .12s}
+  .sevrow:hover .sevbar{filter:brightness(1.08)}
+  .sevval{font-size:13px;font-weight:600;text-align:right;font-variant-numeric:tabular-nums}
+  /* meters */
+  .meters{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  @media(max-width:820px){.meters{grid-template-columns:1fr}}
+  .meter .m-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:9px}
+  .meter .m-name{font-size:12.5px;color:var(--text-secondary)}
+  .meter .m-val{font-size:20px;font-weight:650;letter-spacing:-0.01em}
+  .m-track{height:10px;border-radius:5px;background:var(--seq-100);position:relative;overflow:hidden}
+  .m-fill{height:10px;border-radius:5px}
+  .m-scale{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:7px;font-variant-numeric:tabular-nums}
+  .m-foot{font-size:11.5px;color:var(--text-secondary);margin-top:9px;display:flex;align-items:center;gap:6px;line-height:1.4}
+  /* weight chart */
+  .wrow{display:grid;grid-template-columns:150px 1fr 76px;align-items:center;gap:12px;margin-bottom:10px}
+  .wname{font-size:12.5px;color:var(--text-secondary)}
+  .wbar{height:18px;border-radius:0 4px 4px 0}
+  .wval{font-size:12.5px;text-align:right;color:var(--text-secondary);font-variant-numeric:tabular-nums}
+  /* table */
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  th{text-align:left;font-weight:600;color:var(--muted);font-size:11px;text-transform:uppercase;
+    letter-spacing:.05em;padding:0 10px 9px 0;border-bottom:1px solid var(--grid);white-space:nowrap}
+  td{padding:9px 10px 9px 0;border-bottom:1px solid var(--grid);color:var(--text-secondary);vertical-align:top}
+  tbody tr:hover td{background:color-mix(in srgb, var(--text-primary) 3.5%, transparent)}
+  td.p{color:var(--text-primary);font-weight:500;white-space:nowrap}
+  .num{font-variant-numeric:tabular-nums;text-align:right}
+  .bad{color:var(--st-critical);font-weight:600}
+  .okv{color:var(--st-good);font-weight:600}
+  /* findings */
+  .find{border-bottom:1px solid var(--grid);padding:15px 0;display:grid;grid-template-columns:96px 1fr;gap:16px}
+  .find:last-child{border-bottom:0;padding-bottom:0}
+  .badge{font-size:10.5px;font-weight:650;letter-spacing:.05em;text-transform:uppercase;
+    display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 9px;border-radius:6px;
+    border:1px solid var(--border);white-space:nowrap}
+  .f-title{font-size:13.5px;font-weight:600;color:var(--text-primary);margin:0 0 5px;line-height:1.4}
+  .f-body{font-size:12.5px;color:var(--text-secondary);margin:0;line-height:1.6}
+  .f-body code{background:color-mix(in srgb, var(--text-primary) 6%, transparent);
+    padding:1px 5px;border-radius:4px;font-size:11.5px;font-family:ui-monospace,Menlo,monospace}
+  .f-fix{font-size:12.5px;color:var(--text-secondary);margin:7px 0 0;line-height:1.6}
+  .f-fix b{color:var(--text-primary);font-weight:600}
+  ol.steps{margin:0;padding-left:20px}
+  ol.steps li{font-size:13px;color:var(--text-secondary);line-height:1.65;margin-bottom:11px}
+  ol.steps li b{color:var(--text-primary);font-weight:600}
+  .foot{font-size:11.5px;color:var(--muted);line-height:1.65;margin:0}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:11.5px;color:var(--text-secondary);margin-bottom:16px}
+  .legend span{display:flex;align-items:center;gap:6px}
+  .wrow{grid-template-columns:170px 1fr 76px}
+  @media(max-width:560px){.wrow{grid-template-columns:110px 1fr 64px}.find{grid-template-columns:1fr;gap:8px}.viz-root{padding:24px 16px 48px}}
+</style>
+</head>
+<body>
+<div class="viz-root">
+<div class="wrap">
+
+  <header class="top">
+    <div>
+      <h1>InstaTech — SEO &amp; performance audit</h1>
+      <p class="sub">instatech.uk · WordPress + WooCommerce · Rank Math SEO · LiteSpeed on Hostinger<br>
+      276 sitemap URLs crawled · audited 21 October 2026</p>
+    </div>
+    <button class="toggle" id="tg">Dark / light</button>
+  </header>
+
+  <div class="grid hero-row">
+    <div class="card hero">
+      <div class="label">Issues found</div>
+      <div class="figure">21</div>
+      <p class="note">The SEO foundations are sound — every URL resolves, is self-canonical, carries
+      schema, Open Graph and GA4. The three critical items are duplicate products and a mobile homepage
+      that takes ten seconds to paint.</p>
+    </div>
+    <div class="card">
+      <h2>Findings by severity</h2>
+      <p class="cap">Severity is an ordered scale, shown as one hue getting darker. Counts are direct-labelled.</p>
+      <div class="sevrow">
+        <div class="sevname"><span class="dot" style="background:var(--st-critical)"></span>Critical</div>
+        <div class="sevtrack"><div class="sevbar" style="width:30.0%;background:var(--sev-critical)"></div></div>
+        <div class="sevval">3</div>
+      </div>
+      <div class="sevrow">
+        <div class="sevname"><span class="dot" style="background:var(--st-serious)"></span>High</div>
+        <div class="sevtrack"><div class="sevbar" style="width:80.0%;background:var(--sev-high)"></div></div>
+        <div class="sevval">8</div>
+      </div>
+      <div class="sevrow">
+        <div class="sevname"><span class="dot" style="background:var(--st-warning)"></span>Medium</div>
+        <div class="sevtrack"><div class="sevbar" style="width:100.0%;background:var(--sev-medium)"></div></div>
+        <div class="sevval">10</div>
+      </div>
+      <p class="foot" style="margin-top:14px">Critical = blocks indexing, ranking or conversion at scale. High = actively costs
+      rankings or rich results. Medium = worth fixing in the next pass.</p>
+    </div>
+  </div>
+
+  <div class="kpis" style="margin-bottom:18px">
+    <div class="kpi">
+      <div class="k-label">Duplicate product URLs</div>
+      <div class="k-val">36 <span style="font-size:15px;color:var(--muted);font-weight:500">/ 159</span></div>
+      <div class="k-sub"><span class="dot" style="background:var(--st-critical)"></span>18 pairs</div>
+    </div>
+    <div class="kpi">
+      <div class="k-label">Lighthouse mobile performance</div>
+      <div class="k-val">27 <span style="font-size:15px;color:var(--muted);font-weight:500">/ 100</span></div>
+      <div class="k-sub"><span class="dot" style="background:var(--st-critical)"></span>Desktop 67</div>
+    </div>
+    <div class="kpi">
+      <div class="k-label">URLs missing a meta description</div>
+      <div class="k-val">64 <span style="font-size:15px;color:var(--muted);font-weight:500">/ 276</span></div>
+      <div class="k-sub"><span class="dot" style="background:var(--st-serious)"></span>All product categories</div>
+    </div>
+    <div class="kpi">
+      <div class="k-label">Images with alt text</div>
+      <div class="k-val">72%</div>
+      <div class="k-sub"><span class="dot" style="background:var(--st-serious)"></span>2,477 of 3,449</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Core Web Vitals — mobile homepage</h2>
+    <p class="cap">Lighthouse 12 lab run, 21 Oct 2026, simulated mid-range phone on slow 4G. Fill shows the
+    measured value against the “poor” boundary. Layout stability is excellent; loading is not.</p>
+    <div class="meters">
+      <div class="meter">
+        <div class="m-top"><span class="m-name">Largest Contentful Paint</span><span class="m-val">11.1s</span></div>
+        <div class="m-track"><div class="m-fill" style="width:100%;background:var(--st-critical)"></div></div>
+        <div class="m-scale"><span>0s</span><span>good ≤ 2.5s</span><span>4.0s+</span></div>
+        <div class="m-foot"><span class="dot" style="background:var(--st-critical)"></span>Poor — 4.4× the target. Desktop: 3.2s.</div>
+      </div>
+      <div class="meter">
+        <div class="m-top"><span class="m-name">Total Blocking Time</span><span class="m-val">2,790ms</span></div>
+        <div class="m-track"><div class="m-fill" style="width:100%;background:var(--st-critical)"></div></div>
+        <div class="m-scale"><span>0</span><span>good ≤ 200ms</span><span>600ms+</span></div>
+        <div class="m-foot"><span class="dot" style="background:var(--st-critical)"></span>Poor — main thread busy 18.9s. Desktop: 110ms.</div>
+      </div>
+      <div class="meter">
+        <div class="m-top"><span class="m-name">Cumulative Layout Shift</span><span class="m-val">0.011</span></div>
+        <div class="m-track"><div class="m-fill" style="width:4.4%;background:var(--st-good)"></div></div>
+        <div class="m-scale"><span>0</span><span>good ≤ 0.1</span><span>0.25+</span></div>
+        <div class="m-foot"><span class="dot" style="background:var(--st-good)"></span>Good. Desktop: 0.001.</div>
+      </div>
+    </div>
+    <p class="foot" style="margin-top:20px">Lighthouse category scores (mobile / desktop): Performance 27 / 67 ·
+    Accessibility 82 / 85 · Best practices 100 / 100 · SEO 92 / 92. PageSpeed Insights’ shared API quota was exhausted
+    on the audit date, so field (CrUX) data was not retrieved — check it in Search Console → Core Web Vitals.</p>
+  </div>
+
+  <div class="card">
+    <h2>What’s making the homepage slow</h2>
+    <p class="cap">Largest transfers on the mobile homepage load (118 requests, 2,217 KiB total). One stylesheet dominates.</p>
+    <div class="wrow">
+      <div class="wname">Combined CSS (LiteSpeed)</div>
+      <div><div class="wbar" style="width:100.0%;background:var(--seq-600)"></div></div>
+      <div class="wval">729 KB</div>
+    </div>
+    <div class="wrow">
+      <div class="wname">ElementsKit icon font</div>
+      <div><div class="wbar" style="width:35.5%;background:var(--seq-450)"></div></div>
+      <div class="wval">259 KB</div>
+    </div>
+    <div class="wrow">
+      <div class="wname">Google tag (gtag.js)</div>
+      <div><div class="wbar" style="width:26.9%;background:var(--seq-450)"></div></div>
+      <div class="wval">196 KB</div>
+    </div>
+    <div class="wrow">
+      <div class="wname">HTML document</div>
+      <div><div class="wbar" style="width:26.5%;background:var(--seq-450)"></div></div>
+      <div class="wval">193 KB</div>
+    </div>
+    <div class="wrow">
+      <div class="wname">Fontello icon font</div>
+      <div><div class="wbar" style="width:17.1%;background:var(--seq-450)"></div></div>
+      <div class="wval">125 KB</div>
+    </div>
+    <div class="wrow">
+      <div class="wname">Combined JS (LiteSpeed)</div>
+      <div><div class="wbar" style="width:11.0%;background:var(--seq-450)"></div></div>
+      <div class="wval">80 KB</div>
+    </div>
+    <div class="wrow">
+      <div class="wname">Font Awesome Solid</div>
+      <div><div class="wbar" style="width:10.8%;background:var(--seq-450)"></div></div>
+      <div class="wval">79 KB</div>
+    </div>
+    <p class="foot" style="margin-top:16px">Images are already well handled — Lighthouse finds no savings from compression,
+    modern formats, responsive sizing or lazy-loading. The weight is code: CSS, three icon-font libraries and JavaScript.</p>
+  </div>
+
+  <div class="card">
+    <h2>Critical findings</h2>
+    <p class="cap">Three issues, each affecting rankings or conversion at scale.</p>
+    <div class="find">
+      <div><span class="badge" style="color:var(--st-critical)"><span class="dot" style="background:var(--st-critical)"></span>Critical</span></div>
+      <div>
+        <p class="f-title">1 · Eighteen products are published twice</p>
+        <p class="f-body">The catalogue contains 18 product pairs where a second copy sits at a <code>-2</code> slug — e.g. <code>/product/a1-aux-cable-1m/</code> and <code>/product/a1-aux-cable-1m-2/</code>. Each pair has the same title, description, price and images (re-uploaded as <code>…-1.png</code>); only the assigned category differs (“Audio Cables” vs “Audio”). Both copies are self-canonical and both are in <code>product-sitemap.xml</code>, so 36 URLs compete against each other for the same queries.</p>
+        <p class="f-fix"><b>Fix:</b> keep one product per pair, assign it to both categories (WooCommerce supports multiple), delete the duplicate and 301 it to the survivor via Rank Math → Redirections. Affected: ethernet cables (4), audio splitters and adapters (6), Z-series audio cables (3), smart-watch cables (2), USB-C HDMI, QUATRE hub, A1 AUX, World Travel Adapter.</p>
+      </div>
+    </div>
+    <div class="find">
+      <div><span class="badge" style="color:var(--st-critical)"><span class="dot" style="background:var(--st-critical)"></span>Critical</span></div>
+      <div>
+        <p class="f-title">2 · Mobile homepage takes 10 seconds to show anything</p>
+        <p class="f-body">Local Lighthouse 12 mobile run (simulated Moto G Power, slow 4G): performance <b>27 / 100</b>, First Contentful Paint <b>10.3 s</b>, Largest Contentful Paint <b>11.1 s</b>, Speed Index 10.3 s. Desktop scores 67 with LCP 3.2 s. The homepage is the main landing page for “phone repair London” traffic.</p>
+        <p class="f-fix"><b>Fix:</b> see findings 3 and 4 — the stylesheet bundle and main-thread JavaScript account for nearly all of it. Target mobile LCP ≤ 2.5 s.</p>
+      </div>
+    </div>
+    <div class="find">
+      <div><span class="badge" style="color:var(--st-critical)"><span class="dot" style="background:var(--st-critical)"></span>Critical</span></div>
+      <div>
+        <p class="f-title">3 · One 729 KB stylesheet blocks every page render</p>
+        <p class="f-body">LiteSpeed Cache’s “CSS Combine” produces a single <code>/wp-content/litespeed/css/…css</code> of <b>729 KB</b> transferred — a third of the homepage’s 2,217 KiB weight — which the browser must download and parse before painting. On top of it the theme loads three separate icon fonts: ElementsKit icon pack (259 KB), Fontello (125 KB) and Font Awesome Solid (79 KB).</p>
+        <p class="f-fix"><b>Fix:</b> in LiteSpeed Cache → Page Optimization turn on <b>Generate Critical CSS</b> and <b>Load CSS Asynchronously</b>; disable unused Elementor/ElementsKit widgets so their CSS leaves the bundle; consolidate to one icon set (or inline SVGs) and drop the other two.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>High-priority findings</h2>
+    <p class="cap">Eight issues actively costing rankings, rich results or local visibility.</p>
+    <div class="find">
+      <div><span class="badge" style="color:var(--st-serious)"><span class="dot" style="background:var(--st-serious)"></span>High</span></div>
+      <div>
+        <p class="f-title">4 · Main thread is busy for 18.9 seconds on mobile</p>
+        <p class="f-body">Total Blocking Time <b>2,790 ms</b> (good ≤ 200 ms); script evaluation 3.7 s; 168 KB of unused JavaScript; DOM of 2,412 elements. The mega-menu repeats the full product-category tree in markup on every page.</p>
+        <p class="f-fix"><b>Fix:</b> enable LiteSpeed “Delay JS” for non-critical scripts (gtag, chat, sliders); trim the mega-menu to top-level categories; remove unused Elementor add-ons.</p>
+      </div>
+    </div>
+    <div class="find">
+      <div><span class="badge" style="color:var(--st-serious)"><span class="dot" style="background:var(--st-serious)"></span>High</span></div>
+      <div>
+        <p class="f-title">5 · Uncached pages take ~3 seconds to start responding</p>
+        <p class="f-body">Cache-busted requests to six representative URLs returned the first byte in <b>2.77–3.18 s</b>; the desktop Lighthouse run recorded 2,810 ms for the root document. Cached copies from Hostinger’s CDN arrive in 0.22–0.48 s, so first visitors after a purge, and Googlebot on less-visited product URLs, get the slow path. Crawling all 276 sitemap URLs averaged 9.2 s per page under modest concurrency.</p>
+        <p class="f-fix"><b>Fix:</b> enable LiteSpeed <b>Crawler</b> to pre-warm the cache after purges; enable Object Cache (Redis/Memcached on Hostinger); audit slow plugins with Query Monitor.</p>
+      </div>
+    </div>
+    <div class="find">
+      <div><span class="badge" style="color:var(--st-serious)"><span class="dot" style="background:var(--st-serious)"></span>High</span></div>
+      <div>
+        <p class="f-title">6 · Product schema is too thin for Google’s merchant listings</p>
+        <p class="f-body">All 159 product pages emit Rank Math <code>Product</code> + <code>Offer</code> with price and stock, but <b>none</b> include <code>brand</code>, <code>sku</code>, <code>gtin</code>/<code>mpn</code>, <code>shippingDetails</code>, <code>hasMerchantReturnPolicy</code> or reviews. The product <code>name</code> also carries the “ - InstaTech” title suffix.</p>
+        <p class="f-fix"><b>Fix:</b> populate SKU and GTIN in WooCommerce inventory fields; set a brand attribute; add shipping and returns policy in Rank Math → Schema → WooCommerce (or in Google Merchant Center).</p>
+      </div>
+    </div>
+    <div class="find">
+      <div><span class="badge" style="color:var(--st-serious)"><span class="dot" style="background:var(--st-serious)"></span>High</span></div>
+      <div>
+        <p class="f-title">7 · The business is described as three different entities</p>
+        <p class="f-body">The homepage marks up <code>MobilePhoneStore</code> “InstaTech Bloomsbury” with <code>@id</code> <code>/locations/#bloomsbury</code> but <code>url</code> <code>/locations/</code>. The Bloomsbury page itself publishes a separate <code>Store</code> called “<b>instaTech</b> Bloomsbury” with no <code>@id</code>, a differently formatted phone number and a parent organisation “instaTech”, while the site-wide Organization is “InstaTech”. Google cannot reliably join these to one business or to the Google Business Profiles.</p>
+        <p class="f-fix"><b>Fix:</b> one <code>LocalBusiness</code> node per shop with a stable <code>@id</code> (e.g. <code>/locations/bloomsbury/#store</code>), <code>url</code> pointing to that shop’s page, <code>parentOrganization</code> → <code>/#organization</code>, identical name, phone and hours to the GBP listing. Reference — don’t redeclare — it from the homepage and service pages.</p>
+      </div>
+    </div>
+    <div class="find">
+      <div><span class="badge" style="color:var(--st-serious)"><span class="dot" style="background:var(--st-serious)"></span>High</span></div>
+      <div>
+        <p class="f-title">8 · 64 URLs have no meta description</p>
+        <p class="f-body">Missing on 33 of 33 product-category pages, 26 of 159 products and 5 of 6 blog categories. A further 56 URLs share a description with another URL (largely the duplicate products).</p>
+        <p class="f-fix"><b>Fix:</b> Rank Math → Titles &amp; Meta → Product Categories: set a description template (e.g. “Shop %term% at InstaTech — collect today in Bloomsbury or Moorgate…”), then hand-write the top ten categories.</p>
+      </div>
+    </div>
+    <div class="find">
+      <div><span class="badge" style="color:var(--st-serious)"><span class="dot" style="background:var(--st-serious)"></span>High</span></div>
+      <div>
+        <p class="f-title">9 · 28% of images have no alt attribute</p>
+        <p class="f-body"><b>972 of 3,449</b> <code>&lt;img&gt;</code> elements across the site lack alt text: 791 of 2,387 on product pages (gallery thumbnails and related-product tiles), 125 of 489 on blog posts, 33 on product categories.</p>
+        <p class="f-fix"><b>Fix:</b> fill alt text in the Media Library for product gallery images (WooCommerce re-uses it everywhere); Rank Math → Images → “Add missing ALT attributes” using <code>%title%</code> as an interim fallback.</p>
+      </div>
+    </div>
+    <div class="find">
+      <div><span class="badge" style="color:var(--st-serious)"><span class="dot" style="background:var(--st-serious)"></span>High</span></div>
+      <div>
+        <p class="f-title">10 · The homepage H1 is a promotion, not a keyword</p>
+        <p class="f-body">The only H1 on the homepage is “<b>2 shops weren’t enough. Oxford Circus is next.</b>” — the page’s strongest relevance signal says nothing about phone, laptop or repair. The title tag (“Phone &amp; Laptop Repair London – Same Day”) is well targeted; the H1 should match it.</p>
+        <p class="f-fix"><b>Fix:</b> make the H1 “Phone &amp; Laptop Repair in Central London — Same Day” and move the Oxford Circus announcement to an H2 or banner.</p>
+      </div>
+    </div>
+    <div class="find">
+      <div><span class="badge" style="color:var(--st-serious)"><span class="dot" style="background:var(--st-serious)"></span>High</span></div>
+      <div>
+        <p class="f-title">11 · The Oxford Circus page still says “opening soon”</p>
+        <p class="f-body">Title “Phone Repair Oxford Circus W1 – Opening Soon”; copy says “opening October 2026”, and the site-wide banner repeats it. The audit date is 21 October 2026. If the shop is open, the page is under-selling it; if not, the date needs to move.</p>
+        <p class="f-fix"><b>Fix:</b> on opening, retitle to “Phone Repair Oxford Circus W1”, switch its schema from <code>WebPage</code> to a <code>LocalBusiness</code> node with hours, add it to <code>/locations/</code> and to the homepage store list, and claim the Google Business Profile.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Medium-priority findings</h2>
+    <p class="cap">Ten issues for the next pass.</p>
+    <div style="overflow-x:auto">
+    <table>
+      <thead><tr><th>#</th><th>Issue</th><th>Detail</th></tr></thead>
+      <tbody>
+        <tr><td class="p">12</td><td class="p">Blog category archives have no H1</td><td>All 6 blog categories (<code>/category/repair/</code>, <code>/tips/</code>, etc.) render without an H1; “Uncategorized” is indexed and in the sitemap.</td></tr>
+        <tr><td class="p">13</td><td class="p">Blog index on a theme-demo URL</td><td>The blog lives at <code>/blog-standard/</code> (the Reboot theme’s demo slug) and has no H1. <code>/blog/</code> would be cleaner; 301 the old URL.</td></tr>
+        <tr><td class="p">14</td><td class="p">Short, generic titles</td><td>39 titles are under 30 characters — 27 product categories read like “Cables - InstaTech”. 11 titles exceed 60 characters and truncate.</td></tr>
+        <tr><td class="p">15</td><td class="p">Brand casing inconsistent</td><td>Four page titles and the location schema use “instaTech”; the rest of the site and Organization schema use “InstaTech”.</td></tr>
+        <tr><td class="p">16</td><td class="p"><code>/shop/</code> listed twice in sitemaps</td><td>It appears in both <code>page-sitemap.xml</code> and <code>product-sitemap.xml</code>.</td></tr>
+        <tr><td class="p">17</td><td class="p">Breadcrumb schema on 1 of 276 URLs</td><td>Only <code>/mobile-repair-services/screen-repair/</code> has <code>BreadcrumbList</code>. Enable Rank Math breadcrumbs for products, categories and posts.</td></tr>
+        <tr><td class="p">18</td><td class="p">Accessibility score 82 (mobile)</td><td>Colour-contrast failures, undersized touch targets, focusable content inside <code>aria-hidden</code>, invalid ARIA attributes, skipped heading levels, and a non-crawlable <code>&lt;a class="search_close"&gt;</code> without <code>href</code>.</td></tr>
+        <tr><td class="p">19</td><td class="p">Two pages carry no structured data</td><td><code>/phone-accessories-trade-in/</code> and <code>/privacy-policy/</code> output no JSON-LD at all — the former should at least carry <code>WebPage</code> + <code>Service</code>.</td></tr>
+        <tr><td class="p">20</td><td class="p">Logo file is a WhatsApp export</td><td>The Organization logo is <code>WhatsApp-Image-2026-05-07-at-21.04.38-1.png</code>. Re-upload as <code>instatech-logo.png</code> (or SVG) with alt text.</td></tr>
+        <tr><td class="p">21</td><td class="p">Search Console and Tag Manager not detectable</td><td>GA4 (<code>G-QY19S5963V</code>) is on all 276 URLs. No GTM container and no <code>google-site-verification</code> meta tag were found; Search Console may be verified by DNS — confirm, and confirm the sitemap index is submitted.</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>What is already right</h2>
+    <p class="cap">Strengths measured in the crawl — protect these when making changes.</p>
+    <table>
+      <thead><tr><th>Check</th><th class="num">Result</th></tr></thead>
+      <tbody>
+        <tr><td>Sitemap URLs returning HTTP 200</td><td class="num okv">276 / 276</td></tr>
+        <tr><td>Self-referencing canonical tag</td><td class="num okv">276 / 276</td></tr>
+        <tr><td>Accidental <code>noindex</code></td><td class="num okv">0</td></tr>
+        <tr><td>Structured data present (any type)</td><td class="num okv">274 / 276</td></tr>
+        <tr><td>Open Graph tags · <code>lang="en-GB"</code> · viewport</td><td class="num okv">276 / 276</td></tr>
+        <tr><td>GA4 tag present</td><td class="num okv">276 / 276</td></tr>
+        <tr><td>Exactly one H1 (pages, posts, products, product categories)</td><td class="num okv">269 / 270</td></tr>
+        <tr><td>Blog post length (median)</td><td class="num okv">1,990 words</td></tr>
+        <tr><td>FAQPage schema on service and location pages</td><td class="num okv">5 pages</td></tr>
+        <tr><td>robots.txt blocks only cart/admin/log paths and declares the sitemap</td><td class="num okv">Yes</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>Core pages</h2>
+    <p class="cap">The 17 URLs in <code>page-sitemap.xml</code>. Title and description lengths in characters (recommended 30–60 and 120–160).
+    Schema = distinct JSON-LD types excluding images.</p>
+    <div class="legend">
+      <span><span class="dot" style="background:var(--st-critical)"></span>Value is a problem</span>
+      <span><span class="dot" style="background:var(--st-good)"></span>Value is fine</span>
+    </div>
+    <div style="overflow-x:auto">
+    <table>
+      <thead><tr><th>Page</th><th>Title</th><th class="num">Title len</th><th class="num">Desc len</th><th class="num">H1</th><th class="num">Schema</th><th class="num">Imgs no alt</th><th class="num">Words</th></tr></thead>
+      <tbody>
+<tr><td class="p">/</td><td>Phone &amp; Laptop Repair London – Same Day | InstaTech</td><td class="num ">51</td><td class="num okv">144</td><td class="num okv">1</td><td class="num okv">5</td><td class="num">1 / 5</td><td class="num">1,130</td></tr>
+<tr><td class="p">/buy-sell-phones/</td><td>Sell Your Phone for Cash in London | InstaTech</td><td class="num ">46</td><td class="num okv">136</td><td class="num okv">1</td><td class="num okv">4</td><td class="num">1 / 5</td><td class="num">1,853</td></tr>
+<tr><td class="p">/smartwatch-repair-service/</td><td>Apple Watch Screen &amp; Smartwatch Repair London | InstaTech</td><td class="num ">57</td><td class="num okv">148</td><td class="num okv">1</td><td class="num okv">5</td><td class="num">1 / 5</td><td class="num">2,389</td></tr>
+<tr><td class="p">/tablet-repairs/</td><td>Tablet &amp; iPad Repair in Bloomsbury, London WC1 | InstaTech</td><td class="num ">58</td><td class="num okv">147</td><td class="num okv">1</td><td class="num okv">5</td><td class="num">1 / 5</td><td class="num">2,510</td></tr>
+<tr><td class="p">/laptop-desktop-repair/</td><td>Laptop &amp; PC Repair London – MacBook Specialists | InstaTech</td><td class="num ">59</td><td class="num okv">139</td><td class="num okv">1</td><td class="num okv">4</td><td class="num">1 / 5</td><td class="num">1,753</td></tr>
+<tr><td class="p">/mobile-repair-services/</td><td>Phone Repair London – Screen &amp; Battery Same Day | InstaTech</td><td class="num ">59</td><td class="num okv">144</td><td class="num okv">1</td><td class="num okv">4</td><td class="num">1 / 5</td><td class="num">1,591</td></tr>
+<tr><td class="p">/currency-exchange-service/</td><td>Currency Exchange in Central London | InstaTech</td><td class="num ">47</td><td class="num okv">125</td><td class="num okv">1</td><td class="num okv">4</td><td class="num">1 / 5</td><td class="num">1,669</td></tr>
+<tr><td class="p">/locations/moorgate/</td><td>Phone Repair Moorgate &amp; Old Street EC1 | instaTech</td><td class="num ">50</td><td class="num okv">147</td><td class="num okv">1</td><td class="num okv">2</td><td class="num">1 / 5</td><td class="num">1,023</td></tr>
+<tr><td class="p">/locations/bloomsbury/</td><td>Phone Repair Bloomsbury WC1 - Screen &amp; Battery | instaTech</td><td class="num ">58</td><td class="num okv">154</td><td class="num okv">1</td><td class="num okv">2</td><td class="num">1 / 5</td><td class="num">1,001</td></tr>
+<tr><td class="p">/book-an-appointment/</td><td>Book a Repair Online | InstaTech London</td><td class="num ">39</td><td class="num okv">145</td><td class="num okv">1</td><td class="num okv">1</td><td class="num">1 / 5</td><td class="num">461</td></tr>
+<tr><td class="p">/about-us/</td><td>About InstaTech – Device Repair in Central London</td><td class="num ">49</td><td class="num okv">122</td><td class="num okv">1</td><td class="num okv">3</td><td class="num">1 / 5</td><td class="num">1,278</td></tr>
+<tr><td class="p">/mobile-repair-services/screen-repair/</td><td>Phone Screen Repair London - From £49, Same Day | instaTech</td><td class="num ">59</td><td class="num okv">146</td><td class="num okv">1</td><td class="num okv">3</td><td class="num">1 / 5</td><td class="num">1,855</td></tr>
+<tr><td class="p">/locations/</td><td>Phone Repair Shops in Bloomsbury WC1 &amp; Moorgate EC1</td><td class="num ">51</td><td class="num okv">146</td><td class="num okv">1</td><td class="num okv">1</td><td class="num">1 / 5</td><td class="num">902</td></tr>
+<tr><td class="p">/locations/oxford-circus/</td><td>Phone Repair Oxford Circus W1 – Opening Soon | instaTech</td><td class="num ">56</td><td class="num okv">148</td><td class="num okv">1</td><td class="num okv">1</td><td class="num">1 / 5</td><td class="num">734</td></tr>
+<tr><td class="p">/phone-accessories-trade-in/</td><td>Phone Accessories and Trade-In in London - InstaTech</td><td class="num ">52</td><td class="num okv">149</td><td class="num okv">1</td><td class="num bad">0</td><td class="num">1 / 5</td><td class="num">724</td></tr>
+<tr><td class="p">/privacy-policy/</td><td>Privacy Policy | InstaTech London</td><td class="num ">33</td><td class="num okv">143</td><td class="num okv">1</td><td class="num bad">0</td><td class="num">1 / 5</td><td class="num">1,338</td></tr>
+<tr><td class="p">/shop/</td><td>Phone &amp; Laptop Accessories | InstaTech London</td><td class="num ">45</td><td class="num okv">141</td><td class="num okv">1</td><td class="num okv">3</td><td class="num">1 / 17</td><td class="num">893</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Where to start</h2>
+    <p class="cap">Ordered by impact per hour of work.</p>
+    <ol class="steps">
+      <li><b>Merge the 18 duplicate products</b> and 301 each <code>-2</code> URL to its original. Under an hour in WooCommerce + Rank Math Redirections.</li>
+      <li><b>Turn on Critical CSS and async CSS in LiteSpeed Cache</b>, then re-test. This is the single largest lever on the 10-second mobile paint.</li>
+      <li><b>Enable the LiteSpeed crawler and object cache</b> so uncached responses stop costing 3 seconds.</li>
+      <li><b>Unify the local-business schema</b> — one node per shop, one spelling of the brand, matching the Google Business Profiles.</li>
+      <li><b>Rewrite the homepage H1</b> to target “phone &amp; laptop repair London”, and update the Oxford Circus page to reflect its actual status.</li>
+      <li><b>Set Rank Math description templates</b> for product categories and blog categories; add brand, SKU and GTIN to products.</li>
+      <li><b>Consolidate icon fonts and delay non-critical JavaScript</b> to bring Total Blocking Time under 600 ms.</li>
+      <li><b>Work through product-image alt text</b> in the Media Library, starting with the best-selling cables and chargers.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Method &amp; limitations</h2>
+    <p class="foot">
+      All 276 URLs listed in the Rank Math sitemap index (17 pages, 61 posts, 159 products, 33 product categories,
+      6 blog categories) were fetched and parsed on 21 October 2026; every count above comes from that parse.
+      Performance figures are single Lighthouse 12.2 lab runs (mobile and desktop presets) against the homepage from
+      a cloud host; lab scores vary by several points between runs and locations. Server timings were measured with
+      cache-busting query strings on six URLs. Product schema completeness was checked on all 159 products.
+      Not covered: WordPress admin settings, backlink profile, keyword rankings, competitor comparison, Google
+      Business Profile listings and field Core Web Vitals.
+    </p>
+  </div>
+
+</div>
+</div>
+<script>
+  document.getElementById('tg').addEventListener('click', function(){
+    var r = document.documentElement;
+    var cur = r.getAttribute('data-theme');
+    if(!cur){ cur = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
+    r.setAttribute('data-theme', cur === 'dark' ? 'light' : 'dark');
+  });
+</script>
+</body>
+</html>
