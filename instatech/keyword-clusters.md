@@ -83,7 +83,7 @@ cluster each new one every month and check it against R7.
 |---|---|---|---|
 | R1 Snippet | pos ≤ 3, ≥ 30 impr, CTR < 3% | Rewrite the title and meta description | L |
 | R2 Striking distance | pos 4–10, ≥ 20 impr | Primary keyword in title, H1 and first 100 words; 40–60 word direct answer; supporting keywords as H2s; 2–3 exact-anchor internal links in | meta/links L · copy H |
-| R3 Expand | pos 11–20 | Add the sections the supporting keywords ask for (turnaround, brands, FAQ, price-from only if confirmed) plus internal links | H |
+| R3 Expand | pos 11–20 | Add the sections the supporting keywords ask for (turnaround, brands, FAQ; never prices) plus internal links | H |
 | R4 Rewrite/rethink | pos > 20, ≥ 50 impr | Check intent against page one; rewrite or retarget | H |
 | R5 Slipped | down ≥ 3 positions MoM, ≥ 20 impr | Find the cause first (ranking URL changed? noindex? recent edit? Soro post?), then revert or refresh | depends |
 | R6 Wrong page | ranking URL ≠ target | Exact-anchor internal links to the target; align its title and H1; never weaken a page ranking ≤ 3 | links L · copy H |
@@ -94,6 +94,7 @@ cluster each new one every month and check it against R7.
 - At most 4 content refreshes a month (R2–R4, R7), highest impressions first. Meta and link changes do not count.
 - 28-day cool-down per page after any change.
 - Copy uses only facts in `instatech/claims.md`, and only those marked as confirmed by the owner.
+- **No pricing anywhere** (owner rule, 21 Oct 2026): R3 never adds a "price-from"; titles, metas, copy and schema carry no prices.
 - Tag every action with rule and cluster ID, for example `R2 · S2`.
 - The autonomy rule applies: scheduled runs draft and propose; nothing goes live without the owner's explicit yes.
   L-class changes can ship through the Tuesday fix run once approved; H-class changes are staged as proposals.
@@ -107,6 +108,7 @@ cluster each new one every month and check it against R7.
 | 21 Oct 2026 | Q2 Tablet and iPad repairs are done at both shops; `/tablet-repairs/` targets London, not Bloomsbury only | Owner |
 | 21 Oct 2026 | Q3 Data recovery is a paid service; it gets a service page (R8 · S10) | Owner |
 | 21 Oct 2026 | Warranty period depends on the repair; current parts wording stands (`claims.md` C6, C10) | Owner |
+| 21 Oct 2026 | No pricing is added anywhere: titles, metas, copy or schema | Owner |
 | — | Q4 Confirm the ignore list in section 2 | **Owner** |
 
 ## 5. Monthly cluster review (procedure)
@@ -130,6 +132,6 @@ Runs in the monthly review, straight after the Search Console pull and before th
 ## 6. Refresh queue
 | Cluster | Rule | Action | Backlog item | Last changed | Result next month (pos / impr before → after) |
 |---|---|---|---|---|---|
-| S9/S11 | R7 | Retarget `/phone-accessories-trade-in/` to accessories; trade-in stays on `/buy-sell-phones/` | 5.3 | — | — |
-| S7 | Owner decision Q2 | `/tablet-repairs/` title, meta and H1 cover both shops | 5.6 | — | — |
+| S9/S11 | R7 | Retarget `/phone-accessories-trade-in/` to accessories; trade-in stays on `/buy-sell-phones/` | 5.3 | 21 Oct 2026 (v1.3.0) | — |
+| S7 | Owner decision Q2 | `/tablet-repairs/` title, meta and H1 cover both shops | 5.6 | 21 Oct 2026 (v1.3.0) | — |
 | S10 | R8 | Data recovery service page | 5.7 | — | — |

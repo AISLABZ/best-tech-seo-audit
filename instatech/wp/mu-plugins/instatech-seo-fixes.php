@@ -3,7 +3,7 @@
  * Plugin Name: InstaTech SEO fixes
  * Description: Phase 1 SEO fixes from the instatech.uk audit (Oct 2026). Output filters only, no database writes.
  *              Roll back by replacing this file with an empty one, or define INSTATECH_SEO_FIXES_OFF in wp-config.php.
- * Version:     1.2.0
+ * Version:     1.3.0
  * Source:      https://github.com/aislabz/best-tech-seo-audit (instatech/wp/mu-plugins/instatech-seo-fixes.php)
  */
 
@@ -431,4 +431,81 @@ add_action(
 		}
 	},
 	99
+);
+
+/**
+ * Keyword-cluster changes approved by the owner on 21 Oct 2026 (instatech/proposals/2026-10-21-keyword-cluster-decisions.md).
+ * /buy-sell-phones/ owns trade-in, so the accessories page drops it from its title, description and H1. Both shops
+ * repair tablets, so the tablet page targets London rather than Bloomsbury only. No prices are added (owner rule).
+ */
+function instatech_seo_page_overrides() {
+	return array(
+		'phone-accessories-trade-in' => array(
+			'title'       => 'Phone Accessories London – Bloomsbury & Moorgate | InstaTech',
+			'description' => 'Chargers, cables, power banks, earphones and car mounts in stock at our Bloomsbury and Moorgate shops, open 7 days. Selling your phone? Get a cash offer.',
+			'copy'        => array(
+				'<h1>Phone accessories and phone trade-ins in central London</h1>' => '<h1>Phone accessories in central London</h1>',
+				'<h2>Sell or trade in your phone</h2>'                              => '<h2>Selling your phone?</h2>',
+				'<a class="btn p" href="/buy-sell-phones/">Sell or trade in</a>'    => '<a class="btn p" href="/buy-sell-phones/">Sell your phone for cash</a>',
+			),
+		),
+		'tablet-repairs'             => array(
+			'title'       => 'iPad & Tablet Repair London – Open 7 Days | InstaTech',
+			'description' => 'iPad and tablet repair at our Bloomsbury WC1 and Moorgate EC1 shops: screens, batteries, charging ports and water damage. Free diagnostic, open 7 days.',
+			'copy'        => array(
+				'<h1>Professional<br><em>Tablet Repair</em><br>Services</h1>' => '<h1>iPad and tablet<br><em>repair</em><br>in London</h1>',
+				"<h2>iPad and tablet repair in Bloomsbury, near Russell Square and King's Cross</h2>" => '<h2>iPad and tablet repair in Bloomsbury and Moorgate</h2>',
+				'We repair iPads and Android tablets at 67 Marchmont Street, WC1N 1AP, a short walk from Russell Square station and about ten minutes from King\'s Cross St Pancras.' => 'We repair iPads and Android tablets at both our shops: 67 Marchmont Street, WC1N 1AP, a short walk from Russell Square station and about ten minutes from King\'s Cross St Pancras, and 16 City Road, EC1Y 2AA, near Moorgate and Old Street.',
+			),
+		),
+	);
+}
+
+function instatech_seo_page_override() {
+	if ( ! is_page() ) {
+		return null;
+	}
+	$page = get_queried_object();
+	if ( ! $page || ! empty( $page->post_parent ) ) {
+		return null;
+	}
+	$map = instatech_seo_page_overrides();
+	return isset( $map[ $page->post_name ] ) ? $map[ $page->post_name ] : null;
+}
+
+function instatech_seo_override_title( $title ) {
+	$o = instatech_seo_page_override();
+	return $o ? $o['title'] : $title;
+}
+
+function instatech_seo_override_description( $description ) {
+	$o = instatech_seo_page_override();
+	return $o ? $o['description'] : $description;
+}
+
+add_filter( 'rank_math/frontend/title', 'instatech_seo_override_title', 100 );
+add_filter( 'rank_math/opengraph/facebook/og_title', 'instatech_seo_override_title', 100 );
+add_filter( 'rank_math/opengraph/twitter/twitter_title', 'instatech_seo_override_title', 100 );
+add_filter( 'rank_math/frontend/description', 'instatech_seo_override_description', 100 );
+add_filter( 'rank_math/opengraph/facebook/og_description', 'instatech_seo_override_description', 100 );
+add_filter( 'rank_math/opengraph/twitter/twitter_description', 'instatech_seo_override_description', 100 );
+
+/**
+ * Exact-string copy swaps on the pages above. A string that is not found is left alone, so a later edit in Elementor
+ * simply turns the swap off.
+ */
+function instatech_seo_page_copy( $html ) {
+	$o = is_string( $html ) ? instatech_seo_page_override() : null;
+	return $o ? strtr( $html, $o['copy'] ) : $html;
+}
+
+add_action(
+	'template_redirect',
+	function () {
+		if ( is_admin() || is_feed() || wp_doing_ajax() || ( defined( 'REST_REQUEST' ) && REST_REQUEST ) ) {
+			return;
+		}
+		ob_start( 'instatech_seo_page_copy' );
+	},
+	2
 );

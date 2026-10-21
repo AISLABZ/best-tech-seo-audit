@@ -34,25 +34,27 @@ site without the owner's explicit approval in a conversation. Approved changes a
 | 1.16 | Review the Soro "SEO Autopilot" plugin output: posts publish daily and earlier ones contained theme-demo links | todo | Check that new posts link to money pages, not demo URLs |
 
 ## Phase 2: money pages (draft as WordPress drafts or repo files for approval)
+**Owner rule (21 Oct 2026): no pricing anywhere.** Pages carry no price tables, "from" prices or Offer prices; the quote follows the free diagnostic.
+
 | # | Page | Status | Needs from owner |
 |---|---|---|---|
-| 2.1 | Battery replacement | drafted | `instatech/pages/battery-replacement.md`. Needs per-model prices, warranty period, parts wording ("genuine" vs "meets OEM spec" is inconsistent on the live site) and the genuine Apple battery option |
-| 2.2 | Charging port repair | todo | Same |
-| 2.3 | Water damage repair | todo | Same, plus diagnostic fee policy |
-| 2.4 | Back glass repair | todo | Same |
-| 2.5 | iPhone repair hub | todo | Price matrix |
-| 2.6 | Samsung repair hub | todo | Price matrix |
+| 2.1 | Battery replacement | drafted | `instatech/pages/battery-replacement.md`. Pricing removed (owner rule); warranty and parts wording resolved. Needs: genuine Apple battery option (yes/no) and approval to publish |
+| 2.2 | Charging port repair | todo | — |
+| 2.3 | Water damage repair | todo | Diagnostic fee policy (stated without prices) |
+| 2.4 | Back glass repair | todo | — |
+| 2.5 | iPhone repair hub | todo | — (no pricing, owner rule) |
+| 2.6 | Samsung repair hub | todo | — (no pricing, owner rule) |
 | 2.7 | iPad repair (consolidate with `/tablet-repairs/`) | todo | — |
-| 2.8 | MacBook repair | todo | Price matrix |
+| 2.8 | MacBook repair | todo | — (no pricing, owner rule) |
 | 2.9 | Apple Watch repair (retitle the smartwatch page) | todo | — |
-| 2.10–2.13 | iPhone 16, 15, 14 and 13 series model pages | todo | Per-fault prices |
+| 2.10–2.13 | iPhone 16, 15, 14 and 13 series model pages | todo | Faults covered per model (no pricing) |
 | 2.14 | Cannibalisation review: `/phone-screen-repair-cost/`, `/tablet-screen-repair-near-me/`, `/desktop-computer-repair-near-me/`, `/laptop-repair-near-me-what-to-check-first/` | moved to 5.4 | — |
 | 2.15 | Deepen location pages with nearby areas, station directions and shop reviews | todo | — |
 
 ## Phase 3: local prominence
 | # | Item | Status |
 |---|---|---|
-| 3.1 | Full GBP content for Bloomsbury, Moorgate and Oxford Circus (categories, services, prices, attributes, photos) | todo |
+| 3.1 | Full GBP content for Bloomsbury, Moorgate and Oxford Circus (categories, services without prices, attributes, photos) | todo |
 | 3.2 | Oxford Circus GBP verified before opening; lead with Sunday opening | blocked: owner action. No listing exists on Google Maps as of 21 Oct 2026. Create it as "InstaTech Oxford Circus" at 22 Great Castle St W1G 0HY |
 | 3.3 | Review-request SMS and email templates (all customers, no incentives) | todo |
 | 3.4 | Citations with identical business details: Apple Business Connect, Bing Places, Yell, Yelp, Thomson Local, Foursquare, Trustpilot. Tracked in `citations.md` | todo |
@@ -75,14 +77,14 @@ copy facts are in `claims.md`. Every action carries its rule and cluster ID. At 
 |---|---|---|---|---|---|
 | 5.1 | Search Console data route for the monthly pull: connector, browser report, or owner CSV export to `instatech/data/gsc/` | — | — | blocked | Same blocker as 1.13. The Search Console connector failed to connect on 21 Oct 2026 |
 | 5.2 | Baseline pull and first cluster review: confirm primaries, ranking URLs, R6/R7/R8 flags; fill the refresh queue | all | — | todo | Monthly review, 1 Nov 2026. October is the baseline month; R5 starts in December |
-| 5.3 | Retarget `/phone-accessories-trade-in/` to accessories; `/buy-sell-phones/` owns trade-in (owner decision Q1) | R7 · S9/S11 | H + L | drafted | `proposals/2026-10-21-keyword-cluster-decisions.md` §1 |
+| 5.3 | Retarget `/phone-accessories-trade-in/` to accessories; `/buy-sell-phones/` owns trade-in (owner decision Q1) | R7 · S9/S11 | H + L | live | Plugin v1.3.0, 21 Oct 2026. Monday crawl to confirm meta and OG tags |
 | 5.4 | Commercial-intent posts competing with service pages: `/phone-screen-repair-cost/` (S2), `/laptop-repair-near-me-what-to-check-first/` and `/desktop-computer-repair-near-me/` (S6), `/tablet-screen-repair-near-me/` (S7), `/guide-to-phone-battery-replacement-uk/` (S3) | R7 · S2/S3/S6/S7 | H + L | todo | Supersedes 2.14. Confirm with the 5.2 data before merging or re-angling |
 | 5.5 | Informational overlap: five wireless-charging posts (I1), four power-bank posts (I3), two refurbished posts (I5) | R7 · I1/I3/I5 | H + L | todo | Merge only where the data shows the posts share queries |
-| 5.6 | `/tablet-repairs/` title, meta and H1 cover both shops, not Bloomsbury only (owner confirmed, Q2) | S7 | L (title/meta) · H (H1) | drafted | `proposals/2026-10-21-keyword-cluster-decisions.md` §2 |
-| 5.7 | Data recovery service page (owner confirmed the service, Q3) | R8 · S10 | H | drafted (brief) | `proposals/2026-10-21-keyword-cluster-decisions.md` §3. Needs a price from the owner |
+| 5.6 | `/tablet-repairs/` title, meta and H1 cover both shops, not Bloomsbury only (owner confirmed, Q2) | S7 | L (title/meta) · H (H1) | live | Plugin v1.3.0, 21 Oct 2026, no prices. Monday crawl to confirm meta and OG tags |
+| 5.7 | Data recovery service page (owner confirmed the service, Q3) | R8 · S10 | H | approved (brief) | `proposals/2026-10-21-keyword-cluster-decisions.md` §3. No pricing (owner rule); next Wednesday build run drafts the page |
 
 ## Needs from owner
-- Repair price matrix by model and fault, plus warranty, turnaround and parts-grade policy
+- Turnaround by repair type (warranty varies by repair and parts wording stands, per owner 21 Oct 2026; no pricing anywhere)
 - Google Maps share or CID links for each shop's Google Business Profile, and confirmation of Search Console access
 - Technician names and experience for About Us
 - Approval on items marked "drafted"
@@ -92,3 +94,5 @@ copy facts are in `claims.md`. Every action carries its rule and cluster ID. At 
 ## Backlog change log
 - 2026-10-21: Added Phase 5 (keyword clusters, items 5.1–5.7), moved 2.14 into 5.4, and created `keyword-clusters.md`, `tracked-keywords.md` and `claims.md`.
 - 2026-10-21: Owner decided Q1–Q3 and the warranty and parts wording. 5.3, 5.6 and 5.7 moved to drafted.
+- 2026-10-21: Owner approved 5.3, 5.6 (amended: no pricing) and 5.7, and set the rule "no pricing added anywhere"; Phase 2 price needs removed. Moorgate hours confirmed on the site.
+- 2026-10-21: 5.3 and 5.6 deployed in plugin v1.3.0 (see changelog).

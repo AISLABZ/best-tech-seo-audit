@@ -6,14 +6,15 @@
 | Field | Value |
 |---|---|
 | URL | `/mobile-repair-services/battery-replacement/` (sits beside `/screen-repair/` under Mobile Repair) |
-| SEO title (55 chars) | Phone Battery Replacement London – From £29 \| InstaTech |
-| Meta description (153 chars) | New phone battery in 20–40 minutes at our Bloomsbury and Moorgate shops. From £29, free diagnostic, no fix no fee. Walk in 7 days a week, open until 9pm. |
+| SEO title (59 chars) | Phone Battery Replacement London – While You Wait \| InstaTech |
+| Meta description (141 chars) | New phone battery in 20–40 minutes at our Bloomsbury and Moorgate shops. Free diagnostic, no fix no fee. Walk in 7 days a week, open until 9pm. |
 | H1 | Phone battery replacement in London, done while you wait |
 | Primary query | phone battery replacement london |
 | Secondary queries | iphone battery replacement london · samsung battery replacement london · battery replacement near me (Bloomsbury, King's Cross, Russell Square, Moorgate, Old Street) · swollen phone battery |
 
 **Fact sources:** every claim below is already published on instatech.uk unless it is marked **[OWNER]**:
-- "From £29 · 20–40 min" and "Free diagnostic", from `/mobile-repair-services/`
+- "20–40 min" and "Free diagnostic", from `/mobile-repair-services/`
+- **No pricing anywhere** (owner rule, 21 Oct 2026): this page states no prices; the quote is given after the free diagnostic
 - "No fix, no fee", "warranty on parts and labour" and "walk in, 7 days", from `/mobile-repair-services/screen-repair/`
 - Opening hours, from `/locations/bloomsbury/` and `/locations/moorgate/`
 - Reviews, quoted verbatim from the location pages
@@ -27,7 +28,7 @@
 
 Phone dying by lunchtime, shutting down at 30%, or bulging at the back? We fit a new battery at our Bloomsbury or Moorgate shop, usually in 20 to 40 minutes. Every job starts with a free diagnostic, and if we can't fix it, you pay nothing.
 
-- **From £29.** We confirm the exact price for your model before any work starts.
+- **A clear quote after the free diagnostic,** before any work starts.
 - **20–40 minutes** for most phones, while you wait.
 - **Warranty on parts and labour.** The period depends on the repair; we confirm it before we start. (Owner, 21 Oct 2026.)
 - **Walk in 7 days a week, open until 9pm** Monday to Saturday.
@@ -43,22 +44,8 @@ Phone dying by lunchtime, shutting down at 30%, or bulging at the back? We fit a
 
 Not sure it's the battery? Draining can also come from software, a faulty charging port or a damaged cable. The free diagnostic tells you which before you spend anything. Related reading: [Why is my phone battery draining?](/why-is-my-phone-battery-draining/) and [iPhone battery health not showing](/iphone-battery-health-not-showing/).
 
-### Battery replacement prices
-| Device | From | Typical time |
-|---|---|---|
-| Most smartphones | **£29** | 20–40 min |
-| iPhone 16 / 16 Plus / 16 Pro / 16 Pro Max | [OWNER] | [OWNER] |
-| iPhone 15 range | [OWNER] | [OWNER] |
-| iPhone 14 range | [OWNER] | [OWNER] |
-| iPhone 13 range | [OWNER] | [OWNER] |
-| iPhone 12 / 11 / SE | [OWNER] | [OWNER] |
-| Samsung Galaxy S series | [OWNER] | [OWNER] |
-| Samsung Galaxy A series | [OWNER] | [OWNER] |
-| Google Pixel | [OWNER] | [OWNER] |
-| iPad / tablet | [OWNER] (link to `/tablet-repairs/`) | [OWNER] |
-| MacBook / laptop | [OWNER] (link to `/laptop-desktop-repair/`) | [OWNER] |
-
-*The exact price for your model is confirmed after the free diagnostic, before any work starts. No fix, no fee.*
+### How the quote works
+Every job starts with a free diagnostic. We tell you what the repair involves and what it will cost for your model before any work starts. If we can't fix it, you pay nothing.
 
 ### How it works
 1. **Walk in or book.** Either shop, any day. Booking holds the battery for less common models.
@@ -68,7 +55,7 @@ Not sure it's the battery? Draining can also come from software, a faulty chargi
 
 ### Parts and data
 - **Parts:** we fit high-quality replacement batteries that meet or exceed the original specification, tested before and after fitting. (Owner, 21 Oct 2026: current parts wording is fine.)
-- **iPhone note:** on recent iPhones, a non-Apple battery can show a "Non-genuine part" or "Unknown part" message in Settings. The phone still works normally. See [iPhone unknown part message explained](/iphone-unknown-part-message/). [OWNER: confirm whether you offer a genuine Apple battery option, and its price.]
+- **iPhone note:** on recent iPhones, a non-Apple battery can show a "Non-genuine part" or "Unknown part" message in Settings. The phone still works normally. See [iPhone unknown part message explained](/iphone-unknown-part-message/). [OWNER: confirm whether you offer a genuine Apple battery option. No price is shown.]
 - **Your data:** a battery replacement doesn't touch your photos, messages or apps. We still recommend a backup before any repair.
 
 ### Why InstaTech
@@ -88,8 +75,8 @@ Not sure it's the battery? Draining can also come from software, a faulty chargi
 **Opening soon: InstaTech Oxford Circus**, 22 Great Castle Street, W1. → `/locations/oxford-circus/`
 
 ### FAQ
-**How much does a phone battery replacement cost in London?**
-At InstaTech, battery replacement starts from £29. The exact price depends on your model, and we confirm it after a free diagnostic, before any work starts.
+**How is a battery replacement priced?**
+The price depends on your model. We confirm it after a free diagnostic, before any work starts, and if we can't fix it, you pay nothing.
 
 **How long does a battery replacement take?**
 Most phone batteries are replaced in 20 to 40 minutes while you wait. Book ahead for less common models so the battery is in stock.
@@ -141,12 +128,7 @@ Paste into an Elementor HTML widget, or add it via Rank Math → Schema → Cust
           "hasMap": "https://maps.google.com/?cid=8404697699929828128"
         }
       ],
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "GBP",
-        "priceSpecification": { "@type": "PriceSpecification", "minPrice": 29, "priceCurrency": "GBP" },
-        "url": "https://instatech.uk/mobile-repair-services/battery-replacement/"
-      }
+      "url": "https://instatech.uk/mobile-repair-services/battery-replacement/"
     },
     {
       "@type": "BreadcrumbList",
@@ -159,7 +141,7 @@ Paste into an Elementor HTML widget, or add it via Rank Math → Schema → Cust
     {
       "@type": "FAQPage",
       "mainEntity": [
-        { "@type": "Question", "name": "How much does a phone battery replacement cost in London?", "acceptedAnswer": { "@type": "Answer", "text": "At InstaTech, battery replacement starts from £29. The exact price depends on your model, and we confirm it after a free diagnostic, before any work starts." } },
+        { "@type": "Question", "name": "How is a battery replacement priced?", "acceptedAnswer": { "@type": "Answer", "text": "The price depends on your model. We confirm it after a free diagnostic, before any work starts, and if we can't fix it, you pay nothing." } },
         { "@type": "Question", "name": "How long does a battery replacement take?", "acceptedAnswer": { "@type": "Answer", "text": "Most phone batteries are replaced in 20 to 40 minutes while you wait. Book ahead for less common models so the battery is in stock." } },
         { "@type": "Question", "name": "Do I need an appointment?", "acceptedAnswer": { "@type": "Answer", "text": "No. Walk in to Bloomsbury or Moorgate any day of the week. Booking is optional." } },
         { "@type": "Question", "name": "Will I lose my data?", "acceptedAnswer": { "@type": "Answer", "text": "No. A battery replacement doesn't affect your photos, messages or apps. A backup beforehand is always sensible." } },
@@ -197,8 +179,7 @@ No `aggregateRating` is included on purpose. Google does not show self-published
 ---
 
 ## Needs from owner before publishing
-1. Battery prices by model (the table above). A photo of the price board is fine.
-2. Warranty period.
-3. Parts wording, "genuine" versus "meets or exceeds OEM", to be made consistent sitewide.
-4. Whether a genuine Apple battery option exists, and its price.
-5. Approval to publish, plus the menu and footer links (plugin v1.3).
+1. Whether a genuine Apple battery option exists (described without a price).
+2. Approval to publish, plus the menu and footer links.
+
+Resolved 21 Oct 2026: no pricing on the page (owner rule); warranty period depends on the repair; current parts wording stands.

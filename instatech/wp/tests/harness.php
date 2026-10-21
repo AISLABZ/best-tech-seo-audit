@@ -3,7 +3,7 @@
 // Run: php instatech/wp/tests/harness.php instatech/wp/mu-plugins/instatech-seo-fixes.php
 define('ABSPATH','/x/');
 $F=[]; function add_filter($h,$cb,$p=10,$n=1){global $F;$F[$h][]=[$cb,$n];}
-function add_action($h,$cb,$p=10,$n=1){} function untrailingslashit($s){return rtrim($s,'/');} function is_front_page(){return false;}
+function add_action($h,$cb,$p=10,$n=1){} function untrailingslashit($s){return rtrim($s,'/');} function is_front_page(){return false;} function is_page(){return false;}
 function apply($h,...$a){global $F;foreach($F[$h] as [$cb,$n]){$a[0]=$cb(...array_slice($a,0,$n));}return $a[0];}
 $CTX=['admin'=>false,'post'=>(object)['post_name'=>'desktop-computer-repair-near-me'],'tax'=>null,'cat'=>false,'prod'=>false,'title'=>'EnergyBar T20 20,000mAh'];
 function is_admin(){global $CTX;return $CTX['admin'];} function get_post(){global $CTX;return $CTX['post'];}
