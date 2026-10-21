@@ -50,3 +50,26 @@ not estimated. Performance figures come from a single Lighthouse mobile lab run 
 PageSpeed Insights. No real-user field data exists for this domain yet.
 
 Not covered: backlinks, keyword rankings, competitor comparison, Google Business Profile.
+
+---
+
+# InstaTech — SEO growth engine
+
+Audit and 90-day growth plan for **instatech.uk** (WordPress + WooCommerce + Rank Math), carried out
+21 October 2026. Open **`instatech/index.html`** for the full dashboard.
+
+All 276 sitemap URLs were crawled. The site has 16 findings: 5 critical, 6 high and 5 medium. Its technical
+hygiene is sound: every URL returns 200 and every URL has a self-referencing canonical. The gap to the top
+position is commercial page depth, internal link flow to the money pages, and off-site local prominence.
+
+| Metric | Value |
+|---|---|
+| URLs crawled | 276 (all HTTP 200) |
+| Internal links to `/mobile-repair-services/screen-repair/` | 2 (location pages: ~280) |
+| Device- or model-level repair pages | 0 |
+| Category archives with a meta description | 1 / 39 |
+| Images without alt text | 972 / 3,449 |
+| Dead internal links (theme demo slugs) | 6 targets, from 7 posts |
+
+Not included: keyword volumes, rankings, backlinks and CrUX field data. Semrush returned
+"insufficient API units", Ahrefs returned "insufficient plan" and the PageSpeed Insights quota was exhausted.
