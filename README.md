@@ -50,3 +50,9 @@ not estimated. Performance figures come from a single Lighthouse mobile lab run 
 PageSpeed Insights. No real-user field data exists for this domain yet.
 
 Not covered: backlinks, keyword rankings, competitor comparison, Google Business Profile.
+
+## Keyword clusters (October 2026)
+
+`clients/best-tech-keyword-clusters-2026-10-update.md` contains the laptop-led cluster map (L1–L13, D1–D11), the
+R1–R8 refresh queue, the tracked keywords and the newly confirmed claims, ready to merge into the "Best tech website"
+project docs. Its ranking figures are pending the first Search Console pull.
