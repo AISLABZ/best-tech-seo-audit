@@ -43,7 +43,11 @@ version via GitHub Pages if enabled for this repo.
 
 ## Status
 
-All findings outstanding as of 21 October 2026.
+The crawl ran at about 09:45 UTC on 21 October 2026. The fix programme's plugin, `instatech-seo-fixes.php` v1.0–1.2,
+was deployed later the same day and now covers the meta descriptions, the homepage H1 line, the brand spelling in titles
+and fallback alt text. The Elementor Pro security update has been attempted but is blocked on the licence.
+The open items, with owner-approval proposals, are in [`PROPOSALS.md`](PROPOSALS.md). The 301 map for the duplicate
+products is in [`duplicate-products-redirects.csv`](duplicate-products-redirects.csv).
 
 ## Method
 
