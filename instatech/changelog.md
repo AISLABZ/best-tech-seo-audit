@@ -64,5 +64,24 @@ Listings were resolved from Google Maps on 21 Oct 2026. Each cid link was confir
 ### Finding: LiteSpeed Guest Mode reloads every page on a visitor's first visit
 A fresh mobile visit loads the page, POSTs to `/wp-content/plugins/litespeed-cache/guest.vary.php`, sets `_lscache_vary`, then reloads the page. This was confirmed on `/`, `/locations/bloomsbury/` and the battery page. It explains the ~8–10 s same-URL "redirect" in the audit's Lighthouse runs. It is not a test artefact; it affects real first visits and Core Web Vitals. Logged as backlog 1.12a for approval.
 
+### v1.4.0 prepared (not deployed): merges both sessions' work
+`instatech-seo-fixes.php` v1.4.0 = v1.3.2 (v1.3.1 battery menus + the keyword-cluster overrides for `/phone-accessories-trade-in/` and `/tablet-repairs/`) + contextual links to the battery page from the battery guide, the battery-draining and battery-health posts, and both location pages (which also link screen repair). Live is still v1.3.1 (483 lines, 15,238 bytes, checked 21 Oct). Tests: v14 19/19 (against saved live article bodies), v13 11/11, v13-clusters 11/11, v12 11/11, v11 13/13, harness.php ok. **Process fix:** only one session deploys this file at a time, and every deploy first checks that the live version matches the last version recorded here.
+
 ### Elementor Pro security update
 Requested an update from 4.2.0, which is affected by an arbitrary-file-upload vulnerability fixed in 4.2.2, through Hostinger `wordpress_plugins_update`. **Result:** the job was accepted, but the plugin still reported 4.2.0 several minutes later. Elementor Pro updates normally need an active licence. **Action for owner:** in WP Admin → Elementor → License, confirm the licence is active, then update from Plugins (or upload the 4.2.2+ zip from your elementor.com account). Re-check on the next Monday run.
+
+### Deployed plugin v1.3.0 (approved by owner): keyword-cluster page changes
+Source: `instatech/proposals/2026-10-21-keyword-cluster-decisions.md` §1–2 (backlog 5.3 and 5.6). The live file was confirmed to be v1.2.0 (434 lines, 13,639 bytes) before upload. Same rollback as earlier versions: re-upload v1.2.0 from git history.
+
+| Page | Change | Verified live |
+|---|---|---|
+| `/phone-accessories-trade-in/` | Title "Phone Accessories London – Bloomsbury & Moorgate \| InstaTech"; new meta description without trade-in; H1 "Phone accessories in central London"; H2 "Selling your phone?"; button anchor "Sell your phone for cash" → `/buy-sell-phones/` | Title, H1, H2 and anchor: yes. Meta and OG tags not yet checked (see note) |
+| `/tablet-repairs/` | Title "iPad & Tablet Repair London – Open 7 Days \| InstaTech"; meta description naming both shops, **no prices**; H1 "iPad and tablet repair in London"; H2 "iPad and tablet repair in Bloomsbury and Moorgate"; intro sentence names both shops | Title, H1, H2 and intro: yes. Meta and OG tags not yet checked |
+
+- Mechanism: Rank Math title, description and OpenGraph/Twitter filters, plus exact-string copy swaps in a front-end output buffer (`template_redirect`, priority 2). A swap whose source string no longer exists does nothing.
+- Tests: `php -l` clean; `harness-v13.php` 11/11; `harness-v11.php` 13/13 and `harness-v12.php` 11/11 unchanged; `harness.php` output identical to v1.2.0.
+- Server and CDN cache cleared. `/`, `/locations/bloomsbury/` and both changed pages render without errors.
+- Note: the session's permission check blocked the raw-HTML verification, so meta description and OG tags are to be confirmed on the Monday crawl. Both pages also emit a second, non-Rank Math `og:title` ("Phone Accessories and Trade-In in London", "Tablet Repairs"); its source is still to be traced.
+
+### v1.3.0 overwritten by v1.3.1; combined v1.3.2 prepared (not deployed)
+Two sessions deployed the same plugin file in parallel. This session's v1.3.0 (keyword-cluster changes, backlog 5.3 and 5.6) went up at about 13:00. A parallel session's v1.3.1 (battery page links) went up at about 13:05 and replaced it; v1.3.1 does not contain the 5.3 and 5.6 changes. The live file was confirmed as v1.3.1 (483 lines, 15,238 bytes). `instatech/wp/mu-plugins/instatech-seo-fixes.php` is now v1.3.2: v1.3.1 unchanged, plus the keyword-cluster overrides. Tests: `php -l` clean; harness-v11 13/13, v12 11/11, v13 11/11, v13-clusters 11/11; `harness.php` output identical to v1.3.1. **Awaiting owner go-ahead to redeploy.**
