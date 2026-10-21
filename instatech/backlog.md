@@ -36,7 +36,7 @@ site without the owner's explicit approval in a conversation. Approved changes a
 ## Phase 2: money pages (draft as WordPress drafts or repo files for approval)
 | # | Page | Status | Needs from owner |
 |---|---|---|---|
-| 2.1 | Battery replacement | todo | Prices by model, turnaround, warranty, parts grade |
+| 2.1 | Battery replacement | drafted | `instatech/pages/battery-replacement.md`. Needs per-model prices, warranty period, parts wording ("genuine" vs "meets OEM spec" is inconsistent on the live site) and the genuine Apple battery option |
 | 2.2 | Charging port repair | todo | Same |
 | 2.3 | Water damage repair | todo | Same, plus diagnostic fee policy |
 | 2.4 | Back glass repair | todo | Same |
