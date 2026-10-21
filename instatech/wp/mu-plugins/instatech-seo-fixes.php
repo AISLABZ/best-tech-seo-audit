@@ -3,7 +3,7 @@
  * Plugin Name: InstaTech SEO fixes
  * Description: Phase 1 SEO fixes from the instatech.uk audit (Oct 2026). Output filters only, no database writes.
  *              Roll back by replacing this file with an empty one, or define INSTATECH_SEO_FIXES_OFF in wp-config.php.
- * Version:     1.3.1
+ * Version:     1.4.0
  * Source:      https://github.com/aislabz/best-tech-seo-audit (instatech/wp/mu-plugins/instatech-seo-fixes.php)
  */
 
@@ -393,6 +393,72 @@ function instatech_seo_home_h1( $html ) {
 }
 add_filter( 'the_content', 'instatech_seo_home_h1', 1000 );
 add_filter( 'elementor/widget/render_content', 'instatech_seo_home_h1', 21 );
+
+/**
+ * In-text links to the repair pages, on wording that already exists in each page. Each rule is the exact text to find
+ * (first occurrence only) and the replacement with the link added; nothing else in the copy changes. A rule only applies
+ * while its target page is published and is skipped if the page already links there.
+ */
+function instatech_seo_contextual_links() {
+	$battery = home_url( '/mobile-repair-services/battery-replacement/' );
+	$screen  = instatech_seo_screen_repair_url();
+	$style   = ' style="color:inherit;text-decoration:underline;text-underline-offset:2px"';
+
+	return array(
+		'guide-to-phone-battery-replacement-uk' => array(
+			'target' => $battery,
+			'find'   => 'fit a compatible replacement battery and test charging',
+			'repl'   => 'fit a compatible <a href="' . $battery . '">replacement battery</a> and test charging',
+		),
+		'why-is-my-phone-battery-draining'      => array(
+			'target' => $battery,
+			'find'   => 'a battery replacement can be a better value choice',
+			'repl'   => 'a <a href="' . $battery . '">battery replacement</a> can be a better value choice',
+		),
+		'iphone-battery-health-not-showing'     => array(
+			'target' => $battery,
+			'find'   => 'there is no fee. Battery replacement starts',
+			'repl'   => 'there is no fee. <a href="' . $battery . '">Battery replacement</a> starts',
+		),
+		'bloomsbury'                            => array(
+			'target' => $battery,
+			'find'   => 'most phone screens and batteries are done while you wait',
+			'repl'   => 'most <a href="' . $screen . '"' . $style . '>phone screens</a> and <a href="' . $battery . '"' . $style . '>batteries</a> are done while you wait',
+		),
+		'moorgate'                              => array(
+			'target' => $battery,
+			'find'   => 'most phone screens and batteries are done while you wait',
+			'repl'   => 'most <a href="' . $screen . '"' . $style . '>phone screens</a> and <a href="' . $battery . '"' . $style . '>batteries</a> are done while you wait',
+		),
+	);
+}
+
+add_filter(
+	'the_content',
+	function ( $content ) {
+		if ( is_admin() || ! is_string( $content ) ) {
+			return $content;
+		}
+		$post = get_post();
+		if ( ! $post ) {
+			return $content;
+		}
+		$rules = instatech_seo_contextual_links();
+		if ( ! isset( $rules[ $post->post_name ] ) ) {
+			return $content;
+		}
+		$rule = $rules[ $post->post_name ];
+		if ( false !== strpos( $content, 'href="' . $rule['target'] . '"' ) || false === strpos( $content, $rule['find'] ) ) {
+			return $content;
+		}
+		if ( ! instatech_seo_page_live( 'mobile-repair-services/battery-replacement' ) ) {
+			return $content;
+		}
+		$at = strpos( $content, $rule['find'] );
+		return substr_replace( $content, $rule['repl'], $at, strlen( $rule['find'] ) );
+	},
+	1001
+);
 
 /**
  * Each shop's Google Business Profile, resolved from Google Maps on 21 Oct 2026.
