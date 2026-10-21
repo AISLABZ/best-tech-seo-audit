@@ -132,6 +132,6 @@ Runs in the monthly review, straight after the Search Console pull and before th
 ## 6. Refresh queue
 | Cluster | Rule | Action | Backlog item | Last changed | Result next month (pos / impr before → after) |
 |---|---|---|---|---|---|
-| S9/S11 | R7 | Retarget `/phone-accessories-trade-in/` to accessories; trade-in stays on `/buy-sell-phones/` | 5.3 | Pending redeploy (v1.3.2) | — |
-| S7 | Owner decision Q2 | `/tablet-repairs/` title, meta and H1 cover both shops | 5.6 | Pending redeploy (v1.3.2) | — |
+| S9/S11 | R7 | Retarget `/phone-accessories-trade-in/` to accessories; trade-in stays on `/buy-sell-phones/` | 5.3 | 21 Oct 2026 (v1.4.0) | — |
+| S7 | Owner decision Q2 | `/tablet-repairs/` title, meta and H1 cover both shops | 5.6 | 21 Oct 2026 (v1.4.0) | — |
 | S10 | R8 | Data recovery service page | 5.7 | — | — |

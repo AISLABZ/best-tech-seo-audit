@@ -90,10 +90,10 @@ copy facts are in `claims.md`. Every action carries its rule and cluster ID. At 
 |---|---|---|---|---|---|
 | 5.1 | Search Console data route for the monthly pull: connector, browser report, or owner CSV export to `instatech/data/gsc/` | — | — | blocked | Same blocker as 1.13. The Search Console connector failed to connect on 21 Oct 2026 |
 | 5.2 | Baseline pull and first cluster review: confirm primaries, ranking URLs, R6/R7/R8 flags; fill the refresh queue | all | — | todo | Monthly review, 1 Nov 2026. October is the baseline month; R5 starts in December |
-| 5.3 | Retarget `/phone-accessories-trade-in/` to accessories; `/buy-sell-phones/` owns trade-in (owner decision Q1) | R7 · S9/S11 | H + L | approved, **not live** | Deployed in v1.3.0, then overwritten by v1.3.1 (parallel session, 21 Oct 13:05). Combined plugin v1.3.2 is ready to redeploy |
+| 5.3 | Retarget `/phone-accessories-trade-in/` to accessories; `/buy-sell-phones/` owns trade-in (owner decision Q1) | R7 · S9/S11 | H + L | live | Plugin v1.4.0 (programme session), 21 Oct 2026; title and H1 verified live. Monday crawl to confirm meta and OG tags |
 | 5.4 | Commercial-intent posts competing with service pages: `/phone-screen-repair-cost/` (S2), `/laptop-repair-near-me-what-to-check-first/` and `/desktop-computer-repair-near-me/` (S6), `/tablet-screen-repair-near-me/` (S7), `/guide-to-phone-battery-replacement-uk/` (S3) | R7 · S2/S3/S6/S7 | H + L | todo | Supersedes 2.14. Confirm with the 5.2 data before merging or re-angling |
 | 5.5 | Informational overlap: five wireless-charging posts (I1), four power-bank posts (I3), two refurbished posts (I5) | R7 · I1/I3/I5 | H + L | todo | Merge only where the data shows the posts share queries |
-| 5.6 | `/tablet-repairs/` title, meta and H1 cover both shops, not Bloomsbury only (owner confirmed, Q2) | S7 | L (title/meta) · H (H1) | approved, **not live** | As 5.3: restored in v1.3.2, awaiting redeploy. No prices |
+| 5.6 | `/tablet-repairs/` title, meta and H1 cover both shops, not Bloomsbury only (owner confirmed, Q2) | S7 | L (title/meta) · H (H1) | live | Plugin v1.4.0, 21 Oct 2026; title, H1 and H2 verified live, no prices. Monday crawl to confirm meta and OG tags |
 | 5.7 | Data recovery service page (owner confirmed the service, Q3) | R8 · S10 | H | approved (brief) | `proposals/2026-10-21-keyword-cluster-decisions.md` §3. No pricing (owner rule); next Wednesday build run drafts the page |
 
 ## Needs from owner
@@ -110,3 +110,4 @@ copy facts are in `claims.md`. Every action carries its rule and cluster ID. At 
 - 2026-10-21: Owner approved 5.3, 5.6 (amended: no pricing) and 5.7, and set the rule "no pricing added anywhere"; Phase 2 price needs removed. Moorgate hours confirmed on the site.
 - 2026-10-21: 5.3 and 5.6 deployed in plugin v1.3.0 (see changelog).
 - 2026-10-21: Merged the keyword-cluster work into the programme branch. v1.3.0 (5.3, 5.6) was overwritten on the live site by v1.3.1 from a parallel session; plugin v1.3.2 combines both and awaits redeploy. Battery page (2.1) is live, so S3 is no longer a gap.
+- 2026-10-21: 5.3 and 5.6 live again in plugin v1.4.0, deployed by the programme session, which is the only session that uploads plugin files.
