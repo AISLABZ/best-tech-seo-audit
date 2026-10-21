@@ -22,7 +22,7 @@ The issues that remain concern **discovery rather than on-page quality**. The in
 | Analytics / Search Console | None | GA4 + GSC verified | 5 / 5 |
 | Content images with alt text | 32% | 100% (empty alt only on decorative icons) | 10 / 10 |
 | Crawlability (robots, sitemap, status codes) | Sitemap 404 | Sitemap live; 5 posts missing | 12 / 15 |
-| Internal linking | Not assessed | 43 of 64 posts orphaned | 5 / 15 |
+| Internal linking | Not assessed | 0 orphaned (43 fixed 21 Oct) | 12 / 15 |
 | Social / Open Graph | Not assessed | `og:url` missing site-wide | 8 / 10 |
 | **Total** | | | **84 / 100** |
 
@@ -42,7 +42,9 @@ The issues that remain concern **discovery rather than on-page quality**. The in
 
 ## Critical issues (must fix)
 
-- [ ] **43 of 64 blog posts are orphaned.** No crawled page links to them; they are discoverable only through the sitemap. `/blog` lists the 12 most recent posts with no pagination or category archive, and no homepage, service or repair page links to any post. Only 8 posts link to another post. Orphaned pages receive no internal link equity and are crawled and ranked less reliably.
+- [x] **43 of 64 blog posts were orphaned — fixed and published 21 Oct 2026.** No crawled page links to them; they are discoverable only through the sitemap. `/blog` lists the 12 most recent posts with no pagination or category archive, and no homepage, service or repair page links to any post. Only 8 posts link to another post. Orphaned pages receive no internal link equity and are crawled and ranked less reliably.
+  *Done:* `/blog` now carries an "All repair guides" CMS list bound to the Blog Posts collection (limit 100), so every published post — 67 at time of fix — is linked from `/blog` and new posts are added automatically. Links use a new `Post URL` CMS field (`/post/<slug>`), populated for all 84 items. Verified live: 67/67 links return HTTP 200, no sitemap post is left unlinked.
+  *Still open:* related-guide lists on the 9 `/works/*` and `/services/*` pages, and newest-first sorting of the new list (the Webflow API rejected the sort setting; set it in the Designer: Collection List settings → Sort → Published Date, newest first). New posts must have `Post URL` filled in or their link will be empty.
   *Fix:* add pagination or a full archive to `/blog`; add a "Related guides" CMS list to each `/works/*` and `/services/*` page filtered by topic; add 2–3 contextual post-to-post links per article.
 - [ ] **Performance has not been verified since August.** The homepage still references the 3840×2160 hero video (`13820343 3840 2160 30Fps_mp4.mp4` / `.webm`). A `besttechvideofixes` script is loaded and may mitigate this, but that cannot be confirmed without a lab run.
   *Fix:* run PageSpeed Insights (mobile) on `/` and one `/post/*` URL; if LCP exceeds 2.5s, serve a ≤ 720p video or a static poster on mobile.
