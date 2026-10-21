@@ -21,11 +21,11 @@ Cluster IDs: **S** commercial service/device · **L** hyperlocal · **B** brand 
 | S5 | Water damage repair | **gap** (2.3) | water damaged phone repair london | phone dropped in water repair | `/can-water-damaged-phones-recover/`, `/phone-corrosion-after-water-damage/` | R8 gap |
 | S6 | Laptop and desktop repair | `/laptop-desktop-repair/` | laptop repair london | computer repair london · pc repair london · laptop repair near me | `/laptop-repair-near-me-what-to-check-first/`, `/desktop-computer-repair-near-me/` | **R7 risk:** two "near me" posts (backlog 2.14) |
 | S6a | MacBook repair (device) | **gap** (2.8); today `/laptop-desktop-repair/` | macbook repair london | macbook screen repair · macbook battery replacement · macbook logic board repair | `/macbook-logic-board-repair/` | Device page owns MacBook searches once live; S6 then drops them |
-| S7 | Tablet and iPad repair | `/tablet-repairs/` | ipad repair london | tablet repair london · ipad screen repair · tablet screen repair near me | `/tablet-screen-repair-near-me/`, `/can-a-cracked-tablet-be-repaired/` | **R7 risk:** near-me post; title is scoped to Bloomsbury only (owner question Q2) |
+| S7 | Tablet and iPad repair | `/tablet-repairs/` | ipad repair london | tablet repair london · ipad screen repair · tablet screen repair near me | `/tablet-screen-repair-near-me/`, `/can-a-cracked-tablet-be-repaired/` | **R7 risk:** near-me post. Title and H1 are scoped to Bloomsbury only, but both shops repair tablets (Q2): retarget London-wide (backlog 5.6) |
 | S8 | Smartwatch and Apple Watch repair | `/smartwatch-repair-service/` | apple watch repair london | apple watch screen repair · smartwatch repair | `/smartwatch-repair-costs-uk/`, `/smartwatch-screen-repair-fix-or-replace/` | Retitle planned (2.9) |
-| S9 | Sell or trade in a phone | `/buy-sell-phones/` | sell my phone london | sell phone for cash · phone trade in london · buy used phones london | **`/phone-accessories-trade-in/`**, `/where-to-sell-old-phone-best-price/`, `/phone-trade-in-checklist/` | **R7 risk:** two of our pages target trade-in (owner question Q1) |
-| S10 | Phone data recovery | none (post only) | phone data recovery london | recover data from broken phone | `/phone-data-recovery-service-explained/` | Possible R8, if the service is offered (Q3) |
-| S11 | Accessories shop | `/shop/` and its product categories | phone accessories london | usb c cable · iphone charger · power bank · macbook charger | 33 product categories | Category pages own product searches; posts link to them |
+| S9 | Sell or trade in a phone | `/buy-sell-phones/` | sell my phone london | sell phone for cash · phone trade in london · buy used phones london | `/where-to-sell-old-phone-best-price/`, `/phone-trade-in-checklist/` | Owner decision Q1: this page owns trade-in. `/phone-accessories-trade-in/` moves to S11 (backlog 5.3) |
+| S10 | Data recovery | **gap** → service page (backlog 5.7) | phone data recovery london | recover data from broken phone · data recovery near me · tablet and laptop data recovery | `/phone-data-recovery-service-explained/` | **R8 gap** (owner confirmed the service, Q3); the post is re-angled to the informational question |
+| S11 | Accessories shop | `/phone-accessories-trade-in/` (landing page); `/shop/` and product categories own product searches | phone accessories london | usb c cable · iphone charger · power bank · macbook charger | 33 product categories | Category pages own product searches; posts link to them |
 | S12 | Currency exchange | `/currency-exchange-service/` | currency exchange central london | currency exchange near me · bureau de change | — | Separate line of business; tracked, not prioritised |
 
 ### Hyperlocal clusters (one per shop)
@@ -103,9 +103,10 @@ cluster each new one every month and check it against R7.
 |---|---|---|
 | 21 Oct 2026 | Clusters live in this file, inside the existing programme; no parallel system | Claude (skill setup) |
 | 21 Oct 2026 | October is the baseline month; R5 starts with the December review (November vs October) | Claude (skill setup) |
-| — | Q1 Which page owns trade-in: `/buy-sell-phones/` or `/phone-accessories-trade-in/`? | **Owner** |
-| — | Q2 Are tablet and iPad repairs done at both shops, or only Bloomsbury? | **Owner** |
-| — | Q3 Is phone data recovery offered as a paid service? | **Owner** |
+| 21 Oct 2026 | Q1 `/buy-sell-phones/` owns trade-in (S9); `/phone-accessories-trade-in/` is retargeted to accessories (S11) | Owner |
+| 21 Oct 2026 | Q2 Tablet and iPad repairs are done at both shops; `/tablet-repairs/` targets London, not Bloomsbury only | Owner |
+| 21 Oct 2026 | Q3 Data recovery is a paid service; it gets a service page (R8 · S10) | Owner |
+| 21 Oct 2026 | Warranty period depends on the repair; current parts wording stands (`claims.md` C6, C10) | Owner |
 | — | Q4 Confirm the ignore list in section 2 | **Owner** |
 
 ## 5. Monthly cluster review (procedure)
@@ -129,4 +130,6 @@ Runs in the monthly review, straight after the Search Console pull and before th
 ## 6. Refresh queue
 | Cluster | Rule | Action | Backlog item | Last changed | Result next month (pos / impr before → after) |
 |---|---|---|---|---|---|
-| — | — | Empty until the first Search Console pull | 5.2 | — | — |
+| S9/S11 | R7 | Retarget `/phone-accessories-trade-in/` to accessories; trade-in stays on `/buy-sell-phones/` | 5.3 | — | — |
+| S7 | Owner decision Q2 | `/tablet-repairs/` title, meta and H1 cover both shops | 5.6 | — | — |
+| S10 | R8 | Data recovery service page | 5.7 | — | — |

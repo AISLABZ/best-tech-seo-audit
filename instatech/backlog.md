@@ -75,19 +75,20 @@ copy facts are in `claims.md`. Every action carries its rule and cluster ID. At 
 |---|---|---|---|---|---|
 | 5.1 | Search Console data route for the monthly pull: connector, browser report, or owner CSV export to `instatech/data/gsc/` | — | — | blocked | Same blocker as 1.13. The Search Console connector failed to connect on 21 Oct 2026 |
 | 5.2 | Baseline pull and first cluster review: confirm primaries, ranking URLs, R6/R7/R8 flags; fill the refresh queue | all | — | todo | Monthly review, 1 Nov 2026. October is the baseline month; R5 starts in December |
-| 5.3 | Decide which page owns trade-in: `/buy-sell-phones/` or `/phone-accessories-trade-in/` | R7 · S9 | H + L | blocked | Owner decision (clusters Q1). Then retarget the other page or merge it with a 301 |
+| 5.3 | Retarget `/phone-accessories-trade-in/` to accessories; `/buy-sell-phones/` owns trade-in (owner decision Q1) | R7 · S9/S11 | H + L | drafted | `proposals/2026-10-21-keyword-cluster-decisions.md` §1 |
 | 5.4 | Commercial-intent posts competing with service pages: `/phone-screen-repair-cost/` (S2), `/laptop-repair-near-me-what-to-check-first/` and `/desktop-computer-repair-near-me/` (S6), `/tablet-screen-repair-near-me/` (S7), `/guide-to-phone-battery-replacement-uk/` (S3) | R7 · S2/S3/S6/S7 | H + L | todo | Supersedes 2.14. Confirm with the 5.2 data before merging or re-angling |
 | 5.5 | Informational overlap: five wireless-charging posts (I1), four power-bank posts (I3), two refurbished posts (I5) | R7 · I1/I3/I5 | H + L | todo | Merge only where the data shows the posts share queries |
-| 5.6 | `/tablet-repairs/` title is scoped to Bloomsbury WC1 | S7 | L | blocked | Owner to confirm whether both shops repair tablets (clusters Q2) |
-| 5.7 | Phone data recovery: page brief if offered as a paid service | R8 · S10 | H | blocked | Owner to confirm (clusters Q3) |
+| 5.6 | `/tablet-repairs/` title, meta and H1 cover both shops, not Bloomsbury only (owner confirmed, Q2) | S7 | L (title/meta) · H (H1) | drafted | `proposals/2026-10-21-keyword-cluster-decisions.md` §2 |
+| 5.7 | Data recovery service page (owner confirmed the service, Q3) | R8 · S10 | H | drafted (brief) | `proposals/2026-10-21-keyword-cluster-decisions.md` §3. Needs a price from the owner |
 
 ## Needs from owner
 - Repair price matrix by model and fault, plus warranty, turnaround and parts-grade policy
 - Google Maps share or CID links for each shop's Google Business Profile, and confirmation of Search Console access
 - Technician names and experience for About Us
 - Approval on items marked "drafted"
-- Keyword clusters: decisions Q1–Q4 in `keyword-clusters.md` (trade-in page owner, tablet repair at both shops, data recovery, ignore list)
+- Keyword clusters: confirm the ignore list (Q4 in `keyword-clusters.md`); data recovery pricing; Moorgate opening hours
 - Search Console: a working data route for the monthly pull (connector access, or a monthly CSV export of the query and page reports)
 
 ## Backlog change log
 - 2026-10-21: Added Phase 5 (keyword clusters, items 5.1–5.7), moved 2.14 into 5.4, and created `keyword-clusters.md`, `tracked-keywords.md` and `claims.md`.
+- 2026-10-21: Owner decided Q1–Q3 and the warranty and parts wording. 5.3, 5.6 and 5.7 moved to drafted.

@@ -29,7 +29,7 @@ Phone dying by lunchtime, shutting down at 30%, or bulging at the back? We fit a
 
 - **From £29.** We confirm the exact price for your model before any work starts.
 - **20–40 minutes** for most phones, while you wait.
-- **Warranty on parts and labour.** [OWNER: state the period, e.g. "6-month" or "12-month". The nearest chain competitor advertises a lifetime warranty, so a stated period matters.]
+- **Warranty on parts and labour.** The period depends on the repair; we confirm it before we start. (Owner, 21 Oct 2026.)
 - **Walk in 7 days a week, open until 9pm** Monday to Saturday.
 
 [Book a battery replacement] → `/book-an-appointment/`  ·  [Call Bloomsbury] `tel:+447377244454`  ·  [Call Moorgate] `tel:+447508088898`
@@ -67,7 +67,7 @@ Not sure it's the battery? Draining can also come from software, a faulty chargi
 4. **Collect with warranty.** The warranty covers the part and the work.
 
 ### Parts and data
-- **Parts:** we fit high-quality replacement batteries that meet or exceed the original specification, tested before and after fitting. [OWNER: confirm the wording. `/mobile-repair-services/` currently says "genuine replacement cell" while other pages say "meet or exceed OEM specification". Use one claim sitewide and only claim "genuine" if the cells are manufacturer-original.]
+- **Parts:** we fit high-quality replacement batteries that meet or exceed the original specification, tested before and after fitting. (Owner, 21 Oct 2026: current parts wording is fine.)
 - **iPhone note:** on recent iPhones, a non-Apple battery can show a "Non-genuine part" or "Unknown part" message in Settings. The phone still works normally. See [iPhone unknown part message explained](/iphone-unknown-part-message/). [OWNER: confirm whether you offer a genuine Apple battery option, and its price.]
 - **Your data:** a battery replacement doesn't touch your photos, messages or apps. We still recommend a backup before any repair.
 
@@ -107,7 +107,7 @@ Yes, and the sooner the better. Stop charging the phone, switch it off, keep it 
 Recent iPhones may show a "Non-genuine part" or "Unknown part" notice in Settings after a third-party battery is fitted. The phone works normally. [OWNER: add the genuine-battery option here if you offer one.]
 
 **Is there a warranty?**
-Yes. Every battery replacement carries a warranty on the part and the labour. [OWNER: period.]
+Yes. Every battery replacement carries a warranty on the part and the labour. The period depends on the repair, and we confirm it before we start.
 
 ---
 
