@@ -285,23 +285,25 @@
     <div class="find">
       <div><span class="badge" style="color:var(--st-serious)"><span class="dot" style="background:var(--st-serious)"></span>High</span></div>
       <div>
-        <p class="f-title">4 · The homepage H1 is a seasonal slogan</p>
+        <p class="f-title">4 · The homepage H1 is a seasonal slogan <span style="color:var(--st-good)">— fixed 21 Oct</span></p>
         <p class="f-body">The homepage's only H1 reads <code>Cold mornings kill tired batteries.</code> The H1 is the strongest on-page
         statement of what the business is and where. This one names neither the service nor the location.</p>
         <p class="f-fix"><b>Fix:</b> make the H1 permanent, for example "Phone &amp; Laptop Repair inside Piccadilly Circus Station". Keep the
         seasonal line as a styled paragraph or H2 above it.</p>
+        <p class="f-fix"><b>Done:</b> the H1 now reads "Phone &amp; Laptop Repair inside Piccadilly Circus Station" and is live. The seasonal battery message stays in the paragraph below it.</p>
       </div>
     </div>
 
     <div class="find">
       <div><span class="badge" style="color:var(--st-serious)"><span class="dot" style="background:var(--st-serious)"></span>High</span></div>
       <div>
-        <p class="f-title">5 · 59 articles carry no publish or update date</p>
+        <p class="f-title">5 · 59 articles carry no publish or update date <span style="color:var(--st-good)">— schema fixed 21 Oct</span></p>
         <p class="f-body">The <code>BlogPosting</code> schema on every post omits <code>datePublished</code> and <code>dateModified</code>,
         and no date is shown on the page. AI engines and Google weigh freshness, and model-specific posts (iPhone 17, Pixel 10,
         Galaxy S25) lose value when they carry no date.</p>
         <p class="f-fix"><b>Fix:</b> bind the CMS "Published On" and "Updated On" fields into the JSON-LD embed and show
         "Updated [date]" under each post title.</p>
+        <p class="f-fix"><b>Done (schema):</b> the dates were already in the CMS but reached the page only through a JavaScript-injected block, which AI crawlers that don't run JavaScript never see. The server-rendered BlogPosting block on the Blog Posts template now carries <code>datePublished</code> (CMS Published Date) and <code>dateModified</code> (last CMS update), and the one undated post was given its creation date. <b>Still open:</b> a visible "Updated" line under post titles, which needs a Designer edit.</p>
       </div>
     </div>
 

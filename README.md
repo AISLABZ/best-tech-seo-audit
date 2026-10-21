@@ -62,6 +62,13 @@ Critical:
 High: no £ prices on any page; a seasonal homepage H1; no dates on 59 posts; no named author or technician;
 a review claim with no count; and the 4K hero video is still served to phones.
 
+Fixed in Webflow (21 Oct 2026), live and verified:
+
+- [x] Homepage H1 changed to "Phone & Laptop Repair inside Piccadilly Circus Station"
+- [x] `datePublished` / `dateModified` added to the server-rendered BlogPosting schema; missing date set on one post
+- [x] GA4 confirmed already live (`G-CX5GX4VKHQ`). The "AI assistants" channel group is still to be added in GA4 Admin
+- [ ] `www` DNS record. Webflow is ready, but DNS for the domain is not in the connected Hostinger account
+
 ## Method
 
 All 16 pages were fetched and parsed directly from the live site; counts are measured,
