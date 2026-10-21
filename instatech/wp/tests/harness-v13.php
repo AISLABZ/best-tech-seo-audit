@@ -2,12 +2,14 @@
 // Stubbed-WordPress tests for v1.3.0 (Battery Replacement in menus/footer once the page exists).
 // Run: php instatech/wp/tests/harness-v13.php instatech/wp/mu-plugins/instatech-seo-fixes.php
 define( 'ABSPATH', '/x/' );
+define( 'OBJECT', 'OBJECT' );
 $F = array();
 $OPT = array();
 function add_filter( $h, $cb, $p = 10, $n = 1 ) { global $F; $F[ $h ][] = array( $cb, $n ); }
 function add_action( $h, $cb, $p = 10, $n = 1 ) {}
 function apply( $h, ...$a ) { global $F; foreach ( $F[ $h ] as $f ) { $a[0] = call_user_func_array( $f[0], array_slice( $a, 0, $f[1] ) ); } return $a[0]; }
 function get_option( $k ) { global $OPT; return isset( $OPT[ $k ] ) ? $OPT[ $k ] : false; }
+function get_page_by_path( $p ) { global $OPT; return ( 'mobile-repair-services/battery-replacement' === $p && ! empty( $OPT['live'] ) ) ? (object) array( 'post_status' => 'publish' ) : null; }
 function is_admin() { return false; }
 function is_front_page() { return false; }
 function home_url( $p = '' ) { return 'https://instatech.uk' . $p; }
@@ -38,7 +40,7 @@ $POST = (object) array( 'post_name' => 'how-long-does-phone-repair-take' );
 check( 'before: post link goes to Mobile Repair', false !== strpos( apply( 'the_content', $post ), 'href="https://instatech.uk/mobile-repair-services/"' ) );
 
 // After the page exists.
-$OPT['instatech_page_created_battery-replacement'] = '12345';
+$OPT['live'] = true;
 $o = apply( 'wp_nav_menu_objects', $menu );
 check( 'after: menu order Mobile, Screen, Battery, Tablet', 5 === count( $o ) && 'Screen Repair' === $o[2]->title && 'Battery Replacement' === $o[3]->title && 'Tablet Repairs' === $o[4]->title );
 check( 'after: unique menu IDs', count( array_unique( array_map( function ( $i ) { return $i->ID; }, $o ) ) ) === 5 );

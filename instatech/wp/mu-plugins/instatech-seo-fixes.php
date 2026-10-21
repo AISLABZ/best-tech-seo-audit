@@ -3,7 +3,7 @@
  * Plugin Name: InstaTech SEO fixes
  * Description: Phase 1 SEO fixes from the instatech.uk audit (Oct 2026). Output filters only, no database writes.
  *              Roll back by replacing this file with an empty one, or define INSTATECH_SEO_FIXES_OFF in wp-config.php.
- * Version:     1.3.0
+ * Version:     1.3.1
  * Source:      https://github.com/aislabz/best-tech-seo-audit (instatech/wp/mu-plugins/instatech-seo-fixes.php)
  */
 
@@ -36,6 +36,15 @@ function instatech_seo_link_map() {
 }
 
 /**
+ * Whether a page is published at the given path. Navigation only links to pages that exist.
+ * get_page_by_path() results are held in the WordPress object cache, so repeat calls are cheap.
+ */
+function instatech_seo_page_live( $path ) {
+	$page = get_page_by_path( $path, OBJECT, 'page' );
+	return $page && 'publish' === $page->post_status;
+}
+
+/**
  * Per-post overrides where the generic target is not the best match for the anchor.
  */
 function instatech_seo_link_overrides() {
@@ -44,7 +53,7 @@ function instatech_seo_link_overrides() {
 		'laptop-repair-near-me-what-to-check-first' => array( '/layouts/battery/' => '/laptop-desktop-repair/' ),
 		'wireless-earphones-for-calls'              => array( '/services/laptop-desktop-repair/' => '/mobile-repair-services/' ),
 	);
-	if ( get_option( 'instatech_page_created_battery-replacement' ) ) {
+	if ( instatech_seo_page_live( 'mobile-repair-services/battery-replacement' ) ) {
 		$overrides['how-long-does-phone-repair-take'] = array( '/layouts/battery/' => '/mobile-repair-services/battery-replacement/' );
 	}
 	return $overrides;
@@ -244,7 +253,7 @@ function instatech_seo_service_links() {
 			'url'   => instatech_seo_screen_repair_url(),
 		),
 	);
-	if ( get_option( 'instatech_page_created_battery-replacement' ) ) {
+	if ( instatech_seo_page_live( 'mobile-repair-services/battery-replacement' ) ) {
 		$links[] = array(
 			'title' => 'Battery Replacement',
 			'url'   => home_url( '/mobile-repair-services/battery-replacement/' ),

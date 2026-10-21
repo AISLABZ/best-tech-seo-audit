@@ -1,7 +1,7 @@
 <?php
 // Stubbed-WordPress test harness for instatech-seo-fixes.php.
 // Run: php instatech/wp/tests/harness.php instatech/wp/mu-plugins/instatech-seo-fixes.php
-define('ABSPATH','/x/');
+define('ABSPATH','/x/'); define('OBJECT','OBJECT'); function get_page_by_path($p){return null;}
 $F=[]; function add_filter($h,$cb,$p=10,$n=1){global $F;$F[$h][]=[$cb,$n];}
 function add_action($h,$cb,$p=10,$n=1){} function untrailingslashit($s){return rtrim($s,'/');} function is_front_page(){return false;}
 function apply($h,...$a){global $F;foreach($F[$h] as [$cb,$n]){$a[0]=$cb(...array_slice($a,0,$n));}return $a[0];}

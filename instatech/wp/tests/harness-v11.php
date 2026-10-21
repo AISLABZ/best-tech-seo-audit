@@ -2,6 +2,8 @@
 // Stubbed-WordPress tests for the v1.1.0 additions (menu, footer, homepage H1).
 // Run: php instatech/wp/tests/harness-v11.php instatech/wp/mu-plugins/instatech-seo-fixes.php
 define( 'ABSPATH', '/x/' );
+define( 'OBJECT', 'OBJECT' );
+function get_page_by_path( $p ) { return null; }
 $F = array();
 $A = array();
 function add_filter( $h, $cb, $p = 10, $n = 1 ) { global $F; $F[ $h ][] = array( $cb, $n ); }

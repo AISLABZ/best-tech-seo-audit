@@ -39,6 +39,7 @@ site without the owner's explicit approval in a conversation. Approved changes a
 | 1.10 | Link About Us from the header or footer; add named technicians, experience and warranty | live | Footer link is live (v1.1.0). Content still needs owner facts |
 | 1.11 | Entity: one spelling ("InstaTech") everywhere, including GBP names; Maps CID links in the schema; full MobilePhoneStore node on each location page; Store schema on Oxford Circus | live | sameAs (v1.0) and Maps cid links plus pinned directions (v1.2) are live. Still to do: rename the GBP listings from "instaTech - (Bloomsbury)" and "instaTech - Moorgate" to "InstaTech Bloomsbury" and "InstaTech Moorgate" (owner, in GBP); a full MobilePhoneStore node on each location page |
 | 1.17 | Google review links for the review engine: Bloomsbury https://search.google.com/local/writereview?placeid=ChIJg5Ii0NUbdkgRQL_2omA3r5M · Moorgate https://search.google.com/local/writereview?placeid=ChIJm5ZiHwAddkgRICvcMAd8o3Q | ready | Use in the post-repair SMS and email (Phase 3.3), and on receipts or QR cards in-store |
+| 1.12a | **Top performance item: LiteSpeed Guest Mode reload.** Every first visit loads the page twice (`guest.vary.php`, then a reload to set the `_lscache_vary` mobile variant), which is the ~9 s Lighthouse "redirect". Proposal: LiteSpeed Cache → General → Guest Mode **OFF** (or keep it on but turn Cache → Mobile → Cache Mobile **OFF**, since the theme is responsive and needs no separate mobile cache). Then purge and re-test first-visit loads and Lighthouse | drafted | Settings change: owner approval needed. Can be applied via WP Admin in 1 minute |
 | 1.12 | Performance: LiteSpeed JS delay for GTM, remove unused CSS, dequeue TI Wishlist and Advanced Popups off-shop | todo | Settings change. Draft for approval, and verify with Lighthouse |
 | 1.13 | Search Console: confirm ownership and submit `/sitemap_index.xml` | blocked | Owner to confirm GSC access |
 | 1.14 | Lighthouse: links not crawlable (`href="#"`), tap targets, contrast | todo | Identify the elements and draft fixes |
@@ -48,7 +49,7 @@ site without the owner's explicit approval in a conversation. Approved changes a
 ## Phase 2: money pages (draft as WordPress drafts or repo files for approval)
 | # | Page | Status | Needs from owner |
 |---|---|---|---|
-| 2.1 | Battery replacement | drafted | `instatech/pages/battery-replacement.md`, revised to the programme rules. Owner: confirm the Android brand list, then approve the build |
+| 2.1 | Battery replacement | live | https://instatech.uk/mobile-repair-services/battery-replacement/ (ID 76574), published 21 Oct 2026. Linked from the menus and footer (v1.3.1). Next: contextual links from the battery guide, the draining and battery-health posts, and both location pages |
 | 2.2 | Charging port repair | todo | — |
 | 2.3 | Water damage repair | todo | — |
 | 2.4 | Back glass repair | todo | — |
