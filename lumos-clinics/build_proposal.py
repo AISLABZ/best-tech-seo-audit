@@ -170,7 +170,7 @@ toc = [("1", "Overview & Objective"), ("2", "Executive Summary — Audit Scoreca
        ("6", "Keyword Clustering & Page Mapping"), ("7", "Answer Engine Optimisation (AEO)"),
        ("8", "Generative Engine Optimisation (GEO / AI Search)"), ("9", "Schema & Structured Data Plan"),
        ("10", "Sitemap & Site Architecture"), ("11", "Website Design & UI/UX Changes"),
-       ("12", "Plan of Action — Google Business Profile"), ("13", "Plan of Action — Google Ads & GMB Ads"),
+       ("12", "Plan of Action — Google Business Profile"), ("13", "Plan of Action — Google Ads & GMB Ads (optional)"),
        ("14", "Healthcare Compliance & E-E-A-T"), ("15", "Measurement, KPIs & Reporting"),
        ("16", "Six-Month Roadmap"), ("17", "Why This Approach Works · Pricing · Terms")]
 s.append(table([[f"<b>{n}</b>", t] for n, t in toc], [14 * mm, TW - 14 * mm], head=False))
@@ -668,6 +668,9 @@ s.append(PageBreak())
 
 # ---------------------------------------------------------------- 13 ads
 s += h1("Section 13", "Plan of action — Google Ads & GMB Ads")
+s.append(callout("<b>Optional service.</b> Google Ads management is not part of the monthly retainer and involves no "
+                 "ad spend unless Lumos chooses to proceed. It is set out here so the clinic can add it later."))
+s.append(Spacer(1, 6))
 s.append(P("A Google Ads tag is already installed. Paid search delivers patient enquiries immediately while organic "
            "rankings build over 4 to 6 months, and its search-term data feeds directly into our SEO keyword strategy."))
 s.append(table([
@@ -764,15 +767,15 @@ s.append(P("<b>Starting retainer: 500 AED</b>"))
 s.append(table([
     ["Service", "Scope", "Price", "Total"],
     ["UI/UX Consultation", "1 website", "Free", "Free"],
-    ["Monthly SEO, AEO, GEO & GMB Profile Optimisation", "1 website", "950 AED / month", "950 AED / month"],
-    ["Google Ads Optimisation", "1 website", "10% of ad spend (first month free)", "10% × ad spend"],
+    ["Monthly SEO, AEO, GEO & GMB Profile Optimisation", "1 website", "1,000 AED / month", "1,000 AED / month"],
 ], [70 * mm, 25 * mm, 45 * mm, TW - 140 * mm]))
 s.append(P("Payment terms", "h3"))
 s += B(["Billed monthly.", "Minimum 6-month commitment recommended.", "Upfront retainer paid on signing of the contract.",
-        "Paid advertising budget (Google / Meta) is paid directly by the clinic to the platform."])
+        "No advertising spend is included or required under this retainer."])
 s.append(P("Optional add-ons (if needed later)", "h3"))
 s += B(["Additional landing pages and Arabic-language pages.", "Email and WhatsApp marketing campaigns.",
-        "Content writing packages beyond four articles per month.", "Meta (Instagram / Facebook) ads management."])
+        "Content writing packages beyond four articles per month.",
+        "Google Ads and Meta (Instagram / Facebook) ads management (Section 13), quoted separately if required."])
 s.append(Spacer(1, 12))
 s.append(P("We are confident that we can build a successful business together."))
 s.append(Spacer(1, 14))
