@@ -22,10 +22,14 @@ site without the owner's explicit approval in a conversation. Approved changes a
 | 1.5 | 301 `/blog-standard/` to a proper blog hub | todo | Confirm the target with the owner first. It currently serves as the blog listing |
 | 1.6 | Meta descriptions for categories and products | verified | Fallback template by mu-plugin. Hand-write the top 10 product categories next |
 | 1.7 | Fix category name casing ("USB-C HUBS", "ETHERNET Cables", "For C-C phones", "MacBook/Laptop charger") | todo | Term rename. Draft for approval |
-| 1.8 | Make the 19 duplicate product titles unique (`-2` duplicates) | todo | Check whether the `-2` products are true duplicates, and propose a merge with a 301 or a variant name |
+| 1.8 | Make the duplicate product titles unique (`-2` duplicates) | approved, not deployed | 18 pairs found (`audit-2026-10-21/`). 12 have identical price and stock: 301s are built in `wp/mu-plugins/instatech-audit-fixes.php` v1.0.0 (approved by owner 21 Oct, awaiting deploy). 6 pairs have **different prices** and are held for the owner: A12 splitter £14.99/£19.99, A32 adapter £9.99/£12.99, J2 USB-C–HDMI £24.99/£29.99, QUATRE hub £29.99/£44.99, Smart Watch USB-C cable £19.99/£24.99, World Travel Adapter £44.99/£34.99 (`-2` price first). Permanent fix: trash the `-2` products in WP Admin once the 301s are live |
 | 1.9 | Image alt text (972 missing at baseline) | live | The mu-plugin covers attachment images. Re-measure on the Monday crawl |
 | 1.10 | Link About Us from the header or footer; add named technicians, experience and warranty | live | Footer link is live (v1.1.0). Content still needs owner facts |
 | 1.11 | Entity: one spelling ("InstaTech") everywhere, including GBP names; Maps CID links in the schema; full MobilePhoneStore node on each location page; Store schema on Oxford Circus | live | sameAs (v1.0) and Maps cid links plus pinned directions (v1.2) are live. Still to do: rename the GBP listings from "instaTech - (Bloomsbury)" and "instaTech - Moorgate" to "InstaTech Bloomsbury" and "InstaTech Moorgate" (owner, in GBP); a full MobilePhoneStore node on each location page |
+| 1.18 | Remove `/shop/` from `product-sitemap.xml` (it is also in `page-sitemap.xml`) | approved, not deployed | In `instatech-audit-fixes.php` v1.0.0; it also turns off Rank Math sitemap caching so the change takes effect |
+| 1.19 | Product schema: strip the " - InstaTech" suffix from Product `name` | approved, not deployed | In `instatech-audit-fixes.php` v1.0.0. Brand, SKU, GTIN, shipping and returns still need owner data |
+| 1.20 | Uncached TTFB of 2.8–3.2 s: enable LiteSpeed Crawler; review Object Cache (`object-kind: false` in `.litespeed_conf.dat` despite an `object-cache.php` drop-in) | todo | WP Admin → LiteSpeed Cache → Crawler / Cache → Object. No API route to these settings |
+| 1.21 | Plugin updates available: ElementsKit Lite, Essential Addons, Essential Blocks, LiteSpeed Cache, Templately | todo | Take a backup first: there is no on-server UpdraftPlus archive (last activity was the 18 Sep restore) |
 | 1.17 | Google review links for the review engine: Bloomsbury https://search.google.com/local/writereview?placeid=ChIJg5Ii0NUbdkgRQL_2omA3r5M · Moorgate https://search.google.com/local/writereview?placeid=ChIJm5ZiHwAddkgRICvcMAd8o3Q | ready | Use in the post-repair SMS and email (Phase 3.3), and on receipts or QR cards in-store |
 | 1.12 | Performance: LiteSpeed JS delay for GTM, remove unused CSS, dequeue TI Wishlist and Advanced Popups off-shop | todo | Settings change. Draft for approval, and verify with Lighthouse |
 | 1.13 | Search Console: confirm ownership and submit `/sitemap_index.xml` | blocked | Owner to confirm GSC access |
@@ -90,5 +94,6 @@ copy facts are in `claims.md`. Every action carries its rule and cluster ID. At 
 - Search Console: a working data route for the monthly pull (connector access, or a monthly CSV export of the query and page reports)
 
 ## Backlog change log
+- 2026-10-21: Merged the 21 Oct performance and catalogue audit (`audit-2026-10-21/`). Updated 1.8 and added 1.18–1.21.
 - 2026-10-21: Added Phase 5 (keyword clusters, items 5.1–5.7), moved 2.14 into 5.4, and created `keyword-clusters.md`, `tracked-keywords.md` and `claims.md`.
 - 2026-10-21: Owner decided Q1–Q3 and the warranty and parts wording. 5.3, 5.6 and 5.7 moved to drafted.

@@ -2,11 +2,12 @@
 
 These are proposals only. Nothing in this file has been applied to instatech.uk.
 
-The site already has an active fix programme, with its backlog, changelog and
-`wp-content/mu-plugins/instatech-seo-fixes.php` on branch `claude/dreamy-hypatia-45fdq7`
-(under `instatech/`). Its rule is that nothing changes on the live site without the owner's
-explicit approval. Each item below is mapped to that backlog so that it can be merged there,
-not run as a parallel track.
+This audit is now part of the InstaTech programme in `instatech/`. Its rule is that nothing changes
+on the live site without the owner's explicit approval. Each item below is mapped to `../backlog.md`.
+
+**Owner approval, 21 Oct 2026:** A (identical pairs only), E (product name) and F are built in
+`../wp/mu-plugins/instatech-audit-fixes.php` v1.0.0 and pass `../wp/tests/harness-audit.php`.
+They are **not yet deployed**: the session's permission settings blocked the production upload.
 
 ## Superseded since this audit's crawl
 
@@ -24,7 +25,7 @@ The Elementor Pro security update (1.15) has been attempted. It is blocked on th
 
 | # | Proposal | Backlog | Risk | Owner input needed |
 |---|---|---|---|---|
-| A | **Merge the 18 duplicate products.** Keep the original slug, add the `-2` copy's category to it, trash the `-2` copy, then import `duplicate-products-redirects.csv` in Rank Math → Redirections → Import. | 1.8 | Medium: catalogue change | Confirm that no `-2` copy has orders, stock or a price that differs from the original and should be kept. The one pair spot-checked had the same price. |
+| A | **Merge the 18 duplicate products.** Keep the original slug, add the `-2` copy's category to it, trash the `-2` copy, then import `duplicate-products-redirects.csv` in Rank Math → Redirections → Import. | 1.8 | Medium: catalogue change | 12 pairs match on price and stock and are redirected by the plugin. **6 pairs differ in price** and are held for the owner (see backlog 1.8). The CSV lists all 18. |
 | B | **LiteSpeed Cache → Page Optimization:** turn on Generate Critical CSS and Load CSS Asynchronously; keep CSS Combine on. This targets the 729 KB render-blocking bundle (mobile FCP 10.3 s). | 1.12 | Medium: can cause a flash of unstyled content; test on staging or check visually | Approval |
 | C | **LiteSpeed Cache → Crawler:** enable it so the cache is re-warmed after purges. Uncached TTFB is 2.8–3.2 s; cached is 0.2–0.5 s. Also turn on Object Cache: `.litespeed_conf.dat` shows `object-kind: false` even though an `object-cache.php` drop-in exists. | new | Low–medium: the crawler adds server load | Approval; check that the plan allows the crawler |
 | D | **Icon fonts:** three icon libraries load on every page (ElementsKit 259 KB, Fontello 125 KB, Font Awesome 79 KB). Turn off the ElementsKit icon pack if no widget uses it (ElementsKit → Modules). | 1.12 | Medium: icons may disappear; needs a visual check | Approval |
