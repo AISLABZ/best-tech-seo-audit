@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en" data-palette="#184f95,#2a78d6,#86b6ef">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Best Tech SEO &amp; GEO Audit</title>
+<style>
+  .viz-root{
+    color-scheme: light;
+    --surface-1:#fcfcfb; --plane:#f9f9f7;
+    --text-primary:#0b0b0b; --text-secondary:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --axis:#c3c2b7; --border:rgba(11,11,11,0.10);
+    --sev-critical:#184f95; --sev-high:#2a78d6; --sev-medium:#86b6ef;
+    --st-good:#0ca30c; --st-warning:#fab219; --st-serious:#ec835a; --st-critical:#d03b3b;
+    --seq-100:#cde2fb; --seq-450:#2a78d6; --seq-600:#184f95;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:where(:not([data-theme="light"])) .viz-root{
+      color-scheme: dark;
+      --surface-1:#1a1a19; --plane:#0d0d0d;
+      --text-primary:#ffffff; --text-secondary:#c3c2b7; --muted:#898781;
+      --grid:#2c2c2a; --axis:#383835; --border:rgba(255,255,255,0.10);
+      --sev-critical:#b7d3f6; --sev-high:#5598e7; --sev-medium:#256abf;
+      --seq-100:#184f95; --seq-450:#3987e5; --seq-600:#9ec5f4;
+    }
+  }
+  :root[data-theme="dark"] .viz-root{
+    color-scheme: dark;
+    --surface-1:#1a1a19; --plane:#0d0d0d;
+    --text-primary:#ffffff; --text-secondary:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --axis:#383835; --border:rgba(255,255,255,0.10);
+    --sev-critical:#b7d3f6; --sev-high:#5598e7; --sev-medium:#256abf;
+    --seq-100:#184f95; --seq-450:#3987e5; --seq-600:#9ec5f4;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--plane,#f9f9f7)}
+  .viz-root{
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background:var(--plane); color:var(--text-primary);
+    min-height:100vh; padding:32px 24px 64px;
+  }
+  .wrap{max-width:1120px;margin:0 auto}
+  header.top{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;margin-bottom:28px}
+  h1{font-size:22px;font-weight:650;margin:0 0 6px;letter-spacing:-0.01em}
+  .sub{font-size:13px;color:var(--text-secondary);margin:0;line-height:1.5}
+  .toggle{background:var(--surface-1);border:1px solid var(--border);border-radius:8px;
+    color:var(--text-secondary);font:inherit;font-size:12px;padding:7px 12px;cursor:pointer}
+  .toggle:hover{color:var(--text-primary)}
+  .card{background:var(--surface-1);border:1px solid var(--border);border-radius:12px;padding:20px 22px;margin-bottom:18px}
+  .card h2{font-size:14px;font-weight:600;margin:0 0 4px;letter-spacing:.01em}
+  .card .cap{font-size:12px;color:var(--muted);margin:0 0 18px;line-height:1.5}
+  .grid{display:grid;gap:18px}
+  .hero-row{grid-template-columns:minmax(240px,1fr) 2fr}
+  @media(max-width:820px){.hero-row{grid-template-columns:1fr}}
+  .hero .figure{font-size:64px;font-weight:650;line-height:1;letter-spacing:-0.03em;margin:6px 0 10px}
+  .hero .label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em}
+  .hero .note{font-size:12.5px;color:var(--text-secondary);line-height:1.55;margin:0}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  @media(max-width:820px){.kpis{grid-template-columns:repeat(2,1fr)}}
+  .kpi{background:var(--surface-1);border:1px solid var(--border);border-radius:12px;padding:16px 18px}
+  .kpi .k-label{font-size:11.5px;color:var(--muted);line-height:1.4;margin-bottom:8px}
+  .kpi .k-val{font-size:28px;font-weight:650;letter-spacing:-0.02em;line-height:1}
+  .kpi .k-sub{font-size:11.5px;color:var(--text-secondary);margin-top:7px;display:flex;align-items:center;gap:5px}
+  .dot{width:8px;height:8px;border-radius:50%;flex:none;display:inline-block}
+  /* severity bars */
+  .sevrow{display:grid;grid-template-columns:78px 1fr 34px;align-items:center;gap:12px;margin-bottom:12px}
+  .sevname{font-size:12.5px;color:var(--text-secondary);display:flex;align-items:center;gap:7px}
+  .sevtrack{height:20px;position:relative}
+  .sevbar{height:20px;border-radius:0 4px 4px 0;transition:filter .12s}
+  .sevrow:hover .sevbar{filter:brightness(1.08)}
+  .sevval{font-size:13px;font-weight:600;text-align:right;font-variant-numeric:tabular-nums}
+  /* meters */
+  .meters{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  @media(max-width:820px){.meters{grid-template-columns:1fr}}
+  .meter .m-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:9px}
+  .meter .m-name{font-size:12.5px;color:var(--text-secondary)}
+  .meter .m-val{font-size:20px;font-weight:650;letter-spacing:-0.01em}
+  .m-track{height:10px;border-radius:5px;background:var(--seq-100);position:relative;overflow:hidden}
+  .m-fill{height:10px;border-radius:5px}
+  .m-scale{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:7px;font-variant-numeric:tabular-nums}
+  .m-foot{font-size:11.5px;color:var(--text-secondary);margin-top:9px;display:flex;align-items:center;gap:6px;line-height:1.4}
+  /* weight chart */
+  .wrow{display:grid;grid-template-columns:150px 1fr 76px;align-items:center;gap:12px;margin-bottom:10px}
+  .wname{font-size:12.5px;color:var(--text-secondary)}
+  .wbar{height:18px;border-radius:0 4px 4px 0}
+  .wval{font-size:12.5px;text-align:right;color:var(--text-secondary);font-variant-numeric:tabular-nums}
+  /* table */
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  th{text-align:left;font-weight:600;color:var(--muted);font-size:11px;text-transform:uppercase;
+    letter-spacing:.05em;padding:0 10px 9px 0;border-bottom:1px solid var(--grid);white-space:nowrap}
+  td{padding:9px 10px 9px 0;border-bottom:1px solid var(--grid);color:var(--text-secondary);vertical-align:top}
+  tbody tr:hover td{background:color-mix(in srgb, var(--text-primary) 3.5%, transparent)}
+  td.p{color:var(--text-primary);font-weight:500;white-space:nowrap}
+  .num{font-variant-numeric:tabular-nums;text-align:right}
+  .bad{color:var(--st-critical);font-weight:600}
+  .okv{color:var(--st-good);font-weight:600}
+  /* findings */
+  .find{border-bottom:1px solid var(--grid);padding:15px 0;display:grid;grid-template-columns:96px 1fr;gap:16px}
+  .find:last-child{border-bottom:0;padding-bottom:0}
+  .badge{font-size:10.5px;font-weight:650;letter-spacing:.05em;text-transform:uppercase;
+    display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 9px;border-radius:6px;
+    border:1px solid var(--border);white-space:nowrap}
+  .f-title{font-size:13.5px;font-weight:600;color:var(--text-primary);margin:0 0 5px;line-height:1.4}
+  .f-body{font-size:12.5px;color:var(--text-secondary);margin:0;line-height:1.6}
+  .f-body code{background:color-mix(in srgb, var(--text-primary) 6%, transparent);
+    padding:1px 5px;border-radius:4px;font-size:11.5px;font-family:ui-monospace,Menlo,monospace}
+  .f-fix{font-size:12.5px;color:var(--text-secondary);margin:7px 0 0;line-height:1.6}
+  .f-fix b{color:var(--text-primary);font-weight:600}
+  ol.steps{margin:0;padding-left:20px}
+  ol.steps li{font-size:13px;color:var(--text-secondary);line-height:1.65;margin-bottom:11px}
+  ol.steps li b{color:var(--text-primary);font-weight:600}
+  .foot{font-size:11.5px;color:var(--muted);line-height:1.65;margin:0}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:11.5px;color:var(--text-secondary);margin-bottom:16px}
+  .legend span{display:flex;align-items:center;gap:6px}
+</style>
+</head>
+<body>
+<div class="viz-root">
+<div class="wrap">
+
+  <header class="top">
+    <div>
+      <h1>Best Tech Repair — SEO &amp; GEO follow-up audit</h1>
+      <p class="sub">best-tech.co.uk · Webflow · 73 pages crawled · audited 21 October 2026<br>
+      Follow-up to the <a href="index.html" style="color:inherit">13 August baseline audit</a>. GEO = generative engine optimisation (visibility in AI answers).</p>
+    </div>
+    <button class="toggle" id="tg">Dark / light</button>
+  </header>
+
+  <!-- HERO -->
+  <div class="grid hero-row">
+    <div class="card hero">
+      <div class="label">AI visibility score</div>
+      <div class="figure">50<span style="font-size:22px;color:var(--muted);font-weight:500"> / 100</span></div>
+      <p class="note">The on-site technical foundation is now in good order. What holds visibility back is
+      off-site: AI answers cite third-party listings rather than best-tech.co.uk, and the brand appeared in
+      only 2 of 5 test prompts. The site doesn't publish the prices or dates these engines use for answers.</p>
+    </div>
+    <div class="card">
+      <h2>Findings by severity</h2>
+      <p class="cap">16 open findings. 9 of the 30 August findings are now resolved.</p>
+      <div class="sevrow">
+        <div class="sevname"><span class="dot" style="background:var(--st-critical)"></span>Critical</div>
+        <div class="sevtrack"><div class="sevbar" style="width:42.9%;background:var(--sev-critical)"></div></div>
+        <div class="sevval">3</div>
+      </div>
+      <div class="sevrow">
+        <div class="sevname"><span class="dot" style="background:var(--st-serious)"></span>High</div>
+        <div class="sevtrack"><div class="sevbar" style="width:85.7%;background:var(--sev-high)"></div></div>
+        <div class="sevval">6</div>
+      </div>
+      <div class="sevrow">
+        <div class="sevname"><span class="dot" style="background:var(--st-warning)"></span>Medium</div>
+        <div class="sevtrack"><div class="sevbar" style="width:100%;background:var(--sev-medium)"></div></div>
+        <div class="sevval">7</div>
+      </div>
+      <p class="foot" style="margin-top:14px">Critical = customers or measurement are lost today. High = directly limits
+      rankings or AI citation. Medium = worth addressing in the next content cycle.</p>
+    </div>
+  </div>
+
+  <div class="kpis" style="margin-bottom:18px">
+    <div class="kpi">
+      <div class="k-label">Brand mentioned in AI-style answers</div>
+      <div class="k-val">2 <span style="font-size:15px;color:var(--muted);font-weight:500">/ 5 prompts</span></div>
+      <div class="k-sub"><span class="dot" style="background:var(--st-serious)"></span>Own site cited in 0</div>
+    </div>
+    <div class="kpi">
+      <div class="k-label">AI crawlers allowed</div>
+      <div class="k-val">7 <span style="font-size:15px;color:var(--muted);font-weight:500">/ 7</span></div>
+      <div class="k-sub"><span class="dot" style="background:var(--st-good)"></span>GPTBot, ClaudeBot, PerplexityBot…</div>
+    </div>
+    <div class="kpi">
+      <div class="k-label">Pages publishing a £ price</div>
+      <div class="k-val">0 <span style="font-size:15px;color:var(--muted);font-weight:500">/ 73</span></div>
+      <div class="k-sub"><span class="dot" style="background:var(--st-critical)"></span>Including the pricing guide</div>
+    </div>
+    <div class="kpi">
+      <div class="k-label">Analytics tags live</div>
+      <div class="k-val">0</div>
+      <div class="k-sub"><span class="dot" style="background:var(--st-critical)"></span>Unchanged since August</div>
+    </div>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="card">
+    <h2>Progress since the August audit</h2>
+    <p class="cap">Same measures, re-run on the live site. The site has grown from 16 to 73 indexable pages.</p>
+    <div style="overflow-x:auto">
+    <table>
+      <thead><tr><th>Measure</th><th class="num">13 Aug</th><th class="num">21 Oct</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td class="p">XML sitemap</td><td class="num bad">404</td><td class="num okv">73 URLs</td><td>Resolved</td></tr>
+        <tr><td class="p">Pages with exactly one H1</td><td class="num bad">0 / 16</td><td class="num okv">73 / 73</td><td>Resolved</td></tr>
+        <tr><td class="p">Canonical tags</td><td class="num bad">0 / 16</td><td class="num okv">73 / 73</td><td>Resolved</td></tr>
+        <tr><td class="p">Pages with structured data (all JSON-LD valid)</td><td class="num bad">0 / 16</td><td class="num okv">73 / 73</td><td>Resolved</td></tr>
+        <tr><td class="p">Duplicate titles / descriptions</td><td class="num bad">7 pages</td><td class="num okv">0</td><td>Resolved</td></tr>
+        <tr><td class="p">Template residue (Oxygen titles, demo-site links)</td><td class="num bad">Present</td><td class="num okv">None found</td><td>Resolved</td></tr>
+        <tr><td class="p">Search Console verification</td><td class="num bad">No</td><td class="num okv">Yes</td><td>Resolved</td></tr>
+        <tr><td class="p">llms.txt for AI engines</td><td class="num">—</td><td class="num okv">Live</td><td>New, well written</td></tr>
+        <tr><td class="p">Images with alt text</td><td class="num bad">32%</td><td class="num">76% (203 / 266)</td><td>Improved</td></tr>
+        <tr><td class="p">GA4 / Tag Manager</td><td class="num bad">0</td><td class="num bad">0</td><td>Open</td></tr>
+        <tr><td class="p">4K hero video served to mobile</td><td class="num bad">Yes</td><td class="num bad">Yes, 14 pages</td><td>Open</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <!-- PROMPT TESTS -->
+  <div class="card">
+    <h2>AI answer test — five buyer prompts</h2>
+    <p class="cap">Each prompt was run through a search-grounded AI answer engine, the same retrieval pattern
+    ChatGPT Search, Perplexity and Google AI Overviews use. This is a proxy measure. It does not replace
+    platform-by-platform tracking.</p>
+    <div style="overflow-x:auto">
+    <table>
+      <thead><tr><th>Prompt</th><th>Mentioned?</th><th>Position</th><th>Cited source</th><th>Who won instead</th></tr></thead>
+      <tbody>
+        <tr><td class="p">best phone repair shop near Piccadilly Circus</td><td class="okv">Yes</td><td class="num">#1</td><td>magicpin listing ("5.0 from 11 ratings — thin basis")</td><td>—</td></tr>
+        <tr><td class="p">"Best Tech Repair" Piccadilly Circus</td><td class="okv">Yes</td><td class="num">#1</td><td>magicpin, Issuu; own site "not opened"</td><td>—</td></tr>
+        <tr><td class="p">same day iPhone screen repair central London walk-in</td><td class="bad">No</td><td class="num">—</td><td>—</td><td>iSmash (Tottenham Ct Rd), iCorrect, iRepairMan</td></tr>
+        <tr><td class="p">MacBook repair Soho / Leicester Square same day</td><td class="bad">No</td><td class="num">—</td><td>—</td><td>Engine said no shop exists there, then suggested Camden and the City</td></tr>
+        <tr><td class="p">best-tech.co.uk reviews</td><td class="bad">No</td><td class="num">—</td><td>—</td><td>TechRadar, Which?, Trusted Reviews (name collision)</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="foot" style="margin-top:14px">Score breakdown (0–10 each): presence 4 · accuracy 8 · sentiment 6 · position 5 ·
+    completeness 4 · consistency 3. The average × 10 gives <b>50 / 100</b>. Accuracy is high where the brand appears.
+    Completeness is low: the 45-minute turnaround, 90-day warranty and no-fix-no-fee terms never came through,
+    and the engine listed console repair and SSD upgrades from the magicpin profile instead.</p>
+  </div>
+
+  <!-- CRITICAL -->
+  <div class="card">
+    <h2>Critical findings</h2>
+    <p class="cap">Three issues. Each loses customers or data today.</p>
+
+    <div class="find">
+      <div><span class="badge" style="color:var(--st-critical)"><span class="dot" style="background:var(--st-critical)"></span>Critical</span></div>
+      <div>
+        <p class="f-title">1 · www.best-tech.co.uk does not resolve</p>
+        <p class="f-body">The <code>www</code> hostname returned no DNS record (<code>ENOTFOUND</code>) from two independent
+        resolvers. Only the bare domain, <code>best-tech.co.uk</code>, answers. Anyone who types the www form, or follows
+        a printed or third-party link that uses it, sees a browser error. The address submitted for this audit was the
+        www form.</p>
+        <p class="f-fix"><b>Fix:</b> at the domain registrar, add <code>CNAME www → proxy-ssl.webflow.com</code>. In Webflow → Hosting,
+        add <code>www.best-tech.co.uk</code>, keep <code>best-tech.co.uk</code> as the default domain so www 301-redirects to it,
+        then publish. Allow about 15 minutes, then confirm in a browser.</p>
+      </div>
+    </div>
+
+    <div class="find">
+      <div><span class="badge" style="color:var(--st-critical)"><span class="dot" style="background:var(--st-critical)"></span>Critical</span></div>
+      <div>
+        <p class="f-title">2 · AI traffic and the effect of this work cannot be measured</p>
+        <p class="f-body">There is still no GA4, Tag Manager or pixel on any of the 73 pages. Search Console is now verified,
+        which covers Google organic traffic. Referrals from <code>chatgpt.com</code>, <code>perplexity.ai</code>,
+        <code>gemini.google.com</code> and <code>copilot.microsoft.com</code> are invisible, as are bookings and WhatsApp clicks.</p>
+        <p class="f-fix"><b>Fix:</b> install GA4 through Webflow → Site settings → Integrations. Mark <code>tel:</code>, <code>wa.me</code>
+        and booking-form submits as key events. Add a custom channel group named "AI assistants" that matches the referrers above.</p>
+      </div>
+    </div>
+
+    <div class="find">
+      <div><span class="badge" style="color:var(--st-critical)"><span class="dot" style="background:var(--st-critical)"></span>Critical</span></div>
+      <div>
+        <p class="f-title">3 · AI engines describe Best Tech from a third-party listing, not its own site</p>
+        <p class="f-body">best-tech.co.uk was not cited in any of the five tests. When the brand was found, the source was a magicpin
+        directory page showing 11 ratings and a service mix (console repair, SSD upgrades, euro and dollar payments) that
+        doesn't match the site's own positioning. The engine itself called 11 ratings "a thin basis".</p>
+        <p class="f-fix"><b>Fix:</b> build the off-site entity footprint AI engines retrieve from. Steps: claim and complete the magicpin
+        profile; list on Yell, Apple Business Connect, Bing Places, Trustpilot and Checkatrade with identical name, address and phone details;
+        add those URLs to the <code>sameAs</code> array in the homepage schema; and run a review drive (see finding 8).</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- HIGH -->
+  <div class="card">
+    <h2>High-priority findings</h2>
+    <p class="cap">Six issues that directly limit rankings or AI citation.</p>
+
+    <div class="find">
+      <div><span class="badge" style="color:var(--st-serious)"><span class="dot" style="background:var(--st-serious)"></span>High</span></div>
+      <div>
+        <p class="f-title">4 · No prices are published anywhere, not even on the pricing guide</p>
+        <p class="f-body">None of the 73 pages contains a £ figure. That includes <code>/post/transparent-repair-pricing-guide-london-devices</code>
+        and <code>/post/macbook-screen-repair-cost</code>. Cost questions ("how much is an iPhone 15 screen in London?") are among the
+        most common repair prompts, and AI engines answer them only from sources that publish numbers.</p>
+        <p class="f-fix"><b>Fix:</b> add a "from £" price table by device and model (top 15 models) to the pricing guide and to each
+        <code>/works/</code> page, with a line saying the firm quote is confirmed after the free diagnostic. Put the same figures into
+        the <code>Offer</code> schema as <code>priceSpecification</code>.</p>
+      </div>
+    </div>
+
+    <div class="find">
+      <div><span class="badge" style="color:var(--st-serious)"><span class="dot" style="background:var(--st-serious)"></span>High</span></div>
+      <div>
+        <p class="f-title">5 · The homepage H1 is a seasonal slogan</p>
+        <p class="f-body">The homepage's only H1 reads <code>Cold mornings kill tired batteries.</code> The H1 is the strongest on-page
+        statement of what the business is and where. This one names neither the service nor the location.</p>
+        <p class="f-fix"><b>Fix:</b> make the H1 permanent, for example "Phone &amp; Laptop Repair inside Piccadilly Circus Station". Keep the
+        seasonal line as a styled paragraph or H2 above it.</p>
+      </div>
+    </div>
+
+    <div class="find">
+      <div><span class="badge" style="color:var(--st-serious)"><span class="dot" style="background:var(--st-serious)"></span>High</span></div>
+      <div>
+        <p class="f-title">6 · 59 articles carry no publish or update date</p>
+        <p class="f-body">The <code>BlogPosting</code> schema on every post omits <code>datePublished</code> and <code>dateModified</code>,
+        and no date is shown on the page. AI engines and Google weigh freshness, and model-specific posts (iPhone 17, Pixel 10,
+        Galaxy S25) lose value when they carry no date.</p>
+        <p class="f-fix"><b>Fix:</b> bind the CMS "Published On" and "Updated On" fields into the JSON-LD embed and show
+        "Updated [date]" under each post title.</p>
+      </div>
+    </div>
+
+    <div class="find">
+      <div><span class="badge" style="color:var(--st-serious)"><span class="dot" style="background:var(--st-serious)"></span>High</span></div>
+      <div>
+        <p class="f-title">7 · No named expert behind any of the content</p>
+        <p class="f-body">All 59 posts list the author as the Organization "Best Tech Repair". Nothing names a technician or states
+        qualifications, years at the bench, or repair volumes. This is the experience signal both Google's quality guidelines and AI
+        engines use to choose which source to trust.</p>
+        <p class="f-fix"><b>Fix:</b> create a technician profile page for the lead technician (photo, experience, certifications, devices
+        specialised in). Change the post author to a <code>Person</code> linked to that page, and add a short "Checked by" line to each post.</p>
+      </div>
+    </div>
+
+    <div class="find">
+      <div><span class="badge" style="color:var(--st-serious)"><span class="dot" style="background:var(--st-serious)"></span>High</span></div>
+      <div>
+        <p class="f-title">8 · The "Rated 5.0 on Google" claim has no review count</p>
+        <p class="f-body">The homepage title, description and social cards all say "Rated 5.0 on Google". Third-party sources
+        show 11 ratings. A rating with no count reads as weak evidence to both people and AI engines, and the engine flagged
+        it explicitly.</p>
+        <p class="f-fix"><b>Fix:</b> ask every customer for a review at handover (QR code at the counter, plus a WhatsApp follow-up link).
+        Once there are 50 or more, state the count ("5.0 from 50+ Google reviews"). Aim for reviews that mention the device and repair type.</p>
+      </div>
+    </div>
+
+    <div class="find">
+      <div><span class="badge" style="color:var(--st-serious)"><span class="dot" style="background:var(--st-serious)"></span>High</span></div>
+      <div>
+        <p class="f-title">9 · The 4K hero video is still served to phones</p>
+        <p class="f-body">The same <code>3840 × 2160 30fps</code> master clip found in August (5.78 MB MP4 then) is still embedded on
+        14 pages, including the homepage and every service page. In August this drove mobile LCP to 9.0s. A fresh PageSpeed run was
+        rate-limited during this audit, so mobile vitals were not re-measured.</p>
+        <p class="f-fix"><b>Fix:</b> re-encode to 720p H.264 under 1 MB, set a WebP poster, and swap it for the poster image alone on mobile.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MEDIUM -->
+  <div class="card">
+    <h2>Medium-priority findings</h2>
+    <p class="cap">Seven issues for the next content cycle.</p>
+    <div style="overflow-x:auto">
+    <table>
+      <thead><tr><th>#</th><th>Issue</th><th>Detail and fix</th></tr></thead>
+      <tbody>
+        <tr><td class="num">10</td><td class="p">Topic cannibalisation</td><td>At least 8 posts compete for screen repair intent (cracked screen, same-day screen,
+          repair vs replacement, vs new phone, iPhone screen, Samsung screen, Galaxy S25, OEM screens), alongside <code>/services/screen-replacement</code>. Make the
+          service page the hub. Link every spoke to it with consistent anchor text, and merge the two weakest posts into it.</td></tr>
+        <tr><td class="num">11</td><td class="p">Uniform, templated articles</td><td>57 of 59 posts fall between 1,300 and 1,950 words, with similar structure and keyword-led
+          titles ("…You Can Trust"). This risks being read as scaled content. Add first-hand evidence: real repair photos, measured turnaround
+          times, the part grades used, and before-and-after battery health figures.</td></tr>
+        <tr><td class="num">12</td><td class="p">Money pages lack question-and-answer sections</td><td>The nine service and device pages average about 700 words, and no page has a Q&amp;A block. Add 5–8 direct
+          question headings ("How long does an iPhone screen take?", "Is my data safe?"), each answered in 40–60 words, which is the passage length AI engines
+          extract. FAQPage schema is optional: Google limits its rich results, but AI parsers still read it.</td></tr>
+        <tr><td class="num">13</td><td class="p">Soho / Leicester Square gap</td><td>A test answer said no MacBook repair shop exists in Soho or Leicester Square, yet the shop is
+          about 300 m away. <code>/post/phone-repair-near-leicester-square-soho-covent-garden</code> has 847 words and covers phones only. Expand it to cover laptops,
+          add walking times and directions from each landmark, and link it from the laptop page.</td></tr>
+        <tr><td class="num">14</td><td class="p">Alt text on shared components</td><td>63 images still lack alt text. 54 of them are 6 per page across the nine <code>/works/</code> and
+          <code>/services/</code> pages, which points to one shared component. Fixing the component fixes most of the remainder. The about page has 5 more.</td></tr>
+        <tr><td class="num">15</td><td class="p">Newest posts incomplete</td><td>The four newest posts (iPhone 17 ×2, Pixel 10 ×2) have no <code>og:image</code>. Two titles run past 60
+          characters (63 and 62), so search results will cut them off.</td></tr>
+        <tr><td class="num">16</td><td class="p">US English on a UK site</td><td>"How to Choose a <b>Cell</b> Phone Repair Shop": UK searchers and UK-localised answers use "mobile phone". Retitle the post and redirect the old URL.</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <!-- STRENGTHS -->
+  <div class="card">
+    <h2>What is already working for GEO</h2>
+    <p class="cap">Keep these intact through future site changes.</p>
+    <ol class="steps">
+      <li><b>All seven AI and search crawlers tested are served the full page</b> (GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot,
+      Google-Extended, CCBot, Bingbot), with no Cloudflare challenge. robots.txt allows everything and points to the sitemap.</li>
+      <li><b>llms.txt is exemplary.</b> It gives a one-paragraph entity definition, explicitly separates the shop from generic "best tech"
+      review sites, and lists key facts, both phone numbers with their roles, and a curated link map.</li>
+      <li><b>The LocalBusiness schema is complete</b>: a stable <code>@id</code>, geo-coordinates, a Google Maps CID, hours, two typed contact points, and
+      Service offers referenced from every service page by <code>@id</code>.</li>
+      <li><b>Every title and description is unique</b> across all 73 pages, and every page has exactly one H1 and a self-referencing canonical.</li>
+    </ol>
+  </div>
+
+  <!-- ACTION PLAN -->
+  <div class="card">
+    <h2>Action plan — 30 / 60 / 90 days</h2>
+    <p class="cap">Ordered by impact per hour of work. Items 1–4 take under a day in total.</p>
+    <ol class="steps">
+      <li><b>This week: fix the www DNS record</b> (finding 1). Ten minutes of work, and it stops the loss of every visitor who uses the www address.</li>
+      <li><b>This week: install GA4</b> with an "AI assistants" channel and call, WhatsApp and booking events, so everything below can be measured.</li>
+      <li><b>This week: replace the homepage H1</b> and bind publish and update dates into the post schema.</li>
+      <li><b>Within 30 days: publish a "from £" price table</b> on the pricing guide and the four device pages.</li>
+      <li><b>Within 30 days: start the review programme</b> (counter QR code and WhatsApp follow-up) and claim the magicpin, Yell, Apple Business Connect, Bing Places and Trustpilot listings.</li>
+      <li><b>Within 60 days: add the technician profile</b> and Person authorship, then add Q&amp;A blocks to the nine service and device pages.</li>
+      <li><b>Within 60 days: re-encode the hero video</b> and re-run PageSpeed to confirm mobile LCP is 2.5s or under.</li>
+      <li><b>Within 90 days: consolidate the screen-repair cluster</b>, expand the Soho, Leicester Square and Covent Garden page, and add first-hand evidence to the 20 highest-traffic posts.
+      Then re-run the five-prompt test and compare it with this baseline score of 50.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Method &amp; limitations</h2>
+    <p class="foot">
+      All 73 URLs in the live sitemap were fetched on 21 October 2026 and all returned HTTP 200. Headings, meta tags, canonicals, alt text,
+      tracking tags and JSON-LD were parsed directly from the HTML. Every count above comes from that parse. AI crawler access was tested by
+      requesting the homepage with each bot's user-agent string. This confirms the server response. It does not confirm what each vendor
+      later indexes. The prompt tests used a search-grounded AI answer engine as a proxy for ChatGPT Search, Perplexity and AI Overviews. Answers
+      vary by platform, location and day, so treat the score of 50 as a directional baseline, not a ranking.
+      The www DNS failure was observed from two resolvers and should be confirmed at the registrar. Not covered: a fresh Lighthouse run (rate-limited),
+      backlink profile, keyword rankings, Google Business Profile insights, and direct ChatGPT, Gemini or Claude prompt sampling. A brand-tracking
+      connector (Ahrefs Brand Radar) was configured but failed to connect during this session.
+    </p>
+  </div>
+
+</div>
+</div>
+<script>
+  document.getElementById('tg').addEventListener('click', function(){
+    var r = document.documentElement;
+    var cur = r.getAttribute('data-theme');
+    if(!cur){ cur = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
+    r.setAttribute('data-theme', cur === 'dark' ? 'light' : 'dark');
+  });
+</script>
+</body>
+</html>
