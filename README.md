@@ -66,7 +66,8 @@ Fixed in Webflow (21 Oct 2026), live and verified:
 
 - [x] Homepage H1 changed to "Phone & Laptop Repair inside Piccadilly Circus Station"
 - [x] `datePublished` / `dateModified` added to the server-rendered BlogPosting schema; missing date set on one post
-- [x] GA4 confirmed already live (`G-CX5GX4VKHQ`). The "AI assistants" channel group is still to be added in GA4 Admin
+- [x] GA4 confirmed already live (`G-CX5GX4VKHQ`)
+- [x] "AI assistants" custom channel group added in GA4 Admin (by site owner, 21 Oct)
 - [ ] `www` DNS record. Webflow is ready, but DNS for the domain is not in the connected Hostinger account
 
 ## Method
