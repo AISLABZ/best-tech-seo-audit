@@ -70,6 +70,7 @@ Fixed in Webflow (21 Oct 2026), live and verified:
 - [x] "AI assistants" custom channel group added in GA4 Admin (by site owner, 21 Oct)
 - [x] FAQ sections (6 questions each) added to the laptop, tablet and smartwatch pages, live and verified. See `faq-drafts.md`
 - [x] FAQ sections (5 questions each) added to the five `/services/` pages via a new CMS "FAQ" field and template section, live and verified. See `faq-drafts-services.md`. FAQ structured data is not attached there yet (the existing script would also add a sticky call bar)
+- [x] Server-side rendering check (22 Oct): raw HTML and the browser-rendered page match on every page type tested. The only gap was the Soro blog widget: 17 articles existed only in the browser. They are now published as server-rendered `/post/` pages, and their `/blog?post=` URLs forward there. 1 Soro-only article (`are-refurbished-phones-worth-buying`) is still browser-only
 - [ ] Published prices (parked by site owner, 21 Oct: repair prices will not be posted)
 - [ ] `www` DNS record (deferred by site owner, 21 Oct). Webflow is ready; it needs `CNAME www → cdn.webflow.com` at the DNS provider
 
