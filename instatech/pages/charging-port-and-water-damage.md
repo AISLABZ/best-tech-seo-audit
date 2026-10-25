@@ -1,6 +1,6 @@
 # Drafts: Charging Port Repair and Water Damage Repair (backlog 2.2 and 2.3)
 
-**Status:** drafted 25 Oct 2026. Awaiting owner approval to publish. Not published.
+**Status:** approved and published 25 Oct 2026.
 **Design:** built with the same template as the live battery page (`pages/assets/itx-service.{css,js}`,
 `tools/build_service_page.py`), with the same sections and order. Previews, rendered inside the live site's header and footer:
 `pages/previews/charging-port-repair.jpg` and `pages/previews/water-damage-repair.jpg` (mobile versions alongside).

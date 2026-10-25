@@ -4,6 +4,24 @@ Every change made to instatech.uk is recorded here: what changed, how, and how t
 
 ## 2026-10-25
 
+### Published Charging Port Repair and Water Damage Repair; deployed plugin v1.5.2 (approved by owner)
+Source: `pages/charging-port-and-water-damage.md` (backlog 2.2 and 2.3). Before upload the live plugin was confirmed as v1.5.1 (27,751 bytes).
+
+- **Pages:** `/mobile-repair-services/charging-port-repair/` and `/mobile-repair-services/water-damage-repair/`, built in the battery page's template and created by the one-shot plugins `instatech-create-charging-port-repair.php` and `instatech-create-water-damage-repair.php`. Each sets its Rank Math title, description and focus keyword.
+- **Copy rules:** no prices and no repair times. Reviews are verbatim from the live site.
+- **Pre-publish layout check:** each page was measured against the live battery page at 1366, 768 and 390px. Section edges, widths and spacing match, with no overflow, clipped text or uneven card rows. The hero icons were off-centre and were redrawn before publishing.
+- **Verified live:**
+  - Both pages return 200, are indexable, have self-canonicals, and appear in `page-sitemap.xml`.
+  - Each carries Service, BreadcrumbList and FAQPage schema, and no prices.
+  - No script errors at any width.
+- **Plugin v1.5.2 (29,044 bytes):**
+  - The live battery page's step label now reads "Step 1 of 4 · Walk in or book" instead of "u00b7".
+  - The Repairs menu and footer list Battery Replacement, Charging Port Repair and Water Damage Repair.
+  - The device menu's Phone → Charging Port and Water Damage links open the new pages.
+  - The battery page's related-repair cards link to the new pages.
+- **Builder fix:** `build_service_page.py` now wraps page content in `wp_slash()`, because `wp_insert_post()` strips backslashes. That is what broke the battery page's label.
+- **Rollback:** move the two pages to draft (the menu and footer links drop out automatically) and re-upload plugin v1.5.1. The creator plugins do nothing once their page exists.
+
 ### Deployed plugin v1.5.1 (approved by owner): the "By device" menu links now land (backlog 2.16)
 Source: `instatech/device-menu-clusters.md`. Before the upload the live file was confirmed as v1.4.0 (626 lines, 21,842 bytes); it is now v1.5.1 (27,751 bytes).
 
