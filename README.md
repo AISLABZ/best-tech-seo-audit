@@ -1,7 +1,7 @@
 # Best Tech Repair — SEO & performance audit
 
 > **Latest:** RankSpot re-audit, 21 October 2026 — score 84 / 100. Seven of the nine
-> August critical items are resolved; the 43 orphaned blog posts were fixed and published the same day. See
+> August critical items are resolved; the 43 orphaned blog posts were fixed and published the same day. Updated 25 Oct: related guides live on all 9 service pages (score 86 / 100); mobile performance measured and still failing. See
 > [`audits/2026-10-21-rankspot-seo-audit.md`](audits/2026-10-21-rankspot-seo-audit.md).
 > The baseline below is kept for comparison.
 

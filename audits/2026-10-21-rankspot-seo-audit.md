@@ -6,7 +6,7 @@
 
 ## Executive summary
 
-**Overall score: 84 / 100 — Good, with room for improvement** (performance excluded; see Limitations)
+**Overall score: 86 / 100 — Good, with room for improvement** (performance excluded; see Limitations)
 
 The site has been substantially remediated since August. Seven of the nine critical findings from the baseline are now resolved: every page has one H1, a self-referencing canonical, unique and correctly sized titles and descriptions, and valid structured data, including a fully specified `LocalBusiness` entity. GA4 and Search Console verification are live. The site has grown from 16 pages to 78, driven by a 64-article blog.
 
@@ -22,9 +22,9 @@ The issues that remain concern **discovery rather than on-page quality**. The in
 | Analytics / Search Console | None | GA4 + GSC verified | 5 / 5 |
 | Content images with alt text | 32% | 100% (empty alt only on decorative icons) | 10 / 10 |
 | Crawlability (robots, sitemap, status codes) | Sitemap 404 | Sitemap live; 5 posts missing | 12 / 15 |
-| Internal linking | Not assessed | 0 orphaned (43 fixed 21 Oct) | 12 / 15 |
+| Internal linking | Not assessed | 0 orphaned; related guides on all 9 service/repair pages | 14 / 15 |
 | Social / Open Graph | Not assessed | `og:url` missing site-wide | 8 / 10 |
-| **Total** | | | **84 / 100** |
+| **Total** | | | **86 / 100** |
 
 ## Baseline critical items — status
 
@@ -37,17 +37,26 @@ The issues that remain concern **discovery rather than on-page quality**. The in
 | 5 | `/price`, `/career` carried template metadata | **Resolved** — both pages removed (now 404) |
 | 6 | Pricing CTAs linked to template author's demo sites | **Resolved** — page removed; no outbound links to template domains remain |
 | 7 | No analytics or Search Console | **Resolved** — GA4 script and `google-site-verification` present |
-| 8 | Mobile LCP 9.0s (4K hero video) | **Not re-measured** — 3840×2160 video source still referenced in homepage markup |
-| 9 | Mobile CLS 0.319 | **Not re-measured** |
+| 8 | Mobile LCP 9.0s (4K hero video) | **Improved, still failing** — homepage mobile LCP 8.2s (25 Oct); repair pages far worse (see Performance) |
+| 9 | Mobile CLS 0.319 | **Resolved on homepage** — 0.031 (25 Oct); `/blog` now 1.00, repair page 0.136 |
 
 ## Critical issues (must fix)
 
 - [x] **43 of 64 blog posts were orphaned — fixed and published 21 Oct 2026.** No crawled page links to them; they are discoverable only through the sitemap. `/blog` lists the 12 most recent posts with no pagination or category archive, and no homepage, service or repair page links to any post. Only 8 posts link to another post. Orphaned pages receive no internal link equity and are crawled and ranked less reliably.
   *Done:* `/blog` now carries an "All repair guides" CMS list bound to the Blog Posts collection (limit 100), so every published post — 67 at time of fix — is linked from `/blog` and new posts are added automatically. Links use a new `Post URL` CMS field (`/post/<slug>`), populated for all 84 items. Verified live: 67/67 links return HTTP 200, no sitemap post is left unlinked.
-  *Still open:* related-guide lists on the 9 `/works/*` and `/services/*` pages, and newest-first sorting of the new list (the Webflow API rejected the sort setting; set it in the Designer: Collection List settings → Sort → Published Date, newest first). New posts must have `Post URL` filled in or their link will be empty.
+  *Done 25 Oct:* the list is sorted newest-first. Each of the 9 `/works/*` and `/services/*` pages now carries a "Related repair guides" section (1–8 posts each, 40 distinct posts, chosen by service relevance and stored in a `Related guides list` CMS field). Verified live: 9/9 pages render the section, all 40 links return HTTP 200.
+  *Maintenance:* new posts must have `Post URL` filled in, and should be added to the relevant service's `Related guides list` field.
   *Fix:* add pagination or a full archive to `/blog`; add a "Related guides" CMS list to each `/works/*` and `/services/*` page filtered by topic; add 2–3 contextual post-to-post links per article.
-- [ ] **Performance has not been verified since August.** The homepage still references the 3840×2160 hero video (`13820343 3840 2160 30Fps_mp4.mp4` / `.webm`). A `besttechvideofixes` script is loaded and may mitigate this, but that cannot be confirmed without a lab run.
-  *Fix:* run PageSpeed Insights (mobile) on `/` and one `/post/*` URL; if LCP exceeds 2.5s, serve a ≤ 720p video or a static poster on mobile.
+- [ ] **Mobile performance fails Core Web Vitals on every page tested** (Lighthouse 13.5, mobile, simulated throttling, 25 Oct 2026):
+
+  | Page | Performance | LCP | CLS | TBT | Page weight |
+  |---|---|---|---|---|---|
+  | `/` | 69 | 8.2s | 0.031 | 233 ms | 1.7 MB |
+  | `/works/mobile-phone-repair` | 32 | 20.9s | 0.136 | 3,310 ms | 6.8 MB |
+  | `/blog` | 41 | 6.7s | 1.00 | 237 ms | 1.1 MB |
+
+  Targets: LCP ≤ 2.5s, CLS ≤ 0.1. The repair page is the most serious: 5.5 MB of its 6.8 MB is oversized imagery (estimated LCP saving 8.7s). `/blog` CLS of 1.00 indicates content moving after load — the long "All repair guides" list or unsized post thumbnails are the likely cause and should be checked first.
+  *Fix:* (1) compress and resize images on the `/works/*` template, serve WebP/AVIF via Webflow's responsive images; (2) give `/blog` card images explicit dimensions and reserve space for the CMS lists; (3) remove lazy-loading from above-the-fold images; (4) homepage: serve a ≤ 720p hero video or a static poster on mobile.
 
 ## Warnings (should fix)
 
@@ -56,7 +65,7 @@ The issues that remain concern **discovery rather than on-page quality**. The in
   *Fix:* check each CMS item's "Exclude from sitemap" setting and republish the site.
 - [ ] **`og:url` missing on all 73 pages; `og:image` missing on 4 posts** (`/post/iphone-17-water-damage`, `/post/pixel-10-will-not-charge`, `/post/pixel-10-black-screen-no-image`, `/post/iphone-17-charging-port-loose`). Shared links will render without a preview image.
 - [ ] **All 266 images are lazy-loaded, including the header logo and above-the-fold imagery.** Lazy-loading the LCP element delays it. 262 of 266 images also lack explicit `width`/`height`, a common cause of layout shift.
-- [ ] **Header logo links to `#`** (`<a href="#" class="w-nav-brand">`) and has no accessible name (Lighthouse `link-name` failure). It should link to `/` with an `aria-label`.
+- [ ] **Header logo** — now links to `/` (fixed 25 Oct). Still lacks an accessible name (Lighthouse `link-name` failure on `/`); add `aria-label="Best Tech Repair home"` in the Designer.
 
 ## Opportunities (nice to have)
 
@@ -90,7 +99,7 @@ The issues that remain concern **discovery rather than on-page quality**. The in
 ## Method and limitations
 
 - Every URL in `sitemap.xml`, plus the 5 posts found linked from `/blog`, `/price`, `/career`, a known-bad URL and the `http://` root, was fetched directly and its HTML parsed. Counts are measured, not estimated.
-- **Performance was not measured.** PageSpeed Insights returned HTTP 429 (daily quota exhausted) on every attempt. A local Lighthouse run completed, but the audit environment's network proxy blocked Webflow's asset CDN, so its performance figures (mobile 96) reflect an unstyled HTML-only page and are **not reported as valid**. Its DOM-based accessibility and SEO checks are used above.
+- **Performance (21 Oct):** PageSpeed Insights returned HTTP 429 and a local run could not load Webflow's CDN, so no figures were reported. **Performance (25 Oct):** measured with a hosted Lighthouse 13.5 run (mobile, single lab run per page); figures are lab data, not field data, and single runs can vary by ±10 points.
 - The `www.best-tech.co.uk` host could not be tested from the audit environment.
 - Orphan detection covers links in server-rendered HTML; links injected later by JavaScript are not counted.
 - Not covered: backlinks, keyword rankings, competitor comparison, Google Business Profile, Search Console coverage data.
