@@ -1,0 +1,535 @@
+<!-- wp:html -->
+<style>
+#itx-scr{--navy:#0f172a;--navy2:#152238;--ink:#1f242e;--body:#5b6472;--muted:#797c7f;--line:#e3e9f0;--ground:#f4f8fb;--sky:#0ea5e9;--sky-soft:#e6f6fe;--teal:#0a5f72;--yellow:#ffc629;--yink:#1e1708;--green:#10b981;--green-soft:#e6f8f1;--orange:#f18c08;--orange-soft:#fef1e0;--violet:#7c5cff;--violet-soft:#eeeafe;--shadow:0 10px 30px rgba(15,23,42,.10),0 2px 6px rgba(15,23,42,.06);font-family:Manrope,"Segoe UI",system-ui,sans-serif;color:var(--ink);line-height:1.6;font-size:17px;-webkit-font-smoothing:antialiased}
+#itx-scr *,#itx-scr *::before,#itx-scr *::after{box-sizing:border-box}
+#itx-scr br{display:none}
+#itx-scr p{margin:0}
+#itx-scr h1,#itx-scr h2,#itx-scr h3,#itx-scr h4{margin:0;font-weight:800;line-height:1.12;letter-spacing:-.02em;color:var(--ink);text-wrap:balance}
+#itx-scr a{text-decoration:none;color:inherit}
+#itx-scr button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+#itx-scr .i{width:1em;height:1em;display:inline-block;vertical-align:-.15em;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+#itx-scr .tab{font-variant-numeric:tabular-nums}
+#itx-scr .wrap{width:min(1180px,100% - 32px);margin-inline:auto}
+#itx-scr .eyebrow{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:var(--muted)}
+#itx-scr .crumb{font-size:13px;color:var(--muted);padding:18px 0 0;display:flex;gap:8px;flex-wrap:wrap}
+#itx-scr .crumb a{color:var(--teal);font-weight:600}
+#itx-scr .hero{background:radial-gradient(900px 500px at 85% 10%,rgba(14,165,233,.35),transparent 60%),radial-gradient(600px 400px at 10% 100%,rgba(124,92,255,.25),transparent 60%),linear-gradient(160deg,var(--navy),var(--navy2));color:#fff;margin-top:14px;border-radius:28px;overflow:hidden;position:relative}
+#itx-scr .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:32px;align-items:center;padding-block:48px 40px}
+#itx-scr .pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:6px 12px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;background:rgba(14,165,233,.16);color:#7dd3fc;border:1px solid rgba(125,211,252,.25)}
+#itx-scr .pill i{width:7px;height:7px;border-radius:50%;background:var(--sky);animation:itx-ping 1.8s infinite}
+@keyframes itx-ping{70%{box-shadow:0 0 0 8px rgba(14,165,233,0)}100%{box-shadow:0 0 0 0 rgba(14,165,233,0)}}
+#itx-scr .hero h1{color:#fff;font-size:clamp(34px,4.6vw,58px);margin-top:18px}
+#itx-scr .hero h1 em{font-style:normal;color:var(--sky)}
+#itx-scr .lede{color:rgba(240,246,252,.78);font-size:18px;max-width:52ch;margin-top:16px}
+#itx-scr .ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+#itx-scr .btn{display:inline-flex;align-items:center;gap:9px;padding:14px 22px;border-radius:14px;font-weight:800;font-size:15.5px;transition:transform .15s,background .2s,border-color .2s;line-height:1.2}
+#itx-scr .btn:active{transform:translateY(1px)}
+#itx-scr .btn.y{background:var(--yellow);color:var(--yink);box-shadow:0 8px 22px rgba(255,198,41,.35)}
+#itx-scr .btn.y:hover{background:#ffd35a;color:var(--yink)}
+#itx-scr .btn.g{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.18)}
+#itx-scr .btn.g:hover{background:rgba(255,255,255,.14);color:#fff}
+#itx-scr .btn.o{background:#fff;color:var(--ink);border:1.5px solid var(--line)}
+#itx-scr .btn.o:hover{border-color:var(--sky);color:var(--teal)}
+#itx-scr .ticks{display:flex;gap:18px;flex-wrap:wrap;margin-top:26px;font-size:14px;color:rgba(240,246,252,.82);font-weight:600}
+#itx-scr .ticks span{display:inline-flex;align-items:center;gap:7px}
+#itx-scr .ticks .i{color:var(--green)}
+#itx-scr .viz{position:relative;height:420px;display:grid;place-items:center;perspective:1400px}
+#itx-scr .layers{position:relative;width:190px;height:380px;transform-style:preserve-3d;transform:rotateX(58deg) rotateZ(-36deg);animation:itx-sway 9s ease-in-out infinite}
+@keyframes itx-sway{0%,100%{transform:rotateX(58deg) rotateZ(-36deg)}50%{transform:rotateX(54deg) rotateZ(-30deg)}}
+#itx-scr .layer{position:absolute;inset:0;border-radius:30px;transform-style:preserve-3d;animation:itx-sep 6s ease-in-out infinite}
+#itx-scr .layer.body{background:linear-gradient(135deg,#27364d,#0b1220);box-shadow:0 40px 60px rgba(0,0,0,.5);--z:0px}
+#itx-scr .layer.body::after{content:"";position:absolute;left:14px;top:14px;width:52px;height:52px;border-radius:16px;background:#111a2b;box-shadow:inset 0 0 0 3px #1f2c42}
+#itx-scr .layer.panel{--z:70px;background:linear-gradient(160deg,#38bdf8,#0ea5e9 45%,#7c5cff);box-shadow:0 0 60px rgba(14,165,233,.55);overflow:hidden}
+#itx-scr .layer.panel i{position:absolute;left:22px;right:22px;height:9px;border-radius:5px;background:rgba(255,255,255,.55)}
+#itx-scr .layer.panel i:nth-child(1){top:60px;width:60%}#itx-scr .layer.panel i:nth-child(2){top:82px;width:40%;opacity:.7}#itx-scr .layer.panel i:nth-child(3){top:130px;height:90px;border-radius:14px;background:rgba(255,255,255,.22)}#itx-scr .layer.panel i:nth-child(4){top:240px;width:70%;opacity:.6}#itx-scr .layer.panel i:nth-child(5){top:262px;width:50%;opacity:.5}
+#itx-scr .layer.glass{--z:140px;background:linear-gradient(160deg,rgba(255,255,255,.55),rgba(255,255,255,.12));border:2px solid rgba(255,255,255,.7)}
+#itx-scr .layer.glass svg{position:absolute;inset:0;width:100%;height:100%;stroke:#fff;stroke-width:2.5;fill:none;stroke-linecap:round;animation:itx-heal 6s ease-in-out infinite}
+@keyframes itx-sep{0%,15%{transform:translateZ(0)}45%,70%{transform:translateZ(var(--z))}100%{transform:translateZ(0)}}
+@keyframes itx-heal{0%,15%{opacity:1}45%,100%{opacity:0}}
+#itx-scr .lbl{position:absolute;display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;color:#e2e8f0;background:rgba(15,23,42,.6);border:1px solid rgba(255,255,255,.14);padding:6px 10px;border-radius:999px;animation:itx-fade 6s ease-in-out infinite}
+#itx-scr .lbl i{width:8px;height:8px;border-radius:50%;background:var(--c)}
+@keyframes itx-fade{0%,20%{opacity:.35}45%,70%{opacity:1}100%{opacity:.35}}
+#itx-scr .lbl.l1{right:6%;top:12%;--c:#fff}#itx-scr .lbl.l2{right:2%;top:46%;--c:var(--sky)}#itx-scr .lbl.l3{right:10%;top:80%;--c:#94a3b8}
+#itx-scr .glance{margin-top:-28px;position:relative;z-index:2}
+#itx-scr .glance .card{background:#fff;border-radius:22px;box-shadow:var(--shadow);border:1px solid var(--line);padding:22px 26px;display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+#itx-scr .fact{display:flex;gap:12px;align-items:flex-start}
+#itx-scr .fact .ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:21px;flex:none}
+#itx-scr .fact b{display:block;font-size:20px;font-weight:800;letter-spacing:-.01em;line-height:1.1}
+#itx-scr .fact span{font-size:13px;color:var(--muted);font-weight:600}
+#itx-scr .f1 .ic{background:var(--sky-soft);color:var(--sky)}#itx-scr .f2 .ic{background:var(--violet-soft);color:var(--violet)}#itx-scr .f3 .ic{background:var(--green-soft);color:var(--green)}#itx-scr .f4 .ic{background:var(--orange-soft);color:var(--orange)}
+#itx-scr .answer{margin-top:22px;font-size:17px;color:var(--body);max-width:78ch}
+#itx-scr .answer strong{color:var(--ink)}
+#itx-scr .updated{margin-top:10px;font-size:12.5px;color:var(--muted);font-weight:600}
+#itx-scr .sec{padding-block:64px}
+#itx-scr .sec.alt{background:var(--ground);border-radius:28px}
+#itx-scr .sechead{max-width:64ch}
+#itx-scr .sechead h2{font-size:clamp(28px,3.2vw,40px);margin-top:8px}
+#itx-scr .sechead p{margin-top:12px;color:var(--body)}
+#itx-scr .chk{margin-top:28px;display:grid;grid-template-columns:1.1fr .9fr;gap:22px;align-items:start}
+#itx-scr .chips{display:flex;flex-wrap:wrap;gap:10px}
+#itx-scr .chip{display:inline-flex;align-items:center;gap:8px;padding:11px 15px;border-radius:999px;border:1.5px solid var(--line);background:#fff;font-weight:700;font-size:14.5px;transition:.18s;color:var(--ink)}
+#itx-scr .chip:hover{border-color:var(--sky)}
+#itx-scr .chip[aria-pressed=true]{background:var(--navy);color:#fff;border-color:var(--navy)}
+#itx-scr .verdict{background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:var(--shadow);min-height:180px}
+#itx-scr .verdict .tag{display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;padding:6px 10px;border-radius:999px;background:var(--sky-soft);color:var(--teal)}
+#itx-scr .verdict h3{font-size:22px;margin-top:12px}
+#itx-scr .verdict p{margin-top:8px;color:var(--body);font-size:15.5px}
+#itx-scr .verdict .row{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;font-size:13.5px;font-weight:700;color:var(--ink)}
+#itx-scr .verdict .row span{display:inline-flex;gap:6px;align-items:center;background:var(--ground);padding:6px 10px;border-radius:10px}
+#itx-scr .verdict .row .i{color:var(--sky)}
+#itx-scr .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:26px;background:#fff;border:1px solid var(--line);padding:6px;border-radius:999px;width:fit-content;max-width:100%}
+#itx-scr .tabs button{padding:10px 18px;border-radius:999px;font-weight:800;font-size:14.5px;color:var(--body)}
+#itx-scr .tabs button[aria-selected=true]{background:var(--navy);color:#fff}
+#itx-scr .tpanel{display:none;margin-top:20px;background:#fff;border:1px solid var(--line);border-radius:22px;padding:26px;box-shadow:var(--shadow);grid-template-columns:1.2fr .8fr;gap:26px}
+#itx-scr .tpanel.on{display:grid}
+#itx-scr .tpanel h3{font-size:22px}
+#itx-scr .tpanel .models{font-size:13px;font-weight:700;color:var(--muted);margin-top:4px}
+#itx-scr .tpanel ul{margin:14px 0 0;padding:0;list-style:none;display:grid;gap:9px;color:var(--body);font-size:15.5px}
+#itx-scr .tpanel li{display:flex;gap:10px;align-items:flex-start}
+#itx-scr .tpanel li .i{color:var(--green);flex:none;margin-top:5px}
+#itx-scr .pricebox{background:linear-gradient(160deg,var(--navy),var(--navy2));color:#fff;border-radius:18px;padding:22px;display:grid;align-content:start;gap:6px}
+#itx-scr .pricebox .eyebrow{color:#7dd3fc}
+#itx-scr .pricebox b{font-size:34px;font-weight:800;letter-spacing:-.02em;line-height:1}
+#itx-scr .pricebox small{color:rgba(240,246,252,.7);font-size:13px}
+#itx-scr .pricebox .btn{margin-top:14px;justify-content:center}
+#itx-scr .jrny{margin-top:28px;background:linear-gradient(160deg,var(--navy),var(--navy2));border-radius:28px;padding:22px 22px 18px;color:#fff;position:relative;overflow:hidden}
+#itx-scr .jbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;font-size:13.5px;font-weight:700}
+#itx-scr .jlbl{color:#7dd3fc;letter-spacing:.06em;text-transform:uppercase;font-size:12px}
+#itx-scr .jtime{display:inline-flex;gap:7px;align-items:center;color:rgba(240,246,252,.75)}
+#itx-scr .jtrack{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:22px;padding-top:34px}
+#itx-scr .jline{position:absolute;left:12.5%;right:12.5%;top:18px;height:4px;background:rgba(255,255,255,.14);border-radius:4px}
+#itx-scr .jline i{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:4px;background:linear-gradient(90deg,var(--sky),var(--violet),var(--orange),var(--green));transition:width .7s cubic-bezier(.2,.7,.2,1)}
+#itx-scr .jline b{position:absolute;top:50%;left:0;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 0 0 6px rgba(255,255,255,.18),0 0 24px rgba(14,165,233,.9);transform:translate(-50%,-50%);transition:left .7s cubic-bezier(.2,.7,.2,1)}
+#itx-scr .jstep{position:relative;text-align:left;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:16px 16px 18px;display:grid;gap:8px;transition:transform .35s,background .35s,border-color .35s,box-shadow .35s;scroll-snap-align:center;color:#fff}
+#itx-scr .jstep:hover{background:rgba(255,255,255,.1)}
+#itx-scr .jstep.on{background:#fff;color:var(--ink);border-color:#fff;transform:translateY(-6px);box-shadow:0 24px 50px rgba(0,0,0,.35)}
+#itx-scr .jstep::before{content:"";position:absolute;left:50%;top:-34px;width:14px;height:14px;border-radius:50%;background:var(--navy2);border:3px solid rgba(255,255,255,.35);transform:translateX(-50%);transition:.35s}
+#itx-scr .jstep.on::before{background:var(--jc);border-color:#fff}
+#itx-scr .jtop{display:flex;justify-content:space-between;align-items:center}
+#itx-scr .jn{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-weight:800;font-size:15px;background:rgba(255,255,255,.12);color:#fff;transition:.35s}
+#itx-scr .jstep.on .jn{background:var(--jc)}
+#itx-scr .jchip{font-size:12px;font-weight:800;padding:4px 9px;border-radius:999px;background:rgba(255,255,255,.1);color:rgba(255,255,255,.85);font-variant-numeric:tabular-nums}
+#itx-scr .jstep.on .jchip{background:var(--js);color:var(--jc)}
+#itx-scr .jart{height:118px;border-radius:14px;background:rgba(255,255,255,.06);display:grid;place-items:center;overflow:hidden;transition:background .35s}
+#itx-scr .jstep.on .jart{background:var(--js)}
+#itx-scr .jart svg{width:110px;height:110px;fill:none;stroke:rgba(255,255,255,.55);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;transition:stroke .35s}
+#itx-scr .jstep.on .jart svg{stroke:var(--jc)}
+#itx-scr .jart .ph{fill:rgba(255,255,255,.06)}#itx-scr .jstep.on .jart .ph{fill:#fff}
+#itx-scr .jart .crk{stroke-width:2}#itx-scr .jstep.on .jart .crk{animation:itx-crk 1.6s ease-in-out infinite}
+@keyframes itx-crk{50%{opacity:.35}}
+#itx-scr .jart .arrow{opacity:0;transition:.4s}#itx-scr .jstep.on .jart .arrow{opacity:1;animation:itx-nudge 1.4s ease-in-out infinite}
+@keyframes itx-nudge{50%{transform:translateX(6px)}}
+#itx-scr .jart .scan{stroke-width:2;opacity:0}#itx-scr .jstep.on .jart .scan{opacity:.5;animation:itx-scan 1.8s linear infinite}
+@keyframes itx-scan{0%{transform:translateY(-10px)}100%{transform:translateY(10px)}}
+#itx-scr .jart .lens{fill:rgba(255,255,255,.35)}
+#itx-scr .jart .newp{fill:transparent;stroke-dasharray:220;stroke-dashoffset:220}#itx-scr .jstep.on .jart .newp{fill:rgba(255,255,255,.35);animation:itx-draw 1.2s ease forwards}
+@keyframes itx-draw{to{stroke-dashoffset:0}}
+#itx-scr .jstep.on .jart .tool{animation:itx-wig 1.2s ease-in-out infinite;transform-origin:20px 100px}
+@keyframes itx-wig{50%{transform:rotate(-8deg)}}
+#itx-scr .jart .spark{fill:currentColor;opacity:0}#itx-scr .jstep.on .jart .spark{animation:itx-spark 1.2s ease-in-out infinite}#itx-scr .jart .spark:nth-of-type(2){animation-delay:.3s}#itx-scr .jart .spark:nth-of-type(3){animation-delay:.6s}
+@keyframes itx-spark{50%{opacity:1}}
+#itx-scr .jart .badge{fill:rgba(255,255,255,.35)}#itx-scr .jstep.on .jart .badge{fill:var(--jc);stroke:#fff}
+#itx-scr .jart .tick{stroke:#fff;stroke-width:3.2;stroke-dasharray:40;stroke-dashoffset:40}#itx-scr .jstep.on .jart .tick{animation:itx-draw .6s .3s ease forwards}
+#itx-scr .jstep h3{font-size:16.5px;color:inherit;margin-top:4px}
+#itx-scr .jstep p{font-size:14px;line-height:1.5;color:rgba(240,246,252,.7);transition:color .35s}
+#itx-scr .jstep.on p{color:var(--body)}
+#itx-scr .jdots{display:none;justify-content:center;gap:6px;margin-top:14px}
+#itx-scr .jdots i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.3);transition:.3s}
+#itx-scr .jdots i.on{width:20px;border-radius:4px;background:#fff}
+#itx-scr .reviews{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:28px}
+#itx-scr .rev{background:#fff;border:1px solid var(--line);border-radius:22px;padding:24px;box-shadow:var(--shadow)}
+#itx-scr .stars{color:var(--yellow);letter-spacing:2px;font-size:15px}
+#itx-scr .rev blockquote{margin:10px 0 0;padding:0;border:0;font-size:16.5px;color:var(--ink);font-weight:500;font-style:normal;background:none}
+#itx-scr .rev .who{display:flex;align-items:center;gap:12px;margin-top:16px}
+#itx-scr .rev .av{width:40px;height:40px;border-radius:50%;background:var(--sky-soft);color:var(--teal);display:grid;place-items:center;font-weight:800;font-size:13px}
+#itx-scr .rev .who b{display:block;font-size:14.5px}
+#itx-scr .rev .who span{font-size:12.5px;color:var(--muted);font-weight:600}
+#itx-scr .gbadge{display:inline-flex;align-items:center;gap:10px;margin-top:22px;background:#fff;border:1px solid var(--line);padding:10px 16px;border-radius:999px;font-weight:700;font-size:14px}
+#itx-scr .gbadge b{font-size:18px}
+#itx-scr .branches{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:28px}
+#itx-scr .br{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:var(--shadow)}
+#itx-scr .br .map{height:110px;background:linear-gradient(120deg,#dbeafe,#e0f2fe 50%,#ede9fe);position:relative;overflow:hidden}
+#itx-scr .br .map::before,#itx-scr .br .map::after{content:"";position:absolute;background:rgba(255,255,255,.75);height:14px;left:-10%;right:-10%;transform:rotate(-12deg)}
+#itx-scr .br .map::before{top:34px}#itx-scr .br .map::after{top:80px;transform:rotate(9deg)}
+#itx-scr .br .map .pin{position:absolute;left:50%;top:50%;transform:translate(-50%,-60%) rotate(-45deg);width:36px;height:36px;border-radius:50% 50% 50% 0;background:var(--sky);box-shadow:0 8px 18px rgba(14,165,233,.5)}
+#itx-scr .br .bd{padding:20px 22px 22px}
+#itx-scr .br h3{font-size:20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+#itx-scr .openb{font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;padding:4px 8px;border-radius:6px;background:var(--green-soft);color:#0b7a55}
+#itx-scr .br .addr{color:var(--body);font-size:15px;margin-top:6px}
+#itx-scr .br dl{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:14px 0 0;font-size:14px}
+#itx-scr .br dt{color:var(--muted);font-weight:700}#itx-scr .br dd{margin:0;font-weight:600}
+#itx-scr .br .acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+#itx-scr .br .acts .btn{padding:10px 14px;font-size:14px;border-radius:12px}
+#itx-scr .faq{margin-top:26px;display:grid;gap:10px;max-width:820px}
+#itx-scr .q{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+#itx-scr .q>button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 20px;text-align:left;font-weight:800;font-size:16.5px;color:var(--ink)}
+#itx-scr .q>button .i{flex:none;color:var(--sky);transition:transform .25s}
+#itx-scr .q>button[aria-expanded=true] .i{transform:rotate(45deg)}
+#itx-scr .q .a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s}
+#itx-scr .q .a>div{overflow:hidden}
+#itx-scr .q .a p{padding:0 20px 18px;color:var(--body);font-size:15.5px}
+#itx-scr .q>button[aria-expanded=true]~.a{grid-template-rows:1fr}
+#itx-scr .rel{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:28px}
+#itx-scr .rc{border-radius:20px;padding:22px;background:var(--rs);color:var(--ink);display:grid;gap:10px;transition:transform .2s,box-shadow .2s;border:1px solid transparent}
+#itx-scr .rc:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--rc);color:var(--ink)}
+#itx-scr .rc .ic{width:46px;height:46px;border-radius:13px;background:#fff;color:var(--rc);display:grid;place-items:center;font-size:23px}
+#itx-scr .rc b{font-size:17px;font-weight:800}
+#itx-scr .rc span{font-size:14px;color:var(--body)}
+#itx-scr .rc .go{font-weight:800;color:var(--rc);font-size:14px;display:inline-flex;gap:6px;align-items:center}
+#itx-scr .final{background:linear-gradient(135deg,var(--sky),var(--violet));border-radius:28px;color:#fff;padding:44px;display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:center;margin-block:24px 64px}
+#itx-scr .final h2{color:#fff;font-size:clamp(26px,3vw,36px)}
+#itx-scr .final p{color:rgba(255,255,255,.85);margin-top:10px}
+#itx-scr .final .ctas{justify-content:flex-end;margin:0}
+#itx-scr .rvl{transform:translateY(18px);opacity:.55;transition:transform .7s cubic-bezier(.2,.7,.2,1),opacity .7s}
+#itx-scr .rvl.in{transform:none;opacity:1}
+@media (max-width:820px){
+#itx-scr .hero{border-radius:22px}
+#itx-scr .hero .wrap{grid-template-columns:1fr;padding-block:32px 28px;gap:10px}
+#itx-scr .hero h1{font-size:34px}
+#itx-scr .lede{font-size:16px}
+#itx-scr .viz{height:300px;order:-1;margin-top:-10px}
+#itx-scr .layers{width:120px;height:240px}
+#itx-scr .layer{border-radius:20px}
+#itx-scr .layer.panel i{left:14px;right:14px;height:6px}
+#itx-scr .layer.panel i:nth-child(1){top:36px}#itx-scr .layer.panel i:nth-child(2){top:50px}#itx-scr .layer.panel i:nth-child(3){top:80px;height:56px}#itx-scr .layer.panel i:nth-child(4){top:152px}#itx-scr .layer.panel i:nth-child(5){top:166px}
+#itx-scr .layer.panel{--z:44px}#itx-scr .layer.glass{--z:88px}
+#itx-scr .lbl{font-size:11px}
+#itx-scr .lbl.l1{right:0;top:6%}#itx-scr .lbl.l2{right:0;top:44%}#itx-scr .lbl.l3{right:4%;top:84%}
+#itx-scr .glance{margin-top:-18px}
+#itx-scr .glance .card{grid-template-columns:1fr 1fr;gap:14px;padding:18px}
+#itx-scr .fact b{font-size:17px}
+#itx-scr .sec{padding-block:44px}
+#itx-scr .chk,#itx-scr .tpanel,#itx-scr .reviews,#itx-scr .branches,#itx-scr .final{grid-template-columns:1fr}
+#itx-scr .jrny{padding:18px 14px 14px;border-radius:22px}
+#itx-scr .jtrack{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;padding:30px 4px 8px;margin-inline:-4px;scrollbar-width:none}
+#itx-scr .jtrack::-webkit-scrollbar{display:none}
+#itx-scr .jstep{flex:0 0 78%;transform:none!important}
+#itx-scr .jline{display:none}
+#itx-scr .jstep::before{top:-30px}
+#itx-scr .jdots{display:flex}
+#itx-scr .rel{grid-template-columns:1fr 1fr}
+#itx-scr .final{padding:28px}
+#itx-scr .final .ctas{justify-content:flex-start}
+}
+@media (prefers-reduced-motion:reduce){
+#itx-scr *{animation:none!important;transition:none!important}
+#itx-scr .layer.panel,#itx-scr .layer.glass{transform:translateZ(var(--z))}
+#itx-scr .layer.glass svg{opacity:0}#itx-scr .lbl{opacity:1}
+#itx-scr .rvl{transform:none;opacity:1}
+}
+#itx-scr p:empty{display:none}
+#itx-scr .vpane{display:none}
+#itx-scr .vpane.on{display:block}
+#itx-scr .rvl{transform:none;opacity:1}
+#itx-scr.itx-js .rvl{transform:translateY(18px);opacity:.55}
+#itx-scr.itx-js .rvl.in{transform:none;opacity:1}
+#itx-scr .ctas>p,#itx-scr .pricebox>p,#itx-scr .acts>p,#itx-scr .ticks>p,#itx-scr .gbadge>p,#itx-scr .rc>p,#itx-scr .chips>p,#itx-scr .tabs>p,#itx-scr .row>p,#itx-scr .faq>p,#itx-scr .rel>p,#itx-scr .branches>p,#itx-scr .reviews>p,#itx-scr .jtrack>p,#itx-scr .glance .card>p,#itx-scr .jtop>p,#itx-scr .who>p{display:contents}
+@media (max-width:480px){#itx-scr .glance .card{grid-template-columns:1fr;gap:12px}#itx-scr .fact .ic{width:38px;height:38px;font-size:18px}}
+</style>
+<div id="itx-scr">
+<div class="wrap">
+<nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/mobile-repair-services/">Phone Repair</a> › <span>Charging Port Repair</span></nav>
+<section class="hero">
+<div class="wrap">
+<div>
+<span class="pill"><i></i> Phone repair · Charging port</span>
+<h1>Phone charging port repair in London, <em>cleaned or replaced</em></h1>
+<p class="lede">Charging only at an angle, cable falling out, or not charging at all? Bring your phone to Bloomsbury or Moorgate. We check and clean the port first, because pocket lint is a common cause, and replace it only if it has actually failed. Free diagnostic first, and if we cannot fix it you pay nothing.</p>
+<div class="ctas">
+<a class="btn y" href="/book-an-appointment/" data-it-book><svg class="i" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg> Book this repair</a>
+<a class="btn g" href="#itx-shops"><svg class="i" viewBox="0 0 24 24"><path d="M12 21s-7-5.3-7-11a7 7 0 0 1 14 0c0 5.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> Find your nearest shop</a>
+</div>
+<div class="ticks">
+<span><svg class="i" viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg> No fix, no fee</span>
+<span><svg class="i" viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg> Warranty on every repair</span>
+<span><svg class="i" viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg> Walk in, 7 days a week</span>
+</div>
+</div>
+<div class="viz" aria-hidden="true">
+<div class="layers">
+<div class="layer body"></div>
+<div class="layer panel"><i></i><i></i><i></i><i></i><i></i></div>
+<div class="layer glass"><svg viewBox="0 0 190 380"><path d="M70 300h50v26H70zM82 326v18M108 326v18M80 290h30"/></svg></div>
+</div>
+<div class="lbl l1"><i></i> Worn port — replaced</div>
+<div class="lbl l2"><i></i> Lint cleared, contacts checked</div>
+<div class="lbl l3"><i></i> Your phone, your data — untouched</div>
+</div>
+</div>
+</section>
+<div class="glance">
+<div class="card">
+<div class="fact f1"><span class="ic"><svg class="i" viewBox="0 0 24 24"><path d="M11 3l7 3v5c0 5-3.5 8.5-7 10M7 12l3 3 5-6"/></svg></span>
+<div><b>Free diagnostic</b><span>Port, cable, charger and battery checked · no fix, no fee</span></div>
+</div>
+<div class="fact f2"><span class="ic"><svg class="i" viewBox="0 0 24 24"><path d="M9 2v5M15 2v5M7 7h10v4a5 5 0 0 1-10 0zM12 16v6"/></svg></span>
+<div><b>Clean first</b><span>Lint is checked for before any part is replaced</span></div>
+</div>
+<div class="fact f3"><span class="ic"><svg class="i" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
+<div><b>Warranty</b><span>Parts and labour, on every repair</span></div>
+</div>
+<div class="fact f4"><span class="ic"><svg class="i" viewBox="0 0 24 24"><path d="M12 21s-7-5.3-7-11a7 7 0 0 1 14 0c0 5.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+<div><b>2 shops</b><span>Bloomsbury WC1 · Moorgate EC1 · open 7 days</span></div>
+</div>
+</div>
+<p class="answer"><strong>Straight answer:</strong> if your phone charges only at an angle, keeps disconnecting or will not charge, the charging port is the usual suspect. InstaTech London starts with a free diagnostic that checks the port, the cable, the charger and the battery. Often a careful clean is enough; if the port has failed we replace it, with a warranty on parts and labour. Bring the phone to 67 Marchmont Street (Bloomsbury) or 16 City Road (Moorgate). No appointment is needed. We repair charging ports on iPhone, Samsung Galaxy, Google Pixel and most other phones.</p>
+<p class="updated">Last updated 25 October 2026</p>
+</div>
+<section class="sec rvl" id="itx-symptoms">
+<div class="sechead">
+<div class="eyebrow" style="color:var(--sky)">Is it really the port?</div>
+<h2>Tap what your phone is doing</h2>
+<p>Port, cable, charger and battery faults look alike. The free diagnostic tells us which one it is before any work starts.</p>
+</div>
+<div class="chk">
+<div class="chips" id="itx-chips" role="group" aria-label="Symptoms"><button class="chip" aria-pressed="true" data-i="0">Charges only at an angle</button><button class="chip" aria-pressed="false" data-i="1">Cable feels loose or falls out</button><button class="chip" aria-pressed="false" data-i="2">Not charging at all</button><button class="chip" aria-pressed="false" data-i="3">Charges very slowly</button><button class="chip" aria-pressed="false" data-i="4">Moisture or accessory warning</button></div>
+<div class="verdict" id="itx-verdict" aria-live="polite">
+<div class="vpane on" data-i="0"><span class="tag"><svg class="i" viewBox="0 0 24 24"><path d="M9 2v5M15 2v5M7 7h10v4a5 5 0 0 1-10 0zM12 16v6"/></svg> Charging port</span>
+<h3>The contacts are worn or blocked</h3>
+<p>If the cable only works held at an angle, the pins inside the port are no longer making a clean contact. Packed lint is the most common reason; worn or bent pins are the other. We clean first, then replace the port if the contacts are damaged.</p>
+<div class="row"><span><svg class="i" viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg> Free diagnostic</span><span><svg class="i" viewBox="0 0 24 24"><path d="M9 2v5M15 2v5M7 7h10v4a5 5 0 0 1-10 0zM12 16v6"/></svg> Port cleaned first</span><span><svg class="i" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg> Warranty</span></div>
+</div>
+<div class="vpane" data-i="1"><span class="tag"><svg class="i" viewBox="0 0 24 24"><path d="M9 2v5M15 2v5M7 7h10v4a5 5 0 0 1-10 0zM12 16v6"/></svg> Charging port</span>
+<h3>Lint is stopping the plug seating</h3>
+<p>Pocket fluff compresses into a hard layer at the back of the port, so the plug cannot click fully in. A careful clean with the right tools often fixes it. Please don't dig in with a pin or a metal clip: it can short or bend the contacts.</p>
+<div class="row"><span><svg class="i" viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg> Free diagnostic</span><span><svg class="i" viewBox="0 0 24 24"><path d="M9 2v5M15 2v5M7 7h10v4a5 5 0 0 1-10 0zM12 16v6"/></svg> Port cleaned first</span><span><svg class="i" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg> Warranty</span></div>
+</div>
+<div class="vpane" data-i="2"><span class="tag"><svg class="i" viewBox="0 0 24 24"><path d="M12 3v8M6.3 6.3a8 8 0 1 0 11.4 0"/></svg> Port, cable or battery</span>
+<h3>We test each part on the bench</h3>
+<p>A phone that will not charge at all can have a failed port, a damaged cable or charger, or a battery that has stopped taking charge. We test the whole charging path, so you only pay for what has actually failed. If it is the battery, see our <a href="/mobile-repair-services/battery-replacement/">battery replacement</a>.</p>
+<div class="row"><span><svg class="i" viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg> Free diagnostic</span><span><svg class="i" viewBox="0 0 24 24"><path d="M9 2v5M15 2v5M7 7h10v4a5 5 0 0 1-10 0zM12 16v6"/></svg> Port cleaned first</span><span><svg class="i" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg> Warranty</span></div>
+</div>
+<div class="vpane" data-i="3"><span class="tag"><svg class="i" viewBox="0 0 24 24"><path d="M9 2v5M15 2v5M7 7h10v4a5 5 0 0 1-10 0zM12 16v6"/></svg> Cable, charger or port</span>
+<h3>Often the cable, sometimes the port</h3>
+<p>Try a different cable and a wall charger you know works. If it is still slow, a damaged pin in the port can stop fast charging from engaging. The free diagnostic shows which part is at fault.</p>
+<div class="row"><span><svg class="i" viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg> Free diagnostic</span><span><svg class="i" viewBox="0 0 24 24"><path d="M9 2v5M15 2v5M7 7h10v4a5 5 0 0 1-10 0zM12 16v6"/></svg> Port cleaned first</span><span><svg class="i" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg> Warranty</span></div>
+</div>
+<div class="vpane" data-i="4"><span class="tag"><svg class="i" viewBox="0 0 24 24"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg> Liquid or debris</span>
+<h3>Unplug it and let the port dry</h3>
+<p>A moisture or "accessory not supported" warning usually means liquid or debris in the port. Unplug the cable and don't force it to charge. If the warning stays once the phone is dry, the port may be corroding. Bring it in, and see our <a href="/mobile-repair-services/water-damage-repair/">water damage repair</a>.</p>
+<div class="row"><span><svg class="i" viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg> Free diagnostic</span><span><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Bring it in today</span><span><svg class="i" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg> Warranty</span></div>
+</div>
+</div>
+</div>
+</section>
+<section class="sec alt rvl" id="itx-brands">
+<div class="wrap">
+<div class="sechead">
+<div class="eyebrow" style="color:var(--violet)">By brand</div>
+<h2>Which phone have you got?</h2>
+<p>Same symptoms, different hardware. Pick yours for what to expect.</p>
+</div>
+<div class="tabs" role="tablist" id="itx-tabs"><button role="tab" aria-selected="true" data-i="0" id="itx-tab0">iPhone</button><button role="tab" aria-selected="false" data-i="1" id="itx-tab1">Samsung Galaxy</button><button role="tab" aria-selected="false" data-i="2" id="itx-tab2">Google Pixel</button><button role="tab" aria-selected="false" data-i="3" id="itx-tab3">Other brands</button></div>
+<div id="itx-tpanels">
+<div class="tpanel on" role="tabpanel" aria-labelledby="itx-tab0">
+<div>
+<h3>iPhone charging port repair</h3>
+<div class="models">Lightning and USB-C iPhones</div>
+<ul>
+<li><svg class="i" viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg><span>Port cleaned and tested before anything is replaced</span></li><li><svg class="i" viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg><span>On many models the port shares a flex cable with the microphone, so we test both</span></li><li><svg class="i" viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg><span>Warranty on the part and the labour</span></li>
+</ul>
+</div>
+<div class="pricebox">
+<div class="eyebrow">First step</div>
+<b class="tab">Free check</b><small>Diagnosed before any work starts. No fix, no fee.</small><a class="btn y" href="/book-an-appointment/" data-it-book>Book iPhone repair</a></div>
+</div>
+<div class="tpanel" role="tabpanel" aria-labelledby="itx-tab1">
+<div>
+<h3>Samsung Galaxy charging port repair</h3>
+<div class="models">S, A, Z and Note series</div>
+<ul>
+<li><svg class="i" viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg><span>On many Galaxy models the USB-C port sits on a separate charging board</span></li><li><svg class="i" viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg><span>Fold and Flip models assessed individually, so bring it in</span></li><li><svg class="i" viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg><span>Same warranty as every other repair</span></li>
+</ul>
+</div>
+<div class="pricebox">
+<div class="eyebrow">First step</div>
+<b class="tab">Free check</b><small>Diagnosed before any work starts. No fix, no fee.</small><a class="btn y" href="/book-an-appointment/" data-it-book>Book Samsung Galaxy repair</a></div>
+</div>
+<div class="tpanel" role="tabpanel" aria-labelledby="itx-tab2">
+<div>
+<h3>Google Pixel charging port repair</h3>
+<div class="models">Google Pixel phones</div>
+<ul>
+<li><svg class="i" viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg><span>USB-C port cleaned and tested first</span></li><li><svg class="i" viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg><span>Charging and data connection checked after the repair</span></li><li><svg class="i" viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg><span>Same warranty as every other repair</span></li>
+</ul>
+</div>
+<div class="pricebox">
+<div class="eyebrow">First step</div>
+<b class="tab">Free check</b><small>Diagnosed before any work starts. No fix, no fee.</small><a class="btn y" href="/book-an-appointment/" data-it-book>Book Google Pixel repair</a></div>
+</div>
+<div class="tpanel" role="tabpanel" aria-labelledby="itx-tab3">
+<div>
+<h3>Other brands charging port repair</h3>
+<div class="models">OnePlus, Huawei, Xiaomi, Sony, Motorola, Nokia</div>
+<ul>
+<li><svg class="i" viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg><span>Free diagnostic on any brand we can source a part for</span></li><li><svg class="i" viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg><span>Same warranty as every other repair</span></li><li><svg class="i" viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg><span>Part availability varies, so ask before you travel</span></li>
+</ul>
+</div>
+<div class="pricebox">
+<div class="eyebrow">First step</div>
+<b class="tab">Free check</b><small>Diagnosed before any work starts. No fix, no fee.</small><a class="btn y" href="/book-an-appointment/" data-it-book>Book Other brands repair</a></div>
+</div>
+</div>
+</div>
+</section>
+<section class="sec rvl" id="itx-how">
+<div class="sechead">
+<div class="eyebrow" style="color:var(--green)">How it works</div>
+<h2>Plugged in and charging in four steps</h2>
+</div>
+<div class="jrny" id="itx-jrny">
+<div class="jbar"><span class="jlbl" id="itx-jlbl">Step 1 of 4 · Walk in or book</span><span class="jtime"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Repair time confirmed at the free diagnostic</span></div>
+<div class="jtrack" id="itx-jtrack">
+<div class="jline"><i id="itx-jfill"></i><b id="itx-jdot"></b></div>
+<button class="jstep on" data-i="0" style="--jc:var(--sky);--js:var(--sky-soft)">
+<div class="jtop"><span class="jn">1</span><span class="jchip">Today</span></div>
+<div class="jart" aria-hidden="true"><svg viewBox="0 0 120 120"><rect class="ph" x="38" y="14" width="44" height="92" rx="9"/><rect class="door" x="6" y="40" width="22" height="66" rx="2"/><path class="door" d="M17 40v66M12 74h3"/><path class="arrow" d="M34 74H22M27 69l-5 5 5 5"/></svg></div>
+<h3>Walk in or book</h3>
+<p>Either shop, seven days a week. Book ahead and we make sure the part for your model is ready.</p>
+</button>
+<button class="jstep" data-i="1" style="--jc:var(--violet);--js:var(--violet-soft)">
+<div class="jtop"><span class="jn">2</span><span class="jchip">A few minutes</span></div>
+<div class="jart" aria-hidden="true"><svg viewBox="0 0 120 120"><rect class="ph" x="38" y="14" width="44" height="92" rx="9"/><circle class="lens" cx="78" cy="52" r="17"/><path class="lens" d="M90 64l14 14"/><path class="scan" d="M40 40h40M40 60h40M40 80h40"/></svg></div>
+<h3>Free diagnostic</h3>
+<p>Port, cable, charger and battery checked on the bench. We confirm the fault before any work starts.</p>
+</button>
+<button class="jstep" data-i="2" style="--jc:var(--orange);--js:var(--orange-soft)">
+<div class="jtop"><span class="jn">3</span><span class="jchip">Bench work</span></div>
+<div class="jart" aria-hidden="true"><svg viewBox="0 0 120 120"><rect class="ph" x="38" y="14" width="44" height="92" rx="9"/><rect class="newp" x="48" y="34" width="24" height="52" rx="4"/><path class="tool" d="M14 96l30-30M40 60l8-8 12 4-6 6zM26 84l8 8"/><circle class="spark" cx="88" cy="28" r="3"/><circle class="spark" cx="98" cy="42" r="2"/><circle class="spark" cx="92" cy="14" r="2"/></svg></div>
+<h3>Port cleaned or replaced</h3>
+<p>Lint cleared and contacts checked, or the port replaced if it has failed, then charging tested.</p>
+</button>
+<button class="jstep" data-i="3" style="--jc:var(--green);--js:var(--green-soft)">
+<div class="jtop"><span class="jn">4</span><span class="jchip">Done</span></div>
+<div class="jart" aria-hidden="true"><svg viewBox="0 0 120 120"><rect class="ph" x="38" y="14" width="44" height="92" rx="9"/><rect class="newp" x="48" y="34" width="24" height="52" rx="4"/><circle class="badge" cx="88" cy="30" r="16"/><path class="tick" d="M80 30l6 6 11-11"/></svg></div>
+<h3>Collect with warranty</h3>
+<p>Walk out with a phone that charges first time. The warranty covers the part and the work.</p>
+</button>
+</div>
+<div class="jdots" id="itx-jdots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
+</div>
+</section>
+<section class="sec alt rvl" id="itx-reviews">
+<div class="wrap">
+<div class="sechead">
+<div class="eyebrow" style="color:var(--orange)">Reviewed on Google</div>
+<h2>What customers say</h2>
+</div>
+<div class="reviews">
+<div class="rev">
+<div class="stars">★★★★★</div>
+<blockquote><p>&#8220;Jerin was very kind and helpful, thank you so much for fixing my Samsung charging port in 30 mins. Highly recommended&#8221;</p></blockquote>
+<div class="who">
+<div class="av">PA</div>
+<div><b>Paola Ayala</b><span>Verified Google review · Moorgate</span></div>
+</div>
+</div>
+<div class="rev">
+<div class="stars">★★★★★</div>
+<blockquote><p>&#8220;Really happy with the service from Jerin. He fixed my phone quickly and professionally, and everything is working perfectly now. Great communication, fair pricing, and very friendly. Highly recommend!&#8221;</p></blockquote>
+<div class="who">
+<div class="av">LL</div>
+<div><b>Lisa Loar</b><span>Verified Google review · Bloomsbury</span></div>
+</div>
+</div>
+</div>
+<div class="gbadge"><span class="stars">★★★★★</span> <b>5.0</b> from <span data-itx-rc="total">109</span> Google reviews at both shops</div>
+</div>
+</section>
+<section class="sec rvl" id="itx-shops">
+<div class="sechead">
+<div class="eyebrow" style="color:var(--sky)">Where to bring it</div>
+<h2>Two shops in central London</h2>
+</div>
+<div class="branches">
+<div class="br">
+<div class="map">
+<div class="pin"></div>
+</div>
+<div class="bd">
+<h3>Bloomsbury</h3>
+<p class="addr">67 Marchmont Street, London WC1N 1AP · 5 min from Russell Square, 10 from King&#8217;s Cross</p>
+<dl>
+<dt>Mon–Sat</dt>
+<dd>9:30 am – 9:00 pm</dd>
+<dt>Sunday</dt>
+<dd>10:00 am – 8:00 pm</dd>
+<dt>Phone</dt>
+<dd class="tab"><a href="tel:+447377244454">+44 7377 244454</a></dd>
+</dl>
+<div class="acts"><a class="btn y" href="/book-an-appointment/" data-it-book>Book at Bloomsbury</a><a class="btn o" href="/locations/bloomsbury/">Shop details</a></div>
+</div>
+</div>
+<div class="br">
+<div class="map">
+<div class="pin"></div>
+</div>
+<div class="bd">
+<h3>Moorgate</h3>
+<p class="addr">16 City Road, London EC1Y 2AA · between Moorgate and Old Street stations</p>
+<dl>
+<dt>Mon–Sat</dt>
+<dd>9:00 am – 9:00 pm</dd>
+<dt>Sunday</dt>
+<dd>10:00 am – 8:00 pm</dd>
+<dt>Phone</dt>
+<dd class="tab"><a href="tel:+447508088898">+44 7508 088898</a></dd>
+</dl>
+<div class="acts"><a class="btn y" href="/book-an-appointment/" data-it-book>Book at Moorgate</a><a class="btn o" href="/locations/moorgate/">Shop details</a></div>
+</div>
+</div>
+</div>
+</section>
+<section class="sec alt rvl" id="itx-faq">
+<div class="wrap">
+<div class="sechead">
+<div class="eyebrow" style="color:var(--violet)">Questions people ask</div>
+<h2>Charging port repair FAQ</h2>
+</div>
+<div class="faq" id="itx-faqlist">
+<div class="q"><button aria-expanded="true">Why does my phone only charge at an angle? <svg class="i" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+<div class="a"><div><p>Usually because lint or worn contacts stop the plug from seating fully, so it only connects when held at an angle. A careful clean often fixes it; if the pins are worn or bent, the port is replaced.</p></div></div>
+</div>
+<div class="q"><button aria-expanded="false">Can you just clean the port? <svg class="i" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+<div class="a"><div><p>Yes, and we always try that first. Many ports that seem broken are packed with pocket lint. If cleaning doesn't restore a solid connection, we tell you before replacing anything.</p></div></div>
+</div>
+<div class="q"><button aria-expanded="false">Do I need an appointment? <svg class="i" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+<div class="a"><div><p>No. Walk in to Bloomsbury or Moorgate any day of the week. Booking is optional.</p></div></div>
+</div>
+<div class="q"><button aria-expanded="false">Will I lose my data? <svg class="i" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+<div class="a"><div><p>No. A charging port repair doesn't affect your photos, messages or apps. A backup beforehand is always sensible.</p></div></div>
+</div>
+<div class="q"><button aria-expanded="false">My phone says moisture detected. What should I do? <svg class="i" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+<div class="a"><div><p>Unplug the cable, don't force it to charge, and let the port dry. If the warning stays once the phone is dry, bring it in so we can check the port for corrosion.</p></div></div>
+</div>
+<div class="q"><button aria-expanded="false">Do you use genuine parts? <svg class="i" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+<div class="a"><div><p>We fit genuine replacement parts and high-quality parts that meet or exceed the original specification, tested before and after fitting.</p></div></div>
+</div>
+<div class="q"><button aria-expanded="false">Is there a warranty? <svg class="i" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+<div class="a"><div><p>Yes. Every repair carries a warranty on the part and the labour. The period depends on the repair, and we confirm it before any work starts.</p></div></div>
+</div>
+</div>
+<p style="margin-top:18px">More detail: <a href="/how-to-fix-phone-charging-issues/">how to fix phone charging problems</a> and <a href="/how-to-clean-charging-port-safely/">how to clean a charging port safely</a>.</p>
+</div>
+</section>
+<section class="sec rvl" id="itx-related">
+<div class="sechead">
+<div class="eyebrow" style="color:var(--green)">Other phone repairs</div>
+<h2>While it is on the bench</h2>
+<p>A worn port often travels with a tired battery. These are the repairs we are most often asked to do at the same time.</p>
+</div>
+<div class="rel" id="itx-rel"><a class="rc" href="/mobile-repair-services/battery-replacement/" style="--rc:var(--sky);--rs:var(--sky-soft)"><span class="ic"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="8" width="16" height="9" rx="2"/><path d="M21 11v3"/></svg></span><b>Battery Replacement</b><span>20 to 40 min · while you wait</span><span class="go">See this repair <svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a><a class="rc" href="/mobile-repair-services/screen-repair/" style="--rc:var(--violet);--rs:var(--violet-soft)"><span class="ic"><svg class="i" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M10 6l2.5 4-2 3 3 3.5"/></svg></span><b>Screen Repair</b><span>Cracked glass or dead display</span><span class="go">See this repair <svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a><a class="rc" href="/mobile-repair-services/water-damage-repair/" style="--rc:var(--orange);--rs:var(--orange-soft)"><span class="ic"><svg class="i" viewBox="0 0 24 24"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg></span><b>Water Damage</b><span>Free diagnostic</span><span class="go">See this repair <svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a><a class="rc" href="/mobile-repair-services/#data" style="--rc:var(--green);--rs:var(--green-soft)"><span class="ic"><svg class="i" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/></svg></span><b>Data Recovery</b><span>Free assessment</span><span class="go">See this repair <svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div>
+</section>
+<section class="final rvl">
+<div>
+<h2>Your phone, charging again.</h2>
+<p>Book ahead so the part is waiting, or just walk in — Bloomsbury and Moorgate are open seven days a week.</p>
+</div>
+<div class="ctas"><a class="btn y" href="/book-an-appointment/" data-it-book>Book a repair</a><a class="btn g" href="/mobile-repair-services/">All phone repairs</a></div>
+</section>
+</div>
+</div>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Service", "@id": "https://instatech.uk/mobile-repair-services/charging-port-repair/#service", "name": "Phone charging port repair", "serviceType": "Mobile phone charging port repair", "description": "Phone charging port cleaning, repair and replacement in central London for iPhone, Samsung, Google Pixel and other phones, with a free diagnostic and no fix, no fee.", "areaServed": {"@type": "City", "name": "London"}, "provider": [{"@type": ["MobilePhoneStore", "LocalBusiness"], "name": "InstaTech Bloomsbury", "telephone": "+447377244454", "address": {"@type": "PostalAddress", "streetAddress": "67 Marchmont Street", "addressLocality": "London", "postalCode": "WC1N 1AP", "addressCountry": "GB"}, "hasMap": "https://maps.google.com/?cid=10641785332690239296"}, {"@type": ["MobilePhoneStore", "LocalBusiness"], "name": "InstaTech Moorgate", "telephone": "+447508088898", "address": {"@type": "PostalAddress", "streetAddress": "16 City Road", "addressLocality": "London", "postalCode": "EC1Y 2AA", "addressCountry": "GB"}, "hasMap": "https://maps.google.com/?cid=8404697699929828128"}], "url": "https://instatech.uk/mobile-repair-services/charging-port-repair/"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://instatech.uk/"}, {"@type": "ListItem", "position": 2, "name": "Mobile Repair Services", "item": "https://instatech.uk/mobile-repair-services/"}, {"@type": "ListItem", "position": 3, "name": "Charging Port Repair", "item": "https://instatech.uk/mobile-repair-services/charging-port-repair/"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Why does my phone only charge at an angle?", "acceptedAnswer": {"@type": "Answer", "text": "Usually because lint or worn contacts stop the plug from seating fully, so it only connects when held at an angle. A careful clean often fixes it; if the pins are worn or bent, the port is replaced."}}, {"@type": "Question", "name": "Can you just clean the port?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, and we always try that first. Many ports that seem broken are packed with pocket lint. If cleaning doesn't restore a solid connection, we tell you before replacing anything."}}, {"@type": "Question", "name": "Do I need an appointment?", "acceptedAnswer": {"@type": "Answer", "text": "No. Walk in to Bloomsbury or Moorgate any day of the week. Booking is optional."}}, {"@type": "Question", "name": "Will I lose my data?", "acceptedAnswer": {"@type": "Answer", "text": "No. A charging port repair doesn't affect your photos, messages or apps. A backup beforehand is always sensible."}}, {"@type": "Question", "name": "My phone says moisture detected. What should I do?", "acceptedAnswer": {"@type": "Answer", "text": "Unplug the cable, don't force it to charge, and let the port dry. If the warning stays once the phone is dry, bring it in so we can check the port for corrosion."}}, {"@type": "Question", "name": "Do you use genuine parts?", "acceptedAnswer": {"@type": "Answer", "text": "We fit genuine replacement parts and high-quality parts that meet or exceed the original specification, tested before and after fitting."}}, {"@type": "Question", "name": "Is there a warranty?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Every repair carries a warranty on the part and the labour. The period depends on the repair, and we confirm it before any work starts."}}]}]}</script>
+<script>(function(){var R=document.getElementById('itx-scr');if(!R)return;R.classList.add('itx-js');function sel(s){return Array.prototype.slice.call(R.querySelectorAll(s));}var chips=sel('#itx-chips .chip'),panes=sel('#itx-verdict .vpane');chips.forEach(function(c){c.addEventListener('click',function(){var i=+c.getAttribute('data-i');chips.forEach(function(x,j){x.setAttribute('aria-pressed',j===i);});panes.forEach(function(q,j){q.classList.toggle('on',j===i);});});});var tabs=sel('#itx-tabs button'),tp=sel('.tpanel');tabs.forEach(function(t){t.addEventListener('click',function(){var i=+t.getAttribute('data-i');tabs.forEach(function(x,j){x.setAttribute('aria-selected',j===i);});tp.forEach(function(q,j){q.classList.toggle('on',j===i);});});});sel('#itx-faqlist .q > button').forEach(function(b){b.addEventListener('click',function(){b.setAttribute('aria-expanded',b.getAttribute('aria-expanded')!=='true');});});var JT=['Walk in or book','Free diagnostic','Port cleaned or replaced','Collect with warranty'];var jt=document.getElementById('itx-jtrack');if(!jt)return;var js=sel('.jstep'),jf=document.getElementById('itx-jfill'),jd=document.getElementById('itx-jdot'),jl=document.getElementById('itx-jlbl'),jds=sel('#itx-jdots i');var cur=0,timer=null,pause=0,prog=false,rm=false;if(window.matchMedia){rm=matchMedia('(prefers-reduced-motion: reduce)').matches;}function setStep(i,scroll){cur=i;js.forEach(function(s,j){s.classList.toggle('on',j===i);});jds.forEach(function(d,j){d.classList.toggle('on',j===i);});var pct=(i/3)*100;jf.style.width=pct+'%';jd.style.left=pct+'%';jl.textContent='Step '+(i+1)+' of 4 \u00b7 '+JT[i];if(scroll){if(jt.scrollWidth > jt.clientWidth+10){var s=js[i];prog=true;setTimeout(function(){prog=false;},900);jt.scrollTo({left:s.offsetLeft-(jt.clientWidth-s.offsetWidth)/2,behavior:'smooth'});}}}js.forEach(function(s){s.addEventListener('click',function(){setStep(+s.getAttribute('data-i'),true);pause=Date.now()+8000;});});['mouseenter','touchstart','pointerdown'].forEach(function(ev){jt.addEventListener(ev,function(){pause=Date.now()+6000;},{passive:true});});jt.addEventListener('scroll',function(){if(prog)return;if(jt.scrollWidth <= jt.clientWidth+10)return;pause=Date.now()+5000;var mid=jt.scrollLeft+jt.clientWidth/2,best=0,bd=1e9;js.forEach(function(s,i){var dd=Math.abs(s.offsetLeft+s.offsetWidth/2-mid);if(dd < bd){bd=dd;best=i;}});if(best!==cur)setStep(best,false);},{passive:true});if('IntersectionObserver' in window){var jio=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){if(!timer){if(!rm){timer=setInterval(function(){if(Date.now() < pause)return;setStep((cur+1)%4,true);},2800);}}}else{clearInterval(timer);timer=null;}});},{threshold:.4});jio.observe(document.getElementById('itx-jrny'));var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting)en.target.classList.add('in');});},{threshold:.15});sel('.rvl').forEach(function(el){io.observe(el);});}else{sel('.rvl').forEach(function(el){el.classList.add('in');});}setStep(0,false);})();</script>
+<!-- /wp:html -->

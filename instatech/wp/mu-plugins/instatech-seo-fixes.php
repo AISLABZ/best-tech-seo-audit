@@ -3,7 +3,7 @@
  * Plugin Name: InstaTech SEO fixes
  * Description: Phase 1 SEO fixes from the instatech.uk audit (Oct 2026). Output filters only, no database writes.
  *              Roll back by replacing this file with an empty one, or define INSTATECH_SEO_FIXES_OFF in wp-config.php.
- * Version:     1.5.1
+ * Version:     1.5.2
  * Source:      https://github.com/aislabz/best-tech-seo-audit (instatech/wp/mu-plugins/instatech-seo-fixes.php)
  */
 
@@ -253,13 +253,37 @@ function instatech_seo_service_links() {
 			'url'   => instatech_seo_screen_repair_url(),
 		),
 	);
-	if ( instatech_seo_page_live( 'mobile-repair-services/battery-replacement' ) ) {
-		$links[] = array(
-			'title' => 'Battery Replacement',
-			'url'   => home_url( '/mobile-repair-services/battery-replacement/' ),
-		);
+	$pages = array(
+		'battery-replacement'  => 'Battery Replacement',
+		'charging-port-repair' => 'Charging Port Repair',
+		'water-damage-repair'  => 'Water Damage Repair',
+	);
+	foreach ( $pages as $slug => $title ) {
+		if ( instatech_seo_page_live( 'mobile-repair-services/' . $slug ) ) {
+			$links[] = array(
+				'title' => $title,
+				'url'   => home_url( '/mobile-repair-services/' . $slug . '/' ),
+			);
+		}
 	}
 	return $links;
+}
+
+/**
+ * Hub sections that have since become pages of their own: links to the section move to the page once it is live.
+ */
+function instatech_seo_section_pages() {
+	$map = array();
+	foreach ( array(
+		'battery'  => 'battery-replacement',
+		'charging' => 'charging-port-repair',
+		'water'    => 'water-damage-repair',
+	) as $section => $slug ) {
+		if ( instatech_seo_page_live( 'mobile-repair-services/' . $slug ) ) {
+			$map[ '/mobile-repair-services/#' . $section ] = '/mobile-repair-services/' . $slug . '/';
+		}
+	}
+	return $map;
 }
 
 /**
@@ -714,10 +738,7 @@ function instatech_seo_device_menu_links() {
 		'/laptop-desktop-repair/#water' => '/laptop-desktop-repair/#diagnostic',
 		'/laptop-desktop-repair/#case'  => '/laptop-desktop-repair/#diagnostic',
 	);
-	if ( instatech_seo_page_live( 'mobile-repair-services/battery-replacement' ) ) {
-		$links['/mobile-repair-services/#battery'] = '/mobile-repair-services/battery-replacement/';
-	}
-	return $links;
+	return array_merge( $links, instatech_seo_section_pages() );
 }
 
 function instatech_seo_device_menu_script() {
@@ -761,4 +782,24 @@ add_action(
 		}
 	},
 	99
+);
+
+/**
+ * Service pages built from the itx template. The battery page was created before the page builder slashed its content,
+ * so WordPress stripped the backslash from the step label's "\u00b7" and the label reads "Step 1 of 4 u00b7 ...";
+ * restore it on output. Links to hub sections that now have their own page point at the page.
+ */
+add_filter(
+	'the_content',
+	function ( $content ) {
+		if ( false === strpos( $content, 'itx-jlbl' ) ) {
+			return $content;
+		}
+		$swap = array( "' of 4 u00b7 '" => "' of 4 \\u00b7 '" );
+		foreach ( instatech_seo_section_pages() as $from => $to ) {
+			$swap[ 'href="' . $from . '"' ] = 'href="' . $to . '"';
+		}
+		return strtr( $content, $swap );
+	},
+	1002
 );

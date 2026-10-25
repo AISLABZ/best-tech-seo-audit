@@ -1,12 +1,13 @@
 <?php
-// Stubbed-WordPress tests for v1.5.0 device menu: section ids on the four hubs and the menu script rewrite.
+// Stubbed-WordPress tests for v1.5.x: device menu (section ids, menu links) and the service page content filter.
 // Run: php instatech/wp/tests/harness-v15.php instatech/wp/mu-plugins/instatech-seo-fixes.php <dir>
 // <dir> holds <slug>.raw.html for the four hubs (server HTML) and itm.js (the decoded inline menu script).
 // Writes the footer script to <dir>/itm-fix.js for the browser test.
 define( 'ABSPATH', '/x/' );
 define( 'OBJECT', 'OBJECT' );
 $LIVE = true; $PAGE = null;
-function add_filter() {}
+$F = array();
+function add_filter( $h, $cb ) { global $F; $F[ $h ][] = $cb; }
 function add_action() {}
 function wp_json_encode( $v ) { return json_encode( $v, JSON_UNESCAPED_SLASHES ); }
 function get_page_by_path( $p ) { global $LIVE; return $LIVE ? (object) array( 'post_status' => 'publish' ) : null; }
@@ -28,11 +29,12 @@ $script = instatech_seo_device_menu_script();
 check( 'footer script: device buttons navigate to hubs', false !== strpos( $script, 'location.href=H[k]' ) && false !== strpos( $script, '"/smartwatch-repair-service/"' ) );
 file_put_contents( "$dir/itm-fix.js", $script );
 $LIVE = false;
-check( 'menu: battery link kept when the page is not live', ! isset( instatech_seo_device_menu_links()['/mobile-repair-services/#battery'] ) );
+check( 'menu: section links kept while the pages are not live', array() === instatech_seo_section_pages() && ! isset( instatech_seo_device_menu_links()['/mobile-repair-services/#battery'] ) );
 $LIVE = true;
 
 preg_match_all( "#'/([a-z-]+)/\\#([a-z]+)'#", $out, $links, PREG_SET_ORDER );
-check( 'menu: 25 hash links remain', 25 === count( $links ) );
+check( 'menu: charging and water point at their pages once live', false !== strpos( $out, "'/mobile-repair-services/charging-port-repair/'" ) && false !== strpos( $out, "'/mobile-repair-services/water-damage-repair/'" ) );
+check( 'menu: 23 hash links remain', 23 === count( $links ) );
 $pages = array();
 foreach ( $links as $l ) {
 	if ( ! isset( $pages[ $l[1] ] ) ) {
@@ -47,5 +49,17 @@ foreach ( $links as $l ) {
 $PAGE = (object) array( 'post_name' => 'tablet-repairs', 'post_parent' => 75806 );
 $in = file_get_contents( "$dir/tablet-repairs.raw.html" );
 check( 'child pages untouched', instatech_seo_device_menu( $in ) === $in );
+// Service page content: battery step label restored, links to hub sections moved to the new pages.
+// The live page lost its backslashes on insert, so the test input does too.
+$broken = stripslashes( file_get_contents( __DIR__ . '/../../pages/battery-replacement.block.html' ) );
+$filter = end( $F['the_content'] );
+$fixed  = $filter( $broken );
+check( 'battery page: step label separator restored', false !== strpos( $fixed, "' of 4 \\u00b7 '" ) && false === strpos( $fixed, "of 4 u00b7" ) );
+check( 'battery page: related links move to the new pages', false !== strpos( $fixed, 'href="/mobile-repair-services/charging-port-repair/"' ) && false !== strpos( $fixed, 'href="/mobile-repair-services/water-damage-repair/"' ) );
+check( 'battery page: filter idempotent', $fixed === $filter( $fixed ) );
+check( 'other content untouched', '<p>x</p>' === $filter( '<p>x</p>' ) );
+$LIVE = false;
+check( 'battery page: hub links kept while the new pages are not live', false !== strpos( $filter( $broken ), 'href="/mobile-repair-services/#charging"' ) );
+$LIVE = true;
 echo $fail ? "$fail FAILED\n" : "ALL PASS\n";
 exit( $fail ? 1 : 0 );

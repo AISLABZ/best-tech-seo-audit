@@ -580,7 +580,8 @@ INSTATECH_PAGE_HTML;
 				'post_title'     => "Battery Replacement",
 				'post_name'      => 'battery-replacement',
 				'post_parent'    => 75806,
-				'post_content'   => $content,
+				// wp_insert_post() unslashes its input, which would strip the backslashes in the page's script.
+				'post_content'   => wp_slash( $content ),
 				'comment_status' => 'closed',
 				'ping_status'    => 'closed',
 			),
