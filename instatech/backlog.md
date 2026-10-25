@@ -67,9 +67,9 @@ site without the owner's explicit approval in a conversation. Approved changes a
 ## Phase 3: local prominence
 | # | Item | Status |
 |---|---|---|
-| 3.1 | Full GBP content for Bloomsbury, Moorgate and Oxford Circus (categories, services without prices, attributes, photos) | todo |
+| 3.1 | Full GBP content for Bloomsbury, Moorgate and Oxford Circus (categories, services without prices, attributes, photos) | drafted: `instatech/local/gbp-profile-content.md` (owner to paste; [CONFIRM] items need sign-off) |
 | 3.2 | Oxford Circus GBP verified before opening; lead with Sunday opening | blocked: owner action. No listing exists on Google Maps as of 21 Oct 2026. Create it as "InstaTech Oxford Circus" at 22 Great Castle St W1G 0HY |
-| 3.3 | Review-request SMS and email templates (all customers, no incentives) | todo |
+| 3.3 | Review-request SMS and email templates (all customers, no incentives) | drafted: `instatech/local/review-requests.md` (owner to adopt in-store) |
 | 3.4 | Citations with identical business details: Apple Business Connect, Bing Places, Yell, Yelp, Thomson Local, Foursquare, Trustpilot. Tracked in `citations.md` | todo |
 | 3.5 | Weekly GBP post per shop | recurring (Thursday run) |
 
@@ -111,3 +111,4 @@ copy facts are in `claims.md`. Every action carries its rule and cluster ID. At 
 - 2026-10-21: 5.3 and 5.6 deployed in plugin v1.3.0 (see changelog).
 - 2026-10-21: Merged the keyword-cluster work into the programme branch. v1.3.0 (5.3, 5.6) was overwritten on the live site by v1.3.1 from a parallel session; plugin v1.3.2 combines both and awaits redeploy. Battery page (2.1) is live, so S3 is no longer a gap.
 - 2026-10-21: 5.3 and 5.6 live again in plugin v1.4.0, deployed by the programme session, which is the only session that uploads plugin files.
+- 2026-10-25: Scheduled runs on Thu 22 Oct (push refused: repo not attached to the run) and Fri 23 Oct (usage limit) produced no committed output. All six scheduled tasks now attach the repo with push access and dry-run a push before starting; if that is refused they stop with a one-line message. Thursday's output was redone in the programme session: 3.1 and 3.3 drafted, plus GBP posts for the week of 26 Oct (`local/gbp-posts-2026-10-25.md`).
