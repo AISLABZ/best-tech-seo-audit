@@ -3,7 +3,7 @@
  * Plugin Name: InstaTech SEO fixes
  * Description: Phase 1 SEO fixes from the instatech.uk audit (Oct 2026). Output filters only, no database writes.
  *              Roll back by replacing this file with an empty one, or define INSTATECH_SEO_FIXES_OFF in wp-config.php.
- * Version:     1.5.0
+ * Version:     1.5.1
  * Source:      https://github.com/aislabz/best-tech-seo-audit (instatech/wp/mu-plugins/instatech-seo-fixes.php)
  */
 
@@ -693,29 +693,45 @@ function instatech_seo_device_section_ids( $html, $slug ) {
 }
 
 function instatech_seo_device_menu( $html ) {
-	if ( ! is_string( $html ) ) {
+	if ( ! is_string( $html ) || ! is_page() ) {
 		return $html;
 	}
-	if ( false !== strpos( $html, "var D=[{k:'phone'" ) ) {
-		$swap = array(
-			"'/laptop-desktop-repair/#power'" => "'/laptop-desktop-repair/#diagnostic'",
-			"'/laptop-desktop-repair/#water'" => "'/laptop-desktop-repair/#diagnostic'",
-			"'/laptop-desktop-repair/#case'"  => "'/laptop-desktop-repair/#diagnostic'",
-			"devs.addEventListener('click',function(e){var b=e.target.closest('.itm-dev');if(b)show(b.getAttribute('data-k'));});" =>
-				"var itmArm=!1;devs.addEventListener('pointerdown',function(e){var b=e.target.closest('.itm-dev');itmArm=!!b&&(e.pointerType==='mouse'||b.classList.contains('on'))});devs.addEventListener('click',function(e){var b=e.target.closest('.itm-dev');if(!b)return;var k=b.getAttribute('data-k'),go=e.detail===0?b.classList.contains('on'):itmArm;show(k);if(go){for(var i=0;i<D.length;i++){if(D[i].k===k)location.href=D[i].hub}}});",
-		);
-		if ( instatech_seo_page_live( 'mobile-repair-services/battery-replacement' ) ) {
-			$swap["'/mobile-repair-services/#battery'"] = "'/mobile-repair-services/battery-replacement/'";
-		}
-		$html = strtr( $html, $swap );
-	}
-	if ( is_page() ) {
-		$page = get_queried_object();
-		if ( $page && empty( $page->post_parent ) ) {
-			$html = instatech_seo_device_section_ids( $html, $page->post_name );
-		}
+	$page = get_queried_object();
+	if ( $page && empty( $page->post_parent ) ) {
+		$html = instatech_seo_device_section_ids( $html, $page->post_name );
 	}
 	return $html;
+}
+
+/**
+ * Menu-side fixes. The menu script is minified by LiteSpeed after WordPress renders the page, so it cannot be patched
+ * reliably as text; this small script corrects the problem links as the menu draws them and opens a device's hub when
+ * its button is clicked (with a mouse or keyboard, or on a second tap on a touch screen).
+ */
+function instatech_seo_device_menu_links() {
+	$links = array(
+		'/laptop-desktop-repair/#power' => '/laptop-desktop-repair/#diagnostic',
+		'/laptop-desktop-repair/#water' => '/laptop-desktop-repair/#diagnostic',
+		'/laptop-desktop-repair/#case'  => '/laptop-desktop-repair/#diagnostic',
+	);
+	if ( instatech_seo_page_live( 'mobile-repair-services/battery-replacement' ) ) {
+		$links['/mobile-repair-services/#battery'] = '/mobile-repair-services/battery-replacement/';
+	}
+	return $links;
+}
+
+function instatech_seo_device_menu_script() {
+	$hubs = array(
+		'phone'  => '/mobile-repair-services/',
+		'laptop' => '/laptop-desktop-repair/',
+		'tablet' => '/tablet-repairs/',
+		'watch'  => '/smartwatch-repair-service/',
+	);
+	return '(function(){var L=' . wp_json_encode( instatech_seo_device_menu_links() ) . ',H=' . wp_json_encode( $hubs ) . ',arm=!1;'
+		. 'function fix(){var a=document.querySelectorAll("a.itm-t");for(var i=0;i<a.length;i++){var h=a[i].getAttribute("href");if(L[h])a[i].setAttribute("href",L[h])}}'
+		. 'new MutationObserver(fix).observe(document.documentElement,{childList:!0,subtree:!0});fix();'
+		. 'document.addEventListener("pointerdown",function(e){var b=e.target.closest&&e.target.closest(".itm-dev");arm=!!b&&(e.pointerType==="mouse"||b.classList.contains("on"))},!0);'
+		. 'document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest(".itm-dev");if(!b)return;var go=e.detail===0?b.classList.contains("on"):arm,k=b.getAttribute("data-k");arm=!1;if(go&&H[k])location.href=H[k]},!0)})();';
 }
 
 add_action(
@@ -727,6 +743,14 @@ add_action(
 		ob_start( 'instatech_seo_device_menu' );
 	},
 	4
+);
+
+add_action(
+	'wp_footer',
+	function () {
+		echo '<script id="instatech-seo-menu">' . instatech_seo_device_menu_script() . '</script>' . "\n";
+	},
+	100
 );
 
 add_action(

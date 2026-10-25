@@ -2,11 +2,13 @@
 // Stubbed-WordPress tests for v1.5.0 device menu: section ids on the four hubs and the menu script rewrite.
 // Run: php instatech/wp/tests/harness-v15.php instatech/wp/mu-plugins/instatech-seo-fixes.php <dir>
 // <dir> holds <slug>.raw.html for the four hubs (server HTML) and itm.js (the decoded inline menu script).
+// Writes the footer script to <dir>/itm-fix.js for the browser test.
 define( 'ABSPATH', '/x/' );
 define( 'OBJECT', 'OBJECT' );
 $LIVE = true; $PAGE = null;
 function add_filter() {}
 function add_action() {}
+function wp_json_encode( $v ) { return json_encode( $v, JSON_UNESCAPED_SLASHES ); }
 function get_page_by_path( $p ) { global $LIVE; return $LIVE ? (object) array( 'post_status' => 'publish' ) : null; }
 function is_page( $s = null ) { global $PAGE; return null !== $PAGE; }
 function get_queried_object() { global $PAGE; return $PAGE; }
@@ -16,17 +18,17 @@ $dir = $argv[2];
 $fail = 0;
 function check( $label, $cond ) { global $fail; echo ( $cond ? 'PASS ' : 'FAIL ' ), $label, "\n"; if ( ! $cond ) { $fail++; } }
 
-// Menu script: every problem link must resolve to a real page or to an id the hub now has.
-$js  = file_get_contents( "$dir/itm.js" );
-$doc = '<script>' . $js . '</script>';
-$out = instatech_seo_device_menu( $doc );
+// Menu links: apply the footer script's map to the menu data; every link must resolve to a page or a hub section id.
+$js   = file_get_contents( "$dir/itm.js" );
+$map  = instatech_seo_device_menu_links();
+$out  = strtr( $js, array_combine( array_map( function ( $k ) { return "'$k'"; }, array_keys( $map ) ), array_map( function ( $v ) { return "'$v'"; }, $map ) ) );
 check( 'menu: battery repointed to the live page', false !== strpos( $out, "'/mobile-repair-services/battery-replacement/'" ) && false === strpos( $out, "'/mobile-repair-services/#battery'" ) );
 check( 'menu: laptop power, water and case go to #diagnostic', 3 === substr_count( $out, "'/laptop-desktop-repair/#diagnostic'" ) );
-check( 'menu: device buttons navigate', false !== strpos( $out, 'location.href=D[i].hub' ) );
-check( 'menu: idempotent', $out === instatech_seo_device_menu( $out ) );
-file_put_contents( sys_get_temp_dir() . '/itm-v15.js', substr( $out, 8, -9 ) );
+$script = instatech_seo_device_menu_script();
+check( 'footer script: device buttons navigate to hubs', false !== strpos( $script, 'location.href=H[k]' ) && false !== strpos( $script, '"/smartwatch-repair-service/"' ) );
+file_put_contents( "$dir/itm-fix.js", $script );
 $LIVE = false;
-check( 'menu: battery link kept when the page is not live', false !== strpos( instatech_seo_device_menu( $doc ), "'/mobile-repair-services/#battery'" ) );
+check( 'menu: battery link kept when the page is not live', ! isset( instatech_seo_device_menu_links()['/mobile-repair-services/#battery'] ) );
 $LIVE = true;
 
 preg_match_all( "#'/([a-z-]+)/\\#([a-z]+)'#", $out, $links, PREG_SET_ORDER );
