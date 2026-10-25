@@ -2,6 +2,25 @@
 
 Every change made to instatech.uk is recorded here: what changed, how, and how to roll it back.
 
+## 2026-10-25
+
+### Deployed plugin v1.5.1 (approved by owner): the "By device" menu links now land (backlog 2.16)
+Source: `instatech/device-menu-clusters.md`. Before the upload the live file was confirmed as v1.4.0 (626 lines, 21,842 bytes); it is now v1.5.1 (27,751 bytes).
+
+| What | Before | After |
+|---|---|---|
+| "By problem" links (27 across phone, laptop, tablet and smartwatch) | 26 pointed at `#section` ids that did not exist, so each click landed at the top of the hub | The four hubs' service cards carry the ids (`#battery`, `#charging`, `#screen` and so on) and each link scrolls to its card, which is briefly outlined |
+| Phone → Battery Replacement | `/mobile-repair-services/#battery` | `/mobile-repair-services/battery-replacement/` (only while that page is live) |
+| Laptop → Charging and Power, Liquid Damage, Hinges and Case | No matching card on the hub | The "Free Diagnostic" step (`#diagnostic`) |
+| Device buttons (Phone, Laptop and Desktop, Tablet, Smartwatch) | Switched the panel only | A mouse or keyboard click opens the hub; on a touch screen the first tap still only switches the panel |
+
+- **Mechanism:** an output buffer (`template_redirect`, priority 4) adds the ids to the hub pages, and a small footer script (`#instatech-seo-menu`) corrects the menu links as the menu draws them and handles the device-button clicks.
+- **v1.5.0 was live for about 20 minutes:** the ids worked, but its menu-script text patch never matched because LiteSpeed minifies inline scripts after WordPress renders the page. v1.5.1 replaced the patch with the footer script.
+- **Tests:** `harness-v15.php` passes, as do all earlier harnesses unchanged.
+- **Verified live:** all 24 ids are present on the four hubs; the corrected links appear in both the desktop panel and the mobile drawer; clicking "Laptop and Desktop" opens `/laptop-desktop-repair/`; `/tablet-repairs/#charging` scrolls to and outlines the Charging Port card.
+- **Rollback:** re-upload v1.4.0 from git history.
+- **Finding (existing, not changed):** on a touch screen showing the desktop layout (for example an iPad in landscape), tapping "Repairs" opens the mega panel and immediately closes it. The menu script opens the panel on `mouseenter` and then toggles it shut on the tap's `click`. This is for the owner or the menu's author to fix; a one-line guard would solve it.
+
 ## 2026-10-21
 
 ### Deployed `wp-content/mu-plugins/instatech-seo-fixes.php` (v1.0.0)

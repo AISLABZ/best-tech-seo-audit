@@ -62,7 +62,7 @@ site without the owner's explicit approval in a conversation. Approved changes a
 | 2.9 | Apple Watch repair (retitle the smartwatch page) | todo | — |
 | 2.10–2.13 | iPhone 16, 15, 14 and 13 series model pages | deferred | Without prices, separate model pages would be thin and close to duplicates. Cover the model families as sections inside the iPhone hub (2.5) instead. Revisit with GSC data if model queries show demand |
 | 2.14 | Cannibalisation review: `/phone-screen-repair-cost/`, `/tablet-screen-repair-near-me/`, `/desktop-computer-repair-near-me/`, `/laptop-repair-near-me-what-to-check-first/` | moved to 5.4 | — |
-| 2.16 | Device menu: give the hubs real section ids for the 26 problem links that miss (`#battery`, `#screen` and so on), repoint Phone → Battery to the live page, make the 4 device buttons clickable. Plan in `device-menu-clusters.md` | todo | — |
+| 2.16 | Device menu: give the hubs real section ids for the 26 problem links that miss (`#battery`, `#screen` and so on), repoint Phone → Battery to the live page, make the 4 device buttons clickable. Plan in `device-menu-clusters.md` | live (v1.5.1, 25 Oct) | Device buttons open their hub on click |
 | 2.15 | Deepen location pages with nearby areas, station directions and shop reviews | todo | — |
 
 ## Phase 3: local prominence
