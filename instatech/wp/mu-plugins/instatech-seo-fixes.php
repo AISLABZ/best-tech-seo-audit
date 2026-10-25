@@ -3,7 +3,7 @@
  * Plugin Name: InstaTech SEO fixes
  * Description: Phase 1 SEO fixes from the instatech.uk audit (Oct 2026). Output filters only, no database writes.
  *              Roll back by replacing this file with an empty one, or define INSTATECH_SEO_FIXES_OFF in wp-config.php.
- * Version:     1.4.0
+ * Version:     1.5.0
  * Source:      https://github.com/aislabz/best-tech-seo-audit (instatech/wp/mu-plugins/instatech-seo-fixes.php)
  */
 
@@ -623,4 +623,118 @@ add_action(
 		ob_start( 'instatech_seo_page_copy' );
 	},
 	2
+);
+
+/**
+ * "By device" mega menu (backlog 2.16, instatech/device-menu-clusters.md). The menu is built in the browser from an
+ * inline script whose "by problem" links point at #section ids the hub pages never had, so every click landed at the
+ * top of the hub. Each hub's service cards get those ids, the links without a matching card are pointed at the closest
+ * real target, and the device buttons open their hub on click (the first tap on a touch screen still only switches
+ * the panel). Strings that are not found are left alone, so an edit to the menu or a hub turns that part off.
+ */
+function instatech_seo_device_sections() {
+	return array(
+		'mobile-repair-services'    => array(
+			'battery'  => array( 'service-card', 'Battery Replacement' ),
+			'charging' => array( 'service-card', 'Charging Port Repair' ),
+			'camera'   => array( 'service-card', 'Camera Repair' ),
+			'speaker'  => array( 'service-card', 'Speaker &amp; Audio' ),
+			'water'    => array( 'service-card', 'Water Damage Repair' ),
+			'buttons'  => array( 'service-card', 'Button Repair' ),
+			'data'     => array( 'service-card', 'Data Recovery' ),
+		),
+		'laptop-desktop-repair'     => array(
+			'screen'     => array( 'service-card', 'Screen Replacement' ),
+			'battery'    => array( 'service-card', 'Battery Replacement' ),
+			'keyboard'   => array( 'service-card', 'Keyboard Replacement' ),
+			'upgrades'   => array( 'service-card', 'Performance Upgrade' ),
+			'data'       => array( 'service-card', 'Data Recovery' ),
+			'diagnostic' => array( 'process-step', 'Free Diagnostic' ),
+		),
+		'tablet-repairs'            => array(
+			'screen'   => array( 'service-card', 'Screen Replacement' ),
+			'battery'  => array( 'service-card', 'Battery Replacement' ),
+			'charging' => array( 'service-card', 'Charging Port Repair' ),
+			'camera'   => array( 'service-card', 'Camera Repair' ),
+			'speaker'  => array( 'service-card', 'Speaker &amp; Audio' ),
+			'water'    => array( 'service-card', 'Water Damage Repair' ),
+		),
+		'smartwatch-repair-service' => array(
+			'screen'  => array( 'service-card', 'Screen Replacement' ),
+			'battery' => array( 'service-card', 'Battery Replacement' ),
+			'crown'   => array( 'service-card', 'Crown &amp; Button Repair' ),
+			'sensors' => array( 'service-card', 'Back Cover &amp; Housing' ),
+			'water'   => array( 'service-card', 'Water Damage Repair' ),
+		),
+	);
+}
+
+function instatech_seo_device_section_ids( $html, $slug ) {
+	$map = instatech_seo_device_sections();
+	if ( ! isset( $map[ $slug ] ) ) {
+		return $html;
+	}
+	foreach ( $map[ $slug ] as $id => $target ) {
+		if ( false !== strpos( $html, ' id="' . $id . '"' ) ) {
+			continue;
+		}
+		$h3 = strpos( $html, '<h3>' . $target[1] . '</h3>' );
+		if ( false === $h3 ) {
+			continue;
+		}
+		$open = '<div class="' . $target[0] . '">';
+		$at   = strrpos( substr( $html, 0, $h3 ), $open );
+		if ( false === $at || $h3 - $at > 3000 ) {
+			continue;
+		}
+		$html = substr_replace( $html, '<div class="' . $target[0] . '" id="' . $id . '">', $at, strlen( $open ) );
+	}
+	return $html;
+}
+
+function instatech_seo_device_menu( $html ) {
+	if ( ! is_string( $html ) ) {
+		return $html;
+	}
+	if ( false !== strpos( $html, "var D=[{k:'phone'" ) ) {
+		$swap = array(
+			"'/laptop-desktop-repair/#power'" => "'/laptop-desktop-repair/#diagnostic'",
+			"'/laptop-desktop-repair/#water'" => "'/laptop-desktop-repair/#diagnostic'",
+			"'/laptop-desktop-repair/#case'"  => "'/laptop-desktop-repair/#diagnostic'",
+			"devs.addEventListener('click',function(e){var b=e.target.closest('.itm-dev');if(b)show(b.getAttribute('data-k'));});" =>
+				"var itmArm=!1;devs.addEventListener('pointerdown',function(e){var b=e.target.closest('.itm-dev');itmArm=!!b&&(e.pointerType==='mouse'||b.classList.contains('on'))});devs.addEventListener('click',function(e){var b=e.target.closest('.itm-dev');if(!b)return;var k=b.getAttribute('data-k'),go=e.detail===0?b.classList.contains('on'):itmArm;show(k);if(go){for(var i=0;i<D.length;i++){if(D[i].k===k)location.href=D[i].hub}}});",
+		);
+		if ( instatech_seo_page_live( 'mobile-repair-services/battery-replacement' ) ) {
+			$swap["'/mobile-repair-services/#battery'"] = "'/mobile-repair-services/battery-replacement/'";
+		}
+		$html = strtr( $html, $swap );
+	}
+	if ( is_page() ) {
+		$page = get_queried_object();
+		if ( $page && empty( $page->post_parent ) ) {
+			$html = instatech_seo_device_section_ids( $html, $page->post_name );
+		}
+	}
+	return $html;
+}
+
+add_action(
+	'template_redirect',
+	function () {
+		if ( is_admin() || is_feed() || wp_doing_ajax() || ( defined( 'REST_REQUEST' ) && REST_REQUEST ) ) {
+			return;
+		}
+		ob_start( 'instatech_seo_device_menu' );
+	},
+	4
+);
+
+add_action(
+	'wp_head',
+	function () {
+		if ( is_page( array_keys( instatech_seo_device_sections() ) ) ) {
+			echo '<style id="instatech-seo-sections">.service-card[id],.process-step[id]{scroll-margin-top:160px}.service-card:target,.process-step:target{box-shadow:0 0 0 3px rgba(14,165,233,.45)}</style>' . "\n";
+		}
+	},
+	99
 );
